@@ -15,7 +15,10 @@ dependencyResolutionManagement {
 rootProject.name = "DroidconKE2022"
 
 mapOf(
-    "app" to "app"
+    "app" to "app",
+    "data" to "data",
+    "domain" to "domain",
+    "presentation" to "presentation"
 ).forEach { (projectName, projectPath) ->
     include(":$projectName")
     project(":$projectName").projectDir = File(projectPath)
