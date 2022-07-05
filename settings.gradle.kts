@@ -13,4 +13,10 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "DroidconKE2022"
-include ':app'
+
+mapOf(
+    "app" to "app"
+).forEach { (projectName, projectPath) ->
+    include(":$projectName")
+    project(":$projectName").projectDir = File(projectPath)
+}
