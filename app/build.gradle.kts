@@ -35,12 +35,8 @@ android {
         jvmTarget = "1.8"
     }
 
-    sourceSets.getByName("main") {
-        java.srcDir("build/generated/ksp/main/kotlin")
-    }
-
-    sourceSets.getByName("main") {
-        java.srcDirs("build/generated/ksp/main/java")
+    sourceSets {
+        map { it.java.srcDir("build/generated/ksp/${it.name}/kotlin") }
     }
 }
 
