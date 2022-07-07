@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -33,12 +34,20 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    sourceSets {
+        map { it.java.srcDir("build/generated/ksp/${it.name}/kotlin") }
+    }
 }
 
 dependencies {
     implementation(project(":data"))
     implementation(project(":domain"))
     implementation(project(":presentation"))
+
+    implementation("io.insert-koin:koin-android:3.2.0")
+    implementation("io.insert-koin:koin-annotations:1.0.1")
+    ksp("io.insert-koin:koin-ksp-compiler:1.0.1")
 
     implementation("androidx.core:core-ktx:1.8.0")
     implementation("androidx.appcompat:appcompat:1.4.2")
