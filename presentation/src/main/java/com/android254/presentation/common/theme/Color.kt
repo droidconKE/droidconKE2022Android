@@ -64,5 +64,3 @@ val md_theme_dark_surfaceTintColor = Color(0xFFADC6FF)
 
 
 val seed = Color(0xFF4285F4)
-
-// DroidconKE2022Theme
