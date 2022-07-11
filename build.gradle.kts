@@ -29,9 +29,8 @@ allprojects {
     }
 }
 
-
 subprojects {
-    apply(plugin ="io.gitlab.arturbosch.detekt")
+    apply(plugin = "io.gitlab.arturbosch.detekt")
     detekt {
         config = files("${project.rootDir}/detekt.yml")
         parallel = true
