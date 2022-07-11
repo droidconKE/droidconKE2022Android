@@ -5,6 +5,7 @@ pluginManagement {
         mavenCentral()
     }
 }
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
@@ -12,7 +13,6 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "DroidconKE2022"
 
 mapOf(
     "app" to "app",
@@ -23,3 +23,5 @@ mapOf(
     include(":$projectName")
     project(":$projectName").projectDir = File(projectPath)
 }
+
+rootProject.name = "DroidconKE2022"

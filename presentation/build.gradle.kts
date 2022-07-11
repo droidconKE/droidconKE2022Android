@@ -1,6 +1,8 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("dagger.hilt.android.plugin")
+    kotlin("kapt")
 }
 
 android {
@@ -26,27 +28,34 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
     buildFeatures {
         compose = true
     }
+
     packagingOptions {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+
     composeOptions {
         kotlinCompilerExtensionVersion = "1.2.0"
     }
 }
 
 dependencies {
+    implementation(project(":data"))
+
     val composeVersion = "1.3.0-alpha01"
     implementation("androidx.core:core-ktx:1.8.0")
     implementation("androidx.appcompat:appcompat:1.4.2")
@@ -58,6 +67,14 @@ dependencies {
     implementation("androidx.activity:activity-compose:1.5.0")
     implementation("androidx.customview:customview:1.2.0-alpha01")
     implementation("androidx.customview:customview-poolingcontainer:1.0.0-rc01")
+
+    // Hilt
+    implementation("com.google.dagger:hilt-android:2.42")
+    kapt("com.google.dagger:hilt-android-compiler:2.42")
+
+    // Hilt Jetpack Integrations
+    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
+    kapt("androidx.hilt:hilt-compiler:1.0.0")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.3")

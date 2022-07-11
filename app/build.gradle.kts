@@ -1,7 +1,8 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("com.google.devtools.ksp")
+    id("dagger.hilt.android.plugin")
+    kotlin("kapt")
 }
 
 android {
@@ -31,13 +32,11 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = "1.8"
     }
 
-    sourceSets {
-        map { it.java.srcDir("build/generated/ksp/${it.name}/kotlin") }
-    }
 }
 
 dependencies {
@@ -45,14 +44,19 @@ dependencies {
     implementation(project(":domain"))
     implementation(project(":presentation"))
 
-    implementation("io.insert-koin:koin-android:3.2.0")
-    implementation("io.insert-koin:koin-annotations:1.0.1")
-    ksp("io.insert-koin:koin-ksp-compiler:1.0.1")
-
     implementation("androidx.core:core-ktx:1.8.0")
     implementation("androidx.appcompat:appcompat:1.4.2")
     implementation("com.google.android.material:material:1.6.1")
-    testImplementation("junit:junit:4.13.2")
+
+    implementation("com.google.dagger:hilt-android:2.42")
+    kapt("com.google.dagger:hilt-compiler:2.42")
+
     androidTestImplementation("androidx.test.ext:junit:1.1.3")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
+    androidTestImplementation("com.google.dagger:hilt-android-testing:2.42")
+    kaptAndroidTest("com.google.dagger:hilt-compiler:2.42")
+
+    testImplementation("junit:junit:4.13.2")
+    testImplementation("com.google.dagger:hilt-android-testing:2.42")
+    kaptTest("com.google.dagger:hilt-compiler:2.42")
 }
