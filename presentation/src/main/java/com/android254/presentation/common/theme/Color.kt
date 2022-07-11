@@ -1,3 +1,18 @@
+/*
+ * Copyright 2022 DroidconKE
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.android254.presentation.common.theme
 
 import androidx.compose.ui.graphics.Color
@@ -61,6 +76,5 @@ val md_theme_dark_inverseOnSurface = Color(0xFF303033)
 val md_theme_dark_inversePrimary = Color(0xFF005AC1)
 val md_theme_dark_surfaceTint = Color(0xFFADC6FF)
 val md_theme_dark_surfaceTintColor = Color(0xFFADC6FF)
-
 
 val seed = Color(0xFF4285F4)

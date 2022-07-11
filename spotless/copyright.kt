@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 DroidconKE
+ * Copyright $YEAR DroidconKE
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,21 +13,3 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android254.data.di
-
-import com.android254.data.Database
-import com.android254.data.dao.SessionDao
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
-
-@Module
-@InstallIn(SingletonComponent::class)
-object DaoModule {
-
-    @Provides
-    fun providesAuthorDao(
-        database: Database,
-    ): SessionDao = database.sessionDao()
-}
