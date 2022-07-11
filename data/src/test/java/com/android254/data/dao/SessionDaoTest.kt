@@ -28,7 +28,9 @@ class SessionDaoTest {
         db = Room.inMemoryDatabaseBuilder(
             context,
             Database::class.java
-        ).allowMainThreadQueries().build()
+        )
+            .allowMainThreadQueries() // TODO Please delete me
+            .build()
         sessionDao = db.sessionDao()
     }
 
