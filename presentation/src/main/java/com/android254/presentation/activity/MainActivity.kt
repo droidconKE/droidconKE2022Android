@@ -7,7 +7,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.CutCornerShape
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -41,15 +42,27 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String, viewModel: SessionViewModel = hiltViewModel()) {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp)
-    ) {
-        Button(onClick = {
-            viewModel.saveRandomSession()
-        }, modifier = Modifier.fillMaxWidth(), shape = CutCornerShape(10)) {
-            Text(text = "Hello $name")
+
+    Column(Modifier.fillMaxSize()) {
+
+        LazyColumn(Modifier.weight(1f)) {
+            items(viewModel.sessionsStream) { item ->
+                Text(
+                    "${item.publishDate}",
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(8.dp)
+                )
+            }
+        }
+
+        Button(
+            onClick = { viewModel.saveRandomSession() },
+            Modifier
+                .fillMaxWidth()
+                .padding(10.dp)
+        ) {
+            Text("Random Session")
         }
     }
 }

@@ -8,5 +8,5 @@ import com.android254.data.model.Session
 interface SessionDao : BaseDao<Session> {
 
     @Query("SELECT * FROM SESSION")
-    suspend fun fetchSessions(): List<Session>
+    fun fetchSessions(): List<Session>
 }

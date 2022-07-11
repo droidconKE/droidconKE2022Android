@@ -22,5 +22,7 @@ object DatabaseModule {
         context,
         Database::class.java,
         "dcke22-database"
-    ).build()
+    )
+        .allowMainThreadQueries() // TODO Please delete me
+        .build()
 }
