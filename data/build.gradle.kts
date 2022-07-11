@@ -43,32 +43,20 @@ android {
 }
 
 dependencies {
-    val roomVersion = "2.4.2"
-    implementation("androidx.core:core-ktx:1.8.0")
+    implementation(libs.android.coreKtx)
+    implementation(libs.android.appCompat)
+    implementation(libs.android.material)
+    api(libs.kotlin.coroutines.datetime)
+    implementation(libs.android.hilt)
+    kapt(libs.android.hilt.compiler)
+    implementation(libs.room.runtime)
+    ksp(libs.room.compiler)
+    implementation(libs.room.ktx)
+    androidTestImplementation(libs.android.test.junit4)
+    androidTestImplementation(libs.android.test.espresso)
 
-    implementation("androidx.appcompat:appcompat:1.4.2")
-    implementation("com.google.android.material:material:1.6.1")
-
-    api("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
-
-    implementation("com.google.dagger:hilt-android:2.42")
-    kapt("com.google.dagger:hilt-compiler:2.42")
-
-    // Room Database
-    implementation("androidx.room:room-runtime:$roomVersion")
-    ksp("androidx.room:room-compiler:$roomVersion")
-
-    // Paging 3 Integration
-//    implementation("androidx.room:room-paging:2.5.0-alpha02")
-
-    // Kotlin Extensions and Coroutines support for Room
-    implementation("androidx.room:room-ktx:$roomVersion")
-
-    androidTestImplementation("androidx.test.ext:junit:1.1.3")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
-
-    testImplementation("junit:junit:4.13.2")
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.3")
-    testImplementation("androidx.test:core-ktx:1.4.0")
-    testImplementation("org.robolectric:robolectric:4.8.1")
+    testImplementation(libs.test.junit4)
+    testImplementation(libs.kotlin.coroutines.test)
+    testImplementation(libs.test.androidx.core)
+    testImplementation(libs.test.robolectric)
 }

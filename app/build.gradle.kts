@@ -44,19 +44,18 @@ dependencies {
     implementation(project(":domain"))
     implementation(project(":presentation"))
 
-    implementation("androidx.core:core-ktx:1.8.0")
-    implementation("androidx.appcompat:appcompat:1.4.2")
-    implementation("com.google.android.material:material:1.6.1")
+    implementation(libs.android.coreKtx)
+    implementation(libs.android.appCompat)
+    implementation(libs.android.material)
+    implementation(libs.android.hilt)
+    kapt(libs.android.hilt.compiler)
 
-    implementation("com.google.dagger:hilt-android:2.42")
-    kapt("com.google.dagger:hilt-compiler:2.42")
+    androidTestImplementation(libs.android.test.junit4)
+    androidTestImplementation(libs.android.test.espresso)
+    androidTestImplementation(libs.android.hilt.testing)
+    kaptAndroidTest(libs.android.hilt.compiler)
 
-    androidTestImplementation("androidx.test.ext:junit:1.1.3")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
-    androidTestImplementation("com.google.dagger:hilt-android-testing:2.42")
-    kaptAndroidTest("com.google.dagger:hilt-compiler:2.42")
-
-    testImplementation("junit:junit:4.13.2")
-    testImplementation("com.google.dagger:hilt-android-testing:2.42")
-    kaptTest("com.google.dagger:hilt-compiler:2.42")
+    testImplementation(libs.test.junit4)
+    testImplementation(libs.android.hilt.compiler)
+    kaptTest(libs.android.hilt.compiler)
 }
