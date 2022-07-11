@@ -48,8 +48,11 @@ dependencies {
     implementation(libs.android.coreKtx)
     implementation(libs.android.appCompat)
     implementation(libs.android.material)
+
     implementation(libs.android.hilt)
     kapt(libs.android.hilt.compiler)
+
+    implementation(libs.timber)
 
     androidTestImplementation(libs.android.test.junit4)
     androidTestImplementation(libs.android.test.espresso)
