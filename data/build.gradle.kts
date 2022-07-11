@@ -16,6 +16,12 @@ android {
         consumerProguardFiles("consumer-rules.pro")
     }
 
+    testOptions {
+        unitTests {
+            isIncludeAndroidResources = true
+        }
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -50,9 +56,6 @@ dependencies {
 
     // Room Database
     implementation("androidx.room:room-runtime:$roomVersion")
-    annotationProcessor("androidx.room:room-compiler:$roomVersion")
-
-    // To use Kotlin Symbolic Processing (KSP)
     ksp("androidx.room:room-compiler:$roomVersion")
 
     // Paging 3 Integration
@@ -65,4 +68,7 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
 
     testImplementation("junit:junit:4.13.2")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.3")
+    testImplementation("androidx.test:core-ktx:1.4.0")
+    testImplementation("org.robolectric:robolectric:4.8.1")
 }
