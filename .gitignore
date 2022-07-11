@@ -18,3 +18,5 @@
 app/libs/
 buildSrc/build
 /keystore.properties
+
+/fastlane/report.xml
