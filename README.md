@@ -29,11 +29,11 @@ This layer will include;
 This layer will contain;
 1. The Usecase
 2. The repository
-3. The relavant domain models.
+3. The relevant domain models.
 
 ### Presentation
 1. View
-2. Viewmodels
+2. ViewModels
 3. Relevant Mappers
 4. Relevant Models.
 
