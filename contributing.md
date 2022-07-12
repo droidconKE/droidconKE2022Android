@@ -2,7 +2,7 @@
 
 - Find an issue in the [project board](https://github.com/orgs/droidconKE/projects/1/views/1) and assign it to yourself. You can also create an issue if it doesn't exist.
 - Create a branch against main
-- Create a PR to main. Pullrequests must pass the following checks;
+- Create a PR to main. PullRequests must pass the following checks;
     * Must be approved by a code owner
     * Must pass all CI Checks
     * Must include updated tests
@@ -18,6 +18,8 @@
 - All repositories must be suffixed with Repository. ie. `SponsorsRepository`
 - All repository implementations must be suffixed with `DataRepository` ie. `SponsorsDataRepository`
 - All public functions in the ViewModel must be prefixed with `on` and suffixed with `action` ie. `onSignInAction()`
+- All models should suffix the layer then model. ie. `SponsorsDataModel` or `SponsorsDomainModel` or `SponsorsPresentationModel`
+- All mappers should follow the pattern `model-layerFrom-layerTo-mapper` ie. `SponsorDataToDomainMapper`
 
 
 ## Coding Style
@@ -29,6 +31,7 @@
     - Repository
     - Usecase
     - Mappers
+- Format your changed files `COMMAND+OPTION+L` for mac users or `CTRL+ALT+L` 
 
 ### DON'T
-- Don't include the word `impl` in a repository implementation name. Use `dataRepository` instead.
+- Don't include the word `impl` in a repository implementation name. Use `DataRepository` instead.
