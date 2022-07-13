@@ -56,7 +56,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":data"))
+    implementation(project(":domain"))
 
     implementation(libs.android.coreKtx)
     implementation(libs.android.appCompat)
@@ -74,4 +74,13 @@ dependencies {
     androidTestImplementation(libs.compose.ui.test.junit)
     debugImplementation(libs.compose.ui.tooling)
     debugImplementation(libs.compose.ui.test.manifest)
+}
+kotlin {
+    sourceSets {
+        all {
+            languageSettings.apply {
+                optIn("androidx.compose.material3.ExperimentalMaterial3Api")
+            }
+        }
+    }
 }

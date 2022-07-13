@@ -31,7 +31,8 @@
     - Repository
     - Usecase
     - Mappers
-- Format your changed files `COMMAND+OPTION+L` for mac users or `CTRL+ALT+L` 
+- Format your changed files `COMMAND+OPTION+L` for mac users or `CTRL+ALT+L`
+- Include a preview for all UI components.
 
 ### DON'T
 - Don't include the word `impl` in a repository implementation name. Use `DataRepository` instead.
