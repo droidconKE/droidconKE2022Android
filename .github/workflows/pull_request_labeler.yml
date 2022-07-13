@@ -13,3 +13,4 @@ jobs:
         uses: AveryCameronUofR/add-reviewer-gh-action@1.0.3
         with:
           reviewers: chepsi, wangerekaharun, michaelbukachi, jumaallan
+          token: ${{ secrets.GITHUB_TOKEN }}
