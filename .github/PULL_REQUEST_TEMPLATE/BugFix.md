@@ -8,7 +8,7 @@ assignees: 'chepsi, wangerekaharun, michaelbukachi, jumaallan'
 ---
 <!-- Please make sure to read https://github.com/droidconKE/droidconKE2022Android/docs/CONTRIBUTING.md and check that you understand and have followed it as best as possible -->
 <!-- Explain what your bugfix seeks to remedy in a short paragraph. -->
-# Scope
+# Scope  s
 
 <!-- Declare any issues by typing `fixes #1` or `closes #1` for example so that the automation can kick in when this is merged -->
 ## Closes/Fixes Issues
