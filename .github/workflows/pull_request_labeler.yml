@@ -1,0 +1,15 @@
+name: Add PR reviewers
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Add Pull Request Reviewer
+        uses: AveryCameronUofR/add-reviewer-gh-action@1.0.3
+        with:
+          reviewers: @chepsi, @wangerekaharun, @michaelbukachi, @jumaallan
