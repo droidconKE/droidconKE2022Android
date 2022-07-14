@@ -3,7 +3,7 @@ name: Bug report
 about: Create a report to help us improve
 title: "[Bug Report] Short Form Subject (50 Chars or less)"
 labels: bug report
-assignees: 'chepsi, wangerekaharun, michaelbukachi, jumaallan'
+assignees: 'chepsi, wangerekaharun, michaelbukachi, jumaallan, kibettheophilus'
 
 ---
 
