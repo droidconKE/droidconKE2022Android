@@ -3,7 +3,7 @@ name: Feature request
 about: Suggest an idea for this project
 title: "[Feature] Short Form Title (50 chars or less.)"
 labels: feature request
-assignees: 'chepsi, wangerekaharun, michaelbukachi, jumaallan, kibettheophilus'
+assignees: 'chepsi, wangerekaharun, michaelbukachi, jumaallan, kibettheophilus, misshannah'
 
 ---
 

@@ -3,7 +3,7 @@ name: Feature Addition
 about: Add a feature to this project!
 title: "[Feature] Short Form Title (50 chars or less.)"
 labels: enhancement
-assignees: 'chepsi, wangerekaharun, michaelbukachi, jumaallan, kibettheophilus'
+assignees: 'chepsi, wangerekaharun, michaelbukachi, jumaallan, kibettheophilus, misshannah'
 
 ---
 <!-- Please make sure to read https://github.com/droidconKE/droidconKE2022Android/docs/CONTRIBUTING.md and check that you understand and have followed it as best as possible
