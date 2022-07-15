@@ -20,7 +20,6 @@ import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import com.android254.data.Database
 import com.android254.data.model.Session
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import kotlinx.datetime.toInstant
 import org.junit.After
@@ -55,7 +54,6 @@ class SessionDaoTest {
         db.close()
     }
 
-    @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun sessionDao_fetches_all_sessions() = runTest {
         val session = Session(0, "Welcome Keynote", "2010-06-01T22:19:44.475Z".toInstant())
