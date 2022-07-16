@@ -62,3 +62,12 @@ dependencies {
     testImplementation(libs.test.androidx.core)
     testImplementation(libs.test.robolectric)
 }
+kotlin {
+    sourceSets {
+        all {
+            languageSettings.apply {
+                optIn("kotlinx.coroutines.ExperimentalCoroutinesApi")
+            }
+        }
+    }
+}

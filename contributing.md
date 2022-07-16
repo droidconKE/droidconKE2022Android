@@ -1,6 +1,7 @@
 ## Contributing
-
-- Find an issue in the [project board](https://github.com/orgs/droidconKE/projects/1/views/1) and assign it to yourself. You can also create an issue if it doesn't exist.
+- Find an issue in the [Trello Board](https://trello.com/b/DNGPH3Ui/droidconke22-android-app) and assign it to yourself. You can also create an issue if it doesn't exist.
+- Fork the repository. This means that you will have a copy of the repository under `your-GitHub-username/repository-name`.
+- Clone the repository to your local machine using git clone https://github.com/github-username/repository-name.git.
 - Create a branch against main
 - Create a PR to main. PullRequests must pass the following checks;
     * Must be approved by a code owner
@@ -8,6 +9,13 @@
     * Must include updated tests
     * Must have every conversation resolved before merging
 - We encourage you to use [git rebase](https://www.atlassian.com/git/tutorials/rewriting-history/git-rebase#:~:text=What%20is%20git%20rebase%3F,of%20a%20feature%20branching%20workflow.) for a linear history
+- To ensure small PRs, Work on only one layer ie.
+    * If you are working on the usecase;
+      * Create the usecase, the repository and a repository implementation without any logic
+    * If you are working on the UI
+      * Work on the UI and navigation if its an empty screen
+      * Work on the Design and ViewModel if its UI implementation ticket
+    * If you are working on the data layer work on the data layer only.
 
 
 ## Naming conventions
