@@ -57,8 +57,7 @@ dependencies {
     implementation(libs.ktor.core)
     implementation(libs.ktor.android)
     implementation(libs.ktor.content.negotiation)
-    implementation(libs.ktor.gson)
-    implementation(libs.gson.gson)
+    implementation(libs.ktor.json)
     androidTestImplementation(libs.android.test.junit4)
     androidTestImplementation(libs.android.test.espresso)
 
@@ -67,6 +66,7 @@ dependencies {
     testImplementation(libs.test.androidx.core)
     testImplementation(libs.test.robolectric)
 }
+
 kotlin {
     sourceSets {
         all {
