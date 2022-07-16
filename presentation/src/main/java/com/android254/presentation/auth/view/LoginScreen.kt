@@ -16,11 +16,13 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.android254.presentation.R
 import com.android254.presentation.common.components.DroidConTextField
 import com.android254.presentation.common.components.GoogleAuthButton
+import com.android254.presentation.common.theme.Montserrat
 
 @Composable
 fun LoginScreen() {
@@ -79,7 +81,7 @@ fun LoginScreen() {
                     Spacer(modifier = Modifier.height(24.dp))
                     DroidConTextField(label = "Password")
                     Spacer(modifier = Modifier.height(24.dp))
-                    Button(onClick = { /*TODO*/ }, modifier = Modifier.fillMaxWidth()) {
+                    Button(onClick = { /*TODO*/ }, modifier = Modifier.fillMaxWidth().height(48.dp), shape = RoundedCornerShape(7.dp),) {
                         Text(text = "SIGN IN")
                     }
                 }
@@ -87,17 +89,24 @@ fun LoginScreen() {
                 TextButton(onClick = { /*TODO*/ }) {
                     Text(
                         text = "Forgot Password?", style = TextStyle(
-                            fontWeight = FontWeight.Bold
+                            fontWeight = FontWeight.ExtraBold,
+                            fontSize = 14.sp,
+                            color = MaterialTheme.colorScheme.onSecondaryContainer,
+                            fontFamily = Montserrat
                         )
                     )
                 }
-                Text(text = "Don't have an account?")
+                Spacer(modifier = Modifier.height(24.dp))
+                Text(text = "Don't have an account?", style = TextStyle(fontSize = 14.sp,  fontFamily = Montserrat))
                 Spacer(modifier = Modifier.height(12.dp))
                 TextButton(onClick = { /*TODO*/ }) {
                     Text(
                         text = "Sign Up", style = TextStyle(
                             fontWeight = FontWeight.Bold,
-                            color = Color(0xFFFF6E4D)
+                            color = Color(0xFFFF6E4D),
+                            fontSize = 16.sp,
+                            textDecoration = TextDecoration.Underline,
+                            fontFamily = Montserrat
                         )
                     )
                 }

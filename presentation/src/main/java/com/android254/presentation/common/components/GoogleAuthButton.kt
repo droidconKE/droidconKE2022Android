@@ -31,7 +31,7 @@ fun GoogleAuthButton(
     shape: Shape = RoundedCornerShape(4.dp),
     border: BorderStroke? = BorderStroke(1.dp, SolidColor(MaterialTheme.colorScheme.outline)),
     colors: ButtonColors = ButtonDefaults.buttonColors(
-        containerColor = MaterialTheme.colorScheme.secondaryContainer,
+        containerColor = MaterialTheme.colorScheme.primaryContainer,
         contentColor = MaterialTheme.colorScheme.onSecondaryContainer
 
     ),
