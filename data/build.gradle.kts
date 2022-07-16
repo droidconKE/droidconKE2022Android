@@ -57,6 +57,7 @@ dependencies {
     implementation(libs.android.material)
     api(libs.kotlin.coroutines.datetime)
     implementation(libs.android.hilt)
+    implementation(libs.timber)
     kapt(libs.android.hilt.compiler)
     implementation(libs.room.runtime)
     ksp(libs.room.compiler)
