@@ -14,9 +14,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.android254.presentation.R
 import com.android254.presentation.common.components.DroidConTextField
+import com.android254.presentation.common.components.GoogleAuthButton
 
 @Composable
 fun LoginScreen() {
@@ -63,27 +67,39 @@ fun LoginScreen() {
                     .fillMaxWidth(),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Spacer(modifier = Modifier.height(24.dp))
-                Button(onClick = { /*TODO*/ }, modifier = Modifier.fillMaxWidth()) {
-                    Text(text = "SIGN IN WITH GOOGLE")
-                }
+                Spacer(modifier = Modifier.height(50.dp))
+                GoogleAuthButton(onClick = { /*TODO*/ }, modifier = Modifier.width(200.dp)) {}
+                Spacer(modifier = Modifier.height(32.dp))
                 Row(horizontalArrangement = Arrangement.Center) {
                     Text(text = " - OR - ")
                 }
+                Spacer(modifier = Modifier.height(36.dp))
                 Column(modifier = Modifier.padding(38.dp)) {
-                    DroidConTextField()
+                    DroidConTextField(label = "Email Address")
                     Spacer(modifier = Modifier.height(24.dp))
-                    TextField(
-                        value = "",
-                        onValueChange = {},
-                        label = { Text("Password") },
-                        modifier = Modifier.fillMaxWidth(),
-                        shape = RoundedCornerShape(7.dp)
-                    )
+                    DroidConTextField(label = "Password")
                     Spacer(modifier = Modifier.height(24.dp))
                     Button(onClick = { /*TODO*/ }, modifier = Modifier.fillMaxWidth()) {
                         Text(text = "SIGN IN")
                     }
+                }
+                Spacer(modifier = Modifier.height(24.dp))
+                TextButton(onClick = { /*TODO*/ }) {
+                    Text(
+                        text = "Forgot Password?", style = TextStyle(
+                            fontWeight = FontWeight.Bold
+                        )
+                    )
+                }
+                Text(text = "Don't have an account?")
+                Spacer(modifier = Modifier.height(12.dp))
+                TextButton(onClick = { /*TODO*/ }) {
+                    Text(
+                        text = "Sign Up", style = TextStyle(
+                            fontWeight = FontWeight.Bold,
+                            color = Color(0xFFFF6E4D)
+                        )
+                    )
                 }
             }
         }
