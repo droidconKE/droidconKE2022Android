@@ -24,6 +24,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -56,12 +57,13 @@ fun MainScreen() {
         topBar = { DroidconAppBar() },
         bottomBar = { BottomNavigationBar(navController) }
     ) { padding ->
+        //TODO remove this after we are done with testing the login screen
         Column(modifier = Modifier.padding(padding)) {
             Button(onClick = {
                 val intent = Intent(context, LoginActivity::class.java)
                 context.startActivity(intent)
             }) {
-
+Text(text = "View Login Screen")
             }
             Navigation(navController = navController)
         }
