@@ -64,6 +64,7 @@ dependencies {
     implementation(libs.bundles.compose)
     implementation(libs.lifecycle.runtimeKtx)
     implementation(libs.android.hilt)
+    implementation("androidx.core:core-splashscreen:1.0.0-rc01")
     kapt(libs.android.hilt.compiler)
     implementation(libs.android.hilt.compose)
     kapt(libs.android.hilt.androidx.compiler)

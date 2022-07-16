@@ -8,11 +8,10 @@ import com.android254.presentation.about.view.AboutScreen
 import com.android254.presentation.feed.view.FeedScreen
 import com.android254.presentation.home.view.HomeScreen
 import com.android254.presentation.sessions.view.SessionsScreen
-import com.android254.presentation.splash.view.SplashScreen
 
 @Composable
 fun Navigation(navController: NavHostController) {
-    NavHost(navController, startDestination = Screens.Splash.route) {
+    NavHost(navController, startDestination = Screens.Home.route) {
         composable(Screens.Home.route) {
             HomeScreen()
         }
@@ -24,9 +23,6 @@ fun Navigation(navController: NavHostController) {
         }
         composable(Screens.About.route) {
             AboutScreen()
-        }
-        composable(Screens.Splash.route) {
-            SplashScreen(navController = navController)
         }
     }
 }
