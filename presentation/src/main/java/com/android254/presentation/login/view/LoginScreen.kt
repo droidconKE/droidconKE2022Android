@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android254.presentation.sessions.view
+package com.android254.presentation.login.view
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -21,14 +21,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.android254.presentation.common.theme.DroidconKE2022Theme
 
 @Composable
-fun SessionsScreen() {
-    Text(text = "Sessions Screen")
+fun LoginScreen() {
+    Text(text = "Login Screen")
 }
 
 @Preview
 @Composable
-fun SessionsScreenPreview() {
+fun LoginScreenPreview() {
     DroidconKE2022Theme {
-        SessionsScreen()
+        LoginScreen()
     }
 }
