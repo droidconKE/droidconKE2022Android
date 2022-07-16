@@ -32,35 +32,37 @@ fun LoginScreen() {
         rememberTopAppBarScrollState()
     )
     Box() {
-        Image(
-            modifier = Modifier
-                .fillMaxSize()
-                .fillMaxHeight(),
-            painter = painterResource(R.drawable.ic_topbar_bg_login),
-            contentDescription = "background_image",
-            contentScale = ContentScale.FillBounds
-        )
+
         Scaffold(
             topBar = {
-                LargeTopAppBar(
-                    title = { Text("Sign In") },
-                    navigationIcon = {
-                        IconButton(
-                            onClick = { /* doSomething() */ },
-                        ) {
-                            Icon(
-                                painter = painterResource(id = R.drawable.ic_back_arrow),
-                                contentDescription = "Localized description"
-                            )
-                        }
-                    },
-                    scrollBehavior = scrollBehavior,
-                    colors = TopAppBarDefaults.largeTopAppBarColors(
-                        containerColor = MaterialTheme.colorScheme.primary,
-                        titleContentColor = MaterialTheme.colorScheme.onPrimary,
-                        navigationIconContentColor = MaterialTheme.colorScheme.onPrimary
+                Box {
+                    Image(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        painter = painterResource(R.drawable.ic_topbar_bg_login),
+                        contentDescription = "background_image",
+                        contentScale = ContentScale.FillBounds
                     )
-                )
+                    LargeTopAppBar(
+                        title = { Text("Sign In") },
+                        navigationIcon = {
+                            IconButton(
+                                onClick = { /* doSomething() */ },
+                            ) {
+                                Icon(
+                                    painter = painterResource(id = R.drawable.ic_back_arrow),
+                                    contentDescription = "Localized description"
+                                )
+                            }
+                        },
+                        scrollBehavior = scrollBehavior,
+                        colors = TopAppBarDefaults.largeTopAppBarColors(
+                            containerColor = Color.Transparent,
+                            titleContentColor = MaterialTheme.colorScheme.onPrimary,
+                            navigationIconContentColor = MaterialTheme.colorScheme.onPrimary
+                        )
+                    )
+                }
             }
         ) { paddingValues ->
             Column(
@@ -70,6 +72,7 @@ fun LoginScreen() {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Spacer(modifier = Modifier.height(50.dp))
+
                 GoogleAuthButton(onClick = { /*TODO*/ }, modifier = Modifier.width(200.dp)) {}
                 Spacer(modifier = Modifier.height(32.dp))
                 Row(horizontalArrangement = Arrangement.Center) {
