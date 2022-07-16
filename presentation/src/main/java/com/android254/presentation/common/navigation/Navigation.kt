@@ -7,6 +7,7 @@ import androidx.navigation.compose.composable
 import com.android254.presentation.about.view.AboutScreen
 import com.android254.presentation.feed.view.FeedScreen
 import com.android254.presentation.home.view.HomeScreen
+import com.android254.presentation.login.view.LoginScreen
 import com.android254.presentation.sessions.view.SessionsScreen
 
 @Composable
@@ -23,6 +24,9 @@ fun Navigation(navController: NavHostController) {
         }
         composable(Screens.About.route) {
             AboutScreen()
+        }
+        composable(Screens.Login.route) {
+            LoginScreen()
         }
     }
 }
