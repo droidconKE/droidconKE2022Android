@@ -10,6 +10,7 @@ lifecycle = "2.5.0"
 okhttp = "4.9.3"
 retrofit = "2.9.0"
 room = "2.4.2"
+ktor = "2.0.3"
 
 [libraries]
 android-appCompat = "androidx.appcompat:appcompat:1.4.2"
@@ -60,12 +61,17 @@ timber = "com.jakewharton.timber:timber:5.0.1"
 test-junit4 = "junit:junit:4.13.2"
 test-androidx-core = "androidx.test:core-ktx:1.4.0"
 test-robolectric = "org.robolectric:robolectric:4.8.1"
+ktor-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
+ktor-android = { module = "io.ktor:ktor-client-android", version.ref = "ktor" }
+ktor-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
+ktor-gson = { module = "io.ktor:ktor-client-gson", version.ref = "ktor" }
 
 [bundles]
 compose = ["coil-compose", "compose-activity", "compose-compiler", "compose-material-3", "compose-materialIcons", "compose-runtimeLivedata", "compose-ui", "compose-ui-tooling", "compose-ui-tooling-preview", "paging-compose", "compose-preview-customview", "compose-preview-customview-poolingcontainer"]
 lifecycle = ["lifecycle-livedataKtx", "lifecycle-runtimeKtx", "lifecycle-viewmodel-compose"]
-networking = ["gson-gson", "okhttp-interceptor", "retrofit-gsonConverter", "retrofit-retrofit"]
+networking = ["gson-gson", "okhttp-interceptor", "retrofit-gsonConverter", "retrofit-retrofit",]
 room = ["room-ktx", "room-paging", "room-runtime"]
+ktor = ["ktor-core", "ktor-android", "ktor-gson", "ktor-content-negotiation"]
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "gradleplugin" }

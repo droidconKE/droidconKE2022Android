@@ -18,8 +18,8 @@ package com.android254.data.dao
 import android.content.Context
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
-import com.android254.data.Database
-import com.android254.data.model.Session
+import com.android254.data.db.Database
+import com.android254.data.db.model.Session
 import kotlinx.coroutines.test.runTest
 import kotlinx.datetime.toInstant
 import org.junit.After

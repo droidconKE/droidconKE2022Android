@@ -15,7 +15,7 @@
  */
 package com.android254.data.di
 
-import com.android254.data.Database
+import com.android254.data.db.Database
 import com.android254.data.dao.SessionDao
 import dagger.Module
 import dagger.Provides

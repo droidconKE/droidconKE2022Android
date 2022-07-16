@@ -13,15 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android254.data.model
+package com.android254.data.db.util
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import androidx.room.TypeConverter
 import kotlinx.datetime.Instant
 
-@Entity
-data class Session(
-    @PrimaryKey(autoGenerate = true) val id: Long,
-    val name: String,
-    val publishDate: Instant
-)
+class InstantConverter {
+
+    @TypeConverter
+    fun longToInstant(value: Long?): Instant? =
+        value?.let(Instant::fromEpochMilliseconds)
+
+    @TypeConverter
+    fun instantToLong(instant: Instant?): Long? =
+        instant?.toEpochMilliseconds()
+}
