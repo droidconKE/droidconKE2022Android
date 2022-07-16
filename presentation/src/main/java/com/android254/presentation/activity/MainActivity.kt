@@ -15,15 +15,18 @@
  */
 package com.android254.presentation.activity
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
 import com.android254.presentation.common.bottomnav.BottomNavigationBar
@@ -47,12 +50,19 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MainScreen() {
     val navController = rememberNavController()
+    val context = LocalContext.current
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         topBar = { DroidconAppBar() },
         bottomBar = { BottomNavigationBar(navController) }
     ) { padding ->
         Column(modifier = Modifier.padding(padding)) {
+            Button(onClick = {
+                val intent = Intent(context, LoginActivity::class.java)
+                context.startActivity(intent)
+            }) {
+
+            }
             Navigation(navController = navController)
         }
     }

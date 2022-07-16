@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">DroidconKE2022</string>
+    <string name="login_activity_label">LoginActivity</string>
 </resources>
