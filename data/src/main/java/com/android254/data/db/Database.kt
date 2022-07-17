@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android254.data
+package com.android254.data.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.android254.data.dao.SessionDao
-import com.android254.data.model.Session
-import com.android254.data.util.InstantConverter
+import com.android254.data.db.model.Session
+import com.android254.data.db.util.InstantConverter
 
 @Database(
     entities = [

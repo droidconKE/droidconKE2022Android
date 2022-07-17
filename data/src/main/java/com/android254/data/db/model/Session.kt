@@ -13,21 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android254.data.di
+package com.android254.data.db.model
 
-import com.android254.data.db.Database
-import com.android254.data.dao.SessionDao
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import kotlinx.datetime.Instant
 
-@Module
-@InstallIn(SingletonComponent::class)
-object DaoModule {
-
-    @Provides
-    fun providesAuthorDao(
-        database: Database,
-    ): SessionDao = database.sessionDao()
-}
+@Entity
+data class Session(
+    @PrimaryKey(autoGenerate = true) val id: Long,
+    val name: String,
+    val publishDate: Instant
+)
