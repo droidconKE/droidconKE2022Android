@@ -47,7 +47,8 @@ fun AboutScreen() {
             .fillMaxSize()
             .background(Color.Black.copy(.6f))
             .padding(top = 13.dp, bottom = 45.dp)
-            .verticalScroll(rememberScrollState())
+            .verticalScroll(rememberScrollState()),
+        verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
 
         aboutHeaderComponent()
