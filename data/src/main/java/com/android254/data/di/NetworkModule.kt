@@ -15,19 +15,35 @@
  */
 package com.android254.data.di
 
-import com.android254.data.db.Database
-import com.android254.data.dao.SessionDao
+import com.android254.data.network.util.HttpClientFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import io.ktor.client.*
+import io.ktor.client.engine.*
+import io.ktor.client.engine.android.*
+import io.ktor.client.plugins.*
+import io.ktor.client.plugins.auth.*
+import io.ktor.client.plugins.auth.providers.*
+import io.ktor.client.plugins.contentnegotiation.*
+import io.ktor.client.plugins.observer.*
+import io.ktor.client.request.*
+import io.ktor.http.*
+import io.ktor.serialization.kotlinx.json.*
+import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object DaoModule {
+object NetworkModule {
 
     @Provides
-    fun providesAuthorDao(
-        database: Database,
-    ): SessionDao = database.sessionDao()
+    @Singleton
+    fun provideHttpClientEngine(): HttpClientEngine = Android.create {
+        connectTimeout = 10_000
+    }
+
+    @Provides
+    @Singleton
+    fun provideHttpClient(engine: HttpClientEngine): HttpClient = HttpClientFactory.create(engine)
 }

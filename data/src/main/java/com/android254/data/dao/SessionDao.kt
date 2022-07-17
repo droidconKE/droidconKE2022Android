@@ -17,7 +17,7 @@ package com.android254.data.dao
 
 import androidx.room.Dao
 import androidx.room.Query
-import com.android254.data.model.Session
+import com.android254.data.db.model.Session
 
 @Dao
 interface SessionDao : BaseDao<Session> {

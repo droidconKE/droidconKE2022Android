@@ -13,21 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android254.data.di
+package com.android254.data.network.models.responses
 
-import com.android254.data.db.Database
-import com.android254.data.dao.SessionDao
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
+import kotlinx.serialization.Serializable
 
-@Module
-@InstallIn(SingletonComponent::class)
-object DaoModule {
-
-    @Provides
-    fun providesAuthorDao(
-        database: Database,
-    ): SessionDao = database.sessionDao()
-}
+@Serializable
+data class Status(val message: String)
