@@ -64,8 +64,6 @@ dependencies {
     implementation(libs.bundles.compose)
     implementation(libs.lifecycle.runtimeKtx)
     implementation(libs.android.hilt)
-    implementation("androidx.appcompat:appcompat:1.3.0")
-    implementation("com.google.android.material:material:1.4.0")
     kapt(libs.android.hilt.compiler)
     implementation(libs.android.hilt.compose)
     kapt(libs.android.hilt.androidx.compiler)
