@@ -1,3 +1,5 @@
 <resources>
     <string name="title_activity_main">MainActivity</string>
+    <string name="sign_in_label">Sign In</string>
+    <string name="sign_up_label">Sign Up</string>
 </resources>
