@@ -42,7 +42,6 @@ class AuthApiTest {
         val api = AuthApi(httpClient)
         runBlocking {
             val response = api.logout()
-            println(response)
         }
     }
 
