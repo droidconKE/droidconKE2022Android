@@ -21,6 +21,7 @@ import dagger.hilt.android.HiltAndroidApp
 import org.jetbrains.annotations.NotNull
 import timber.log.Timber
 
+
 @HiltAndroidApp
 class DroidconKE2022 : Application() {
 
