@@ -41,7 +41,7 @@ class AuthApiTest {
         val httpClient = HttpClientFactory.create(mockEngine)
         val api = AuthApi(httpClient)
         runBlocking {
-            val response = api.logout()
+            api.logout()
         }
     }
 
