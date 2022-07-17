@@ -56,7 +56,7 @@ class SessionDaoTest {
     }
 
     @Test
-    fun `sessionDao fetches all sessions`() = runTest {
+    fun `test sessionDao fetches all sessions`() = runTest {
         val session = Session(0, "Welcome Keynote", "2010-06-01T22:19:44.475Z".toInstant())
         sessionDao.insert(session)
         val result = sessionDao.fetchSessions().first()
