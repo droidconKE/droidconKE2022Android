@@ -16,14 +16,26 @@
 package com.android254.data.network.apis
 
 import com.android254.data.network.Constants
+import com.android254.data.network.models.payloads.GoogleToken
+import com.android254.data.network.models.responses.AccessToken
+import com.android254.data.network.models.responses.Status
+import com.android254.data.network.util.safeApiCall
 import io.ktor.client.*
+import io.ktor.client.call.*
 import io.ktor.client.request.*
 import javax.inject.Inject
 
 class AuthApi @Inject constructor(
     private val client: HttpClient
 ) {
-    suspend fun logout() {
-        val status = client.post("${Constants.BASE_URL}/logout")
+    suspend fun googleLogin(token: GoogleToken): AccessToken = safeApiCall {
+        return@safeApiCall client.post("${Constants.BASE_URL}/social_login/google") {
+            setBody(token)
+        }.body()
+    }
+
+    suspend fun logout(): Status = safeApiCall {
+        val url = "${Constants.BASE_URL}/logout"
+        return@safeApiCall client.post(url).body()
     }
 }

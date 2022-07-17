@@ -13,6 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android254.data.network.models
+package com.android254.data.network.models.payloads
 
-data class Responses(val message: String)
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+
+@Serializable
+data class GoogleToken(@SerialName("access_token") val token: String)

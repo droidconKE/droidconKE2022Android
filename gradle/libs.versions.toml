@@ -58,6 +58,8 @@ ktor-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
 ktor-android = { module = "io.ktor:ktor-client-android", version.ref = "ktor" }
 ktor-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
 ktor-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
+ktor-auth = { module = "io.ktor:ktor-client-auth", version.ref = "ktor" }
+ktor-mock = { module = "io.ktor:ktor-client-mock", version.ref = "ktor" }
 
 [bundles]
 compose = ["coil-compose", "compose-activity", "compose-compiler", "compose-material-3", "compose-materialIcons", "compose-runtimeLivedata", "compose-ui", "compose-ui-tooling", "compose-ui-tooling-preview", "paging-compose", "compose-preview-customview", "compose-preview-customview-poolingcontainer"]

@@ -66,6 +66,7 @@ dependencies {
     implementation(libs.ktor.android)
     implementation(libs.ktor.content.negotiation)
     implementation(libs.ktor.json)
+    implementation(libs.ktor.auth)
     androidTestImplementation(libs.android.test.junit4)
     androidTestImplementation(libs.android.test.espresso)
 
@@ -73,6 +74,7 @@ dependencies {
     testImplementation(libs.kotlin.coroutines.test)
     testImplementation(libs.test.androidx.core)
     testImplementation(libs.test.robolectric)
+    testImplementation(libs.ktor.mock)
 }
 
 kotlin {
