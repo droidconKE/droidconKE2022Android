@@ -15,7 +15,6 @@
  */
 package com.android254.presentation.common.components
 
-import android.widget.Toast
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Column
@@ -33,8 +32,7 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Star
-import androidx.compose.material.icons.rounded.Star
+import androidx.compose.material.icons.rounded.StarOutline
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -45,14 +43,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import coil.compose.AsyncImage
-import com.android254.presentation.R
 
 data class SessionPresentationModel(
     val id: String,
@@ -60,11 +55,12 @@ data class SessionPresentationModel(
     val sessionDescription: String,
     val sessionVenue: String,
     val sessionSpeakerImage: String,
+    val sessionSpeakerName: String,
     val sessionTime: String
 )
 
 @Composable
-fun SessionsCard(sessionPresentationModel: SessionPresentationModel,onclick: () -> Unit) {
+fun SessionsCard(sessionPresentationModel: SessionPresentationModel, onclick: () -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth(0.95f)
@@ -79,8 +75,8 @@ fun SessionsCard(sessionPresentationModel: SessionPresentationModel,onclick: () 
                 .fillMaxSize()
                 .padding(PaddingValues(top = 20.dp))
         ) {
-            SessionTimeComponent("3:45PM")
-            SessionDetails()
+            SessionTimeComponent(sessionPresentationModel.sessionTime)
+            SessionDetails(sessionPresentationModel = sessionPresentationModel)
         }
     }
 }
@@ -114,23 +110,25 @@ fun RowScope.SessionTimeComponent(time: String) {
 }
 
 @Composable
-fun RowScope.SessionDetails() {
+fun RowScope.SessionDetails(sessionPresentationModel: SessionPresentationModel) {
     Column(
         modifier = Modifier
             .weight(0.85f)
             .padding(PaddingValues(start = 10.dp, end = 10.dp, bottom = 10.dp))
             .fillMaxHeight()
     ) {
-        SessionTitleBlock()
-        SessionsDescriptionComponent("The commmunity and the efforts")
-        TimeAndVenue("9:30AM - 10:15AM | ROOM 1")
-        SessionPresenterComponents(sessionSpeakerImageUrl = "", sessionSpeakerName = "Kagiri Charles")
+        SessionTitleBlock(sessionPresentationModel.sessionTitle)
+        SessionsDescriptionComponent(sessionPresentationModel.sessionDescription)
+        TimeAndVenue(sessionPresentationModel.sessionVenue)
+        SessionPresenterComponents(
+            sessionSpeakerImageUrl = "",
+            sessionSpeakerName = sessionPresentationModel.sessionSpeakerName
+        )
     }
 }
 
 @Composable
 fun SessionTitleBlock(sessionTitle: String) {
-    val context = LocalContext.current
     val interactionSource = remember { MutableInteractionSource() }
     ConstraintLayout(
         Modifier
@@ -139,7 +137,7 @@ fun SessionTitleBlock(sessionTitle: String) {
     ) {
         val (sessionTitleRef, starIcon) = createRefs()
         Text(
-            text = "Keynote",
+            text = sessionTitle,
             style = MaterialTheme.typography.titleSmall.copy(
                 fontWeight = FontWeight.Bold,
                 fontSize = 18.sp,
@@ -149,29 +147,16 @@ fun SessionTitleBlock(sessionTitle: String) {
                 start.linkTo(parent.start)
             }
         )
-        /*Icon(
-            painter = painterResource(id = R.drawable.ic_star),
-            contentDescription = "star session",
-            modifier = Modifier
-                .size(21.dp)
-                .constrainAs(starIcon) {
-                    end.linkTo(parent.end)
-                    top.linkTo(sessionTitle.top)
-                    bottom.linkTo(sessionTitle.bottom)
-                }
-                .clickable(indication = null, interactionSource = interactionSource) {},
-            tint = MaterialTheme.colorScheme.primary
-        )*/
 
         Icon(
-            imageVector = Icons.Rounded.Star,
+            imageVector = Icons.Rounded.StarOutline,
             contentDescription = "star session",
             modifier = Modifier
                 .size(21.dp)
                 .constrainAs(starIcon) {
                     end.linkTo(parent.end)
-                    top.linkTo(sessionTitle.top)
-                    bottom.linkTo(sessionTitle.bottom)
+                    top.linkTo(sessionTitleRef.top)
+                    bottom.linkTo(sessionTitleRef.bottom)
                 }
                 .clickable(indication = null, interactionSource = interactionSource) {},
             tint = MaterialTheme.colorScheme.primary

@@ -29,6 +29,16 @@ import com.android254.presentation.common.components.SessionPresentationModel
 import com.android254.presentation.common.components.SessionsCard
 import com.android254.presentation.common.theme.DroidconKE2022Theme
 
+val Session = SessionPresentationModel(
+    id = "",
+    sessionTitle = "Android 254",
+    sessionDescription = "The community and the efforts",
+    sessionVenue = "9:30AM - 10:15AM | ROOM 1",
+    sessionSpeakerImage = "",
+    sessionTime = "9:30AM",
+    sessionSpeakerName = "Kagiri Charles"
+)
+
 @Composable
 fun SessionsScreen() {
     val context = LocalContext.current
@@ -40,14 +50,7 @@ fun SessionsScreen() {
         (0..10).forEach { _ ->
             item {
                 SessionsCard(
-                    sessionPresentationModel = SessionPresentationModel(
-                        id = "",
-                        sessionTitle = "Android 254",
-                        sessionDescription = "The community and the efforts",
-                        sessionVenue = "9:30AM - 10:15AM | ROOM 1",
-                        sessionSpeakerImage = "",
-                        sessionTime = "9:30AM"
-                    )
+                    sessionPresentationModel = Session
                 ) {
                     Toast.makeText(context, "This session is still open", Toast.LENGTH_LONG).show()
                 }
