@@ -48,16 +48,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import coil.compose.AsyncImage
-
-data class SessionPresentationModel(
-    val id: String,
-    val sessionTitle: String,
-    val sessionDescription: String,
-    val sessionVenue: String,
-    val sessionSpeakerImage: String,
-    val sessionSpeakerName: String,
-    val sessionTime: String
-)
+import com.android254.presentation.models.SessionPresentationModel
 
 @Composable
 fun SessionsCard(sessionPresentationModel: SessionPresentationModel, onclick: () -> Unit) {
@@ -121,7 +112,7 @@ fun RowScope.SessionDetails(sessionPresentationModel: SessionPresentationModel) 
         SessionsDescriptionComponent(sessionPresentationModel.sessionDescription)
         TimeAndVenue(sessionPresentationModel.sessionVenue)
         SessionPresenterComponents(
-            sessionSpeakerImageUrl = "",
+            sessionSpeakerImageUrl = sessionPresentationModel.sessionSpeakerImage,
             sessionSpeakerName = sessionPresentationModel.sessionSpeakerName
         )
     }
