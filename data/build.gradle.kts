@@ -5,6 +5,7 @@ plugins {
     id("org.jlleitschuh.gradle.ktlint")
     id("io.gitlab.arturbosch.detekt")
     kotlin("kapt")
+    kotlin("plugin.serialization")
 }
 
 android {
@@ -16,6 +17,12 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+    }
+
+    kapt {
+        arguments {
+            arg("room.schemaLocation", "$projectDir/schemas")
+        }
     }
 
     testOptions {
@@ -50,10 +57,16 @@ dependencies {
     implementation(libs.android.material)
     api(libs.kotlin.coroutines.datetime)
     implementation(libs.android.hilt)
+    implementation(libs.timber)
     kapt(libs.android.hilt.compiler)
     implementation(libs.room.runtime)
     ksp(libs.room.compiler)
     implementation(libs.room.ktx)
+    implementation(libs.ktor.core)
+    implementation(libs.ktor.android)
+    implementation(libs.ktor.content.negotiation)
+    implementation(libs.ktor.json)
+    implementation(libs.ktor.auth)
     androidTestImplementation(libs.android.test.junit4)
     androidTestImplementation(libs.android.test.espresso)
 
@@ -61,7 +74,9 @@ dependencies {
     testImplementation(libs.kotlin.coroutines.test)
     testImplementation(libs.test.androidx.core)
     testImplementation(libs.test.robolectric)
+    testImplementation(libs.ktor.mock)
 }
+
 kotlin {
     sourceSets {
         all {
