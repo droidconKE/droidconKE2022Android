@@ -1,6 +1,5 @@
 package com.android254.presentation.common.components
 
-import android.content.Intent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Navigation
@@ -8,11 +7,13 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import com.android254.presentation.activity.LoginActivity
 
 
 data class Screen(val onClickHandler: () -> Unit, val label: String)
 
+/**
+ * This can be deleted
+ */
 @Composable
 fun ScreenNavigationFab() {
     val context = LocalContext.current
@@ -22,8 +23,7 @@ fun ScreenNavigationFab() {
 
     val screens = arrayListOf<Screen>(
         Screen(onClickHandler = {
-            val intent = Intent(context, LoginActivity::class.java)
-            context.startActivity(intent)
+
         }, "Login Screen")
     )
     Column() {

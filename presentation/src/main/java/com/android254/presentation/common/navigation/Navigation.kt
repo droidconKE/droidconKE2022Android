@@ -26,22 +26,36 @@ import com.android254.presentation.login.view.LoginScreen
 import com.android254.presentation.sessions.view.SessionsScreen
 
 @Composable
-fun Navigation(navController: NavHostController) {
-    NavHost(navController, startDestination = Screens.Home.route) {
+fun Navigation(
+    navController: NavHostController,
+    upDateBottomBarState: (Boolean) -> Unit,
+    upDataAppBarState: (Boolean) -> Unit
+) {
+    NavHost(navController, startDestination = Screens.Login.route) {
         composable(Screens.Home.route) {
+            upDataAppBarState(true)
+            upDateBottomBarState(true)
             HomeScreen()
         }
         composable(Screens.Sessions.route) {
+            upDataAppBarState(true)
+            upDateBottomBarState(true)
             SessionsScreen()
         }
         composable(Screens.Feed.route) {
+            upDataAppBarState(true)
+            upDateBottomBarState(true)
             FeedScreen()
         }
         composable(Screens.About.route) {
+            upDataAppBarState(true)
+            upDateBottomBarState(true)
             AboutScreen()
         }
         composable(Screens.Login.route) {
-            LoginScreen()
+            upDataAppBarState(false)
+            upDateBottomBarState(false)
+            LoginScreen(navController = navController)
         }
     }
 }
