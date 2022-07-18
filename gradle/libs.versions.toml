@@ -10,6 +10,7 @@ lifecycle = "2.5.0"
 okhttp = "4.9.3"
 retrofit = "2.9.0"
 room = "2.4.2"
+
 splash = "1.0.0-rc01"
 
 [libraries]
