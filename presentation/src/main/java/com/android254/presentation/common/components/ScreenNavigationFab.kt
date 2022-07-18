@@ -8,7 +8,6 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import com.android254.presentation.activity.LoginActivity
 
 
 data class Screen(val onClickHandler: () -> Unit, val label: String)
@@ -22,8 +21,7 @@ fun ScreenNavigationFab() {
 
     val screens = arrayListOf<Screen>(
         Screen(onClickHandler = {
-            val intent = Intent(context, LoginActivity::class.java)
-            context.startActivity(intent)
+
         }, "Login Screen")
     )
     Column() {
