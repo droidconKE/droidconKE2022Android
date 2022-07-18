@@ -34,19 +34,24 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.android254.presentation.R
 import com.android254.presentation.common.components.DroidConTextField
 import com.android254.presentation.common.components.GoogleAuthButton
+import com.android254.presentation.common.navigation.Screens
 import com.android254.presentation.common.theme.DroidconKE2022Theme
 import com.android254.presentation.common.theme.Montserrat
 
 @Composable
-fun LoginScreen(darkTheme: Boolean = isSystemInDarkTheme()) {
+fun LoginScreen(darkTheme: Boolean = isSystemInDarkTheme(), navController: NavHostController) {
     val decayAnimationSpec = rememberSplineBasedDecay<Float>()
     val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior(
         decayAnimationSpec,
         rememberTopAppBarScrollState()
     )
+
+
     Box() {
 
         Scaffold(
@@ -90,63 +95,10 @@ fun LoginScreen(darkTheme: Boolean = isSystemInDarkTheme()) {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Spacer(modifier = Modifier.height(50.dp))
-
-                /**
-                 * colors = ButtonDefaults.buttonColors(
-                containerColor = if (darkTheme) Color.Black else MaterialTheme.colorScheme.primary),
-                contentColor = if (darkTheme) Color.White else MaterialTheme.colorScheme.primary),
-                )
-                 */
-
-                /**
-                 * colors = ButtonDefaults.buttonColors(
-                containerColor = if (darkTheme) Color.Black else MaterialTheme.colorScheme.primary),
-                contentColor = if (darkTheme) Color.White else MaterialTheme.colorScheme.primary),
-                )
-                 */
-
-                /**
-                 * colors = ButtonDefaults.buttonColors(
-                containerColor = if (darkTheme) Color.Black else MaterialTheme.colorScheme.primary),
-                contentColor = if (darkTheme) Color.White else MaterialTheme.colorScheme.primary),
-                )
-                 */
-
-                /**
-                 * colors = ButtonDefaults.buttonColors(
-                containerColor = if (darkTheme) Color.Black else MaterialTheme.colorScheme.primary),
-                contentColor = if (darkTheme) Color.White else MaterialTheme.colorScheme.primary),
-                )
-                 */
-
-                /**
-                 * colors = ButtonDefaults.buttonColors(
-                containerColor = if (darkTheme) Color.Black else MaterialTheme.colorScheme.primary),
-                contentColor = if (darkTheme) Color.White else MaterialTheme.colorScheme.primary),
-                )
-                 */
-
-                /**
-                 * colors = ButtonDefaults.buttonColors(
-                containerColor = if (darkTheme) Color.Black else MaterialTheme.colorScheme.primary),
-                contentColor = if (darkTheme) Color.White else MaterialTheme.colorScheme.primary),
-                )
-                 */
-
-                /**
-                 * colors = ButtonDefaults.buttonColors(
-                containerColor = if (darkTheme) Color.Black else MaterialTheme.colorScheme.primary),
-                contentColor = if (darkTheme) Color.White else MaterialTheme.colorScheme.primary),
-                )
-                 */
-
-                /**
-                 * colors = ButtonDefaults.buttonColors(
-                containerColor = if (darkTheme) Color.Black else MaterialTheme.colorScheme.primary),
-                contentColor = if (darkTheme) Color.White else MaterialTheme.colorScheme.primary),
-                )
-                 */
-                GoogleAuthButton(onClick = { /*TODO*/ }, modifier = Modifier.width(200.dp)) {}
+                GoogleAuthButton(
+                    onClick = { navController.navigate(Screens.Home.route) },
+                    modifier = Modifier.width(200.dp)
+                ) {}
                 Spacer(modifier = Modifier.height(32.dp))
                 Row(horizontalArrangement = Arrangement.Center) {
                     Text(text = " - OR - ")
@@ -158,7 +110,7 @@ fun LoginScreen(darkTheme: Boolean = isSystemInDarkTheme()) {
                     DroidConTextField(label = "Password")
                     Spacer(modifier = Modifier.height(24.dp))
                     Button(
-                        onClick = { /*TODO*/ },
+                        onClick = { navController.navigate(Screens.Home.route) },
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(48.dp),
@@ -214,6 +166,6 @@ fun LoginScreen(darkTheme: Boolean = isSystemInDarkTheme()) {
 @Composable
 fun LoginScreenPreview() {
     DroidconKE2022Theme {
-        LoginScreen()
+        LoginScreen(navController = rememberNavController())
     }
 }

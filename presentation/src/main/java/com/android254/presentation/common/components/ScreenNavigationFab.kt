@@ -1,6 +1,5 @@
 package com.android254.presentation.common.components
 
-import android.content.Intent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Navigation
@@ -12,6 +11,9 @@ import androidx.compose.ui.unit.dp
 
 data class Screen(val onClickHandler: () -> Unit, val label: String)
 
+/**
+ * This can be deleted
+ */
 @Composable
 fun ScreenNavigationFab() {
     val context = LocalContext.current

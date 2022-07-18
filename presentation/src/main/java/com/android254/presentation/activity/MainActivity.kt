@@ -15,27 +15,21 @@
  */
 package com.android254.presentation.activity
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
 import com.android254.presentation.common.bottomnav.BottomNavigationBar
 import com.android254.presentation.common.components.DroidconAppBar
-import com.android254.presentation.common.components.ScreenNavigationFab
 import com.android254.presentation.common.navigation.Navigation
 import com.android254.presentation.common.theme.DroidconKE2022Theme
 import dagger.hilt.android.AndroidEntryPoint
@@ -56,22 +50,25 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MainScreen() {
     val navController = rememberNavController()
-    val context = LocalContext.current
+    val bottomBarState = rememberSaveable { (mutableStateOf(true)) }
+    val appBarState = rememberSaveable() {
+        mutableStateOf(true)
+    }
     Scaffold(
         modifier = Modifier.fillMaxSize(),
-        topBar = { DroidconAppBar() },
-        bottomBar = { BottomNavigationBar(navController) },
-        floatingActionButton = {
-            //TODO remove this after we are done with testing the login screen
-            ScreenNavigationFab()
-        }
+        topBar = { if (appBarState.value) DroidconAppBar() },
+        bottomBar = { if (bottomBarState.value) BottomNavigationBar(navController) },
     ) { padding ->
 
         Column(
             modifier = Modifier
                 .padding(padding)
         ) {
-            Navigation(navController = navController)
+            Navigation(navController = navController, upDateBottomBarState = {
+                bottomBarState.value = it
+            }, upDataAppBarState = {
+                appBarState.value = it
+            })
         }
     }
 }
