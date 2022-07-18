@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.android254.presentation.common.components.SessionPresentationModel
 import com.android254.presentation.common.components.SessionsCard
 import com.android254.presentation.common.theme.DroidconKE2022Theme
 
@@ -23,7 +24,16 @@ fun SessionsScreen() {
     ) {
         (0..10).forEach { _ ->
             item {
-                SessionsCard{
+                SessionsCard(
+                    sessionPresentationModel = SessionPresentationModel(
+                        id = "",
+                        sessionTitle = "Android 254",
+                        sessionDescription = "The community and the efforts",
+                        sessionVenue = "9:30AM - 10:15AM | ROOM 1",
+                        sessionSpeakerImage = "",
+                        sessionTime = "9:30AM"
+                    )
+                ) {
                     Toast.makeText(context, "This session is still open", Toast.LENGTH_LONG).show()
                 }
             }

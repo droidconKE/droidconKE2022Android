@@ -32,6 +32,9 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.icons.rounded.Star
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -119,14 +122,14 @@ fun RowScope.SessionDetails() {
             .fillMaxHeight()
     ) {
         SessionTitleBlock()
-        SessionsDescriptionComponent()
-        TimeAndVenue()
-        SessionPresenterComponents()
+        SessionsDescriptionComponent("The commmunity and the efforts")
+        TimeAndVenue("9:30AM - 10:15AM | ROOM 1")
+        SessionPresenterComponents(sessionSpeakerImageUrl = "", sessionSpeakerName = "Kagiri Charles")
     }
 }
 
 @Composable
-fun SessionTitleBlock() {
+fun SessionTitleBlock(sessionTitle: String) {
     val context = LocalContext.current
     val interactionSource = remember { MutableInteractionSource() }
     ConstraintLayout(
@@ -134,7 +137,7 @@ fun SessionTitleBlock() {
             .fillMaxWidth()
             .padding(bottom = 20.dp)
     ) {
-        val (sessionTitle, starIcon) = createRefs()
+        val (sessionTitleRef, starIcon) = createRefs()
         Text(
             text = "Keynote",
             style = MaterialTheme.typography.titleSmall.copy(
@@ -142,11 +145,11 @@ fun SessionTitleBlock() {
                 fontSize = 18.sp,
                 lineHeight = 18.sp
             ),
-            modifier = Modifier.constrainAs(sessionTitle) {
+            modifier = Modifier.constrainAs(sessionTitleRef) {
                 start.linkTo(parent.start)
             }
         )
-        Icon(
+        /*Icon(
             painter = painterResource(id = R.drawable.ic_star),
             contentDescription = "star session",
             modifier = Modifier
@@ -156,27 +159,37 @@ fun SessionTitleBlock() {
                     top.linkTo(sessionTitle.top)
                     bottom.linkTo(sessionTitle.bottom)
                 }
-                .clickable(indication = null, interactionSource = interactionSource) {
-                    Toast
-                        .makeText(context, "Session has been starred", Toast.LENGTH_LONG)
-                        .show()
-                },
+                .clickable(indication = null, interactionSource = interactionSource) {},
+            tint = MaterialTheme.colorScheme.primary
+        )*/
+
+        Icon(
+            imageVector = Icons.Rounded.Star,
+            contentDescription = "star session",
+            modifier = Modifier
+                .size(21.dp)
+                .constrainAs(starIcon) {
+                    end.linkTo(parent.end)
+                    top.linkTo(sessionTitle.top)
+                    bottom.linkTo(sessionTitle.bottom)
+                }
+                .clickable(indication = null, interactionSource = interactionSource) {},
             tint = MaterialTheme.colorScheme.primary
         )
     }
 }
 
 @Composable
-fun SessionsDescriptionComponent() {
+fun SessionsDescriptionComponent(sessionDescription: String) {
     Text(
-        text = "Community on a Global Scale",
+        text = sessionDescription,
         style = MaterialTheme.typography.bodyLarge
     )
 }
 
 @Composable
-fun TimeAndVenue() {
-    Text(text = "9:00AM - 9:30AM | ROOM 1", style = MaterialTheme.typography.bodySmall)
+fun TimeAndVenue(sessionVenue: String) {
+    Text(text = sessionVenue, style = MaterialTheme.typography.bodySmall)
 }
 
 @Composable
