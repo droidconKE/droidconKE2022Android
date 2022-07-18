@@ -22,8 +22,6 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -63,7 +61,7 @@ fun SessionsCard(sessionPresentationModel: SessionPresentationModel, onclick: ()
     ) {
         Row(
             Modifier
-                .fillMaxSize()
+                .fillMaxWidth().wrapContentHeight()
                 .padding(PaddingValues(top = 20.dp))
         ) {
             SessionTimeComponent(sessionPresentationModel.sessionTime)
@@ -85,8 +83,7 @@ fun RowScope.SessionTimeComponent(time: String) {
     }
     Column(
         modifier = Modifier
-            .weight(0.15f)
-            .fillMaxHeight(),
+            .weight(0.15f),
         horizontalAlignment = Alignment.End
     ) {
         Text(
@@ -106,7 +103,6 @@ fun RowScope.SessionDetails(sessionPresentationModel: SessionPresentationModel) 
         modifier = Modifier
             .weight(0.85f)
             .padding(PaddingValues(start = 10.dp, end = 10.dp, bottom = 10.dp))
-            .fillMaxHeight()
     ) {
         SessionTitleBlock(sessionPresentationModel.sessionTitle)
         SessionsDescriptionComponent(sessionPresentationModel.sessionDescription)
@@ -143,7 +139,7 @@ fun SessionTitleBlock(sessionTitle: String) {
             imageVector = Icons.Rounded.StarOutline,
             contentDescription = "star session",
             modifier = Modifier
-                .size(21.dp)
+                .size(30.dp)
                 .constrainAs(starIcon) {
                     end.linkTo(parent.end)
                     top.linkTo(sessionTitleRef.top)
@@ -165,7 +161,10 @@ fun SessionsDescriptionComponent(sessionDescription: String) {
 
 @Composable
 fun TimeAndVenue(sessionVenue: String) {
-    Text(text = sessionVenue, style = MaterialTheme.typography.bodySmall)
+    Text(
+        text = sessionVenue,
+        style = MaterialTheme.typography.bodySmall.copy(color = MaterialTheme.colorScheme.onSurfaceVariant)
+    )
 }
 
 @Composable
