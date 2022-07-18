@@ -24,7 +24,8 @@ import androidx.compose.ui.unit.sp
 import com.android254.presentation.R
 
 val Montserrat = FontFamily(
-    Font(R.font.montserrat_regular)
+    Font(R.font.montserrat_regular),
+    Font(R.font.montserrat_bold)
 )
 
 val AppTypography = Typography(

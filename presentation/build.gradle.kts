@@ -64,6 +64,7 @@ dependencies {
     implementation(libs.bundles.compose)
     implementation(libs.lifecycle.runtimeKtx)
     implementation(libs.android.hilt)
+    implementation(libs.compose.constraintlayout)
     kapt(libs.android.hilt.compiler)
     implementation(libs.android.hilt.compose)
     kapt(libs.android.hilt.androidx.compiler)
