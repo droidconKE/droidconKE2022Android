@@ -37,6 +37,7 @@ compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = 
 compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
 compose-preview-customview = "androidx.customview:customview:1.2.0-alpha01"
 compose-preview-customview-poolingcontainer = "androidx.customview:customview-poolingcontainer:1.0.0-rc01"
+compose-constraintlayout = "androidx.constraintlayout:constraintlayout-compose:1.0.0-rc02"
 gson-gson = "com.google.code.gson:gson:2.9.0"
 kotlin-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
 kotlin-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
@@ -62,7 +63,7 @@ test-androidx-core = "androidx.test:core-ktx:1.4.0"
 test-robolectric = "org.robolectric:robolectric:4.8.1"
 
 [bundles]
-compose = ["coil-compose", "compose-activity", "compose-compiler", "compose-material-3", "compose-materialIcons", "compose-runtimeLivedata", "compose-ui", "compose-ui-tooling", "compose-ui-tooling-preview", "paging-compose", "compose-preview-customview", "compose-preview-customview-poolingcontainer"]
+compose = ["coil-compose", "compose-activity", "compose-compiler", "compose-material-3", "compose-materialIcons", "compose-runtimeLivedata", "compose-ui", "compose-ui-tooling", "compose-ui-tooling-preview", "paging-compose", "compose-preview-customview", "compose-preview-customview-poolingcontainer", "compose-constraintlayout"]
 lifecycle = ["lifecycle-livedataKtx", "lifecycle-runtimeKtx", "lifecycle-viewmodel-compose"]
 networking = ["gson-gson", "okhttp-interceptor", "retrofit-gsonConverter", "retrofit-retrofit"]
 room = ["room-ktx", "room-paging", "room-runtime"]
