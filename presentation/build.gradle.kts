@@ -72,6 +72,7 @@ dependencies {
     implementation(libs.timber)
     implementation(libs.android.hilt)
     implementation(libs.android.splashscreen)
+    implementation(libs.compose.constraintlayout)
     kapt(libs.android.hilt.compiler)
     implementation(libs.android.hilt.compose)
     kapt(libs.android.hilt.androidx.compiler)
