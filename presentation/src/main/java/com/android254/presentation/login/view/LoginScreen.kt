@@ -51,7 +51,6 @@ fun LoginScreen(darkTheme: Boolean = isSystemInDarkTheme(), navController: NavHo
         rememberTopAppBarScrollState()
     )
 
-
     Box() {
 
         Scaffold(
@@ -60,9 +59,13 @@ fun LoginScreen(darkTheme: Boolean = isSystemInDarkTheme(), navController: NavHo
                     Image(
                         modifier = Modifier
                             .fillMaxWidth(),
-                        painter = if (darkTheme) painterResource(R.drawable.ic_topbar_bg_login_dark) else painterResource(
-                            R.drawable.ic_topbar_bg_login
-                        ),
+                        painter = if (darkTheme) {
+                            painterResource(R.drawable.ic_topbar_bg_login_dark)
+                        } else {
+                            painterResource(
+                                R.drawable.ic_topbar_bg_login
+                            )
+                        },
                         contentDescription = "background_image",
                         contentScale = ContentScale.FillBounds
                     )
@@ -132,7 +135,8 @@ fun LoginScreen(darkTheme: Boolean = isSystemInDarkTheme(), navController: NavHo
                 Spacer(modifier = Modifier.height(24.dp))
                 TextButton(onClick = { /*TODO*/ }) {
                     Text(
-                        text = "Forgot Password?", style = TextStyle(
+                        text = "Forgot Password?",
+                        style = TextStyle(
                             fontWeight = FontWeight.ExtraBold,
                             fontSize = 14.sp,
                             color = MaterialTheme.colorScheme.onSecondaryContainer,
@@ -148,7 +152,8 @@ fun LoginScreen(darkTheme: Boolean = isSystemInDarkTheme(), navController: NavHo
                 Spacer(modifier = Modifier.height(12.dp))
                 TextButton(onClick = { /*TODO*/ }) {
                     Text(
-                        text = stringResource(R.string.sign_up_label), style = TextStyle(
+                        text = stringResource(R.string.sign_up_label),
+                        style = TextStyle(
                             fontWeight = FontWeight.Bold,
                             color = Color(0xFFFF6E4D),
                             fontSize = 16.sp,

@@ -80,10 +80,9 @@ fun SessionsCard(session: Event) {
                 }
                 Spacer(modifier = Modifier.height(4.dp))
                 Row(horizontalArrangement = Arrangement.spacedBy(6.dp), verticalAlignment = Alignment.CenterVertically) {
-                    Icon(Icons.Filled.Android, "", tint  = MaterialTheme.colorScheme.primary)
+                    Icon(Icons.Filled.Android, "", tint = MaterialTheme.colorScheme.primary)
                     Text(text = "Omolara Adejuwon", fontSize = 16.sp, color = MaterialTheme.colorScheme.primary)
                 }
-
             }
             Icon(Icons.Filled.StarBorder, "")
         }

@@ -20,22 +20,16 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.android254.presentation.R
 import com.android254.presentation.common.components.EventDaySelectorButton
 import com.android254.presentation.common.components.SessionsCard
@@ -135,8 +129,8 @@ fun SessionsScreen(darkTheme: Boolean = isSystemInDarkTheme()) {
                     EventDaySelectorButton(
                         title = eventDay.date,
                         subtitle = "Day ${index + 1}",
-                        onClick = { /*TODO*/ }) {
-
+                        onClick = { /*TODO*/ }
+                    ) {
                     }
                     Spacer(Modifier.width(16.dp))
                 }
@@ -164,7 +158,6 @@ fun SessionsScreen(darkTheme: Boolean = isSystemInDarkTheme()) {
                             )
                         }
                     }
-
                 }
             }
         }
