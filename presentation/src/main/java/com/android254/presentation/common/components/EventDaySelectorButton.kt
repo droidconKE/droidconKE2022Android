@@ -35,6 +35,7 @@ import androidx.compose.ui.unit.sp
 fun EventDaySelectorButton(
     title: String,
     subtitle: String,
+    selected: Boolean,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
@@ -42,7 +43,18 @@ fun EventDaySelectorButton(
     elevation: ButtonElevation? = ButtonDefaults.buttonElevation(),
     shape: Shape = RoundedCornerShape(5.dp),
     border: BorderStroke? = null,
-    colors: ButtonColors = ButtonDefaults.buttonColors(),
+    colors: ButtonColors = ButtonDefaults.buttonColors(
+        containerColor = if (selected) {
+            MaterialTheme.colorScheme.tertiary
+        } else {
+            MaterialTheme.colorScheme.secondaryContainer
+        },
+        contentColor = if(selected) {
+            MaterialTheme.colorScheme.onTertiary
+        } else {
+            MaterialTheme.colorScheme.onSecondaryContainer
+        }
+    ),
     contentPadding: PaddingValues = PaddingValues(
         start = 0.dp,
         top = 0.dp,
@@ -70,7 +82,10 @@ fun EventDaySelectorButton(
     ) {
         CompositionLocalProvider(LocalContentColor provides contentColor) {
             ProvideTextStyle(value = MaterialTheme.typography.labelLarge) {
-                Column(verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
+                Column(
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
                     Text(
                         text = title,
                         style = TextStyle(

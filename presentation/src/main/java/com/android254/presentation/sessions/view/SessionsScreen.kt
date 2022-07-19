@@ -114,7 +114,7 @@ fun SessionsScreen(darkTheme: Boolean = isSystemInDarkTheme()) {
     Column(
         Modifier
             .fillMaxSize()
-            .background(MaterialTheme.colorScheme.secondaryContainer)
+            .background(MaterialTheme.colorScheme.background)
             .padding(horizontal = 20.dp)
     ) {
         Row(
@@ -122,14 +122,15 @@ fun SessionsScreen(darkTheme: Boolean = isSystemInDarkTheme()) {
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(start = 0.dp, end = 0.dp, top = 24.dp, bottom = 36.dp)
+                .padding(start = 0.dp, end = 0.dp, top = 24.dp, bottom = 12.dp)
         ) {
             Row() {
                 eventDays.forEachIndexed { index, eventDay ->
                     EventDaySelectorButton(
                         title = eventDay.date,
                         subtitle = "Day ${index + 1}",
-                        onClick = { /*TODO*/ }
+                        onClick = { /*TODO*/ },
+                        selected = index == 0
                     ) {
                     }
                     Spacer(Modifier.width(16.dp))
