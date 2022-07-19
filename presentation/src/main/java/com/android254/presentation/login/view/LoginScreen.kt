@@ -13,21 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android254.data.di
+package com.android254.presentation.login.view
 
-import com.android254.data.db.Database
-import com.android254.data.dao.SessionDao
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.tooling.preview.Preview
+import com.android254.presentation.common.theme.DroidconKE2022Theme
 
-@Module
-@InstallIn(SingletonComponent::class)
-object DaoModule {
+@Composable
+fun LoginScreen() {
+    Text(text = "Login Screen")
+}
 
-    @Provides
-    fun providesAuthorDao(
-        database: Database,
-    ): SessionDao = database.sessionDao()
+@Preview
+@Composable
+fun LoginScreenPreview() {
+    DroidconKE2022Theme {
+        LoginScreen()
+    }
 }

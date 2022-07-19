@@ -13,21 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android254.data.di
+package com.android254.data.db.util
 
-import com.android254.data.db.Database
-import com.android254.data.dao.SessionDao
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
+import androidx.room.TypeConverter
+import kotlinx.datetime.Instant
 
-@Module
-@InstallIn(SingletonComponent::class)
-object DaoModule {
+class InstantConverter {
 
-    @Provides
-    fun providesAuthorDao(
-        database: Database,
-    ): SessionDao = database.sessionDao()
+    @TypeConverter
+    fun longToInstant(value: Long?): Instant? =
+        value?.let(Instant::fromEpochMilliseconds)
+
+    @TypeConverter
+    fun instantToLong(instant: Instant?): Long? =
+        instant?.toEpochMilliseconds()
 }

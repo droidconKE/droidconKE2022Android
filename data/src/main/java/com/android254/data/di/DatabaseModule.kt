@@ -17,7 +17,7 @@ package com.android254.data.di
 
 import android.content.Context
 import androidx.room.Room
-import com.android254.data.Database
+import com.android254.data.db.Database
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

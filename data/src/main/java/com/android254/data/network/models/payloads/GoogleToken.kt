@@ -13,18 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android254.data.util
+package com.android254.data.network.models.payloads
 
-import androidx.room.TypeConverter
-import kotlinx.datetime.Instant
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-class InstantConverter {
-
-    @TypeConverter
-    fun longToInstant(value: Long?): Instant? =
-        value?.let(Instant::fromEpochMilliseconds)
-
-    @TypeConverter
-    fun instantToLong(instant: Instant?): Long? =
-        instant?.toEpochMilliseconds()
-}
+@Serializable
+data class GoogleToken(@SerialName("access_token") val token: String)
