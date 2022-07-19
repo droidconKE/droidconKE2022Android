@@ -18,13 +18,13 @@ package com.android254.data.dao
 import android.content.Context
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
-import com.android254.data.Database
-import com.android254.data.model.Session
-import kotlinx.coroutines.ExperimentalCoroutinesApi
+import com.android254.data.db.Database
+import com.android254.data.db.model.Session
 import kotlinx.coroutines.test.runTest
 import kotlinx.datetime.toInstant
+import org.hamcrest.CoreMatchers.`is`
+import org.hamcrest.MatcherAssert.assertThat
 import org.junit.After
-import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -55,16 +55,11 @@ class SessionDaoTest {
         db.close()
     }
 
-    @OptIn(ExperimentalCoroutinesApi::class)
     @Test
-    fun sessionDao_fetches_all_sessions() = runTest {
+    fun `test sessionDao fetches all sessions`() = runTest {
         val session = Session(0, "Welcome Keynote", "2010-06-01T22:19:44.475Z".toInstant())
-        sessionDao.insert(
-            session
-        )
-
+        sessionDao.insert(session)
         val result = sessionDao.fetchSessions().first()
-
-        Assert.assertEquals(session.name, result.name)
+        assertThat(session.name, `is`(result.name))
     }
 }
