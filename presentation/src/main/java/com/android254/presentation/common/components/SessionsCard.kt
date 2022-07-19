@@ -64,34 +64,28 @@ fun SessionsCard(sessionPresentationModel: SessionPresentationModel, onclick: ()
                 .fillMaxWidth().wrapContentHeight()
                 .padding(PaddingValues(top = 20.dp))
         ) {
-            SessionTimeComponent(sessionPresentationModel.sessionTime)
+            SessionTimeComponent(
+                sessionPresentationModel.sessionStartTime,
+                sessionPresentationModel.amOrPm
+            )
             SessionDetails(sessionPresentationModel = sessionPresentationModel)
         }
     }
 }
 
 @Composable
-fun RowScope.SessionTimeComponent(time: String) {
-    val timeValue = mutableListOf<Char>()
-    val meridian = mutableListOf<Char>()
-    time.toList().reversed().forEach {
-        if (!it.isDigit() && meridian.size != 2) {
-            meridian.add(it)
-        } else {
-            timeValue.add(it)
-        }
-    }
+fun RowScope.SessionTimeComponent(sessionStartTime: String, sessionAmOrPm: String) {
     Column(
         modifier = Modifier
             .weight(0.15f),
         horizontalAlignment = Alignment.End
     ) {
         Text(
-            text = timeValue.reversed().joinToString(""),
+            text = sessionStartTime,
             style = MaterialTheme.typography.titleMedium.copy(fontSize = 18.sp)
         )
         Text(
-            text = meridian.reversed().joinToString(""),
+            text = sessionAmOrPm,
             style = MaterialTheme.typography.titleMedium.copy(fontSize = 18.sp)
         )
     }
