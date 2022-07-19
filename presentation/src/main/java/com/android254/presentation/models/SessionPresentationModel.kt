@@ -7,5 +7,8 @@ data class SessionPresentationModel(
     val sessionVenue: String,
     val sessionSpeakerImage: String,
     val sessionSpeakerName: String,
-    val sessionTime: String
+    val sessionStartTime: String,
+    val sessionEndTime: String,
+    val amOrPm: String,
+    val isStarred: Boolean
 )
