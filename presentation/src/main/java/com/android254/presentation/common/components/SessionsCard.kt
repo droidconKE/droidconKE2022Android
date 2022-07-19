@@ -30,6 +30,7 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Star
 import androidx.compose.material.icons.rounded.StarOutline
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -49,7 +50,7 @@ import coil.compose.AsyncImage
 import com.android254.presentation.models.SessionPresentationModel
 
 @Composable
-fun SessionsCard(sessionPresentationModel: SessionPresentationModel, onclick: () -> Unit) {
+fun SessionsCard(session: SessionPresentationModel, onclick: () -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth(0.95f)
@@ -65,10 +66,10 @@ fun SessionsCard(sessionPresentationModel: SessionPresentationModel, onclick: ()
                 .padding(PaddingValues(top = 20.dp))
         ) {
             SessionTimeComponent(
-                sessionPresentationModel.sessionStartTime,
-                sessionPresentationModel.amOrPm
+                session.sessionStartTime,
+                session.amOrPm
             )
-            SessionDetails(sessionPresentationModel = sessionPresentationModel)
+            SessionDetails(session = session)
         }
     }
 }
@@ -92,24 +93,24 @@ fun RowScope.SessionTimeComponent(sessionStartTime: String, sessionAmOrPm: Strin
 }
 
 @Composable
-fun RowScope.SessionDetails(sessionPresentationModel: SessionPresentationModel) {
+fun RowScope.SessionDetails(session: SessionPresentationModel) {
     Column(
         modifier = Modifier
             .weight(0.85f)
             .padding(PaddingValues(start = 10.dp, end = 10.dp, bottom = 10.dp))
     ) {
-        SessionTitleComponent(sessionPresentationModel.sessionTitle)
-        SessionsDescriptionComponent(sessionPresentationModel.sessionDescription)
-        TimeAndVenueComponent(sessionPresentationModel.sessionVenue)
+        SessionTitleComponent(session.sessionTitle, session.isStarred)
+        SessionsDescriptionComponent(session.sessionDescription)
+        TimeAndVenueComponent(session.sessionVenue)
         SessionPresenterComponents(
-            sessionSpeakerImageUrl = sessionPresentationModel.sessionSpeakerImage,
-            sessionSpeakerName = sessionPresentationModel.sessionSpeakerName
+            sessionSpeakerImageUrl = session.sessionSpeakerImage,
+            sessionSpeakerName = session.sessionSpeakerName
         )
     }
 }
 
 @Composable
-fun SessionTitleComponent(sessionTitle: String) {
+fun SessionTitleComponent(sessionTitle: String, sessionIsStarred: Boolean) {
     val interactionSource = remember { MutableInteractionSource() }
     ConstraintLayout(
         Modifier
@@ -130,7 +131,7 @@ fun SessionTitleComponent(sessionTitle: String) {
         )
 
         Icon(
-            imageVector = Icons.Rounded.StarOutline,
+            imageVector = if (sessionIsStarred) Icons.Rounded.StarOutline else Icons.Rounded.Star,
             contentDescription = "star session",
             modifier = Modifier
                 .size(30.dp)
