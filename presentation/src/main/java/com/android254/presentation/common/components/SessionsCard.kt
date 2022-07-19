@@ -104,9 +104,9 @@ fun RowScope.SessionDetails(sessionPresentationModel: SessionPresentationModel) 
             .weight(0.85f)
             .padding(PaddingValues(start = 10.dp, end = 10.dp, bottom = 10.dp))
     ) {
-        SessionTitleBlock(sessionPresentationModel.sessionTitle)
+        SessionTitleComponent(sessionPresentationModel.sessionTitle)
         SessionsDescriptionComponent(sessionPresentationModel.sessionDescription)
-        TimeAndVenue(sessionPresentationModel.sessionVenue)
+        TimeAndVenueComponent(sessionPresentationModel.sessionVenue)
         SessionPresenterComponents(
             sessionSpeakerImageUrl = sessionPresentationModel.sessionSpeakerImage,
             sessionSpeakerName = sessionPresentationModel.sessionSpeakerName
@@ -115,7 +115,7 @@ fun RowScope.SessionDetails(sessionPresentationModel: SessionPresentationModel) 
 }
 
 @Composable
-fun SessionTitleBlock(sessionTitle: String) {
+fun SessionTitleComponent(sessionTitle: String) {
     val interactionSource = remember { MutableInteractionSource() }
     ConstraintLayout(
         Modifier
@@ -160,7 +160,7 @@ fun SessionsDescriptionComponent(sessionDescription: String) {
 }
 
 @Composable
-fun TimeAndVenue(sessionVenue: String) {
+fun TimeAndVenueComponent(sessionVenue: String) {
     Text(
         text = sessionVenue,
         style = MaterialTheme.typography.bodySmall.copy(color = MaterialTheme.colorScheme.onSurfaceVariant)

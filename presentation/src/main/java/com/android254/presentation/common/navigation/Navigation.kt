@@ -11,7 +11,7 @@ import com.android254.presentation.sessions.view.SessionsScreen
 
 @Composable
 fun Navigation(navController: NavHostController) {
-    NavHost(navController, startDestination = Screens.Sessions.route) {
+    NavHost(navController, startDestination = Screens.Home.route) {
         composable(Screens.Home.route) {
             HomeScreen()
         }
