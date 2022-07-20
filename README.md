@@ -53,7 +53,7 @@ App will have the following features:
 
 Contributions are always welcome!
 
-See [`contributing.md`](contributing.md) for ways to get started.
+See [`CONTRIBUTING.md`](CONTRIBUTING.md) for ways to get started.
 
 ## Designs
 This is the link to the app designs:  
