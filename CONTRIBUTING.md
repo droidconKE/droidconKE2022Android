@@ -39,6 +39,8 @@
   or `SponsorsPresentationModel`
 - All mappers should follow the pattern `model-layerFrom-layerTo-mapper`
   ie. `SponsorDataToDomainMapper`
+- All string resources will be in snake case ie. `my_awesome_string`
+- String resources for a screen should be prefixed with screen name ie. `home_screen_title`
 
 ## Coding Style
 
