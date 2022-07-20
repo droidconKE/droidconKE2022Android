@@ -25,3 +25,4 @@ mapOf(
 }
 
 rootProject.name = "DroidconKE2022"
+include(":chai")
