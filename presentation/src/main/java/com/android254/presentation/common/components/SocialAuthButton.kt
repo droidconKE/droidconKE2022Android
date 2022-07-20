@@ -37,7 +37,7 @@ import androidx.compose.ui.unit.sp
 import com.android254.presentation.R
 
 @Composable
-fun GoogleAuthButton(
+fun SocialAuthButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
@@ -77,16 +77,12 @@ fun GoogleAuthButton(
     ) {
         CompositionLocalProvider(LocalContentColor provides contentColor) {
             ProvideTextStyle(value = MaterialTheme.typography.labelLarge) {
-                Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start) {
-                    Image(
-                        painter = painterResource(id = R.drawable.ic_google_logo_icon),
-                        contentDescription = "google icon",
-                        modifier = Modifier
-                            .height(40.dp)
-                            .width(40.dp).background(MaterialTheme.colorScheme.onPrimary)
-                    )
-                    Text(text = "Sign In with Google", modifier = Modifier.padding(start = 10.dp), style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 14.sp))
-                }
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Start,
+                    content = content
+                )
             }
         }
     }
