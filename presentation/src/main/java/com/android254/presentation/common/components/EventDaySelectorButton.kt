@@ -49,7 +49,7 @@ fun EventDaySelectorButton(
         } else {
             MaterialTheme.colorScheme.secondaryContainer
         },
-        contentColor = if(selected) {
+        contentColor = if (selected) {
             MaterialTheme.colorScheme.onTertiary
         } else {
             MaterialTheme.colorScheme.onSecondaryContainer
