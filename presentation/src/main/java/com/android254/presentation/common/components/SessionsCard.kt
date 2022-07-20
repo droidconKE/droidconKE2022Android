@@ -35,9 +35,7 @@ fun SessionsCard(session: Event) {
     Card(
         onClick = { /*TODO*/ },
         modifier = Modifier.fillMaxWidth(),
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.onPrimary
-        ),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
         elevation = CardDefaults.cardElevation(
             defaultElevation = 36.dp
         )

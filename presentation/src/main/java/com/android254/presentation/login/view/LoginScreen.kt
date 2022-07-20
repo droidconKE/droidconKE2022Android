@@ -101,76 +101,6 @@ fun LoginScreen(darkTheme: Boolean = isSystemInDarkTheme(), navController: NavHo
                 onClick = { navController.navigate(Screens.Home.route) },
                 modifier = Modifier.width(200.dp)
             ) {
-<<<<<<< HEAD
-                Spacer(modifier = Modifier.height(50.dp))
-                SocialAuthButton(
-                    onClick = { navController.navigate(Screens.Home.route) },
-                    modifier = Modifier.width(200.dp)
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.ic_google_logo_icon),
-                        contentDescription = stringResource(R.string.google_icon_description),
-                        modifier = Modifier
-                            .height(40.dp)
-                            .width(40.dp)
-                            .background(MaterialTheme.colorScheme.onPrimary)
-                    )
-                    Text(
-                        text = stringResource(R.string.sign_in_with_google_label),
-                        modifier = Modifier.padding(start = 10.dp),
-                        style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 14.sp)
-                    )
-                }
-                Spacer(modifier = Modifier.height(32.dp))
-                Row(horizontalArrangement = Arrangement.Center) {
-                    Text(text = stringResource(R.string.or_label))
-                }
-                Spacer(modifier = Modifier.height(36.dp))
-                Column(modifier = Modifier.padding(38.dp)) {
-                    DroidConTextField(label = stringResource(R.string.email_address_field_label))
-                    Spacer(modifier = Modifier.height(24.dp))
-                    DroidConTextField(label = stringResource(R.string.password_field_label))
-                    Spacer(modifier = Modifier.height(24.dp))
-                    Button(
-                        onClick = { navController.navigate(Screens.Home.route) },
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(48.dp),
-                        shape = RoundedCornerShape(7.dp),
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = if (darkTheme) Color.Black else MaterialTheme.colorScheme.primary,
-                            contentColor = if (darkTheme) Color.White else MaterialTheme.colorScheme.onPrimary,
-                        )
-                    ) {
-                        Text(
-                            text = stringResource(R.string.sign_in_label).uppercase(),
-                            style = TextStyle(
-                                fontWeight = FontWeight.Bold,
-                                fontSize = 16.sp,
-                            )
-                        )
-                    }
-                }
-                Spacer(modifier = Modifier.height(24.dp))
-                TextButton(onClick = { }) {
-                    Text(
-                        text = stringResource(R.string.forgot_password_label),
-                        style = TextStyle(
-                            fontWeight = FontWeight.ExtraBold,
-                            fontSize = 14.sp,
-                            color = MaterialTheme.colorScheme.onSecondaryContainer,
-                            fontFamily = Montserrat
-                        )
-                    )
-                }
-                Spacer(modifier = Modifier.height(24.dp))
-                Text(
-                    text = stringResource(R.string.sign_up_prompt_label),
-                    style = TextStyle(fontSize = 14.sp, fontFamily = Montserrat)
-                )
-                Spacer(modifier = Modifier.height(12.dp))
-                TextButton(onClick = { }) {
-=======
                 Image(
                     painter = painterResource(id = R.drawable.ic_google_logo_icon),
                     contentDescription = stringResource(R.string.google_icon_description),
@@ -206,7 +136,6 @@ fun LoginScreen(darkTheme: Boolean = isSystemInDarkTheme(), navController: NavHo
                         contentColor = if (darkTheme) Color.White else MaterialTheme.colorScheme.onPrimary,
                     )
                 ) {
->>>>>>> a9c68a8d7a2f7d12a6005c41cb0895c9489834f7
                     Text(
                         text = stringResource(R.string.sign_in_label).uppercase(),
                         style = TextStyle(
