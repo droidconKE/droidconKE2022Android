@@ -76,5 +76,64 @@ See [`CONTRIBUTING.md`](CONTRIBUTING.md) for ways to get started.
 We would endlessly like to thank the following contributors
 
 <!-- readme: contributors -start -->
-
+<table>
+<tr>
+    <td align="center">
+        <a href="https://github.com/jumaallan">
+            <img src="https://avatars.githubusercontent.com/u/25085146?v=4" width="100;" alt="jumaallan"/>
+            <br />
+            <sub><b>Juma Allan</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/chepsi">
+            <img src="https://avatars.githubusercontent.com/u/61404564?v=4" width="100;" alt="chepsi"/>
+            <br />
+            <sub><b>Evans Chepsiror</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/wangerekaharun">
+            <img src="https://avatars.githubusercontent.com/u/15122455?v=4" width="100;" alt="wangerekaharun"/>
+            <br />
+            <sub><b>Harun Wangereka</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/gissilali">
+            <img src="https://avatars.githubusercontent.com/u/13868653?v=4" width="100;" alt="gissilali"/>
+            <br />
+            <sub><b>Gibson Silali</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/keithchad">
+            <img src="https://avatars.githubusercontent.com/u/63049827?v=4" width="100;" alt="keithchad"/>
+            <br />
+            <sub><b>Keith Chad</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/michaelbukachi">
+            <img src="https://avatars.githubusercontent.com/u/10145850?v=4" width="100;" alt="michaelbukachi"/>
+            <br />
+            <sub><b>Michael Bukachi</b></sub>
+        </a>
+    </td></tr>
+<tr>
+    <td align="center">
+        <a href="https://github.com/kibettheophilus">
+            <img src="https://avatars.githubusercontent.com/u/61080898?v=4" width="100;" alt="kibettheophilus"/>
+            <br />
+            <sub><b>Kibet Theo</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/MamboBryan">
+            <img src="https://avatars.githubusercontent.com/u/40160345?v=4" width="100;" alt="MamboBryan"/>
+            <br />
+            <sub><b>Mambo Bryan</b></sub>
+        </a>
+    </td></tr>
+</table>
 <!-- readme: contributors -end -->
