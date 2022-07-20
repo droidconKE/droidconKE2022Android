@@ -65,7 +65,7 @@ dependencies {
     implementation(libs.lifecycle.runtimeKtx)
     implementation(libs.timber)
     implementation(libs.android.hilt)
-    implementation(libs.androidx.splashscreen)
+    implementation(libs.android.splashscreen)
     kapt(libs.android.hilt.compiler)
     implementation(libs.android.hilt.compose)
     kapt(libs.android.hilt.androidx.compiler)
