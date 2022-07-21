@@ -110,14 +110,12 @@ fun DroidconKE2022Theme(
     if (!view.isInEditMode) {
         SideEffect {
             val activity=view.context.findActivity()
-            // although view.context in compose is gotten from LocalContext.current the fetched context might not be the
-            //closest activity in the given context thus making this method [not that] lack of a better word safe
-           // (view.context as Activity).window.statusBarColor = colorScheme.primary.toArgb()
+             // although view.context in compose is gotten from LocalContext.current the fetched context might not be the
+             //closest activity in the given context thus making this method [not that] lack of a better word safe
+            // (view.context as Activity).window.statusBarColor = colorScheme.primary.toArgb()
             activity.window.statusBarColor = colorScheme.primary.toArgb()
-            /* Using this method might return if the function fails to find window associated with the given activity's context
-            */
-            // ViewCompat.getWindowInsetsController(view)?.isAppearanceLightStatusBars = darkTheme
-            // safer
+            //Using this method might return if the function fails to find window associated with the given activity's context
+            //ViewCompat.getWindowInsetsController(view)?.isAppearanceLightStatusBars = darkTheme */
             WindowCompat.getInsetsController(activity.window, view).isAppearanceLightStatusBars =darkTheme
         }
     }
