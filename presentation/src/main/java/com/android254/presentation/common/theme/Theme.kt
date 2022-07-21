@@ -30,7 +30,6 @@ import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
-import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 
 private val LightColors = lightColorScheme(
@@ -109,14 +108,14 @@ fun DroidconKE2022Theme(
     val view = LocalView.current
     if (!view.isInEditMode) {
         SideEffect {
-            val activity=view.context.findActivity()
-             // although view.context in compose is gotten from LocalContext.current the fetched context might not be the
-             //closest activity in the given context thus making this method [not that] lack of a better word safe
+            val activity = view.context.findActivity()
+            // although view.context in compose is gotten from LocalContext.current the fetched context might not be the
+            // closest activity in the given context thus making this method [not that] lack of a better word safe
             // (view.context as Activity).window.statusBarColor = colorScheme.primary.toArgb()
             activity.window.statusBarColor = colorScheme.primary.toArgb()
-            //Using this method might return if the function fails to find window associated with the given activity's context
-            //ViewCompat.getWindowInsetsController(view)?.isAppearanceLightStatusBars = darkTheme */
-            WindowCompat.getInsetsController(activity.window, view).isAppearanceLightStatusBars =darkTheme
+            // Using this method might return if the function fails to find window associated with the given activity's context
+            // ViewCompat.getWindowInsetsController(view)?.isAppearanceLightStatusBars = darkTheme */
+            WindowCompat.getInsetsController(activity.window, view).isAppearanceLightStatusBars = darkTheme
         }
     }
 
@@ -131,9 +130,9 @@ fun DroidconKE2022Theme(
  * Iterate through the context wrapper to find the closest
  * activity associated with this context
  */
-private fun Context.findActivity():Activity{
-    var context =this
-    while (context is ContextWrapper){
+private fun Context.findActivity(): Activity {
+    var context = this
+    while (context is ContextWrapper) {
         if (context is Activity) return context
         context = context.baseContext
     }
