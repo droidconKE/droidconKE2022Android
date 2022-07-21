@@ -114,7 +114,7 @@ fun DroidconKE2022Theme(
             // (view.context as Activity).window.statusBarColor = colorScheme.primary.toArgb()
             activity.window.statusBarColor = colorScheme.primary.toArgb()
             // Using this method might return if the function fails to find window associated with the given activity's context
-            // ViewCompat.getWindowInsetsController(view)?.isAppearanceLightStatusBars = darkTheme */
+            // ViewCompat.getWindowInsetsController(view)?.isAppearanceLightStatusBars = darkTheme
             WindowCompat.getInsetsController(activity.window, view).isAppearanceLightStatusBars = darkTheme
         }
     }
@@ -129,6 +129,7 @@ fun DroidconKE2022Theme(
 /**
  * Iterate through the context wrapper to find the closest
  * activity associated with this context
+ * Throws [IllegalStateException] if no activity was found
  */
 private fun Context.findActivity(): Activity {
     var context = this
