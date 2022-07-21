@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android254.presentation.login.view
+package com.android254.presentation.auth.view
 
 import androidx.compose.animation.rememberSplineBasedDecay
 import androidx.compose.foundation.Image
