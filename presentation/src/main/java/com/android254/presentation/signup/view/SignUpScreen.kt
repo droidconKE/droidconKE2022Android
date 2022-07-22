@@ -11,6 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -30,6 +31,7 @@ import com.android254.presentation.common.theme.Montserrat
 
 @Composable
 fun SignUpScreen(darkTheme: Boolean = isSystemInDarkTheme(), navController: NavHostController) {
+    Text(modifier = Modifier.testTag("heading"), text = "About Screen")
     val decayAnimationSpec = rememberSplineBasedDecay<Float>()
     val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior(
         decayAnimationSpec,
@@ -53,7 +55,7 @@ fun SignUpScreen(darkTheme: Boolean = isSystemInDarkTheme(), navController: NavH
                     contentScale = ContentScale.FillBounds
                 )
                 LargeTopAppBar(
-                    title = { Text(stringResource(R.string.sign_up_label)) },
+                    title = { Text(modifier = Modifier.testTag("signup"), text = stringResource(R.string.sign_up_label)) },
                     navigationIcon = {
                         IconButton(
                             onClick = { /* doSomething() */ },
