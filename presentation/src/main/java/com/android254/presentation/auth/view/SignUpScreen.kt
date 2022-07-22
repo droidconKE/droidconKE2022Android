@@ -16,12 +16,9 @@
 
 package com.android254.presentation.auth.view
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -44,17 +41,21 @@ import com.android254.presentation.common.theme.DroidconKE2022Theme
 import com.android254.presentation.common.theme.Montserrat
 
 // TODO 1: Make the screen scrollable..Done
-// TODO 2: Implement for the dark theme
+// TODO 2: Implement for the dark theme ... Done
 // TODO 4: Move the primary button to a separate component
 // TODO 5: Undo the renaming
 @Composable
-fun SignUpScreen(goToLogin: ()-> Unit = {}) {
+fun SignUpScreen(goToLogin: () -> Unit = {}, isDarkTheme: Boolean = isSystemInDarkTheme()) {
     Scaffold(
         topBar = {
             Box {
                 Image(
                     modifier = Modifier.fillMaxWidth(),
-                    painter = painterResource(id = R.drawable.topbar_bg_sign_up),
+                    painter = if (isDarkTheme) {
+                        painterResource(id = R.drawable.toolbar_bg_sign_up_dark)
+                    } else {
+                        painterResource(id = R.drawable.topbar_bg_sign_up)
+                    },
                     contentDescription = stringResource(id = R.string.login_screen_bg_image_description),
                     contentScale = ContentScale.FillBounds
                 )
@@ -90,7 +91,12 @@ fun SignUpScreen(goToLogin: ()-> Unit = {}) {
             Spacer(modifier = Modifier.height(50.dp))
             SocialAuthButton(
                 onClick = {/* doSomething() */ },
-                modifier = Modifier.width(200.dp)
+                modifier = Modifier.width(200.dp),
+                colors =ButtonDefaults.buttonColors(
+                    containerColor = colorResource(id = R.color.smoke_white),
+                    contentColor = Color.Black
+                )
+
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.ic_google_logo_icon),
@@ -98,7 +104,7 @@ fun SignUpScreen(goToLogin: ()-> Unit = {}) {
                     modifier = Modifier
                         .height(40.dp)
                         .width(40.dp)
-                        .background(MaterialTheme.colorScheme.onPrimary)
+                        .background(Color.White)
                 )
                 Text(
                     text = stringResource(R.string.sign_up_with_google_label),
@@ -127,9 +133,13 @@ fun SignUpScreen(goToLogin: ()-> Unit = {}) {
                 Spacer(modifier = Modifier.height(28.dp))
                 Button(
                     onClick = { /* doSomething() */ },
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier.fillMaxWidth()
+                        .height(48.dp),
                     shape = RoundedCornerShape(8.dp),
-                    colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.blue))
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = if (isDarkTheme) Color.Black else colorResource(id = R.color.blue),
+                        contentColor = Color.White
+                    )
                 ) {
                     Text(
                         text = stringResource(id = R.string.sign_me_up_label).uppercase(),
