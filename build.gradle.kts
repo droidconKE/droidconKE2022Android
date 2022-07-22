@@ -7,7 +7,7 @@ plugins {
     id("org.jlleitschuh.gradle.ktlint") version "10.2.0"
     id("io.gitlab.arturbosch.detekt") version "1.18.0-RC2"
     id("com.diffplug.spotless") version "6.0.0"
-    id("org.jetbrains.dokka") version "1.4.20"
+    id("org.jetbrains.dokka") version "1.7.10"
     kotlin("plugin.serialization") version "1.6.21"
 }
 
