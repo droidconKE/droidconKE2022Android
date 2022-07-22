@@ -5,10 +5,14 @@
     <string name="login_screen_bg_image_description">background_image</string>
     <string name="back_arrow_icon_description">Back arrow icon</string>
     <string name="email_address_field_label">Email Address</string>
+    <string name="username_field_label">Username</string>
+    <string name="confirm_password_field_label">Confirm Password</string>
+    <string name="sign_me_up_label">Sign me up</string>
     <string name="password_field_label">Password</string>
     <string name="google_icon_description">google icon</string>
     <string name="sign_in_with_google_label">Sign In with Google</string>
     <string name="forgot_password_label">Forgot Password?</string>
     <string name="sign_up_prompt_label">Don\'t have an account?</string>
+    <string name="sign_in_prompt_label">Already have an account?</string>
     <string name="or_label">\" - OR - \"</string>
 </resources>
