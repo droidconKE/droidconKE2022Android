@@ -65,7 +65,7 @@ fun Navigation(
         }
         composable(Screens.SignUp.route) {
             upDataAppBarState(false)
-            upDateBottomBarState(false) // TODO 11: Find out what these methods are doing
+            upDateBottomBarState(false)
             SignUpScreen(
                 goToLogin = {
                     navController.navigate(Screens.Login.route)

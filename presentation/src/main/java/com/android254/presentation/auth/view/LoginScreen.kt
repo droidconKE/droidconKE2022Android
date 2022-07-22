@@ -42,7 +42,7 @@ import com.android254.presentation.common.theme.DroidconKE2022Theme
 @Composable
 fun LoginScreen(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    navController: NavHostController, // TODO: Maybe remove this
+    navController: NavHostController,
     goToSignUp: ()->Unit = {}
 ) {
     val decayAnimationSpec = rememberSplineBasedDecay<Float>()
