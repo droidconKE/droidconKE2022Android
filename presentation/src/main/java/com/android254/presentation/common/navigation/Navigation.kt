@@ -24,6 +24,7 @@ import com.android254.presentation.feed.view.FeedScreen
 import com.android254.presentation.home.view.HomeScreen
 import com.android254.presentation.login.view.LoginScreen
 import com.android254.presentation.sessions.view.SessionsScreen
+import com.android254.presentation.signup.view.SignUpScreen
 
 @Composable
 fun Navigation(
@@ -56,6 +57,11 @@ fun Navigation(
             upDataAppBarState(false)
             upDateBottomBarState(false)
             LoginScreen(navController = navController)
+        }
+        composable(Screens.SignUp.route) {
+            upDataAppBarState(false)
+            upDateBottomBarState(false)
+            SignUpScreen(navController = navController)
         }
     }
 }
