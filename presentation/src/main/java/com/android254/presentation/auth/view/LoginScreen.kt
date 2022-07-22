@@ -42,7 +42,11 @@ import com.android254.presentation.common.navigation.Screens
 import com.android254.presentation.common.theme.DroidconKE2022Theme
 
 @Composable
-fun LoginScreen(darkTheme: Boolean = isSystemInDarkTheme(), navController: NavHostController) {
+fun LoginScreen(
+    darkTheme: Boolean = isSystemInDarkTheme(),
+    navController: NavHostController, // TODO: Maybe remove this
+    goToSignUp: ()->Unit = {}
+) {
     val decayAnimationSpec = rememberSplineBasedDecay<Float>()
     val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior(
         decayAnimationSpec,
