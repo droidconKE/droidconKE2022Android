@@ -40,10 +40,6 @@ import com.android254.presentation.common.components.SocialAuthButton
 import com.android254.presentation.common.theme.DroidconKE2022Theme
 import com.android254.presentation.common.theme.Montserrat
 
-// TODO 1: Make the screen scrollable..Done
-// TODO 2: Implement for the dark theme ... Done
-// TODO 4: Move the primary button to a separate component
-// TODO 5: Undo the renaming
 @Composable
 fun SignUpScreen(goToLogin: () -> Unit = {}, isDarkTheme: Boolean = isSystemInDarkTheme()) {
     Scaffold(
