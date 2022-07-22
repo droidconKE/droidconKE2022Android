@@ -19,7 +19,9 @@ package com.android254.presentation.auth.view
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -41,9 +43,8 @@ import com.android254.presentation.common.components.SocialAuthButton
 import com.android254.presentation.common.theme.DroidconKE2022Theme
 import com.android254.presentation.common.theme.Montserrat
 
-// TODO 1: Make the screen scrollable
+// TODO 1: Make the screen scrollable..Done
 // TODO 2: Implement for the dark theme
-// TODO 3: Implement Navigation
 // TODO 4: Move the primary button to a separate component
 // TODO 5: Undo the renaming
 @Composable
@@ -52,6 +53,7 @@ fun SignUpScreen(goToLogin: ()-> Unit = {}) {
         topBar = {
             Box {
                 Image(
+                    modifier = Modifier.fillMaxWidth(),
                     painter = painterResource(id = R.drawable.topbar_bg_sign_up),
                     contentDescription = stringResource(id = R.string.login_screen_bg_image_description),
                     contentScale = ContentScale.FillBounds
@@ -80,7 +82,8 @@ fun SignUpScreen(goToLogin: ()-> Unit = {}) {
         Column(
             modifier = Modifier
                 .padding(paddingValues)
-                .fillMaxWidth(),
+                .fillMaxWidth()
+                .verticalScroll(rememberScrollState()),
             horizontalAlignment = Alignment.CenterHorizontally
 
         ) {
