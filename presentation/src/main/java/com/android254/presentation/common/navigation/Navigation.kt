@@ -23,6 +23,7 @@ import com.android254.presentation.about.view.AboutScreen
 import com.android254.presentation.feed.view.FeedScreen
 import com.android254.presentation.home.view.HomeScreen
 import com.android254.presentation.auth.view.LoginScreen
+import com.android254.presentation.auth.view.SignUpScreen
 import com.android254.presentation.sessions.view.SessionsScreen
 
 @Composable
@@ -55,7 +56,21 @@ fun Navigation(
         composable(Screens.Login.route) {
             upDataAppBarState(false)
             upDateBottomBarState(false)
-            LoginScreen(navController = navController)
+            LoginScreen(
+                navController = navController,
+                goToSignUp = {
+                    navController.navigate(Screens.SignUp.route)
+                }
+            )
+        }
+        composable(Screens.SignUp.route) {
+            upDataAppBarState(false)
+            upDateBottomBarState(false) // TODO 11: Find out what these methods are doing
+            SignUpScreen(
+                goToLogin = {
+                    navController.navigate(Screens.Login.route)
+                }
+            )
         }
     }
 }

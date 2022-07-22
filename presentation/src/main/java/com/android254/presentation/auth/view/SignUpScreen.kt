@@ -44,8 +44,10 @@ import com.android254.presentation.common.theme.Montserrat
 // TODO 1: Make the screen scrollable
 // TODO 2: Implement for the dark theme
 // TODO 3: Implement Navigation
+// TODO 4: Move the primary button to a separate component
+// TODO 5: Undo the renaming
 @Composable
-fun SignUpScreen() {
+fun SignUpScreen(goToLogin: ()-> Unit = {}) {
     Scaffold(
         topBar = {
             Box {
@@ -139,7 +141,7 @@ fun SignUpScreen() {
                 style = TextStyle(fontSize = 14.sp, fontFamily = Montserrat)
             )
             Spacer(modifier = Modifier.height(12.dp))
-            TextButton(onClick = { /* doSomething() */ }) {
+            TextButton(onClick = goToLogin) {
                 Text(
                     text = stringResource(R.string.sign_in_label),
                     style = TextStyle(
