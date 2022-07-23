@@ -88,7 +88,7 @@ fun SignUpScreen(goToLogin: () -> Unit = {}, isDarkTheme: Boolean = isSystemInDa
             SocialAuthButton(
                 onClick = {/* doSomething() */ },
                 modifier = Modifier.width(200.dp),
-                colors =ButtonDefaults.buttonColors(
+                colors = ButtonDefaults.buttonColors(
                     containerColor = colorResource(id = R.color.smoke_white),
                     contentColor = Color.Black
                 )
@@ -129,7 +129,8 @@ fun SignUpScreen(goToLogin: () -> Unit = {}, isDarkTheme: Boolean = isSystemInDa
                 Spacer(modifier = Modifier.height(28.dp))
                 Button(
                     onClick = { /* doSomething() */ },
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier
+                        .fillMaxWidth()
                         .height(48.dp),
                     shape = RoundedCornerShape(8.dp),
                     colors = ButtonDefaults.buttonColors(
