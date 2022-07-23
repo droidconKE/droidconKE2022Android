@@ -16,6 +16,7 @@
 package com.android254.data.di
 
 import com.android254.data.network.util.HttpClientFactory
+import com.android254.data.network.util.TokenProvider
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -45,5 +46,5 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideHttpClient(engine: HttpClientEngine): HttpClient = HttpClientFactory.create(engine)
+    fun provideHttpClient(engine: HttpClientEngine, tokenProvider: TokenProvider): HttpClient = HttpClientFactory(tokenProvider).create(engine)
 }
