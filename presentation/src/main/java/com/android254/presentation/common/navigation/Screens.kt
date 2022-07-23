@@ -25,7 +25,7 @@ sealed class Screens(var route: String, var icon: ImageVector, var title: String
     object Sessions : Screens("/sessions", Icons.Default.Android, "Sessions")
     object About : Screens("/about", Icons.Default.Android, "About")
     object Login : Screens("/login", Icons.Default.Android, "Login")
-    object SignUp: Screens("signUp", Icons.Default.Android, "Sign Up")
+    object SignUp : Screens("/signUp", Icons.Default.Android, "Sign Up")
 }
 
 val bottomNavigationDestinations = listOf(
