@@ -59,11 +59,8 @@ class HttpClientFactory @Inject constructor(private val tokenProvider: TokenProv
             bearer {
                 loadTokens {
                     // Load tokens from datastore
-                    val accessToken = tokenProvider.fetch().firstOrNull()
-                    if (accessToken != null) {
+                    tokenProvider.fetch().firstOrNull()?.let { accessToken ->
                         BearerTokens(accessToken, "")
-                    } else {
-                        null
                     }
                 }
 
