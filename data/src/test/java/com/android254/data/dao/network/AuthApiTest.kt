@@ -20,6 +20,7 @@ import com.android254.data.network.models.payloads.GoogleToken
 import com.android254.data.network.models.responses.AccessToken
 import com.android254.data.network.models.responses.Status
 import com.android254.data.network.models.responses.UserDetails
+import com.android254.data.network.util.DefaultTokenProvider
 import com.android254.data.network.util.HttpClientFactory
 import com.android254.data.network.util.ServerError
 import io.ktor.client.engine.mock.*
@@ -38,7 +39,7 @@ class AuthApiTest {
             delay(500)
             respondError(HttpStatusCode.InternalServerError)
         }
-        val httpClient = HttpClientFactory.create(mockEngine)
+        val httpClient = HttpClientFactory(DefaultTokenProvider()).create(mockEngine)
         val api = AuthApi(httpClient)
         runBlocking {
             api.logout()
@@ -54,7 +55,7 @@ class AuthApiTest {
                 headersOf(HttpHeaders.ContentType, "application/json")
             )
         }
-        val httpClient = HttpClientFactory.create(mockEngine)
+        val httpClient = HttpClientFactory(DefaultTokenProvider()).create(mockEngine)
         val api = AuthApi(httpClient)
         runBlocking {
             val response = api.logout()
@@ -83,7 +84,7 @@ class AuthApiTest {
                 headersOf(HttpHeaders.ContentType, "application/json")
             )
         }
-        val httpClient = HttpClientFactory.create(mockEngine)
+        val httpClient = HttpClientFactory(DefaultTokenProvider()).create(mockEngine)
         val api = AuthApi(httpClient)
         runBlocking {
             val accessToken = AccessToken(
