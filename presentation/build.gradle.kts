@@ -87,7 +87,6 @@ dependencies {
     testImplementation(libs.test.robolectric)
     testImplementation(libs.compose.ui.test.junit)
     testImplementation(libs.android.test.espresso)
-
 }
 
 kotlin {
