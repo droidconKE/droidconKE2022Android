@@ -19,17 +19,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface TokenProvider {
 
-    fun fetch(): Flow<String>
+    suspend fun fetch(): Flow<String?>
 
-    fun update(): Flow<String>
-}
-
-class DefaultTokenProvider : TokenProvider {
-    override fun fetch(): Flow<String> {
-        TODO("Not yet implemented")
-    }
-
-    override fun update(): Flow<String> {
-        TODO("Not yet implemented")
-    }
+    suspend fun update(accessToken: String)
 }
