@@ -33,7 +33,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import javax.inject.Singleton
 
-private const val DCNBO22_PREFERENCES = "dcke22-pref"
+private const val DCKE22_PREFERENCES = "dcke22-pref"
 
 @InstallIn(SingletonComponent::class)
 @Module
@@ -46,9 +46,9 @@ object DatastoreModule {
             corruptionHandler = ReplaceFileCorruptionHandler(
                 produceNewData = { emptyPreferences() }
             ),
-            migrations = listOf(SharedPreferencesMigration(appContext, DCNBO22_PREFERENCES)),
+            migrations = listOf(SharedPreferencesMigration(appContext, DCKE22_PREFERENCES)),
             scope = CoroutineScope(Dispatchers.IO + SupervisorJob()),
-            produceFile = { appContext.preferencesDataStoreFile(DCNBO22_PREFERENCES) }
+            produceFile = { appContext.preferencesDataStoreFile(DCKE22_PREFERENCES) }
         )
     }
 }
