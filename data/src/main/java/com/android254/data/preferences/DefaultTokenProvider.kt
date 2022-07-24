@@ -24,7 +24,6 @@ import com.android254.data.network.util.TokenProvider
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
-import java.io.IOException
 import javax.inject.Inject
 
 private object PreferencesKeys {
@@ -35,13 +34,8 @@ class DefaultTokenProvider @Inject constructor(private val dataStore: DataStore<
     TokenProvider {
 
     override suspend fun fetch(): Flow<String?> = dataStore.data
-        .catch { exception ->
-            // dataStore.data throws an IOException when an error is encountered when reading data
-            if (exception is IOException) {
-                emit(emptyPreferences())
-            } else {
-                throw exception
-            }
+        .catch {
+            emit(emptyPreferences())
         }.map { preferences ->
             preferences[PreferencesKeys.ACCESS_TOKEN]
         }
