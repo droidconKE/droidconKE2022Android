@@ -59,6 +59,7 @@ dependencies {
     implementation(libs.android.hilt)
     implementation(libs.timber)
     kapt(libs.android.hilt.compiler)
+    implementation(libs.datastore)
     implementation(libs.room.runtime)
     ksp(libs.room.compiler)
     implementation(libs.room.ktx)
