@@ -41,7 +41,7 @@ import com.android254.presentation.common.theme.DroidconKE2022Theme
 import com.android254.presentation.common.theme.Montserrat
 
 @Composable
-fun SignUpScreen(goToLogin: () -> Unit = {}, isDarkTheme: Boolean = isSystemInDarkTheme()) {
+fun SignUpScreen(navigateToLogin: () -> Unit = {}, isDarkTheme: Boolean = isSystemInDarkTheme()) {
     Scaffold(
         topBar = {
             Box {
@@ -59,7 +59,7 @@ fun SignUpScreen(goToLogin: () -> Unit = {}, isDarkTheme: Boolean = isSystemInDa
                     title = { Text(stringResource(R.string.sign_up_label)) },
                     navigationIcon = {
                         IconButton(
-                            onClick = { /* doSomething() */ },
+                            onClick = { Unit },
                         ) {
                             Icon(
                                 painter = painterResource(id = R.drawable.ic_back_arrow),
@@ -86,7 +86,7 @@ fun SignUpScreen(goToLogin: () -> Unit = {}, isDarkTheme: Boolean = isSystemInDa
         ) {
             Spacer(modifier = Modifier.height(50.dp))
             SocialAuthButton(
-                onClick = {/* doSomething() */ },
+                onClick = { Unit },
                 modifier = Modifier.width(200.dp),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = colorResource(id = R.color.smoke_white),
@@ -128,7 +128,7 @@ fun SignUpScreen(goToLogin: () -> Unit = {}, isDarkTheme: Boolean = isSystemInDa
                 DroidConTextField(label = stringResource(id = R.string.confirm_password_label))
                 Spacer(modifier = Modifier.height(28.dp))
                 Button(
-                    onClick = { /* doSomething() */ },
+                    onClick = { Unit },
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(48.dp),
@@ -151,7 +151,7 @@ fun SignUpScreen(goToLogin: () -> Unit = {}, isDarkTheme: Boolean = isSystemInDa
                 style = TextStyle(fontSize = 14.sp, fontFamily = Montserrat)
             )
             Spacer(modifier = Modifier.height(12.dp))
-            TextButton(onClick = goToLogin) {
+            TextButton(onClick = navigateToLogin) {
                 Text(
                     text = stringResource(R.string.sign_in_label),
                     style = TextStyle(
