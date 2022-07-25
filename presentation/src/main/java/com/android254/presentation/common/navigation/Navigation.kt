@@ -58,7 +58,7 @@ fun Navigation(
             upDateBottomBarState(false)
             LoginScreen(
                 navController = navController,
-                goToSignUp = {
+                navigateToSignUp = {
                     navController.navigate(Screens.SignUp.route)
                 }
             )
@@ -67,7 +67,7 @@ fun Navigation(
             upDataAppBarState(false)
             upDateBottomBarState(false)
             SignUpScreen(
-                goToLogin = {
+                navigateToLogin = {
                     navController.navigate(Screens.Login.route)
                 }
             )
