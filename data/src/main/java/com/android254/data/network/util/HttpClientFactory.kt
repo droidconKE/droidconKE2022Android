@@ -23,13 +23,14 @@ import io.ktor.client.plugins.auth.providers.*
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.plugins.observer.*
 import io.ktor.client.request.*
-import io.ktor.client.statement.*
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
+import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.serialization.json.Json
 import timber.log.Timber
+import javax.inject.Inject
 
-object HttpClientFactory {
+class HttpClientFactory @Inject constructor(private val tokenProvider: TokenProvider) {
 
     fun create(engine: HttpClientEngine) = HttpClient(engine) {
         install(ContentNegotiation) {
@@ -58,7 +59,9 @@ object HttpClientFactory {
             bearer {
                 loadTokens {
                     // Load tokens from datastore
-                    BearerTokens("", "")
+                    tokenProvider.fetch().firstOrNull()?.let { accessToken ->
+                        BearerTokens(accessToken, "")
+                    }
                 }
 
                 sendWithoutRequest { request ->
