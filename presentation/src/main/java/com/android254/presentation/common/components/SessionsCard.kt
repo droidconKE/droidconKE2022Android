@@ -34,7 +34,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.toUpperCase
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
@@ -169,7 +168,6 @@ fun TimeAndVenueComponent(session: SessionPresentationModel) {
             fontSize = 12.sp,
             fontWeight = FontWeight.Bold
         )
-
     }
 }
 
