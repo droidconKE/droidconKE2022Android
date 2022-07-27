@@ -36,76 +36,7 @@ import com.android254.presentation.common.components.SessionsCard
 import com.android254.presentation.common.theme.DroidconKE2022Theme
 import com.android254.presentation.models.SessionPresentationModel
 
-data class EventDay(val date: String = "16th")
-
-val eventDays = listOf(
-    EventDay("16th"),
-    EventDay("17th"),
-    EventDay("18th"),
-)
-
-val events = arrayListOf(
-    SessionPresentationModel(
-        id = "1",
-        sessionTitle = "Arrival",
-        sessionDescription = "Registration & Breakfast",
-        sessionVenue = "Room 1",
-        sessionSpeakerImage = "https://i.pravatar.cc/300",
-        sessionSpeakerName = "John Doe",
-        sessionStartTime = "09:00",
-        sessionEndTime = "09:30",
-        amOrPm = "AM",
-        isStarred = false
-    ),
-    SessionPresentationModel(
-        id = "2",
-        sessionTitle = "Keynote",
-        sessionDescription = "Keynote",
-        sessionVenue = "Room 1",
-        sessionSpeakerImage = "https://i.pravatar.cc/300",
-        sessionSpeakerName = "John Doe",
-        sessionStartTime = "09:30",
-        sessionEndTime = "10:00",
-        amOrPm = "AM",
-        isStarred = false
-    ),
-    SessionPresentationModel(
-        id = "3",
-        sessionTitle = "Lunch",
-        sessionDescription = "Lunch",
-        sessionVenue = "Room 1",
-        sessionSpeakerImage = "https://i.pravatar.cc/300",
-        sessionSpeakerName = "John Doe",
-        sessionStartTime = "10:00",
-        sessionEndTime = "10:30",
-        amOrPm = "AM",
-        isStarred = false
-    ),
-    SessionPresentationModel(
-        id = "4",
-        sessionTitle = "Keynote",
-        sessionDescription = "Keynote",
-        sessionVenue = "Room 1",
-        sessionSpeakerImage = "https://i.pravatar.cc/300",
-        sessionSpeakerName = "John Doe",
-        sessionStartTime = "10:30",
-        sessionEndTime = "11:00",
-        amOrPm = "AM",
-        isStarred = false
-    ),
-    SessionPresentationModel(
-        id = "5",
-        sessionTitle = "Breakout",
-        sessionDescription = "Breakout",
-        sessionVenue = "Room 1",
-        sessionSpeakerImage = "https://i.pravatar.cc/300",
-        sessionSpeakerName = "John Doe",
-        sessionStartTime = "11:00",
-        sessionEndTime = "11:30",
-        amOrPm = "AM",
-        isStarred = false
-    ),
-)
+val events = arrayListOf<SessionPresentationModel>()
 
 @Composable
 fun SessionsScreen(darkTheme: Boolean = isSystemInDarkTheme()) {
@@ -125,17 +56,34 @@ fun SessionsScreen(darkTheme: Boolean = isSystemInDarkTheme()) {
                 .fillMaxWidth()
                 .padding(start = 0.dp, end = 0.dp, top = 24.dp, bottom = 12.dp)
         ) {
+            /**
+             * Removed the dummy loop for the lint check
+             */
             Row() {
-                eventDays.forEachIndexed { index, eventDay ->
-                    EventDaySelectorButton(
-                        title = eventDay.date,
-                        subtitle = "Day ${index + 1}",
-                        onClick = { /*TODO*/ },
-                        selected = index == 0
-                    ) {
-                    }
-                    Spacer(Modifier.width(16.dp))
+                EventDaySelectorButton(
+                    title = "16th",
+                    subtitle = "Day 1",
+                    onClick = { /*TODO*/ },
+                    selected = true
+                ) {
                 }
+                Spacer(Modifier.width(16.dp))
+                EventDaySelectorButton(
+                    title = "17th",
+                    subtitle = "Day 2",
+                    onClick = { /*TODO*/ },
+                    selected = false
+                ) {
+                }
+                Spacer(Modifier.width(16.dp))
+                EventDaySelectorButton(
+                    title = "",
+                    subtitle = "Day 3",
+                    onClick = { /*TODO*/ },
+                    selected = false
+                ) {
+                }
+                Spacer(Modifier.width(16.dp))
             }
             Switch(checked = showMySessions.value, onCheckedChange = {
                 showMySessions.value = it
