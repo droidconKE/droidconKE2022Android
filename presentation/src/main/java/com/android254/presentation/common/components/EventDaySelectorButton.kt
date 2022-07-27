@@ -91,14 +91,12 @@ fun EventDaySelectorButton(
                         style = TextStyle(
                             fontSize = 18.sp,
                             fontWeight = FontWeight.Bold,
-                            color = MaterialTheme.colorScheme.onPrimary
                         )
                     )
                     Text(
                         text = subtitle,
                         style = TextStyle(
                             fontSize = 11.sp,
-                            color = MaterialTheme.colorScheme.onPrimary
                         )
                     )
                 }
