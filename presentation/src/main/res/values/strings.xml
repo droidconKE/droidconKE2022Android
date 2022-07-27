@@ -15,5 +15,5 @@
     <string name="username_field_label">Username</string>
     <string name="confirm_password_label">Confirm Password</string>
     <string name="sign_me_up_label">Sign me up</string>
-    <string name="have_account_label">Already have an account!</string>
+    <string name="have_account_label">Already have an account?</string>
 </resources>
