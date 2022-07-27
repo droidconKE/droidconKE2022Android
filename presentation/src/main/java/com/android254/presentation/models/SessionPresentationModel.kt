@@ -13,24 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android254.presentation.about.view
+package com.android254.presentation.models
 
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.tooling.preview.Preview
-import com.android254.presentation.common.theme.DroidconKE2022Theme
-
-@Composable
-fun AboutScreen() {
-    Text(modifier = Modifier.testTag("heading"), text = "About Screen")
-}
-
-@Preview
-@Composable
-fun AboutScreenPreview() {
-    DroidconKE2022Theme {
-        AboutScreen()
-    }
-}
+data class SessionPresentationModel(
+    val id: String,
+    val sessionTitle: String,
+    val sessionDescription: String,
+    val sessionVenue: String,
+    val sessionSpeakerImage: String,
+    val sessionSpeakerName: String,
+    val sessionStartTime: String,
+    val sessionEndTime: String,
+    val amOrPm: String,
+    val isStarred: Boolean
+)

@@ -34,75 +34,76 @@ import com.android254.presentation.R
 import com.android254.presentation.common.components.EventDaySelectorButton
 import com.android254.presentation.common.components.SessionsCard
 import com.android254.presentation.common.theme.DroidconKE2022Theme
+import com.android254.presentation.models.SessionPresentationModel
 
 data class EventDay(val date: String = "16th")
-data class Event(
-    val startTime: String,
-    val endTime: String,
-    val title: String,
-    val subtitle: String,
-    val roomLabel: String?,
-    val presenter: String?,
-    val presenterPicture: String?,
-    val isMarked: Boolean = false
-)
 
-val eventDays = listOf<EventDay>(
+val eventDays = listOf(
     EventDay("16th"),
     EventDay("17th"),
     EventDay("18th"),
 )
 
-val events = arrayListOf<Event>(
-    Event(
-        "09:00",
-        "09:30",
-        "Arrival",
-        "Registration & Breakfast",
-        null,
-        null,
-        null,
-        false
+val events = arrayListOf(
+    SessionPresentationModel(
+        id = "1",
+        sessionTitle = "Arrival",
+        sessionDescription = "Registration & Breakfast",
+        sessionVenue = "Room 1",
+        sessionSpeakerImage = "https://i.pravatar.cc/300",
+        sessionSpeakerName = "John Doe",
+        sessionStartTime = "09:00",
+        sessionEndTime = "09:30",
+        amOrPm = "AM",
+        isStarred = false
     ),
-    Event(
-        "09:30",
-        "10:00",
-        "Opening",
-        "Welcome & Keynote",
-        "Room 1",
-        "Dr. John Doe",
-        null,
-        false
+    SessionPresentationModel(
+        id = "2",
+        sessionTitle = "Keynote",
+        sessionDescription = "Keynote",
+        sessionVenue = "Room 1",
+        sessionSpeakerImage = "https://i.pravatar.cc/300",
+        sessionSpeakerName = "John Doe",
+        sessionStartTime = "09:30",
+        sessionEndTime = "10:00",
+        amOrPm = "AM",
+        isStarred = false
     ),
-    Event(
-        "10:00",
-        "10:30",
-        "Android 254",
-        "The community and the efforts",
-        "Room 2",
-        "Greg Dawson",
-        null,
-        false
+    SessionPresentationModel(
+        id = "3",
+        sessionTitle = "Lunch",
+        sessionDescription = "Lunch",
+        sessionVenue = "Room 1",
+        sessionSpeakerImage = "https://i.pravatar.cc/300",
+        sessionSpeakerName = "John Doe",
+        sessionStartTime = "10:00",
+        sessionEndTime = "10:30",
+        amOrPm = "AM",
+        isStarred = false
     ),
-    Event(
-        "10:30",
-        "11:00",
-        "Break",
-        "Lunch",
-        null,
-        null,
-        null,
-        false
+    SessionPresentationModel(
+        id = "4",
+        sessionTitle = "Keynote",
+        sessionDescription = "Keynote",
+        sessionVenue = "Room 1",
+        sessionSpeakerImage = "https://i.pravatar.cc/300",
+        sessionSpeakerName = "John Doe",
+        sessionStartTime = "10:30",
+        sessionEndTime = "11:00",
+        amOrPm = "AM",
+        isStarred = false
     ),
-    Event(
-        "11:00",
-        "11:30",
-        "Session 1",
-        "Session 1",
-        "Room 3",
-        "Michael Kimathi",
-        null,
-        false
+    SessionPresentationModel(
+        id = "5",
+        sessionTitle = "Breakout",
+        sessionDescription = "Breakout",
+        sessionVenue = "Room 1",
+        sessionSpeakerImage = "https://i.pravatar.cc/300",
+        sessionSpeakerName = "John Doe",
+        sessionStartTime = "11:00",
+        sessionEndTime = "11:30",
+        amOrPm = "AM",
+        isStarred = false
     ),
 )
 
@@ -143,7 +144,7 @@ fun SessionsScreen(darkTheme: Boolean = isSystemInDarkTheme()) {
         LazyColumn(modifier = Modifier.fillMaxHeight()) {
             itemsIndexed(events) { index, event ->
                 Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.Start) {
-                    SessionsCard(session = event)
+                    SessionsCard(session = event, onclick = {})
                     if (index != events.size - 1) {
                         Box(
                             Modifier.padding(
