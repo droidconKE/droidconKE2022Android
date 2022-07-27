@@ -111,10 +111,8 @@ fun DroidconKE2022Theme(
             val activity = view.context.findActivity()
             // although view.context in compose is gotten from LocalContext.current the fetched context might not be the
             // closest activity in the given context thus making this method [not that] lack of a better word safe
-            //see https://gist.github.com/GibsonRuitiari/7cb947228661993ee36d5c05b9e8f23f
+            //see https://gist.github.com/GibsonRuitiari/7cb947228661993ee36d5c05b9e8f23f for a detailed explanat
             activity.window.statusBarColor = colorScheme.primary.toArgb()
-            // Using this method might return if the function fails to find window associated with the given activity's context
-            // ViewCompat.getWindowInsetsController(view)?.isAppearanceLightStatusBars = darkTheme
             WindowCompat.getInsetsController(activity.window, view).isAppearanceLightStatusBars = darkTheme
         }
     }
