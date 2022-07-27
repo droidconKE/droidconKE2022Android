@@ -17,7 +17,7 @@ android-appCompat = "androidx.appcompat:appcompat:1.4.2"
 android-coreKtx = "androidx.core:core-ktx:1.8.0"
 android-hilt = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
 android-hilt-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
-android-hilt-compose = "androidx.hilt:hilt-navigation-compose:1.0.0"
+android-hilt-navigation-compose = "androidx.hilt:hilt-navigation-compose:1.0.0"
 android-hilt-androidx-compiler = "androidx.hilt:hilt-compiler:1.0.0"
 android-hilt-testing = { module = "com.google.dagger:hilt-android-testing", version.ref = "hilt" }
 android-material = "com.google.android.material:material:1.6.1"
@@ -59,6 +59,7 @@ timber = "com.jakewharton.timber:timber:5.0.1"
 test-junit4 = "junit:junit:4.13.2"
 test-androidx-core = "androidx.test:core-ktx:1.4.0"
 test-robolectric = "org.robolectric:robolectric:4.8.1"
+test-navigation = "androidx.navigation:navigation-testing:2.5.0"
 ktor-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
 ktor-android = { module = "io.ktor:ktor-client-android", version.ref = "ktor" }
 ktor-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
