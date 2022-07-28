@@ -17,16 +17,7 @@ package com.android254.presentation.common.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.RowScope
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -62,7 +53,8 @@ fun SessionsCard(session: SessionPresentationModel, onclick: () -> Unit) {
     ) {
         Row(
             Modifier
-                .fillMaxWidth().wrapContentHeight()
+                .fillMaxWidth()
+                .wrapContentHeight()
                 .padding(PaddingValues(top = 20.dp))
         ) {
             SessionTimeComponent(
@@ -101,7 +93,9 @@ fun RowScope.SessionDetails(session: SessionPresentationModel) {
     ) {
         SessionTitleComponent(session.sessionTitle, session.isStarred)
         SessionsDescriptionComponent(session.sessionDescription)
-        TimeAndVenueComponent(session.sessionVenue)
+        Spacer(modifier = Modifier.height(12.dp))
+        TimeAndVenueComponent(session)
+        Spacer(modifier = Modifier.height(4.dp))
         SessionPresenterComponents(
             sessionSpeakerImageUrl = session.sessionSpeakerImage,
             sessionSpeakerName = session.sessionSpeakerName
@@ -155,11 +149,26 @@ fun SessionsDescriptionComponent(sessionDescription: String) {
 }
 
 @Composable
-fun TimeAndVenueComponent(sessionVenue: String) {
-    Text(
-        text = sessionVenue,
-        style = MaterialTheme.typography.bodySmall.copy(color = MaterialTheme.colorScheme.onSurfaceVariant)
-    )
+fun TimeAndVenueComponent(session: SessionPresentationModel) {
+    Row() {
+        Text(
+            text = "${session.sessionStartTime} - ${session.sessionEndTime}",
+            fontSize = 12.sp,
+            fontWeight = FontWeight.Bold
+        )
+        Spacer(modifier = Modifier.width(4.dp))
+        Text(
+            text = "|",
+            fontSize = 12.sp,
+            fontWeight = FontWeight.Bold
+        )
+        Spacer(modifier = Modifier.width(4.dp))
+        Text(
+            text = session.sessionVenue.uppercase(),
+            fontSize = 12.sp,
+            fontWeight = FontWeight.Bold
+        )
+    }
 }
 
 @Composable
@@ -168,7 +177,9 @@ fun SessionPresenterComponents(sessionSpeakerImageUrl: String, sessionSpeakerNam
         AsyncImage(
             model = sessionSpeakerImageUrl,
             contentDescription = "session speaker image",
-            modifier = Modifier.size(30.dp).clip(CircleShape)
+            modifier = Modifier
+                .size(30.dp)
+                .clip(CircleShape)
         )
         Spacer(modifier = Modifier.width(10.dp))
         Text(
