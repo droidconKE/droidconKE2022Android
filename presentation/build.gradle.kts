@@ -71,7 +71,7 @@ dependencies {
     implementation(libs.lifecycle.runtimeKtx)
     implementation(libs.timber)
     implementation(libs.android.hilt)
-    implementation(libs.android.splashscreen)
+    implementation(libs.androidx.splashscreen)
     kapt(libs.android.hilt.compiler)
     implementation(libs.android.hilt.navigation.compose)
     kapt(libs.android.hilt.androidx.compiler)
@@ -87,6 +87,7 @@ dependencies {
     testImplementation(libs.compose.ui.test.junit)
     testImplementation(libs.android.test.espresso)
     testImplementation(libs.test.navigation)
+
 }
 
 kotlin {
