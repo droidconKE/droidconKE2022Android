@@ -109,9 +109,6 @@ fun DroidconKE2022Theme(
     if (!view.isInEditMode) {
         SideEffect {
             val activity = view.context.findActivity()
-            // although view.context in compose is gotten from LocalContext.current the fetched context might not be the
-            // closest activity in the given context thus making this method [not that] lack of a better word safe
-            //see https://gist.github.com/GibsonRuitiari/7cb947228661993ee36d5c05b9e8f23f for a detailed explanat
             activity.window.statusBarColor = colorScheme.primary.toArgb()
             WindowCompat.getInsetsController(activity.window, view).isAppearanceLightStatusBars = darkTheme
         }
@@ -125,9 +122,11 @@ fun DroidconKE2022Theme(
 }
 
 /**
- * Iterate through the context wrapper to find the closest
- * activity associated with this context
+ * Iterate through the context wrapper to find the closest activity associated with this context
+ * This method is preferred to LocalContext.current as Activity
+ * see [Theme.md](https://gist.github.com/GibsonRuitiari/7cb947228661993ee36d5c05b9e8f23f)
  * Throws [IllegalStateException] if no activity was found
+ * @return an activity instance
  */
 private fun Context.findActivity(): Activity {
     var context = this
