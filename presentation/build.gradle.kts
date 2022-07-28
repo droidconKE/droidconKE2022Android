@@ -73,7 +73,7 @@ dependencies {
     implementation(libs.android.hilt)
     implementation(libs.androidx.splashscreen)
     kapt(libs.android.hilt.compiler)
-    implementation(libs.android.hilt.compose)
+    implementation(libs.android.hilt.navigation.compose)
     kapt(libs.android.hilt.androidx.compiler)
     debugImplementation(libs.compose.ui.tooling)
     debugImplementation(libs.compose.ui.test.manifest)
@@ -86,6 +86,8 @@ dependencies {
     testImplementation(libs.test.robolectric)
     testImplementation(libs.compose.ui.test.junit)
     testImplementation(libs.android.test.espresso)
+    testImplementation(libs.test.navigation)
+
 }
 
 kotlin {

@@ -17,7 +17,7 @@ android-appCompat = "androidx.appcompat:appcompat:1.4.2"
 android-coreKtx = "androidx.core:core-ktx:1.8.0"
 android-hilt = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
 android-hilt-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
-android-hilt-compose = "androidx.hilt:hilt-navigation-compose:1.0.0"
+android-hilt-navigation-compose = "androidx.hilt:hilt-navigation-compose:1.0.0"
 android-hilt-androidx-compiler = "androidx.hilt:hilt-compiler:1.0.0"
 android-hilt-testing = { module = "com.google.dagger:hilt-android-testing", version.ref = "hilt" }
 android-material = "com.google.android.material:material:1.6.1"
@@ -39,6 +39,8 @@ compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = 
 compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
 compose-preview-customview = "androidx.customview:customview:1.2.0-alpha01"
 compose-preview-customview-poolingcontainer = "androidx.customview:customview-poolingcontainer:1.0.0-rc01"
+compose-constraintlayout = "androidx.constraintlayout:constraintlayout-compose:1.0.0-rc02"
+gson-gson = "com.google.code.gson:gson:2.9.0"
 kotlin-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
 kotlin-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
 kotlin-coroutines-datetime = "org.jetbrains.kotlinx:kotlinx-datetime:0.4.0"
@@ -53,10 +55,12 @@ room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
 room-paging = { module = "androidx.room:room-paging", version.ref = "room" }
 room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
+datastore = "androidx.datastore:datastore-preferences:1.0.0"
 timber = "com.jakewharton.timber:timber:5.0.1"
 test-junit4 = "junit:junit:4.13.2"
 test-androidx-core = "androidx.test:core-ktx:1.4.0"
 test-robolectric = "org.robolectric:robolectric:4.8.1"
+test-navigation = "androidx.navigation:navigation-testing:2.5.0"
 ktor-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
 ktor-android = { module = "io.ktor:ktor-client-android", version.ref = "ktor" }
 ktor-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
@@ -65,7 +69,7 @@ ktor-auth = { module = "io.ktor:ktor-client-auth", version.ref = "ktor" }
 ktor-mock = { module = "io.ktor:ktor-client-mock", version.ref = "ktor" }
 
 [bundles]
-compose = ["coil-compose", "compose-activity", "compose-compiler", "compose-material-3", "compose-materialIcons", "compose-runtimeLivedata", "compose-ui", "compose-ui-tooling", "compose-ui-tooling-preview", "paging-compose", "compose-preview-customview", "compose-preview-customview-poolingcontainer"]
+compose = ["coil-compose", "compose-activity", "compose-compiler", "compose-material-3", "compose-materialIcons", "compose-runtimeLivedata", "compose-ui", "compose-ui-tooling", "compose-ui-tooling-preview", "paging-compose", "compose-preview-customview", "compose-preview-customview-poolingcontainer", "compose-constraintlayout"]
 lifecycle = ["lifecycle-livedataKtx", "lifecycle-runtimeKtx", "lifecycle-viewmodel-compose"]
 room = ["room-ktx", "room-paging", "room-runtime"]
 ktor = ["ktor-core", "ktor-android", "ktor-json", "ktor-content-negotiation"]

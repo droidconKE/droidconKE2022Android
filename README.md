@@ -107,10 +107,10 @@ We would endlessly like to thank the following contributors
         </a>
     </td>
     <td align="center">
-        <a href="https://github.com/keithchad">
-            <img src="https://avatars.githubusercontent.com/u/63049827?v=4" width="100;" alt="keithchad"/>
+        <a href="https://github.com/Kagiri11">
+            <img src="https://avatars.githubusercontent.com/u/59829833?v=4" width="100;" alt="Kagiri11"/>
             <br />
-            <sub><b>Keith Chad</b></sub>
+            <sub><b>Kagiri</b></sub>
         </a>
     </td>
     <td align="center">
@@ -121,6 +121,13 @@ We would endlessly like to thank the following contributors
         </a>
     </td></tr>
 <tr>
+    <td align="center">
+        <a href="https://github.com/keithchad">
+            <img src="https://avatars.githubusercontent.com/u/63049827?v=4" width="100;" alt="keithchad"/>
+            <br />
+            <sub><b>Keith Chad</b></sub>
+        </a>
+    </td>
     <td align="center">
         <a href="https://github.com/kibettheophilus">
             <img src="https://avatars.githubusercontent.com/u/61080898?v=4" width="100;" alt="kibettheophilus"/>
