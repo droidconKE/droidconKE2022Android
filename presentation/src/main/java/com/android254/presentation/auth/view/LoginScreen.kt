@@ -13,12 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android254.presentation.login.view
+package com.android254.presentation.auth.view
 
 import androidx.compose.animation.rememberSplineBasedDecay
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -42,7 +40,11 @@ import com.android254.presentation.common.navigation.Screens
 import com.android254.presentation.common.theme.DroidconKE2022Theme
 
 @Composable
-fun LoginScreen(darkTheme: Boolean = isSystemInDarkTheme(), navController: NavHostController) {
+fun LoginScreen(
+    darkTheme: Boolean = isSystemInDarkTheme(),
+    navController: NavHostController,
+    navigateToSignUp: () -> Unit = {}
+) {
     val decayAnimationSpec = rememberSplineBasedDecay<Float>()
     val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior(
         decayAnimationSpec,
@@ -90,7 +92,8 @@ fun LoginScreen(darkTheme: Boolean = isSystemInDarkTheme(), navController: NavHo
         Column(
             modifier = Modifier
                 .padding(paddingValues)
-                .fillMaxWidth(),
+                .fillMaxWidth()
+                .verticalScroll(rememberScrollState()),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(modifier = Modifier.height(50.dp))
