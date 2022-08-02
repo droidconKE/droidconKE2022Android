@@ -87,7 +87,6 @@ dependencies {
     testImplementation(libs.compose.ui.test.junit)
     testImplementation(libs.android.test.espresso)
     testImplementation(libs.test.navigation)
-
 }
 
 kotlin {
