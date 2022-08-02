@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.android254.presentation.auth.view
 
 import androidx.compose.foundation.*
@@ -59,7 +58,7 @@ fun SignUpScreen(navigateToLogin: () -> Unit = {}, isDarkTheme: Boolean = isSyst
                     title = { Text(stringResource(R.string.sign_up_label)) },
                     navigationIcon = {
                         IconButton(
-                            onClick = { Unit },
+                            onClick = { },
                         ) {
                             Icon(
                                 painter = painterResource(id = R.drawable.ic_back_arrow),
@@ -86,7 +85,7 @@ fun SignUpScreen(navigateToLogin: () -> Unit = {}, isDarkTheme: Boolean = isSyst
         ) {
             Spacer(modifier = Modifier.height(50.dp))
             SocialAuthButton(
-                onClick = { Unit },
+                onClick = { },
                 modifier = Modifier.width(200.dp),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = colorResource(id = R.color.smoke_white),
@@ -128,7 +127,7 @@ fun SignUpScreen(navigateToLogin: () -> Unit = {}, isDarkTheme: Boolean = isSyst
                 DroidConTextField(label = stringResource(id = R.string.confirm_password_label))
                 Spacer(modifier = Modifier.height(28.dp))
                 Button(
-                    onClick = { Unit },
+                    onClick = { },
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(48.dp),
