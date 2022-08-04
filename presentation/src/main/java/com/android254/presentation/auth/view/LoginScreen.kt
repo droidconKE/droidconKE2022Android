@@ -13,39 +13,38 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android254.presentation.login.view
+package com.android254.presentation.auth.view
 
 import androidx.compose.animation.rememberSplineBasedDecay
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.android254.presentation.R
-import com.android254.presentation.common.components.DroidConTextField
 import com.android254.presentation.common.components.SocialAuthButton
 import com.android254.presentation.common.navigation.Screens
 import com.android254.presentation.common.theme.DroidconKE2022Theme
-import com.android254.presentation.common.theme.Montserrat
 
 @Composable
-fun LoginScreen(darkTheme: Boolean = isSystemInDarkTheme(), navController: NavHostController) {
+fun LoginScreen(
+    darkTheme: Boolean = isSystemInDarkTheme(),
+    navController: NavHostController,
+    navigateToSignUp: () -> Unit = {}
+) {
     val decayAnimationSpec = rememberSplineBasedDecay<Float>()
     val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior(
         decayAnimationSpec,
@@ -69,10 +68,10 @@ fun LoginScreen(darkTheme: Boolean = isSystemInDarkTheme(), navController: NavHo
                     contentScale = ContentScale.FillBounds
                 )
                 LargeTopAppBar(
-                    title = { Text(stringResource(R.string.sign_in_label)) },
+                    title = { Text(stringResource(R.string.sign_in_label), modifier = Modifier.testTag("heading")) },
                     navigationIcon = {
                         IconButton(
-                            onClick = { /* doSomething() */ },
+                            onClick = { /* doSomething() */ }
                         ) {
                             Icon(
                                 painter = painterResource(id = R.drawable.ic_back_arrow),
@@ -93,13 +92,14 @@ fun LoginScreen(darkTheme: Boolean = isSystemInDarkTheme(), navController: NavHo
         Column(
             modifier = Modifier
                 .padding(paddingValues)
-                .fillMaxWidth(),
+                .fillMaxWidth()
+                .verticalScroll(rememberScrollState()),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(modifier = Modifier.height(50.dp))
             SocialAuthButton(
                 onClick = { navController.navigate(Screens.Home.route) },
-                modifier = Modifier.width(200.dp)
+                modifier = Modifier.width(200.dp).testTag("google_login_button")
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.ic_google_logo_icon),
@@ -113,66 +113,6 @@ fun LoginScreen(darkTheme: Boolean = isSystemInDarkTheme(), navController: NavHo
                     text = stringResource(R.string.sign_in_with_google_label),
                     modifier = Modifier.padding(start = 10.dp),
                     style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 14.sp)
-                )
-            }
-            Spacer(modifier = Modifier.height(32.dp))
-            Row(horizontalArrangement = Arrangement.Center) {
-                Text(text = stringResource(R.string.or_label))
-            }
-            Spacer(modifier = Modifier.height(36.dp))
-            Column(modifier = Modifier.padding(38.dp)) {
-                DroidConTextField(label = stringResource(R.string.email_address_field_label))
-                Spacer(modifier = Modifier.height(24.dp))
-                DroidConTextField(label = stringResource(R.string.password_field_label))
-                Spacer(modifier = Modifier.height(24.dp))
-                Button(
-                    onClick = { navController.navigate(Screens.Home.route) },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(48.dp),
-                    shape = RoundedCornerShape(7.dp),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = if (darkTheme) Color.Black else MaterialTheme.colorScheme.primary,
-                        contentColor = if (darkTheme) Color.White else MaterialTheme.colorScheme.onPrimary,
-                    )
-                ) {
-                    Text(
-                        text = stringResource(R.string.sign_in_label).uppercase(),
-                        style = TextStyle(
-                            fontWeight = FontWeight.Bold,
-                            fontSize = 16.sp,
-                        )
-                    )
-                }
-            }
-            Spacer(modifier = Modifier.height(24.dp))
-            TextButton(onClick = { }) {
-                Text(
-                    text = stringResource(R.string.forgot_password_label),
-                    style = TextStyle(
-                        fontWeight = FontWeight.ExtraBold,
-                        fontSize = 14.sp,
-                        color = MaterialTheme.colorScheme.onSecondaryContainer,
-                        fontFamily = Montserrat
-                    )
-                )
-            }
-            Spacer(modifier = Modifier.height(24.dp))
-            Text(
-                text = stringResource(R.string.sign_up_prompt_label),
-                style = TextStyle(fontSize = 14.sp, fontFamily = Montserrat)
-            )
-            Spacer(modifier = Modifier.height(12.dp))
-            TextButton(onClick = { }) {
-                Text(
-                    text = stringResource(R.string.sign_up_label),
-                    style = TextStyle(
-                        fontWeight = FontWeight.Bold,
-                        color = Color(0xFFFF6E4D),
-                        fontSize = 16.sp,
-                        textDecoration = TextDecoration.Underline,
-                        fontFamily = Montserrat
-                    )
                 )
             }
         }
