@@ -23,8 +23,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.compose.rememberNavController
 import com.android254.presentation.common.bottomnav.BottomNavigationBar
 import com.android254.presentation.common.components.DroidconAppBar
@@ -37,6 +40,7 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        installSplashScreen()
         setContent {
             DroidconKE2022Theme {
                 MainScreen()
@@ -48,13 +52,25 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MainScreen() {
     val navController = rememberNavController()
+    val bottomBarState = rememberSaveable { (mutableStateOf(true)) }
+    val appBarState = rememberSaveable() {
+        mutableStateOf(true)
+    }
     Scaffold(
         modifier = Modifier.fillMaxSize(),
-        topBar = { DroidconAppBar() },
-        bottomBar = { BottomNavigationBar(navController) }
+        topBar = { if (appBarState.value) DroidconAppBar() },
+        bottomBar = { if (bottomBarState.value) BottomNavigationBar(navController) },
     ) { padding ->
-        Column(modifier = Modifier.padding(padding)) {
-            Navigation(navController = navController)
+
+        Column(
+            modifier = Modifier
+                .padding(padding)
+        ) {
+            Navigation(navController = navController, upDateBottomBarState = {
+                bottomBarState.value = it
+            }, upDataAppBarState = {
+                appBarState.value = it
+            })
         }
     }
 }

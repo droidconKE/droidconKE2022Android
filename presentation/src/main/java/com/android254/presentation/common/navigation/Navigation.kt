@@ -22,26 +22,55 @@ import androidx.navigation.compose.composable
 import com.android254.presentation.about.view.AboutScreen
 import com.android254.presentation.feed.view.FeedScreen
 import com.android254.presentation.home.view.HomeScreen
-import com.android254.presentation.login.view.LoginScreen
+import com.android254.presentation.auth.view.LoginScreen
+import com.android254.presentation.auth.view.SignUpScreen
 import com.android254.presentation.sessions.view.SessionsScreen
 
 @Composable
-fun Navigation(navController: NavHostController) {
-    NavHost(navController, startDestination = Screens.Home.route) {
+fun Navigation(
+    navController: NavHostController,
+    upDateBottomBarState: (Boolean) -> Unit,
+    upDataAppBarState: (Boolean) -> Unit
+) {
+    NavHost(navController, startDestination = Screens.Login.route) {
         composable(Screens.Home.route) {
+            upDataAppBarState(true)
+            upDateBottomBarState(true)
             HomeScreen()
         }
         composable(Screens.Sessions.route) {
+            upDataAppBarState(true)
+            upDateBottomBarState(true)
             SessionsScreen()
         }
         composable(Screens.Feed.route) {
+            upDataAppBarState(true)
+            upDateBottomBarState(true)
             FeedScreen()
         }
         composable(Screens.About.route) {
+            upDataAppBarState(true)
+            upDateBottomBarState(true)
             AboutScreen()
         }
         composable(Screens.Login.route) {
-            LoginScreen()
+            upDataAppBarState(false)
+            upDateBottomBarState(false)
+            LoginScreen(
+                navController = navController,
+                navigateToSignUp = {
+                    navController.navigate(Screens.SignUp.route)
+                }
+            )
+        }
+        composable(Screens.SignUp.route) {
+            upDataAppBarState(false)
+            upDateBottomBarState(false)
+            SignUpScreen(
+                navigateToLogin = {
+                    navController.navigate(Screens.Login.route)
+                }
+            )
         }
     }
 }
