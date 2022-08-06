@@ -15,9 +15,10 @@
  */
 package com.android254.presentation.common.navigation
 
+import androidx.annotation.DrawableRes
 import com.android254.presentation.R
 
-sealed class Screens(var route: String, var icon: Int, var title: String) {
+sealed class Screens(var route: String, @DrawableRes var icon: Int, var title: String) {
     object Home : Screens("/home", R.drawable.home_icon, "Home")
     object Feed : Screens("/feed", R.drawable.feed_icon, "Feed")
     object Sessions : Screens("/sessions", R.drawable.sessions_icon, "Sessions")
