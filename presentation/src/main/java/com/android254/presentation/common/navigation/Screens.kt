@@ -15,17 +15,15 @@
  */
 package com.android254.presentation.common.navigation
 
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Android
-import androidx.compose.ui.graphics.vector.ImageVector
+import com.android254.presentation.R
 
-sealed class Screens(var route: String, var icon: ImageVector, var title: String) {
-    object Home : Screens("/home", Icons.Default.Android, "Home")
-    object Feed : Screens("/feed", Icons.Default.Android, "Feed")
-    object Sessions : Screens("/sessions", Icons.Default.Android, "Sessions")
-    object About : Screens("/about", Icons.Default.Android, "About")
-    object Login : Screens("/login", Icons.Default.Android, "Login")
-    object SignUp : Screens("/signUp", Icons.Default.Android, "Sign Up")
+sealed class Screens(var route: String, var icon: Int, var title: String) {
+    object Home : Screens("/home", R.drawable.home_icon, "Home")
+    object Feed : Screens("/feed", R.drawable.feed_icon, "Feed")
+    object Sessions : Screens("/sessions", R.drawable.sessions_icon, "Sessions")
+    object About : Screens("/about", R.drawable.about_icon, "About")
+    object Login : Screens("/login", R.drawable.droidcon_icon, "Login")
+    object SignUp : Screens("/signUp", R.drawable.droidcon_icon, "Sign Up")
 }
 
 val bottomNavigationDestinations = listOf(
