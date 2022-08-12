@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/droidconKE/droidconKE2022Android">
-    <img src="https://raw.githubusercontent.com/droidconKE/droidconKE2022Android/designSystemSetUp/art/chaiCover.png" alt="Chai Design Logo" width=530 height=250>
+    <img src="https://raw.githubusercontent.com/droidconKE/iconPack/master/images/chaicover.png" alt="Chai Design Logo" width=330 height=150>
   </a>
 
 
