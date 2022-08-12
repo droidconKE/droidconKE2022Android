@@ -13,6 +13,7 @@ dependencyResolutionManagement {
         google()
     }
 }
+/*
 
 mapOf(
     "app" to "app",
@@ -23,6 +24,7 @@ mapOf(
     include(":$projectName")
     project(":$projectName").projectDir = File(projectPath)
 }
+*/
 
 rootProject.name = "DroidconKE2022"
 include(":chai")
