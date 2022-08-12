@@ -2,6 +2,7 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="sign_in_label">Sign In</string>
     <string name="sign_up_label">Sign Up</string>
+    <string name="feedback_label">Feedback</string>
     <string name="login_screen_bg_image_description">background_image</string>
     <string name="back_arrow_icon_description">Back arrow icon</string>
     <string name="email_address_field_label">Email Address</string>
