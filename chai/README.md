@@ -4,10 +4,18 @@
   </a>
 
 
-# Chai Design System
+## Chai Design System 
+
+-----
+### [WIP 🚧 documentation]
+
+----
+
 What is a design system:
 
 To learn more about this look at this article by Brad Frost on [Atomic design](https://bradfrost.com/blog/post/atomic-web-design/) 
+
+
 ## About Chai
 Chai is swahili word for tea. 
 This is the droidconKE design system.
@@ -16,16 +24,50 @@ This is the droidconKE design system.
 Link to design doc: [design ](https://xd.adobe.com/view/eb1ed4ed-fd4d-4ba2-b2f7-a91c7379a022-be4d/screen/cfea72b5-9007-4335-ae86-9162594c094f/)
 
 
+### Structure Of Chai's Design System,
 
-## Atoms
-These are the very basic of the design system
+The proposed Design System is as follows;
 
-## Components
+### Atoms
 
+This package includes;
 
-## Icons
+1. Color
+2. Type
 
+### Components
+
+This package contains;
+
+1. CButtons
+2. CCards
+3. CInputFields
+4. CTabs
+
+### Icons
+
+- Icons
 
 ## Images
 
+App will have the following features:
+
+- Images
+
+## Utils
+
+Utils will have the following features:
+
+1. Shape
+2. Spacing
+
+## Theme
+- Theme constructs the entire design system by combining the above elements
+
+
+
 ## Implementing Chai
+To Implement chai,
+
+
+See the example implementation that  exists by running chaidemo that contains.
