@@ -14,6 +14,7 @@ android {
         consumerProguardFiles("consumer-rules.pro")
     }
 
+
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -23,12 +24,34 @@ android {
             )
         }
     }
+
+    testOptions {
+        unitTests {
+            isIncludeAndroidResources = true
+        }
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+
+    buildFeatures {
+        compose = true
+    }
+
+    packagingOptions {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.2.0"
     }
 }
 
@@ -49,4 +72,14 @@ dependencies {
     testImplementation(libs.test.robolectric)
     testImplementation(libs.compose.ui.test.junit)
     testImplementation(libs.android.test.espresso)
+}
+
+kotlin {
+    sourceSets {
+        all {
+            languageSettings.apply {
+                optIn("androidx.compose.material3.ExperimentalMaterial3Api")
+            }
+        }
+    }
 }
