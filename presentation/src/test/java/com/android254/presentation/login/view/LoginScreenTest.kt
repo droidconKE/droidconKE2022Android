@@ -22,6 +22,7 @@ import androidx.compose.ui.test.onNodeWithTag
 import androidx.navigation.NavHostController
 import androidx.navigation.testing.TestNavHostController
 import androidx.test.core.app.ApplicationProvider
+import com.android254.presentation.auth.view.LoginScreen
 import com.android254.presentation.common.theme.DroidconKE2022Theme
 import org.junit.Before
 import org.junit.Rule
