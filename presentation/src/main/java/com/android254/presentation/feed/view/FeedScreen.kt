@@ -28,6 +28,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.android254.presentation.common.theme.DroidconKE2022Theme
@@ -37,7 +38,10 @@ fun FeedScreen() {
     Box(modifier = Modifier.fillMaxSize()) {
         val context = LocalContext.current
 
-        LazyColumn(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+        LazyColumn(
+            modifier = Modifier.testTag("feeds_lazy_column"),
+            verticalArrangement = Arrangement.spacedBy(4.dp)
+        ) {
             items(count = 10) {
                 FeedComponent(modifier = Modifier.fillMaxWidth()) { itemId ->
                     Toast.makeText(context, "Clicked: $itemId", Toast.LENGTH_SHORT).show()
