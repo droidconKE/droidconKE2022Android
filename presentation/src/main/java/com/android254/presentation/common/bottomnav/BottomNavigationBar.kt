@@ -17,6 +17,7 @@ package com.android254.presentation.common.bottomnav
 
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
@@ -31,7 +32,7 @@ fun BottomNavigationBar(navController: NavHostController) {
                 selected = false,
                 icon = {
                     Icon(
-                        imageVector = destination.icon,
+                        painter = painterResource(id = destination.icon),
                         contentDescription = destination.title
                     )
                 },
