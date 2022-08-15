@@ -17,6 +17,8 @@ dependencyResolutionManagement {
 mapOf(
     "app" to "app",
     "data" to "data",
+    "chaidemo" to "chaidemo",
+    "chai" to "chai",
     "domain" to "domain",
     "presentation" to "presentation"
 ).forEach { (projectName, projectPath) ->
@@ -25,5 +27,3 @@ mapOf(
 }
 
 rootProject.name = "DroidconKE2022"
-include(":chai")
-include(":chaidemo")
