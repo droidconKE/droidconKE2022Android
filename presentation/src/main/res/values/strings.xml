@@ -17,4 +17,8 @@
     <string name="confirm_password_label">Confirm Password</string>
     <string name="sign_me_up_label">Sign me up</string>
     <string name="have_account_label">Already have an account?</string>
+    <string name="feeback_submit_label">SUBMIT FEEDBACK</string>
+    <string name="feedback_type_message_label">Type message here</string>
+    <string name="feedback_event_label">How is/was the event</string>
+    <string name="feedback_improve_label">Your feedback helps us improve</string>
 </resources>
