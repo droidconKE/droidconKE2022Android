@@ -82,7 +82,7 @@ fun FeedBackScreen(
         ) {
             Spacer(modifier = Modifier.height(30.dp))
             Text(
-                text = "Your feedback helps us improve",
+                text = stringResource(R.string.feedback_improve_label),
                 style = TextStyle(
                     fontWeight = FontWeight.ExtraBold,
                     color = colorResource(id = R.color.blue),
@@ -103,7 +103,7 @@ fun FeedBackScreen(
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Spacer(modifier = Modifier.height(20.dp))
-                    Text( text = "How is/was the event")
+                    Text( text = stringResource(R.string.feedback_event_label))
                     Spacer(modifier = Modifier.height(20.dp))
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
@@ -164,7 +164,7 @@ fun FeedBackScreen(
             TextField(
                 value = value,
                 onValueChange = { value = it },
-                label = { Text("Type message here") },
+                label = { Text(stringResource(R.string.feedback_type_message_label)) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(20.dp)
@@ -190,7 +190,7 @@ fun FeedBackScreen(
                 )
             ) {
                 Text(
-                    text = "SUBMIT FEEDBACK".uppercase(),
+                    text = stringResource(R.string.feeback_submit_label).uppercase(),
                     fontWeight = FontWeight.Bold,
                     fontSize = 16.sp
                 )
