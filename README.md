@@ -180,6 +180,13 @@ We would endlessly like to thank the following contributors
             <br />
             <sub><b>Jane Waitara</b></sub>
         </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/etonotieno">
+            <img src="https://avatars.githubusercontent.com/u/25648109?v=4" width="100;" alt="etonotieno"/>
+            <br />
+            <sub><b>Eton Otieno</b></sub>
+        </a>
     </td></tr>
 </table>
 <!-- readme: contributors -end -->
