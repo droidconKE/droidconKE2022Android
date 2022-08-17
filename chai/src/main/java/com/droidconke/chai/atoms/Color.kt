@@ -14,3 +14,31 @@
  * limitations under the License.
  */
 package com.droidconke.chai.atoms
+
+import androidx.compose.ui.graphics.Color
+
+/**
+ * these are the Primary colours from Chai's Design spec document
+ */
+
+internal val ChaiBlue = Color(0xFF000CEB)
+internal val ChaiWhite = Color(0xFFFFFFFF)
+
+/**
+ * these are the Secondary colours from Chai's Design spec document
+ */
+
+internal val ChaiRed = Color(0xFFFF6E4D)
+internal val ChaiTeal = Color(0xFF00e2c3)
+internal val ChaiFadedLime = Color(0xFF7de1c3)
+
+/**
+ * these are the Neutrals from the Chai's Design spec document
+ */
+
+internal val ChaiLightGrey = Color(0xFFF5F5F5)
+internal val ChaiGrey = Color(0xFFB1B1B1)
+internal val ChaiDarkGrey = Color(0xFF5A5A5A)
+internal val ChaiDarkerGrey = Color(0xFF191d1d)
+internal val ChaiCoal = Color(0xFF20201E)
+internal val ChaiBlack = Color(0xFF000000)
