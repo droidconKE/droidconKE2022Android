@@ -1,11 +1,6 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
-    id("com.google.devtools.ksp")
-    id("org.jlleitschuh.gradle.ktlint")
-    id("io.gitlab.arturbosch.detekt")
-    kotlin("kapt")
-    kotlin("plugin.serialization")
 }
 
 android {
@@ -19,15 +14,6 @@ android {
         consumerProguardFiles("consumer-rules.pro")
     }
 
-    ksp {
-        arg("room.schemaLocation", "$projectDir/schemas")
-    }
-
-    testOptions {
-        unitTests {
-            isIncludeAndroidResources = true
-        }
-    }
 
     buildTypes {
         release {
@@ -39,6 +25,12 @@ android {
         }
     }
 
+    testOptions {
+        unitTests {
+            isIncludeAndroidResources = true
+        }
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -47,40 +39,46 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    buildFeatures {
+        compose = true
+    }
+
+    packagingOptions {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.2.0"
+    }
 }
 
 dependencies {
     implementation(libs.android.coreKtx)
     implementation(libs.android.appCompat)
     implementation(libs.android.material)
-    api(libs.kotlin.coroutines.datetime)
-    implementation(libs.android.hilt)
+    implementation(libs.bundles.compose)
+    implementation(libs.lifecycle.runtimeKtx)
     implementation(libs.timber)
-    kapt(libs.android.hilt.compiler)
-    implementation(libs.datastore)
-    implementation(libs.room.runtime)
-    ksp(libs.room.compiler)
-    implementation(libs.room.ktx)
-    implementation(libs.ktor.core)
-    implementation(libs.ktor.android)
-    implementation(libs.ktor.content.negotiation)
-    implementation(libs.ktor.json)
-    implementation(libs.ktor.auth)
+    implementation(libs.android.hilt)
+
     androidTestImplementation(libs.android.test.junit4)
     androidTestImplementation(libs.android.test.espresso)
+    androidTestImplementation(libs.compose.ui.test.junit)
 
     testImplementation(libs.test.junit4)
-    testImplementation(libs.kotlin.coroutines.test)
-    testImplementation(libs.test.androidx.core)
     testImplementation(libs.test.robolectric)
-    testImplementation(libs.ktor.mock)
+    testImplementation(libs.compose.ui.test.junit)
+    testImplementation(libs.android.test.espresso)
 }
 
 kotlin {
     sourceSets {
         all {
             languageSettings.apply {
-                optIn("kotlinx.coroutines.ExperimentalCoroutinesApi")
+                optIn("androidx.compose.material3.ExperimentalMaterial3Api")
             }
         }
     }
