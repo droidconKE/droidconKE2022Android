@@ -1,0 +1,67 @@
+package com.android254.data.network
+
+import com.android254.data.network.apis.SpeakerApi
+import com.android254.data.network.models.responses.Speaker
+import com.android254.data.network.util.HttpClientFactory
+import com.android254.data.network.util.ServerError
+import io.ktor.client.engine.mock.*
+import io.ktor.http.*
+import kotlinx.coroutines.runBlocking
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
+import org.hamcrest.CoreMatchers.`is`
+import org.hamcrest.MatcherAssert.assertThat
+import org.junit.Test
+
+class SpeakerApiTest {
+    @Test(expected = ServerError::class)
+    fun `test ServerError is thrown when a server exception occurs`() {
+        val mockHttpEngine = MockEngine {
+            respondError(HttpStatusCode.InternalServerError)
+        }
+        val httpClient = HttpClientFactory(MockTokenProvider())
+            .create(mockHttpEngine)
+
+        runBlocking {
+            SpeakerApi(httpClient).fetchSpeakers()
+        }
+    }
+
+    @Test
+    fun `test successful speakers fetch`() {
+        // GIVEN
+        val expectedResponse = listOf(
+            Speaker(
+                id = "1",
+                name = "John Doe",
+                shortBio = "Cool guy",
+                bio = "Very cool guy",
+                avatar = "https://example.com",
+                twitter = null
+            ),
+        )
+        val mockHttpEngine = MockEngine {
+            // To ensure correct http method and url are used
+            if (it.method == HttpMethod.Get &&
+                it.url.toString() == "${Constants.BASE_URL}/speakers"
+            ) {
+                respond(
+                    content = Json.encodeToString(expectedResponse),
+                    headers = headersOf(HttpHeaders.ContentType, "application/json")
+                )
+            } else {
+                respondError(HttpStatusCode.NotFound)
+            }
+        }
+        val httpClient = HttpClientFactory(MockTokenProvider())
+            .create(mockHttpEngine)
+
+        runBlocking {
+            // WHEN
+            val response = SpeakerApi(httpClient).fetchSpeakers()
+
+            // THEN
+            assertThat(response, `is`(expectedResponse))
+        }
+    }
+}

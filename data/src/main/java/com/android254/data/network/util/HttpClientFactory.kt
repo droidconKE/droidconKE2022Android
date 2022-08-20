@@ -53,6 +53,8 @@ class HttpClientFactory @Inject constructor(private val tokenProvider: TokenProv
             header(HttpHeaders.ContentType, ContentType.Application.Json)
         }
 
+        expectSuccess = true
+
         addDefaultResponseValidation()
 
         install(Auth) {
