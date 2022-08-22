@@ -5,6 +5,7 @@ import com.android254.data.network.models.responses.Speaker
 import com.android254.data.network.util.HttpClientFactory
 import com.android254.data.network.util.ServerError
 import io.ktor.client.engine.mock.*
+import io.ktor.client.plugins.*
 import io.ktor.http.*
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.encodeToString
@@ -15,9 +16,22 @@ import org.junit.Test
 
 class SpeakerApiTest {
     @Test(expected = ServerError::class)
-    fun `test ServerError is thrown when a server exception occurs`() {
+    fun `test ServerError is thrown when http client returns server error response`() {
         val mockHttpEngine = MockEngine {
             respondError(HttpStatusCode.InternalServerError)
+        }
+        val httpClient = HttpClientFactory(MockTokenProvider())
+            .create(mockHttpEngine)
+
+        runBlocking {
+            SpeakerApi(httpClient).fetchSpeakers()
+        }
+    }
+
+    @Test(expected = ResponseException::class)
+    fun `test ResponseException is thrown when http client returns error response beside server error`() {
+        val mockHttpEngine = MockEngine {
+            respondError(HttpStatusCode.NotFound)
         }
         val httpClient = HttpClientFactory(MockTokenProvider())
             .create(mockHttpEngine)
