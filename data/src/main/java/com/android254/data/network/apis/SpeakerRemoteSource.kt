@@ -8,7 +8,7 @@ import io.ktor.client.call.*
 import io.ktor.client.request.*
 import javax.inject.Inject
 
-class SpeakerApi @Inject constructor(
+class SpeakerRemoteSource @Inject constructor(
     private val client: HttpClient
 ) {
     suspend fun fetchSpeakers(): List<Speaker> = safeApiCall {

@@ -1,6 +1,6 @@
 package com.android254.data.network
 
-import com.android254.data.network.apis.SpeakerApi
+import com.android254.data.network.apis.SpeakerRemoteSource
 import com.android254.data.network.models.responses.Speaker
 import com.android254.data.network.util.HttpClientFactory
 import com.android254.data.network.util.ServerError
@@ -14,7 +14,7 @@ import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Test
 
-class SpeakerApiTest {
+class SpeakerRemoteSourceTest {
     @Test(expected = ServerError::class)
     fun `test ServerError is thrown when http client returns server error response`() {
         val mockHttpEngine = MockEngine {
@@ -24,7 +24,7 @@ class SpeakerApiTest {
             .create(mockHttpEngine)
 
         runBlocking {
-            SpeakerApi(httpClient).fetchSpeakers()
+            SpeakerRemoteSource(httpClient).fetchSpeakers()
         }
     }
 
@@ -37,7 +37,7 @@ class SpeakerApiTest {
             .create(mockHttpEngine)
 
         runBlocking {
-            SpeakerApi(httpClient).fetchSpeakers()
+            SpeakerRemoteSource(httpClient).fetchSpeakers()
         }
     }
 
@@ -72,7 +72,7 @@ class SpeakerApiTest {
 
         runBlocking {
             // WHEN
-            val response = SpeakerApi(httpClient).fetchSpeakers()
+            val response = SpeakerRemoteSource(httpClient).fetchSpeakers()
 
             // THEN
             assertThat(response, `is`(expectedResponse))
