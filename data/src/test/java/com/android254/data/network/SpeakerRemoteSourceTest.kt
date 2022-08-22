@@ -1,7 +1,7 @@
 package com.android254.data.network
 
 import com.android254.data.network.apis.SpeakerRemoteSource
-import com.android254.data.network.models.responses.Speaker
+import com.android254.data.network.models.responses.SpeakerApiModel
 import com.android254.data.network.util.HttpClientFactory
 import com.android254.data.network.util.ServerError
 import io.ktor.client.engine.mock.*
@@ -45,7 +45,7 @@ class SpeakerRemoteSourceTest {
     fun `test successful speakers fetch`() {
         // GIVEN
         val expectedResponse = listOf(
-            Speaker(
+            SpeakerApiModel(
                 id = "1",
                 name = "John Doe",
                 shortBio = "Cool guy",
