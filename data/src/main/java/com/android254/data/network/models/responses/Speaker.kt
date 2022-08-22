@@ -9,5 +9,5 @@ data class Speaker(
     val bio: String,
     val shortBio: String,
     val avatar: String,
-    val twitter: String?,
+    val twitter: String?
 )
