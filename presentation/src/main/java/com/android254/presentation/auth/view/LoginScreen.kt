@@ -15,6 +15,8 @@
  */
 package com.android254.presentation.auth.view
 
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.rememberSplineBasedDecay
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
@@ -35,6 +37,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.android254.presentation.R
+import com.android254.presentation.auth.AuthViewModel
 import com.android254.presentation.common.components.SocialAuthButton
 import com.android254.presentation.common.navigation.Screens
 import com.android254.presentation.common.theme.DroidconKE2022Theme
@@ -43,6 +46,7 @@ import com.android254.presentation.common.theme.DroidconKE2022Theme
 fun LoginScreen(
     darkTheme: Boolean = isSystemInDarkTheme(),
     navController: NavHostController,
+    viewModel: () -> AuthViewModel?,
     navigateToSignUp: () -> Unit = {}
 ) {
     val decayAnimationSpec = rememberSplineBasedDecay<Float>()
@@ -50,6 +54,11 @@ fun LoginScreen(
         decayAnimationSpec,
         rememberTopAppBarScrollState()
     )
+    val googleSignInLauncher = rememberLauncherForActivityResult(contract = ActivityResultContracts.StartActivityForResult()) { result ->
+        if (viewModel()?.submitGoogleToken(result.data) == true) {
+            navController.navigate(Screens.Home.route)
+        }
+    }
 
     Scaffold(
         topBar = {
@@ -98,7 +107,7 @@ fun LoginScreen(
         ) {
             Spacer(modifier = Modifier.height(50.dp))
             SocialAuthButton(
-                onClick = { navController.navigate(Screens.Home.route) },
+                onClick = { viewModel()?.let { googleSignInLauncher.launch(it.getSignInIntent()) } },
                 modifier = Modifier.width(200.dp).testTag("google_login_button")
             ) {
                 Image(
@@ -123,6 +132,6 @@ fun LoginScreen(
 @Composable
 fun LoginScreenPreview() {
     DroidconKE2022Theme {
-        LoginScreen(navController = rememberNavController())
+        LoginScreen(navController = rememberNavController(), viewModel = { null })
     }
 }
