@@ -41,7 +41,7 @@ class GoogleSignInHandler @Inject constructor(@ApplicationContext context: Conte
             val account = task.getResult(ApiException::class.java)
             return account.idToken
         } catch (e: ApiException) {
-            Timber.e("Google sign in failed: $e")
+            Timber.e("Google sign in failed: ${e.message}")
             null
         }
     }
