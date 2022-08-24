@@ -34,6 +34,6 @@ class AuthViewModel @Inject constructor(
         Timber.i("Id token is $idToken")
         // Submit ID Token to API
         // to get access token
-        return false
+        return true
     }
 }
