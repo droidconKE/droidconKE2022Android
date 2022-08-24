@@ -13,20 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android254.data.network.apis
+package com.android254.data.network
 
-import com.android254.data.network.Constants
-import com.android254.data.network.models.responses.SpeakerApiModel
-import com.android254.data.network.util.safeApiCall
-import io.ktor.client.*
-import io.ktor.client.call.*
-import io.ktor.client.request.*
-import javax.inject.Inject
+import com.android254.data.network.util.TokenProvider
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.emptyFlow
 
-class SpeakerRemoteSource @Inject constructor(
-    private val client: HttpClient
-) {
-    suspend fun fetchSpeakers(): List<SpeakerApiModel> = safeApiCall {
-        return@safeApiCall client.get("${Constants.BASE_URL}/speakers").body()
-    }
+class MockTokenProvider : TokenProvider {
+    override suspend fun fetch(): Flow<String?> = emptyFlow()
+    override suspend fun update(accessToken: String) {}
 }
