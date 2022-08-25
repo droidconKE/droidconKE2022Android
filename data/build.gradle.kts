@@ -50,6 +50,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":domain"))
     implementation(libs.android.coreKtx)
     implementation(libs.android.appCompat)
     implementation(libs.android.material)
@@ -74,6 +75,7 @@ dependencies {
     testImplementation(libs.test.androidx.core)
     testImplementation(libs.test.robolectric)
     testImplementation(libs.ktor.mock)
+    testImplementation(libs.test.mockk)
 }
 
 kotlin {

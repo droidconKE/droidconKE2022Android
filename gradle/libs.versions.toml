@@ -63,6 +63,7 @@ test-junit4 = "junit:junit:4.13.2"
 test-androidx-core = "androidx.test:core-ktx:1.4.0"
 test-robolectric = "org.robolectric:robolectric:4.8.1"
 test-navigation = "androidx.navigation:navigation-testing:2.5.0"
+test-mockk = "io.mockk:mockk:1.12.7"
 ktor-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
 ktor-android = { module = "io.ktor:ktor-client-android", version.ref = "ktor" }
 ktor-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }

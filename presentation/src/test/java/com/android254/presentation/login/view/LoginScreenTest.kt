@@ -52,7 +52,7 @@ class LoginScreenTest {
     fun `should should show Login Screen and show the heading`() {
         composeTestRule.setContent {
             DroidconKE2022Theme {
-                LoginScreen(navController = navController)
+                LoginScreen(navController = navController, viewModel = { null })
             }
         }
 
@@ -64,7 +64,7 @@ class LoginScreenTest {
     fun `should show Google Button`() {
         composeTestRule.setContent {
             DroidconKE2022Theme {
-                LoginScreen(navController = navController)
+                LoginScreen(navController = navController, viewModel = { null })
             }
         }
 
