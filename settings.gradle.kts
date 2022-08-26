@@ -1,22 +1,24 @@
 pluginManagement {
     repositories {
         gradlePluginPortal()
-        google()
         mavenCentral()
+        google()
     }
 }
 
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
-        google()
         mavenCentral()
+        google()
     }
 }
 
 mapOf(
     "app" to "app",
     "data" to "data",
+    "chaidemo" to "chaidemo",
+    "chai" to "chai",
     "domain" to "domain",
     "presentation" to "presentation"
 ).forEach { (projectName, projectPath) ->

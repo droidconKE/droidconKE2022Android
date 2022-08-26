@@ -27,7 +27,7 @@ suspend fun <T> safeApiCall(block: suspend () -> T): T {
         Timber.e(e)
         when (e) {
             is ServerResponseException, is NoTransformationFoundException -> {
-                throw ServerError()
+                throw ServerError(e)
             }
             is ConnectTimeoutException -> {
                 throw NetworkError()
@@ -37,5 +37,5 @@ suspend fun <T> safeApiCall(block: suspend () -> T): T {
     }
 }
 
-class ServerError : Exception()
+class ServerError(cause: Throwable) : Exception(cause)
 class NetworkError : Exception()

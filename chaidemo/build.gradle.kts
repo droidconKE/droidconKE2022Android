@@ -1,21 +1,20 @@
+
 plugins {
-    id("com.android.library")
+    id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("dagger.hilt.android.plugin")
-    id("org.jlleitschuh.gradle.ktlint")
-    id("io.gitlab.arturbosch.detekt")
-    kotlin("kapt")
 }
 
 android {
     compileSdk = 32
 
     defaultConfig {
-        minSdk = 21
+        applicationId = "com.droidconke.chaidemo"
+        minSdk = 22
         targetSdk = 32
+        versionCode = 1
+        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles("consumer-rules.pro")
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -62,21 +61,14 @@ android {
 }
 
 dependencies {
-    implementation(project(":domain"))
+    implementation(project(":chai"))
 
     implementation(libs.android.coreKtx)
     implementation(libs.android.appCompat)
     implementation(libs.android.material)
     implementation(libs.bundles.compose)
     implementation(libs.lifecycle.runtimeKtx)
-    implementation(libs.timber)
-    implementation(libs.android.hilt)
-    implementation(libs.androidx.splashscreen)
-    implementation(libs.kotlin.coroutines.play.services)
-    implementation(libs.gms.play.services.auth)
-    kapt(libs.android.hilt.compiler)
-    implementation(libs.android.hilt.navigation.compose)
-    kapt(libs.android.hilt.androidx.compiler)
+
     debugImplementation(libs.compose.ui.tooling)
     debugImplementation(libs.compose.ui.test.manifest)
 

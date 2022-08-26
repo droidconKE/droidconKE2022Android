@@ -15,20 +15,49 @@
  */
 package com.android254.presentation.feed.view
 
-import androidx.compose.material3.Text
+import android.content.res.Configuration
+import android.widget.Toast
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.android254.presentation.common.theme.DroidconKE2022Theme
 
 @Composable
 fun FeedScreen() {
-    Text(text = "Feed Screen")
+    Box(modifier = Modifier.fillMaxSize()) {
+        val context = LocalContext.current
+
+        LazyColumn(
+            modifier = Modifier.testTag("feeds_lazy_column"),
+            verticalArrangement = Arrangement.spacedBy(4.dp)
+        ) {
+            items(count = 10) {
+                FeedComponent(modifier = Modifier.fillMaxWidth()) { itemId ->
+                    Toast.makeText(context, "Clicked: $itemId", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
 }
 
-@Preview
+@Preview(name = "Light Mode", showBackground = true)
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
 @Composable
 fun FeedScreenPreview() {
     DroidconKE2022Theme {
-        FeedScreen()
+        Surface(modifier = Modifier.background(MaterialTheme.colorScheme.surface)) {
+            FeedScreen()
+        }
     }
 }

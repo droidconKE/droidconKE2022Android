@@ -17,7 +17,7 @@
   for a linear history
 - To ensure small PRs, Work on only one layer ie.
     * If you are working on the usecase;
-        * Create the usecase, the repository and a repository implementation without any logic
+        * Create the usecase, the repository and a repository implementation in the domain layer only
     * If you are working on the UI
         * Work on the UI and navigation if its an empty screen
         * Work on the Design and ViewModel if its UI implementation ticket
