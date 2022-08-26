@@ -1,19 +1,4 @@
-/*
- * Copyright 2022 DroidconKE
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-package com.android254.presentation.login.view
+package com.android254.presentation.feedback.view
 
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertTextEquals
@@ -32,11 +17,10 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.robolectric.shadows.ShadowLog
 
+
 @RunWith(RobolectricTestRunner::class)
 @Config(instrumentedPackages = ["androidx.loader.content"])
-class LoginScreenTest {
-
-    lateinit var navController: NavHostController
+class FeedBackScreenTest {
 
     @get:Rule
     val composeTestRule = createComposeRule()
@@ -44,30 +28,29 @@ class LoginScreenTest {
     @Before
     @Throws(Exception::class)
     fun setUp() {
-        navController = TestNavHostController(ApplicationProvider.getApplicationContext())
         ShadowLog.stream = System.out
     }
 
     @Test
-    fun `should should show Login Screen and show the heading`() {
+    fun `should should show FeedBack Screen and show the heading`() {
         composeTestRule.setContent {
             DroidconKE2022Theme {
-                LoginScreen(navController = navController, viewModel = { null })
+                FeedBackScreen()
             }
         }
 
         composeTestRule.onNodeWithTag("heading").assertIsDisplayed()
-        composeTestRule.onNodeWithTag("heading").assertTextEquals("Sign In")
+        composeTestRule.onNodeWithTag("heading").assertTextEquals("Feedback")
     }
 
     @Test
-    fun `should show Google Button`() {
+    fun `should show submit Button`() {
         composeTestRule.setContent {
             DroidconKE2022Theme {
-                LoginScreen(navController = navController, viewModel = { null })
+                FeedBackScreen()
             }
         }
 
-        composeTestRule.onNodeWithTag("google_login_button").assertIsDisplayed()
+        composeTestRule.onNodeWithTag("submit_feedback_button").assertIsDisplayed()
     }
 }
