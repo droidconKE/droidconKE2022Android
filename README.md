@@ -163,6 +163,13 @@ We would endlessly like to thank the following contributors
         </a>
     </td>
     <td align="center">
+        <a href="https://github.com/tamzi">
+            <img src="https://avatars.githubusercontent.com/u/3008932?v=4" width="100;" alt="tamzi"/>
+            <br />
+            <sub><b>Frank Tamre</b></sub>
+        </a>
+    </td>
+    <td align="center">
         <a href="https://github.com/michaelbukachi">
             <img src="https://avatars.githubusercontent.com/u/10145850?v=4" width="100;" alt="michaelbukachi"/>
             <br />
