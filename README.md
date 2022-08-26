@@ -68,6 +68,37 @@ This is the link to the app designs:
 
 The app uses a design system: Chai 
 
+## Dependencies
+The project uses [Versions Catalog](https://docs.gradle.org/current/userguide/platforms.html#sub:version-catalog) to setup and share dependencies across the modules. The main reasons for choosing to adopt Versions Catalog are:
+- Central place to define dependencies.
+- Easy syntax.
+- Doesn't compromise on build speeds as changes don't need whle module to be compiled.
+
+To add a dependency, navigate to **gradle/libs.versions.toml*** file which has all the dependencies for the whole project. This file has the following sections:
+
+[versions] is used to declare the version numbers that will be referenced later by plugins and libraries.
+[libraries] Define the libraries that will be later accessed in our Gradle files.
+[bundles] Are used to define a set of dependencies. For this we have `compose`, `room`, `lifecycle` and `ktor` as examples.
+[plugins] Used to define plugins.
+
+You need to add you dependency version in [versions]. This is not a must if you're not sharing the version across different dependencies. After defining the version, add your library in the [libraries] section as:
+
+```toml
+compose-activity = "androidx.activity:activity-compose:1.5.0"
+```
+
+And if you've already defined the version in [versions] you define it as:
+
+```toml
+androidx-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "splash" }
+```
+
+**Note**:
+- You can use separators such as -, _, . that will be normalized by Gradle to . in the catalog and allow you to create subsections.
+- Define variables using **CamelCase**.\
+- Check if the library can be added to any of the existing bundles too.
+
+
 ## Contributing
 
 Contributions are always welcome!
