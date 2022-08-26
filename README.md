@@ -110,10 +110,25 @@ We would endlessly like to thank the following contributors
         </a>
     </td>
     <td align="center">
+        <a href="https://github.com/keithchad">
+            <img src="https://avatars.githubusercontent.com/u/63049827?v=4" width="100;" alt="keithchad"/>
+            <br />
+            <sub><b>Keith Chad</b></sub>
+        </a>
+    </td>
+    <td align="center">
         <a href="https://github.com/Kagiri11">
             <img src="https://avatars.githubusercontent.com/u/59829833?v=4" width="100;" alt="Kagiri11"/>
             <br />
             <sub><b>Kagiri</b></sub>
+        </a>
+    </td></tr>
+<tr>
+    <td align="center">
+        <a href="https://github.com/tamzi">
+            <img src="https://avatars.githubusercontent.com/u/3008932?v=4" width="100;" alt="tamzi"/>
+            <br />
+            <sub><b>Frank Tamre</b></sub>
         </a>
     </td>
     <td align="center">
@@ -122,20 +137,12 @@ We would endlessly like to thank the following contributors
             <br />
             <sub><b>Michael Bukachi</b></sub>
         </a>
-    </td></tr>
-<tr>
+    </td>
     <td align="center">
         <a href="https://github.com/VictorKabata">
             <img src="https://avatars.githubusercontent.com/u/39780120?v=4" width="100;" alt="VictorKabata"/>
             <br />
             <sub><b>Victor Kabata</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/tamzi">
-            <img src="https://avatars.githubusercontent.com/u/3008932?v=4" width="100;" alt="tamzi"/>
-            <br />
-            <sub><b>Frank Tamre</b></sub>
         </a>
     </td>
     <td align="center">
@@ -157,13 +164,6 @@ We would endlessly like to thank the following contributors
             <img src="https://avatars.githubusercontent.com/u/61080898?v=4" width="100;" alt="kibettheophilus"/>
             <br />
             <sub><b>Kibet Theo</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/keithchad">
-            <img src="https://avatars.githubusercontent.com/u/63049827?v=4" width="100;" alt="keithchad"/>
-            <br />
-            <sub><b>Keith Chad</b></sub>
         </a>
     </td></tr>
 <tr>
