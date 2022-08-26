@@ -22,12 +22,14 @@ import com.droidconke.chai.R
 
 /**
  * Chai typography:
- * Consists of 2 files that work together: [CTypography] and [CFont]
+ * Consists of 2 files that work together:
+ *  - CTypography(located ion the components package) and
+ *  - CFont located in the atoms directory
  * Type:
  * Defines the font family types only here
  * We use val for the purpose of making it available in the entire application
  * You first add the fonts to the res folder under fonts
- *  Then just reference them here.
+ * Then just reference them here.
  * Font-  List all fonts that will be used in the application
  * CTypography - is the art of arranging letters and text in a way that makes the copy legible, clear, and visually appealing to the reader.
  * It involves font style, appearance, and structure, which aims to elicit certain emotions and convey specific messages.
