@@ -13,17 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android254.data.network.models.responses
+package com.android254.domain.usecases
 
-import kotlinx.serialization.Serializable
+import com.android254.domain.models.DataResult
+import com.android254.domain.models.SpeakerDomainModel
+import com.android254.domain.repos.SpeakerRepository
 
-@Serializable
-data class SpeakerApiModel(
-    val id: String,
-    val name: String,
-    val bio: String,
-    val shortBio: String,
-    val avatar: String,
-    val session: String,
-    val twitter: String?
-)
+class GetSpeakersUseCase(
+    private val speakerRepository: SpeakerRepository
+) {
+    suspend operator fun invoke(): DataResult<List<SpeakerDomainModel>> =
+        speakerRepository.getSpeakers()
+}

@@ -13,17 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android254.data.network.models.responses
+package com.android254.domain.repos
 
-import kotlinx.serialization.Serializable
+import com.android254.domain.models.DataResult
+import com.android254.domain.models.SpeakerDomainModel
 
-@Serializable
-data class SpeakerApiModel(
-    val id: String,
-    val name: String,
-    val bio: String,
-    val shortBio: String,
-    val avatar: String,
-    val session: String,
-    val twitter: String?
-)
+interface SpeakerRepository {
+    suspend fun getSpeakers(): DataResult<List<SpeakerDomainModel>>
+}

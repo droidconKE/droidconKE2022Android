@@ -66,6 +66,7 @@ class SpeakerRemoteSourceTest {
                 shortBio = "Cool guy",
                 bio = "Very cool guy",
                 avatar = "https://example.com",
+                session = "session_id_1",
                 twitter = null
             ),
         )
