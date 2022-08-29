@@ -24,7 +24,8 @@ import androidx.compose.ui.unit.dp
 import com.droidconke.chai.ChaiDCKE22Theme
 import com.droidconke.chai.atoms.ChaiWhite
 import com.droidconke.chai.components.*
-import com.droidconke.chai.utils.BreathingSpace
+import com.droidconke.chai.utils.BreathingSpace13
+import com.droidconke.chai.utils.BreathingSpace26
 import com.droidconke.chai.utils.SeparatorSpace
 
 @Preview(showBackground = true)
@@ -37,13 +38,13 @@ fun ChaiDemo() {
                 .background(color = ChaiWhite)
                 .padding(horizontal = 13.dp, vertical = 5.dp)
         ) {
-            BreathingSpace()
+            BreathingSpace26()
             CPageTitle("Chai Demo")
             SeparatorSpace()
             CSubtitle("A catalog of the chai design system elements")
             SeparatorSpace()
             CParagraph("Check the code that is with each view")
-            BreathingSpace()
+            BreathingSpace13()
         }
     }
 }
