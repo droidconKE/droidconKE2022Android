@@ -34,7 +34,7 @@ fun Navigation(
     upDateBottomBarState: (Boolean) -> Unit,
     upDataAppBarState: (Boolean) -> Unit
 ) {
-    NavHost(navController, startDestination = Screens.Login.route) {
+    NavHost(navController, startDestination = Screens.Home.route) {
         composable(Screens.Home.route) {
             upDataAppBarState(true)
             upDateBottomBarState(true)

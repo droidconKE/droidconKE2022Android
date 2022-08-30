@@ -1,3 +1,18 @@
+/*
+ * Copyright 2022 DroidconKE
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.android254.presentation.feedback.view
 
 import androidx.compose.animation.rememberSplineBasedDecay
@@ -103,7 +118,7 @@ fun FeedBackScreen(
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Spacer(modifier = Modifier.height(20.dp))
-                    Text( text = stringResource(R.string.feedback_event_label))
+                    Text(text = stringResource(R.string.feedback_event_label))
                     Spacer(modifier = Modifier.height(20.dp))
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
@@ -121,7 +136,7 @@ fun FeedBackScreen(
                                     painter = painterResource(id = R.drawable.smiling),
                                     contentDescription = stringResource(id = R.string.sign_in_label)
                                 )
-                                Text( text = "Okay")
+                                Text(text = "Okay")
                             }
                         }
                         Spacer(modifier = Modifier.width(20.dp))
@@ -137,7 +152,7 @@ fun FeedBackScreen(
                                     painter = painterResource(id = R.drawable.smiling),
                                     contentDescription = stringResource(id = R.string.sign_in_label)
                                 )
-                                Text( text = "Great")
+                                Text(text = "Great")
                             }
                         }
                         Spacer(modifier = Modifier.width(20.dp))
@@ -153,7 +168,7 @@ fun FeedBackScreen(
                                     painter = painterResource(id = R.drawable.smiling),
                                     contentDescription = stringResource(id = R.string.sign_in_label)
                                 )
-                                Text( text = "Bad")
+                                Text(text = "Bad")
                             }
                         }
                     }
@@ -195,7 +210,6 @@ fun FeedBackScreen(
                     fontSize = 16.sp
                 )
             }
-
         }
     }
 }
