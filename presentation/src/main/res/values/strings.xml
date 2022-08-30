@@ -25,4 +25,5 @@
     <string name="feedback_type_message_label">Type message here</string>
     <string name="feedback_event_label">How is/was the event</string>
     <string name="feedback_improve_label">Your feedback helps us improve</string>
+    <string name="feedback_label">Feedback</string>
 </resources>
