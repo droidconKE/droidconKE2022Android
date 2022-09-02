@@ -9,7 +9,6 @@ kotlin = "1.6.10"
 lifecycle = "2.5.0"
 room = "2.4.2"
 ktor = "2.0.3"
-
 splash = "1.0.0-rc01"
 
 [libraries]
@@ -44,6 +43,8 @@ gson-gson = "com.google.code.gson:gson:2.9.0"
 kotlin-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
 kotlin-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
 kotlin-coroutines-datetime = "org.jetbrains.kotlinx:kotlinx-datetime:0.4.0"
+kotlin-coroutines-play-services = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-play-services", version.ref = "coroutines" }
+gms-play-services-auth = "com.google.android.gms:play-services-auth:20.2.0"
 lifecycle-livedataKtx = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycle" }
 lifecycle-runtimeKtx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycle" }
 lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycle" }
@@ -61,6 +62,7 @@ test-junit4 = "junit:junit:4.13.2"
 test-androidx-core = "androidx.test:core-ktx:1.4.0"
 test-robolectric = "org.robolectric:robolectric:4.8.1"
 test-navigation = "androidx.navigation:navigation-testing:2.5.0"
+test-mockk = "io.mockk:mockk:1.12.7"
 ktor-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
 ktor-android = { module = "io.ktor:ktor-client-android", version.ref = "ktor" }
 ktor-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }

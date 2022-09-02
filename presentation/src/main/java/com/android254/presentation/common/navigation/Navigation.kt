@@ -16,10 +16,12 @@
 package com.android254.presentation.common.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.android254.presentation.about.view.AboutScreen
+import com.android254.presentation.auth.AuthViewModel
 import com.android254.presentation.feed.view.FeedScreen
 import com.android254.presentation.home.view.HomeScreen
 import com.android254.presentation.auth.view.LoginScreen
@@ -32,7 +34,7 @@ fun Navigation(
     upDateBottomBarState: (Boolean) -> Unit,
     upDataAppBarState: (Boolean) -> Unit
 ) {
-    NavHost(navController, startDestination = Screens.Login.route) {
+    NavHost(navController, startDestination = Screens.Home.route) {
         composable(Screens.Home.route) {
             upDataAppBarState(true)
             upDateBottomBarState(true)
@@ -56,8 +58,10 @@ fun Navigation(
         composable(Screens.Login.route) {
             upDataAppBarState(false)
             upDateBottomBarState(false)
+            val viewModel = hiltViewModel<AuthViewModel>()
             LoginScreen(
                 navController = navController,
+                viewModel = { viewModel },
                 navigateToSignUp = {
                     navController.navigate(Screens.SignUp.route)
                 }

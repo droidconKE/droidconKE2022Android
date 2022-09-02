@@ -22,6 +22,7 @@ import androidx.compose.ui.test.onNodeWithTag
 import androidx.navigation.NavHostController
 import androidx.navigation.testing.TestNavHostController
 import androidx.test.core.app.ApplicationProvider
+import com.android254.presentation.auth.view.LoginScreen
 import com.android254.presentation.common.theme.DroidconKE2022Theme
 import org.junit.Before
 import org.junit.Rule
@@ -51,7 +52,7 @@ class LoginScreenTest {
     fun `should should show Login Screen and show the heading`() {
         composeTestRule.setContent {
             DroidconKE2022Theme {
-                LoginScreen(navController = navController)
+                LoginScreen(navController = navController, viewModel = { null })
             }
         }
 
@@ -63,7 +64,7 @@ class LoginScreenTest {
     fun `should show Google Button`() {
         composeTestRule.setContent {
             DroidconKE2022Theme {
-                LoginScreen(navController = navController)
+                LoginScreen(navController = navController, viewModel = { null })
             }
         }
 

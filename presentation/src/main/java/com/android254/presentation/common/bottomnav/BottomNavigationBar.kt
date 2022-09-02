@@ -21,6 +21,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.android254.presentation.common.navigation.Screens
 import com.android254.presentation.common.navigation.bottomNavigationDestinations
 import com.android254.presentation.common.theme.DroidconKE2022Theme
 
@@ -42,6 +43,7 @@ fun BottomNavigationBar(navController: NavHostController) {
                     navController.navigate(destination.route) {
                         launchSingleTop = true
                         restoreState = true
+                        popUpTo(Screens.Home.route)
                     }
                 }
             )

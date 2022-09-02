@@ -13,10 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.droidconke.chaidemo.screens
+package com.android254.data.di
 
-import androidx.compose.runtime.Composable
+import com.android254.data.repos.AuthManager
+import com.android254.domain.repos.AuthRepo
+import dagger.Binds
+import dagger.Module
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
-@Composable
-fun ChaiDemo() {
+@Module
+@InstallIn(SingletonComponent::class)
+abstract class RepoModule {
+
+    @Binds
+    @Singleton
+    abstract fun provideAuthRepo(repo: AuthManager): AuthRepo
 }

@@ -121,6 +121,7 @@ val AppTypography = Typography(
         fontSize = 22.sp
     ),
     titleMedium = TextStyle(
+
         fontFamily = Montserrat,
         fontWeight = FontWeight.Medium,
         letterSpacing = 0.15000000596046448.sp,

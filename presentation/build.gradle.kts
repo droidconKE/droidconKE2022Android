@@ -72,6 +72,8 @@ dependencies {
     implementation(libs.timber)
     implementation(libs.android.hilt)
     implementation(libs.androidx.splashscreen)
+    implementation(libs.kotlin.coroutines.play.services)
+    implementation(libs.gms.play.services.auth)
     kapt(libs.android.hilt.compiler)
     implementation(libs.android.hilt.navigation.compose)
     kapt(libs.android.hilt.androidx.compiler)
