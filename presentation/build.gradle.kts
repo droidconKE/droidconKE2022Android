@@ -90,6 +90,9 @@ dependencies {
     testImplementation(libs.compose.ui.test.junit)
     testImplementation(libs.android.test.espresso)
     testImplementation(libs.test.navigation)
+
+    // TODO: Find out how dependencies are being added
+    implementation("io.coil-kt:coil-compose:2.2.0")
 }
 
 kotlin {
