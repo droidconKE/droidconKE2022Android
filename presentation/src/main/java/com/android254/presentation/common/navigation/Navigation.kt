@@ -26,7 +26,9 @@ import com.android254.presentation.feed.view.FeedScreen
 import com.android254.presentation.home.view.HomeScreen
 import com.android254.presentation.auth.view.LoginScreen
 import com.android254.presentation.auth.view.SignUpScreen
+import com.android254.presentation.models.speakersList
 import com.android254.presentation.sessions.view.SessionsScreen
+import com.android254.presentation.speakers.view.SpeakersScreen
 
 @Composable
 fun Navigation(
@@ -75,6 +77,11 @@ fun Navigation(
                     navController.navigate(Screens.Login.route)
                 }
             )
+        }
+        composable(Screens.Speakers.route){
+            upDataAppBarState(false)
+            upDateBottomBarState(false)
+            SpeakersScreen(speakers = speakersList)
         }
     }
 }

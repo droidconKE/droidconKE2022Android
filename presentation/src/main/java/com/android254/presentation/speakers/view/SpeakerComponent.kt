@@ -21,9 +21,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.android254.presentation.R
 import com.android254.presentation.common.theme.DroidconKE2022Theme
+import com.android254.presentation.models.Speaker
 
 @Composable
-fun SpeakerComponent(modifier: Modifier = Modifier) {
+fun SpeakerComponent(modifier: Modifier = Modifier, speaker: Speaker = Speaker()) {
     Card(
         colors = CardDefaults.cardColors(
             containerColor = colorResource(id = R.color.smoke_white)
@@ -54,7 +55,7 @@ fun SpeakerComponent(modifier: Modifier = Modifier) {
                 style = TextStyle(
                     color = colorResource(id = R.color.grey),
                     fontSize = 14.sp,
-                    fontFamily = FontFamily(Font(R.font.montserrat_regular)),
+                    fontFamily = FontFamily(Font(R.font.montserrat_regular)),// Extract the fonts or get them from chai system
                 ),
             )
             Spacer(modifier = modifier.height(16.dp))
