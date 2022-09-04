@@ -24,12 +24,13 @@ import com.android254.presentation.models.speakersList
 fun SpeakersScreen(speakers: List<Speaker>) {
     Scaffold(
         topBar = {
-            SmallTopAppBar(
+            MediumTopAppBar(
                 title = {
                     Text(
                         text = "Speakers",
                         fontSize = 30.sp,
-                        fontFamily = FontFamily(Font(R.font.montserrat_regular))
+                        fontFamily = FontFamily(Font(R.font.montserrat_regular)),
+                        color = colorResource(id = R.color.dark)
                     )
                 },
 
@@ -44,11 +45,6 @@ fun SpeakersScreen(speakers: List<Speaker>) {
                         )
                     }
                 },
-                colors = TopAppBarDefaults.largeTopAppBarColors(
-                    containerColor = Color.Transparent,
-                    titleContentColor = colorResource(id = R.color.dark),
-                    navigationIconContentColor = Color.White
-                )
             )
         }
     ) {paddingValues ->
