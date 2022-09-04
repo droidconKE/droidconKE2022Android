@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 package com.android254.presentation.speakers.view
-
-
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -108,7 +106,7 @@ fun SpeakerComponent(
                 style = TextStyle(
                     color = colorResource(id = R.color.grey),
                     fontSize = 14.sp,
-                    fontFamily = FontFamily(Font(R.font.montserrat_regular)),
+                    fontFamily = FontFamily(Font(R.font.montserrat_regular)),// Extract the fonts or get them from chai system
                 ),
                 modifier = modifier.constrainAs(bioText) {
                     top.linkTo(nameText.bottom, margin = 8.dp)

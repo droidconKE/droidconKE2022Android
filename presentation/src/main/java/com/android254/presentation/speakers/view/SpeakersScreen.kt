@@ -25,6 +25,7 @@ import androidx.compose.material3.SmallTopAppBar
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -37,6 +38,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.android254.presentation.R
 import com.android254.presentation.common.theme.DroidconKE2022Theme
 import com.android254.presentation.speakers.SpeakerViewModel
+
 
 @Composable
 fun SpeakersScreen(speakersViewModel: SpeakerViewModel = hiltViewModel()) {
@@ -70,8 +72,9 @@ fun SpeakersScreen(speakersViewModel: SpeakerViewModel = hiltViewModel()) {
                 )
             )
         }
-    ) { paddingValues ->
+    ) {paddingValues ->
         LazyVerticalGrid(
+
             columns = GridCells.Adaptive(160.dp),
             contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 80.dp, bottom = 16.dp)
         ) {
@@ -79,6 +82,7 @@ fun SpeakersScreen(speakersViewModel: SpeakerViewModel = hiltViewModel()) {
                 SpeakerComponent(speaker = speaker)
             }
         }
+
     }
 }
 
@@ -86,7 +90,6 @@ fun SpeakersScreen(speakersViewModel: SpeakerViewModel = hiltViewModel()) {
 @Composable
 fun SpeakersScreenPreview() {
     DroidconKE2022Theme {
-
         SpeakersScreen()
     }
 }
