@@ -48,10 +48,9 @@ import com.android254.presentation.common.theme.DroidconKE2022Theme
 import com.android254.presentation.models.Speaker
 
 @Composable
-fun SpeakerComponent(
-    modifier: Modifier = Modifier,
-    speaker: Speaker = Speaker(name = "ABC", bio = "A quick brown fox ...")
-) {
+
+fun SpeakerComponent(modifier: Modifier = Modifier, speaker: Speaker = Speaker()) {
+
     Card(
         modifier = modifier.padding(7.dp).height(350.dp),
         shape = RoundedCornerShape(8.dp),
@@ -104,7 +103,7 @@ fun SpeakerComponent(
                 style = TextStyle(
                     color = colorResource(id = R.color.grey),
                     fontSize = 14.sp,
-                    fontFamily = FontFamily(Font(R.font.montserrat_regular)),
+                    fontFamily = FontFamily(Font(R.font.montserrat_regular)),// Extract the fonts or get them from chai system
                 ),
                 modifier = modifier.constrainAs(bioText) {
                     top.linkTo(nameText.bottom, margin = 8.dp)

@@ -21,6 +21,7 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -32,7 +33,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.android254.presentation.common.theme.DroidconKE2022Theme
 import com.android254.presentation.models.Speaker
-import com.android254.presentation.models.speakersList
 
 @Composable
 fun SpeakersScreen(speakers: List<Speaker>) {
@@ -42,12 +42,12 @@ fun SpeakersScreen(speakers: List<Speaker>) {
                 title = {
                     Text(
                         text = "Speakers",
+
                         fontSize = 24.sp,
                         fontFamily = FontFamily(Font(R.font.montserrat_regular)),
                         color = colorResource(id = R.color.dark)
                     )
                 },
-
                 navigationIcon = {
                     IconButton(
                         onClick = { },
@@ -59,17 +59,22 @@ fun SpeakersScreen(speakers: List<Speaker>) {
                         )
                     }
                 },
+                colors = TopAppBarDefaults.largeTopAppBarColors(
+                    containerColor = Color.Transparent,
+                    titleContentColor = colorResource(id = R.color.dark),
+                    navigationIconContentColor = Color.White
+                )
             )
         }
-    ) { paddingValues ->
+    ) {paddingValues ->
         LazyVerticalGrid(
-            columns = GridCells.Adaptive(180.dp),
-            contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 80.dp, bottom = 16.dp)
-        ) {
-            items(speakers) { speaker ->
-                SpeakerComponent(speaker = speaker)
-            }
+            columns =  GridCells.Adaptive(128.dp),
+        contentPadding = PaddingValues(16.dp)){
+           items(speakers){speaker ->
+               SpeakerComponent(speaker = speaker)
+           }
         }
+
     }
 }
 
@@ -77,6 +82,6 @@ fun SpeakersScreen(speakers: List<Speaker>) {
 @Composable
 fun SpeakersScreenPreview() {
     DroidconKE2022Theme {
-        SpeakersScreen(speakersList)
+        SpeakersScreen()
     }
 }
