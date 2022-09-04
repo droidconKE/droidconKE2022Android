@@ -17,14 +17,10 @@ package com.android254.presentation.speakers.view
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.border
-<<<<<<< HEAD
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-=======
-import androidx.compose.foundation.layout.*
->>>>>>> d53c76f (clean up)
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -55,14 +51,8 @@ import com.android254.presentation.models.Speaker
 @Composable
 fun SpeakerComponent(
     modifier: Modifier = Modifier,
-<<<<<<< HEAD
     speaker: Speaker
-
-=======
-    speaker: Speaker = Speaker(name = "ABC", bio = "A quick brown fox ...")
->>>>>>> d53c76f (clean up)
-) {
-
+){
     Card(
         modifier = modifier.padding(7.dp).height(350.dp),
         shape = RoundedCornerShape(8.dp),
@@ -91,7 +81,6 @@ fun SpeakerComponent(
                     .border(BorderStroke(2.5.dp, color = colorResource(id = R.color.cyan)))
                     .height(120.dp)
                     .width(120.dp)
-<<<<<<< HEAD
                     .constrainAs(image) {
                         top.linkTo(parent.top)
                         start.linkTo(parent.start)
@@ -99,10 +88,6 @@ fun SpeakerComponent(
                     }
 
             )
-=======
-            )
-            Spacer(modifier = modifier.height(8.dp))
->>>>>>> 8135b12 (fix lint issues)
             Text(
                 text = speaker.name,
                 style = TextStyle(
@@ -123,7 +108,7 @@ fun SpeakerComponent(
                 style = TextStyle(
                     color = colorResource(id = R.color.grey),
                     fontSize = 14.sp,
-                    fontFamily = FontFamily(Font(R.font.montserrat_regular)),
+                    fontFamily = FontFamily(Font(R.font.montserrat_regular)),// Extract the fonts or get them from chai system
                 ),
                 modifier = modifier
                     .testTag("bio")
