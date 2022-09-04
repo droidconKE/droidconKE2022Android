@@ -21,7 +21,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.BottomAppBarDefaults.FloatingActionButtonElevation.elevation
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.OutlinedButton
@@ -68,12 +73,12 @@ fun SpeakerComponent(
                 .fillMaxWidth(),
         ) {
             val (image, nameText, bioText, button) = createRefs()
-
             AsyncImage(
                 model = ImageRequest.Builder(LocalContext.current)
                     .data(speaker.imageUrl)
                     .build(),
                 placeholder = painterResource(R.drawable.smiling),
+
                 contentDescription = stringResource(R.string.head_shot),
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
@@ -130,6 +135,7 @@ fun SpeakerComponent(
             ) {
                 Text(
                     text = stringResource(R.string.session_label),
+
                     color = colorResource(id = R.color.aqua),
                     fontFamily = FontFamily(Font(R.font.montserrat_semi_bold)),
                 )
