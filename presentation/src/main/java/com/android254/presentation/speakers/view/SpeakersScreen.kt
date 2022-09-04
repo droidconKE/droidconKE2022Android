@@ -79,6 +79,7 @@ fun SpeakersScreen(speakersViewModel: SpeakerViewModel = hiltViewModel()) {
             items(speakers) { speaker ->
                 SpeakerComponent(speaker = speaker)
             }
+
         }
     }
 }

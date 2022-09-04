@@ -22,6 +22,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.BottomAppBarDefaults.FloatingActionButtonElevation.elevation
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.OutlinedButton
@@ -54,10 +55,9 @@ fun SpeakerComponent(
     speaker: Speaker
 
 ) {
+
     Card(
-        modifier = modifier
-            .padding(7.dp)
-            .height(350.dp),
+        modifier = modifier.padding(7.dp).height(350.dp),
         shape = RoundedCornerShape(8.dp),
         elevation = CardDefaults.cardElevation(4.dp),
         colors = CardDefaults.cardColors(
@@ -89,6 +89,7 @@ fun SpeakerComponent(
                         start.linkTo(parent.start)
                         end.linkTo(parent.end)
                     }
+
             )
             Text(
                 text = speaker.name,
