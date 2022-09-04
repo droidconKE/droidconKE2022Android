@@ -21,7 +21,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.BottomAppBarDefaults.FloatingActionButtonElevation.elevation
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.OutlinedButton
@@ -49,8 +52,10 @@ import com.android254.presentation.models.Speaker
 
 @Composable
 
-fun SpeakerComponent(modifier: Modifier = Modifier, speaker: Speaker = Speaker()) {
-
+fun SpeakerComponent(
+    modifier: Modifier = Modifier,
+    speaker: Speaker = Speaker(name = "ABC", bio = "A quick brown fox ....")
+) {
     Card(
         modifier = modifier.padding(7.dp).height(350.dp),
         shape = RoundedCornerShape(8.dp),
@@ -65,6 +70,7 @@ fun SpeakerComponent(modifier: Modifier = Modifier, speaker: Speaker = Speaker()
                 .fillMaxWidth(),
         ) {
             val (image, nameText, bioText, button) = createRefs()
+
             AsyncImage(
                 model = ImageRequest.Builder(LocalContext.current)
                     .data(speaker.imageUrl)
@@ -79,6 +85,7 @@ fun SpeakerComponent(modifier: Modifier = Modifier, speaker: Speaker = Speaker()
                     .border(BorderStroke(2.5.dp, color = colorResource(id = R.color.cyan)))
                     .height(120.dp)
                     .width(120.dp)
+
                     .constrainAs(image) {
                         top.linkTo(parent.top)
                         start.linkTo(parent.start)
@@ -111,7 +118,6 @@ fun SpeakerComponent(modifier: Modifier = Modifier, speaker: Speaker = Speaker()
                     end.linkTo(parent.end)
                 }
             )
-
             OutlinedButton(
                 onClick = { },
                 shape = RoundedCornerShape(8.dp),
@@ -126,6 +132,7 @@ fun SpeakerComponent(modifier: Modifier = Modifier, speaker: Speaker = Speaker()
                 }
             ) {
                 Text(
+
                     text = stringResource(R.string.session_label),
                     color = colorResource(id = R.color.aqua),
                     fontFamily = FontFamily(Font(R.font.montserrat_semi_bold)),
