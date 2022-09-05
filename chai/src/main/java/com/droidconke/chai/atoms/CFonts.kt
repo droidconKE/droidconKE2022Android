@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.droidconke.chai.atoms.type
+package com.droidconke.chai.atoms
 
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily

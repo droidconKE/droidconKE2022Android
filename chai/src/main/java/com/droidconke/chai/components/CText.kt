@@ -23,8 +23,8 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.droidconke.chai.atoms.*
-import com.droidconke.chai.atoms.type.MontserratRegular
-import com.droidconke.chai.atoms.type.MontserratThin
+import com.droidconke.chai.atoms.MontserratRegular
+import com.droidconke.chai.atoms.MontserratThin
 
 /**
  * CText:

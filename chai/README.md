@@ -25,7 +25,7 @@ Link to design doc: [design ](https://xd.adobe.com/view/eb1ed4ed-fd4d-4ba2-b2f7-
 
 There is a separate stand alone [Chai Design System project here](https://github.com/tamzi/ChaiDesignSystem)
 
-This shows how you can use this design system in an app in production.
+This shows how you can use this design system in an app/Multiple apps in production.
 
 ### Structure Of Chai's Design System,
 
