@@ -27,7 +27,7 @@ import com.droidconke.chai.ChaiDCKE22Theme
 import com.droidconke.chai.atoms.ChaiWhite
 import com.droidconke.chai.components.CPageTitle
 import com.droidconke.chai.components.CParagraph
-import com.droidconke.chai.components.CSubtitle
+import com.droidconke.chai.components.CSubtitleRed
 import com.droidconke.chai.utils.BreathingSpace13
 import com.droidconke.chai.utils.BreathingSpace26
 import com.droidconke.chai.utils.SeparatorSpace
@@ -46,7 +46,7 @@ fun TextScreen() {
             BreathingSpace26()
             CPageTitle("Welcome Message")
             SeparatorSpace()
-            CSubtitle("dcke 2022 welcome remarks as subtitle")
+            CSubtitleRed("dcke 2022 welcome remarks as subtitle")
             SeparatorSpace()
             CParagraph("Welcome to droidconKE 2022. Lorem something something")
             BreathingSpace13()
