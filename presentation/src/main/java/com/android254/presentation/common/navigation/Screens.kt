@@ -32,5 +32,5 @@ val bottomNavigationDestinations = listOf(
     Screens.Speakers,
     Screens.Feed,
     Screens.Sessions,
-    Screens.About,
+    Screens.About
 )
