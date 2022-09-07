@@ -1,4 +1,4 @@
-
+package com.android254.presentation.models
 /*
  * Copyright 2022 DroidconKE
  *
@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android254.presentation.models
 
 /**
  * Sample speaker data class
@@ -24,4 +23,3 @@ data class Speaker(
     val name: String = "Name",
     val bio: String = "bio"
 )
-
