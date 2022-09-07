@@ -1,12 +1,9 @@
 package com.android254.presentation.speakers.view
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.BottomAppBarDefaults.FloatingActionButtonElevation.elevation
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.OutlinedButton
@@ -35,7 +32,7 @@ import com.android254.presentation.models.Speaker
 @Composable
 fun SpeakerComponent(
     modifier: Modifier = Modifier,
-    speaker: Speaker = Speaker(name = "ABC", bio = "A quick brown fox ....")
+    speaker: Speaker = Speaker(name = "ABC", bio = "A quick brown fox ...")
 ) {
     Card(
         modifier = modifier.padding(7.dp).height(350.dp),
@@ -56,7 +53,7 @@ fun SpeakerComponent(
                     .data(speaker.imageUrl)
                     .build(),
                 placeholder = painterResource(R.drawable.smiling),
-                contentDescription = stringResource(R.string.headshot),
+                contentDescription = stringResource(R.string.head_shot),
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
                     .clip(
@@ -82,7 +79,7 @@ fun SpeakerComponent(
                 style = TextStyle(
                     color = colorResource(id = R.color.grey),
                     fontSize = 14.sp,
-                    fontFamily = FontFamily(Font(R.font.montserrat_regular)),// Extract the fonts or get them from chai system
+                    fontFamily = FontFamily(Font(R.font.montserrat_regular)),
                 ),
             )
             Spacer(modifier = modifier.height(20.dp))
@@ -95,7 +92,7 @@ fun SpeakerComponent(
                 )
             ) {
                 Text(
-                    text = stringResource(R.string.sessionLabel),
+                    text = stringResource(R.string.session_label),
                     color = colorResource(id = R.color.aqua),
                     fontFamily = FontFamily(Font(R.font.montserrat_semi_bold)),
                 )
