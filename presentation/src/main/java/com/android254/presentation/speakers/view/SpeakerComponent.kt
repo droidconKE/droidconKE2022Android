@@ -17,12 +17,15 @@ package com.android254.presentation.speakers.view
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.border
+<<<<<<< HEAD
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+=======
+import androidx.compose.foundation.layout.*
+>>>>>>> d53c76f (clean up)
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.BottomAppBarDefaults.FloatingActionButtonElevation.elevation
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.OutlinedButton
@@ -52,8 +55,12 @@ import com.android254.presentation.models.Speaker
 @Composable
 fun SpeakerComponent(
     modifier: Modifier = Modifier,
+<<<<<<< HEAD
     speaker: Speaker
 
+=======
+    speaker: Speaker = Speaker(name = "ABC", bio = "A quick brown fox ...")
+>>>>>>> d53c76f (clean up)
 ) {
 
     Card(
@@ -111,7 +118,7 @@ fun SpeakerComponent(
                 style = TextStyle(
                     color = colorResource(id = R.color.grey),
                     fontSize = 14.sp,
-                    fontFamily = FontFamily(Font(R.font.montserrat_regular)),// Extract the fonts or get them from chai system
+                    fontFamily = FontFamily(Font(R.font.montserrat_regular)),
                 ),
                 modifier = modifier
                     .testTag("bio")
