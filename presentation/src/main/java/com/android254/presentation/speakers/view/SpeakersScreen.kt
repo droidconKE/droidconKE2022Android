@@ -25,7 +25,6 @@ import androidx.compose.material3.SmallTopAppBar
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -73,7 +72,6 @@ fun SpeakersScreen(speakersViewModel: SpeakerViewModel = hiltViewModel()) {
         }
     ) { paddingValues ->
         LazyVerticalGrid(
-
             columns = GridCells.Adaptive(160.dp),
             contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 80.dp, bottom = 16.dp)
         ) {
