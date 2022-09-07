@@ -82,7 +82,6 @@ fun SpeakerComponent(
                     .border(BorderStroke(2.5.dp, color = colorResource(id = R.color.cyan)))
                     .height(120.dp)
                     .width(120.dp)
-
                     .constrainAs(image) {
                         top.linkTo(parent.top)
                         start.linkTo(parent.start)

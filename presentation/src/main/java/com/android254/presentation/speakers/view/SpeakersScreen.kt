@@ -21,7 +21,6 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -64,15 +63,15 @@ fun SpeakersScreen(speakers: List<Speaker>) {
                 )
             )
         }
-    ) {paddingValues ->
+    ) { paddingValues ->
         LazyVerticalGrid(
-            columns =  GridCells.Adaptive(160.dp),
-        contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 80.dp, bottom = 16.dp)){
-           items(speakers){speaker ->
-               SpeakerComponent(speaker = speaker)
-           }
+            columns = GridCells.Adaptive(160.dp),
+            contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 80.dp, bottom = 16.dp)
+        ) {
+            items(speakers) { speaker ->
+                SpeakerComponent(speaker = speaker)
+            }
         }
-
     }
 }
 
