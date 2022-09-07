@@ -30,5 +30,5 @@ val bottomNavigationDestinations = listOf(
     Screens.Home,
     Screens.Feed,
     Screens.Sessions,
-    Screens.About,
+    Screens.About
 )

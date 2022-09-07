@@ -91,6 +91,7 @@ fun SpeakerComponent(
                     .border(BorderStroke(2.5.dp, color = colorResource(id = R.color.cyan)))
                     .height(120.dp)
                     .width(120.dp)
+<<<<<<< HEAD
                     .constrainAs(image) {
                         top.linkTo(parent.top)
                         start.linkTo(parent.start)
@@ -98,6 +99,10 @@ fun SpeakerComponent(
                     }
 
             )
+=======
+            )
+            Spacer(modifier = modifier.height(8.dp))
+>>>>>>> 8135b12 (fix lint issues)
             Text(
                 text = speaker.name,
                 style = TextStyle(
