@@ -21,10 +21,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-
-import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.BottomAppBarDefaults.FloatingActionButtonElevation.elevation
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.OutlinedButton
@@ -54,7 +51,7 @@ import com.android254.presentation.models.Speaker
 
 fun SpeakerComponent(
     modifier: Modifier = Modifier,
-    speaker: Speaker = Speaker(name = "ABC", bio = "A quick brown fox ....")
+    speaker: Speaker = Speaker(name = "ABC", bio = "A quick brown fox ...")
 ) {
     Card(
         modifier = modifier.padding(7.dp).height(350.dp),
@@ -110,7 +107,7 @@ fun SpeakerComponent(
                 style = TextStyle(
                     color = colorResource(id = R.color.grey),
                     fontSize = 14.sp,
-                    fontFamily = FontFamily(Font(R.font.montserrat_regular)),// Extract the fonts or get them from chai system
+                    fontFamily = FontFamily(Font(R.font.montserrat_regular)),
                 ),
                 modifier = modifier.constrainAs(bioText) {
                     top.linkTo(nameText.bottom, margin = 8.dp)
@@ -132,7 +129,6 @@ fun SpeakerComponent(
                 }
             ) {
                 Text(
-
                     text = stringResource(R.string.session_label),
                     color = colorResource(id = R.color.aqua),
                     fontFamily = FontFamily(Font(R.font.montserrat_semi_bold)),
