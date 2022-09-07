@@ -25,12 +25,12 @@ sealed class Screens(var route: String, @DrawableRes var icon: Int, var title: S
     object About : Screens("/about", R.drawable.about_icon, "About")
     object Login : Screens("/login", R.drawable.droidcon_icon, "Login")
     object SignUp : Screens("/signUp", R.drawable.droidcon_icon, "Sign Up")
-    object Speakers: Screens("/speakers", R.drawable.droidcon_icon, "Speakers")
+    object Speakers : Screens("/speakers", R.drawable.droidcon_icon, "Speakers")
 }
 
 val bottomNavigationDestinations = listOf(
     Screens.Home,
     Screens.Feed,
     Screens.Sessions,
-    Screens.About,
+    Screens.About
 )

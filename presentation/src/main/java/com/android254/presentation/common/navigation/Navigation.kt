@@ -78,7 +78,7 @@ fun Navigation(
                 }
             )
         }
-        composable(Screens.Speakers.route){
+        composable(Screens.Speakers.route) {
             upDataAppBarState(false)
             upDateBottomBarState(false)
             SpeakersScreen(speakers = speakersList)
