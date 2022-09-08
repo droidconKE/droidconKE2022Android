@@ -63,7 +63,7 @@ fun SpeakersScreen(speakers: List<Speaker>) {
         }
     ) { paddingValues ->
         LazyVerticalGrid(
-            columns = GridCells.Adaptive(160.dp),
+            columns = GridCells.Adaptive(180.dp),
             contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 80.dp, bottom = 16.dp)
         ) {
             items(speakers) { speaker ->
