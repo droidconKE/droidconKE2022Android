@@ -80,7 +80,7 @@ fun SpeakerComponent(
                     .border(BorderStroke(2.5.dp, color = colorResource(id = R.color.cyan)))
                     .height(120.dp)
                     .width(120.dp)
-                    .constrainAs(image){
+                    .constrainAs(image) {
                         top.linkTo(parent.top)
                         start.linkTo(parent.start)
                         end.linkTo(parent.end)
@@ -93,7 +93,7 @@ fun SpeakerComponent(
                     fontSize = 16.sp,
                     fontFamily = FontFamily(Font(R.font.montserrat_bold))
                 ),
-                modifier = modifier.constrainAs(nameText){
+                modifier = modifier.constrainAs(nameText) {
                     top.linkTo(image.bottom, margin = 8.dp)
                     start.linkTo(parent.start)
                     end.linkTo(parent.end)
@@ -106,7 +106,7 @@ fun SpeakerComponent(
                     fontSize = 14.sp,
                     fontFamily = FontFamily(Font(R.font.montserrat_regular)),
                 ),
-                modifier = modifier.constrainAs(bioText){
+                modifier = modifier.constrainAs(bioText) {
                     top.linkTo(nameText.bottom, margin = 8.dp)
                     start.linkTo(parent.start)
                     end.linkTo(parent.end)
@@ -120,7 +120,7 @@ fun SpeakerComponent(
                     width = 2.dp,
                     color = colorResource(id = R.color.aqua)
                 ),
-                modifier = modifier.constrainAs(button){
+                modifier = modifier.constrainAs(button) {
                     top.linkTo(parent.top, margin = 270.dp)
                     start.linkTo(parent.start)
                     end.linkTo(parent.end)
