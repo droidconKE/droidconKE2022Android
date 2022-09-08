@@ -28,21 +28,25 @@ import com.droidconke.chai.atoms.MontserratRegular
 import com.droidconke.chai.atoms.MontserratThin
 
 /**
- * CText:
- * Typography( From  is the art of arranging letters and text in a way that makes the copy legible,
+ * CType:
+ * Chai Typography - CType:
+ * Typography: Is the art of arranging letters and text in a way that makes the copy legible,
  * clear, and visually appealing to the reader.
  * It involves font style, appearance, and structure, which aims to elicit certain emotions and convey specific messages.
  * In short, typography is what brings the text to life.
  *
+ * In CType, what we do is construct text styles that would
  * This is a shorter approach where our theme will not require a specific font BUT will use CText as a file to construct
  * our text. this is a shorter approach for making a Design system type. For a longer version see this repo:
  * [KahawaLove](https://github.com/tamzi/KahawaLove).
  *
  *
+ *
  * */
 
 /**
- * Title based fonts
+ * Title based type:
+ *
  * */
 
 @Composable
@@ -144,7 +148,7 @@ fun CSubTopicRed(dSubTopic: String) {
 }
 
 /**
- * Explanation based fonts
+ * Explanation based type
  * */
 @Composable
 fun CHintBlack(dHint: String) {
@@ -163,7 +167,7 @@ fun CHintBlack(dHint: String) {
 
 
 /**
- * Button texts
+ * Button type
  * */
 @Composable
 fun CButtonBlack(cButtonBlack: String) {
@@ -236,7 +240,7 @@ fun CButtonWhite(cButtonWhite: String) {
 }
 
 /**
- * Flat Button texts
+ * Flat Button type
  * */
 @Composable
 fun CActionUnderlineRed(cActionRedText: String) {
@@ -269,7 +273,7 @@ fun CActionBlack(ActionBlackText: String) {
 
 
 /**
- * paragraph based fonts
+ * paragraph based type
  * */
 @Composable
 fun CParagraph(dParagraph: String) {
