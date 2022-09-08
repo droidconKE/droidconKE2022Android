@@ -30,7 +30,6 @@ sealed class Screens(var route: String, @DrawableRes var icon: Int, var title: S
 
 val bottomNavigationDestinations = listOf(
     Screens.Home,
-    Screens.Speakers,
     Screens.Feed,
     Screens.Sessions,
     Screens.About
