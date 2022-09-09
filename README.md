@@ -35,9 +35,8 @@ This layer will include;
 
 This layer will contain;
 
-1. The Usecase
-2. The repository
-3. The relevant domain models.
+1. The repository
+2. The relevant domain models.
 
 ### Presentation
 
