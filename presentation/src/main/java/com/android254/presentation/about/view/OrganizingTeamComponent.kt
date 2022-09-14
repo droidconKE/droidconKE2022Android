@@ -35,8 +35,7 @@ fun OrganizingTeamComponent(
 
     Column(
         modifier = modifier
-            .background(Color(0xFFFFFFFF))
-            .padding(2.dp),
+            .background(Color(0xFFFFFFFF)),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Image(
