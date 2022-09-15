@@ -46,13 +46,16 @@ import com.android254.presentation.models.organizingTeamMembers
 fun AboutScreen() {
 
     Column(Modifier) {
-        // AboutDroidConSection(droidconDesc = stringResource(id = R.string.about_droidcon))
+        AboutDroidConSection(droidconDesc = stringResource(id = R.string.about_droidcon))
 
         Spacer(modifier = Modifier.height(40.dp))
 
         OrganizingTeamSection(
             modifier = Modifier,
-            organizingTeam = organizingTeamMembers
+            organizingTeam = organizingTeamMembers,
+            onClickMember = {
+                // TODO navigate to team screen
+            }
         )
         Spacer(modifier = Modifier.height(40.dp))
 
@@ -113,6 +116,7 @@ fun AboutDroidConSection(
 fun OrganizingTeamSection(
     modifier: Modifier = Modifier,
     organizingTeam: List<OrganizingTeamMember>,
+    onClickMember: (Int) -> Unit,
 ) {
     Column(
         modifier = modifier
@@ -142,9 +146,8 @@ fun OrganizingTeamSection(
         ) {
             items(organizingTeam) { teamMember ->
                 OrganizingTeamComponent(
-                    imageDrawable = teamMember.image,
-                    teamMemberName = teamMember.name,
-                    teamMemberDesc = teamMember.desc
+                    teamMember = teamMember,
+                    onClickMember = onClickMember,
                 )
             }
         }

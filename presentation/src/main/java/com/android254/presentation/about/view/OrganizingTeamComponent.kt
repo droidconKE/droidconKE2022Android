@@ -1,9 +1,9 @@
 package com.android254.presentation.about.view
 
-import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
@@ -24,22 +24,25 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.android254.presentation.R
 import com.android254.presentation.common.theme.DroidconKE2022Theme
+import com.android254.presentation.models.OrganizingTeamMember
+import com.android254.presentation.models.organizingTeamMembers
 
 @Composable
 fun OrganizingTeamComponent(
     modifier: Modifier = Modifier,
-    @DrawableRes imageDrawable: Int,
-    teamMemberName: String,
-    teamMemberDesc: String,
+    teamMember: OrganizingTeamMember,
+    onClickMember: (Int) -> Unit,
 ) {
-
     Column(
         modifier = modifier
-            .background(Color(0xFFFFFFFF)),
+            .background(Color(0xFFFFFFFF))
+            .clickable(
+                onClick = { onClickMember(teamMember.id) }
+            ),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Image(
-            painter = painterResource(id = imageDrawable),
+            painter = painterResource(id = teamMember.image),
             contentDescription = "Member profile",
             contentScale = ContentScale.Crop,
             modifier = Modifier
@@ -52,7 +55,7 @@ fun OrganizingTeamComponent(
 
         Text(
             modifier = Modifier.fillMaxWidth(),
-            text = teamMemberName,
+            text = teamMember.name,
             style = TextStyle(
                 color = Color(0xFF191D1D),
                 fontWeight = FontWeight.Normal,
@@ -67,7 +70,7 @@ fun OrganizingTeamComponent(
 
         Text(
             modifier = Modifier.fillMaxWidth(),
-            text = teamMemberDesc,
+            text = teamMember.desc,
             style = TextStyle(
                 color = Color(0xFF707070),
                 fontWeight = FontWeight.Normal,
@@ -86,9 +89,8 @@ fun Preview() {
     DroidconKE2022Theme {
         OrganizingTeamComponent(
             modifier = Modifier,
-            imageDrawable = R.drawable.about_droidcon,
-            teamMemberName = "Marvin Collins",
-            teamMemberDesc = "Main man"
+            teamMember = organizingTeamMembers.first(),
+            onClickMember = {}
         )
     }
 }

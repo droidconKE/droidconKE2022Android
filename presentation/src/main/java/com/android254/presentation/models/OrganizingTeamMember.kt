@@ -4,6 +4,7 @@ import androidx.annotation.DrawableRes
 import com.android254.presentation.R
 
 data class OrganizingTeamMember(
+    val id: Int = 0,
     val name: String = "",
     val desc: String = "",
     @DrawableRes val image: Int,
