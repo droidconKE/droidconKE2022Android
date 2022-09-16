@@ -22,6 +22,10 @@ import androidx.compose.ui.graphics.Color
  */
 
 val ChaiBlue = Color(0xFF000CEB)
+val ChaiDarkBlue = Color(0xFF00036B)
+
+val ChaiLightBlue = Color(0xFFD8E2FF)
+
 val ChaiWhite = Color(0xFFFFFFFF)
 
 /**
@@ -29,6 +33,9 @@ val ChaiWhite = Color(0xFFFFFFFF)
  */
 
 val ChaiRed = Color(0xFFFF6E4D)
+val ChaiDeepRed = Color(0xFFBA1A1A)
+val ChaiLighterRed = Color(0xFFFFDAD6)
+val ChaiBrownRed = Color(0xFF410002)
 val ChaiTeal = Color(0xFF00e2c3)
 val ChaiFadedLime = Color(0xFF7de1c3)
 
@@ -51,34 +58,48 @@ val md_theme_light_primary = Color(0xFF005AC1)
 val md_theme_light_onPrimary = Color(0xFFFFFFFF)
 val md_theme_light_primaryContainer = Color(0xFFD8E2FF)
 val md_theme_light_onPrimaryContainer = Color(0xFF001A41)
+
 val md_theme_light_secondary = Color(0xFF535E78)
 val md_theme_light_onSecondary = Color(0xFFFFFFFF)
 val md_theme_light_secondaryContainer = Color(0xFFD8E2FF)
 val md_theme_light_onSecondaryContainer = Color(0xFF0F1B32)
+
 val md_theme_light_tertiary = Color(0xFF76517B)
 val md_theme_light_onTertiary = Color(0xFFFFFFFF)
 val md_theme_light_tertiaryContainer = Color(0xFFFED6FF)
 val md_theme_light_onTertiaryContainer = Color(0xFF2D0E34)
+
+
 val md_theme_light_error = Color(0xFFBA1A1A)
 val md_theme_light_onError = Color(0xFFFFFFFF)
 val md_theme_light_errorContainer = Color(0xFFFFDAD6)
 val md_theme_light_onErrorContainer = Color(0xFF410002)
+
+
 val md_theme_light_background = Color(0xFFFEFBFF)
 val md_theme_light_onBackground = Color(0xFF1B1B1F)
+
 val md_theme_light_surface = Color(0xFFFEFBFF)
 val md_theme_light_onSurface = Color(0xFF1B1B1F)
 val md_theme_light_surfaceVariant = Color(0xFFE1E2EC)
 val md_theme_light_onSurfaceVariant = Color(0xFF44474F)
+
 val md_theme_light_outline = Color(0xFF74777F)
+
 val md_theme_light_shadow = Color(0xFF000000)
+
 val md_theme_light_inverseSurface = Color(0xFF303033)
 val md_theme_light_inverseOnSurface = Color(0xFFF2F0F4)
 val md_theme_light_inversePrimary = Color(0xFFADC6FF)
+
 val md_theme_light_surfaceTint = Color(0xFF005AC1)
 val md_theme_light_surfaceTintColor = Color(0xFF005AC1)
+
 val md_theme_light_brandOrange = Color(0xFFFF6E4D)
 val md_theme_light_onBrandOrange = Color(0xFFFFFFFF)
 
+
+/*DARK*/
 val md_theme_dark_primary = Color(0xFFADC6FF)
 val md_theme_dark_onPrimary = Color(0xFF002E69)
 val md_theme_dark_primaryContainer = Color(0xFF004494)

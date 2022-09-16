@@ -40,24 +40,90 @@ import com.droidconke.chai.atoms.MontserratThin
  * our text. this is a shorter approach for making a Design system type. For a longer version see this repo:
  * [KahawaLove](https://github.com/tamzi/KahawaLove).
  *
- *
- *
+ * For usages:
+ *  -  Pass the relevant Type and add a string i.e
+ *  CPageTitleWhite("Some text here")
  * */
 
 /**
  * Title based type:
+ * 1. CPageTitle - Titkes
+ * 2. CSubtitleRed
  *
  * */
 
+/**
+ * Title:
+ * Used for page titles
+ * A good example of this is SignIn text on signIn/Feedback/team/speaker screen.
+ * Is white in color.
+ * USAGE:
+ *  CPageTitle("Chai Demo")
+ *
+ * */
 @Composable
-fun CPageTitle(pageTitle: String) {
+fun CPageTitleWhite(pageTitle: String) {
+    Text(
+        text = pageTitle,
+        style = TextStyle(
+            color = ChaiWhite,
+            fontSize = 18.sp,
+            fontWeight = FontWeight.W300,
+            fontFamily = MontserratRegular,
+        ),
+        modifier = Modifier.fillMaxWidth()
+    )
+}
+
+/**
+ * A black title version on screens
+ *
+ * */
+@Composable
+fun CPageTitleBlack(pageTitle: String) {
+    Text(
+        text = pageTitle,
+        style = TextStyle(
+            color = ChaiBlack,
+            fontSize = 18.sp,
+            fontFamily = MontserratRegular,
+        ),
+        modifier = Modifier.fillMaxWidth()
+    )
+}
+/**
+ * Title:
+ * A good example of this is filter title in filter screen.
+ *
+ * */
+@Composable
+fun CTitleBlue(pageTitle: String) {
     Text(
         text = pageTitle,
         style = TextStyle(
             color = ChaiBlue,
-            fontSize = 33.sp,
+            fontSize = 18.sp,
             fontWeight = FontWeight.W300,
-            fontFamily = MontserratThin,
+            fontFamily = MontserratRegular,
+        ),
+        modifier = Modifier.fillMaxWidth()
+    )
+}
+
+/**
+ * This is a title page for the
+ * A good example of this is filter title in filter screen.
+ *
+ * */
+@Composable
+fun CTitleWhite(pageTitle: String) {
+    Text(
+        text = pageTitle,
+        style = TextStyle(
+            color = ChaiWhite,
+            fontSize = 18.sp,
+            fontWeight = FontWeight.W300,
+            fontFamily = MontserratRegular,
         ),
         modifier = Modifier.fillMaxWidth()
     )

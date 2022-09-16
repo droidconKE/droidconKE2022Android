@@ -22,8 +22,8 @@ import com.droidconke.chai.R
 /**
  * Chai typography:
  * Consists of 2 files that work together:
- *  - CTypography(located ion the components package) and
- *  - CFont located in the atoms directory
+ *  - CType (located ion the components package) and
+ *  - CFont located in the atoms directory(This file)
  * Font:
  * Defines the font family types only here
  * We use val for the purpose of making it available in the entire application
@@ -33,12 +33,25 @@ import com.droidconke.chai.R
  *
  */
 
+/**
+ * Regular fonts
+ * */
 val MontserratRegular = FontFamily(Font(R.font.montserrat_regular))
+/**
+ * Regular fonts
+ * */
 val MontserratBold = FontFamily(Font(R.font.montserrat_bold))
 val MontserratSemiBold = FontFamily(Font(R.font.montserrat_semi_bold))
+/**
+ * Light fonts
+ * */
 val MontserratLight = FontFamily(Font(R.font.montserrat_light))
-val MontserratMedium = FontFamily(Font(R.font.montserrat_medium))
-
 val MontserratExtraLight = FontFamily(Font(R.font.montserrat_extra_light))
-
+/**
+ * Regular fonts
+ * */
+val MontserratMedium = FontFamily(Font(R.font.montserrat_medium))
+/**
+ * Thin fonts
+ * */
 val MontserratThin = FontFamily(Font(R.font.montserrat_thin))

@@ -25,7 +25,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.droidconke.chai.ChaiDCKE22Theme
 import com.droidconke.chai.atoms.ChaiWhite
-import com.droidconke.chai.components.CPageTitle
+import com.droidconke.chai.components.CPageTitleBlack
 import com.droidconke.chai.components.CParagraph
 import com.droidconke.chai.components.CSubtitleRed
 import com.droidconke.chai.utils.BreathingSpace13
@@ -44,7 +44,7 @@ fun TextScreen() {
                 .padding(horizontal = 13.dp, vertical = 5.dp)
         ) {
             BreathingSpace26()
-            CPageTitle("Welcome Message")
+            CPageTitleBlack("Text Screen Demo")
             SeparatorSpace()
             CSubtitleRed("dcke 2022 welcome remarks as subtitle")
             SeparatorSpace()
