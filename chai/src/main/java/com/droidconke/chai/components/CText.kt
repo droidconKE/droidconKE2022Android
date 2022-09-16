@@ -100,3 +100,8 @@ fun CActionText(cAction: String) {
         modifier = Modifier.fillMaxWidth()
     )
 }
+
+@Composable
+internal fun ChaiText(modifier:Modifier=Modifier,text:String,singleLine:Boolean=true){
+
+}
