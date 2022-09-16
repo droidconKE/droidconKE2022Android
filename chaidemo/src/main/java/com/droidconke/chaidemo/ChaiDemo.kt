@@ -22,6 +22,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.droidconke.chai.ChaiDCKE22Theme
+import com.droidconke.chai.atoms.ChaiColor
 import com.droidconke.chai.atoms.ChaiWhite
 import com.droidconke.chai.components.*
 import com.droidconke.chai.utils.BreathingSpace13
@@ -35,7 +36,7 @@ fun ChaiDemo() {
         Column(
             Modifier
                 .fillMaxSize()
-                .background(color = ChaiWhite)
+                .background(color = ChaiColor.ChaiWhite.value)
                 .padding(horizontal = 13.dp, vertical = 5.dp)
         ) {
             BreathingSpace26()

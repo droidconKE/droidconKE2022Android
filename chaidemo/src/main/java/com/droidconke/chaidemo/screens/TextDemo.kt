@@ -28,9 +28,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.droidconke.chai.ChaiDCKE22Theme
+import com.droidconke.chai.atoms.ChaiColor
 import com.droidconke.chai.atoms.ChaiWhite
 import com.droidconke.chai.components.*
 import com.droidconke.chai.icons.ChaiIcon
+import com.droidconke.chai.images.ChaiImage
 import com.droidconke.chai.utils.BreathingSpace13
 import com.droidconke.chai.utils.BreathingSpace26
 import com.droidconke.chai.utils.SeparatorSpace
@@ -53,7 +55,9 @@ fun TextScreen() {
             SeparatorSpace()
             ChaiParagraph(text="Welcome to droidconKE 2022. Lorem something something")
             BreathingSpace13()
-            IconButton(onClick = { /*TODO*/ }) { Icon(painter = painterResource(id = ChaiIcon.FeedIcon.drawableId), contentDescription = null)}
+            ChaiImage(modifier=Modifier,icon=ChaiIcon.FeedIcon,tint = ChaiColor.ChaiDarkGrey)
+            BreathingSpace13()
+            IconButton(onClick = {  }) { Icon(painter = painterResource(id = ChaiIcon.FeedIcon.drawableId), contentDescription = null)}
         }
     }
 }

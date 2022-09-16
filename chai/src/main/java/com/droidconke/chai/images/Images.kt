@@ -37,12 +37,13 @@ import com.droidconke.chai.modifier.chaiClickable
  */
 @Composable
 @NonRestartableComposable
-fun ChaiImage(icon:ChaiIcon?,
+fun ChaiImage(modifier: Modifier=Modifier,
+              icon:ChaiIcon?,
               tint:ChaiColor?=null,
               contentDescription:String?=null,
               rippleEnabled:Boolean=true,onClick:(()->Unit)?=null){
     if (icon==null) return
-    Image(modifier = Modifier.chaiClickable(rippleEnabled=rippleEnabled,
+    Image(modifier = modifier.chaiClickable(rippleEnabled=rippleEnabled,
         onClick = onClick),
         painter =painterResource(id = icon.drawableId),
         contentDescription =contentDescription,
