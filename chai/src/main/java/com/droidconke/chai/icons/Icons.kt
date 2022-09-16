@@ -14,3 +14,32 @@
  * limitations under the License.
  */
 package com.droidconke.chai.icons
+
+import androidx.annotation.DrawableRes
+import androidx.compose.runtime.Immutable
+import androidx.compose.runtime.Stable
+import com.droidconke.chai.R
+
+/**
+ * An abstraction that defines the icons to be used instead of
+ * accessing icon resources directly
+ * @param drawableId icon drawable resource id
+ */
+@Immutable
+@JvmInline
+value class ChaiIcon private constructor(@DrawableRes val drawableId:Int){
+    companion object{
+       @Stable
+        val About = ChaiIcon(drawableId = R.drawable.about_icon)
+        @Stable
+        val FeedIcon = ChaiIcon(drawableId = R.drawable.feed_icon)
+        @Stable
+        val HomeIcon = ChaiIcon(drawableId = R.drawable.home_icon)
+        @Stable
+        val SessionsIcon = ChaiIcon(drawableId = R.drawable.sessions_icon)
+        @Stable
+        val BackArrow = ChaiIcon(drawableId = R.drawable.ic_back_arrow)
+        @Stable
+        val GoogleIcon = ChaiIcon(drawableId = R.drawable.ic_google_logo_icon)
+    }
+}

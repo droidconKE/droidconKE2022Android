@@ -57,6 +57,7 @@ val ChaiBlack = Color(0xFF000000)
  * A normal class, instead of data class, is used to prevent changing of the colors via copy
  * as that would lead to breaking of the intended app design system
  * Note: The color definition ought to be in Hex Color format
+ * * Example usage see ChaiDemo
  * @param value the color value given by the client, the value is of a type [Color]
  */
 @Immutable // since we are using an internal constructor, values read from [ChaiColor] won't change after an instance is constructed

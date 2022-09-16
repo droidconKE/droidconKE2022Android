@@ -18,11 +18,14 @@ package com.droidconke.chai.components
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
-import com.droidconke.chai.atoms.*
+import com.droidconke.chai.atoms.ChaiBlack
+import com.droidconke.chai.atoms.ChaiBlue
+import com.droidconke.chai.atoms.ChaiRed
 import com.droidconke.chai.atoms.type.MontserratRegular
 import com.droidconke.chai.atoms.type.MontserratThin
 
@@ -38,6 +41,27 @@ import com.droidconke.chai.atoms.type.MontserratThin
  * [KahawaLove](https://github.com/tamzi/KahawaLove)
  *
  * */
+
+/**
+ * Basic Text Construct, that adheres to the app's design system,
+ * which is to be used by clients whenever they need
+ * a text component in their composables
+ * @param modifier modifier to be applied to the text component
+ * @param style ChaiTextStyle design to be applied, note the design includes
+ * the font-family+weight, color, and text size
+ * @param singleLine whether this text is a single line
+ */
+@Composable
+internal fun ChaiText(modifier: Modifier=Modifier,text:String,
+style: ChaiTextStyle,singleLine:Boolean=true){
+    val styleAnimationState by animateChaiTextStyleAsState(targetValue = style)
+    Text(text = text, style = styleAnimationState.asComposedStyle(),
+    modifier = modifier, maxLines = when(singleLine){
+        true->1
+        else->Int.MAX_VALUE
+    })
+}
+
 
 /**
  * Title based fonts
@@ -101,7 +125,4 @@ fun CActionText(cAction: String) {
     )
 }
 
-@Composable
-internal fun ChaiText(modifier:Modifier=Modifier,text:String,singleLine:Boolean=true){
 
-}
