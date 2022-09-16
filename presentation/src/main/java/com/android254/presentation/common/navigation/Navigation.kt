@@ -32,31 +32,31 @@ import com.android254.presentation.sessions.view.SessionsScreen
 fun Navigation(
     navController: NavHostController,
     upDateBottomBarState: (Boolean) -> Unit,
-    upDataAppBarState: (Boolean) -> Unit
+    upDateAppBarState: (Boolean) -> Unit
 ) {
     NavHost(navController, startDestination = Screens.Home.route) {
         composable(Screens.Home.route) {
-            upDataAppBarState(true)
+            upDateAppBarState(true)
             upDateBottomBarState(true)
             HomeScreen()
         }
         composable(Screens.Sessions.route) {
-            upDataAppBarState(true)
+            upDateAppBarState(true)
             upDateBottomBarState(true)
             SessionsScreen()
         }
         composable(Screens.Feed.route) {
-            upDataAppBarState(true)
+            upDateAppBarState(true)
             upDateBottomBarState(true)
             FeedScreen()
         }
         composable(Screens.About.route) {
-            upDataAppBarState(true)
+            upDateAppBarState(false)
             upDateBottomBarState(true)
             AboutScreen()
         }
         composable(Screens.Login.route) {
-            upDataAppBarState(false)
+            upDateAppBarState(false)
             upDateBottomBarState(false)
             val viewModel = hiltViewModel<AuthViewModel>()
             LoginScreen(
@@ -68,7 +68,7 @@ fun Navigation(
             )
         }
         composable(Screens.SignUp.route) {
-            upDataAppBarState(false)
+            upDateAppBarState(false)
             upDateBottomBarState(false)
             SignUpScreen(
                 navigateToLogin = {

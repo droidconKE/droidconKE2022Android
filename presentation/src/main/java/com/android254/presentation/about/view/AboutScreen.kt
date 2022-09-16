@@ -22,6 +22,7 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -38,6 +39,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.android254.presentation.R
+import com.android254.presentation.common.components.DroidconAppBarWithFeedbackButton
 import com.android254.presentation.common.theme.DroidconKE2022Theme
 import com.android254.presentation.models.OrganizingTeamMember
 import com.android254.presentation.models.organizingTeamMembers
@@ -45,21 +47,32 @@ import com.android254.presentation.models.organizingTeamMembers
 @Composable
 fun AboutScreen() {
 
-    Column(Modifier) {
-        AboutDroidConSection(droidconDesc = stringResource(id = R.string.about_droidcon))
+    Scaffold(
+        topBar = {
+            DroidconAppBarWithFeedbackButton(
+                onButtonClick = {
+                    // TODO navigate to feedbackScreen
+                }
+            )
+        }
+    ) { paddingValues ->
 
-        Spacer(modifier = Modifier.height(40.dp))
+        Column(Modifier.padding(paddingValues)) {
+            AboutDroidConSection(droidconDesc = stringResource(id = R.string.about_droidcon))
 
-        OrganizingTeamSection(
-            modifier = Modifier,
-            organizingTeam = organizingTeamMembers,
-            onClickMember = {
-                // TODO navigate to team screen
-            }
-        )
-        Spacer(modifier = Modifier.height(40.dp))
+            Spacer(modifier = Modifier.height(40.dp))
 
-        OrganizingStakeHoldersSection(organizationLogos = stakeHolderLogos)
+            OrganizingTeamSection(
+                modifier = Modifier,
+                organizingTeam = organizingTeamMembers,
+                onClickMember = {
+                    // TODO navigate to team screen
+                }
+            )
+            Spacer(modifier = Modifier.height(40.dp))
+
+            OrganizingStakeHoldersSection(organizationLogos = stakeHolderLogos)
+        }
     }
 }
 
@@ -70,7 +83,7 @@ fun AboutDroidConSection(
 ) {
     Column(
         modifier = modifier
-            .background(Color(0xFFFFFFFF))
+
     ) {
 
         Image(
@@ -120,7 +133,6 @@ fun OrganizingTeamSection(
 ) {
     Column(
         modifier = modifier
-            .background(Color(0xFFFFFFFF))
             .padding(start = 20.dp, end = 20.dp)
     ) {
 
