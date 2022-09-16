@@ -45,7 +45,7 @@ fun TextScreen() {
         Column(
             Modifier
                 .fillMaxSize()
-                .background(color = ChaiWhite)
+                .background(color = ChaiColor.ChaiWhite.value)
                 .padding(horizontal = 13.dp, vertical = 5.dp)
         ) {
             BreathingSpace26()

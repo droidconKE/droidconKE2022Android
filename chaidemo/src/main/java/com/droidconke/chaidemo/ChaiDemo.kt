@@ -23,7 +23,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.droidconke.chai.ChaiDCKE22Theme
 import com.droidconke.chai.atoms.ChaiColor
-import com.droidconke.chai.atoms.ChaiWhite
 import com.droidconke.chai.components.*
 import com.droidconke.chai.utils.BreathingSpace13
 import com.droidconke.chai.utils.BreathingSpace26
