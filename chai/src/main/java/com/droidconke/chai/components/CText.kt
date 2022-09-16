@@ -85,6 +85,7 @@ internal fun AnimatedChaiText(modifier: Modifier=Modifier,
  * */
 
 @Composable
+//directly calls another composable thus we need to tell compiler to skip this during recomposition
 @NonRestartableComposable
 fun ChaiParagraph(modifier: Modifier=Modifier,
                       text:String,
