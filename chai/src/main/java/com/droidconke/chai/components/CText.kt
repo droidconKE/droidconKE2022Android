@@ -15,19 +15,13 @@
  */
 package com.droidconke.chai.components
 
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.sp
-import com.droidconke.chai.atoms.ChaiBlack
-import com.droidconke.chai.atoms.ChaiBlue
-import com.droidconke.chai.atoms.ChaiRed
-import com.droidconke.chai.atoms.type.MontserratRegular
-import com.droidconke.chai.atoms.type.MontserratThin
+import com.droidconke.chai.atoms.ChaiColor
+import com.droidconke.chai.utils.AnimateContentChange
 
 /**
  * CText:
@@ -41,6 +35,8 @@ import com.droidconke.chai.atoms.type.MontserratThin
  * [KahawaLove](https://github.com/tamzi/KahawaLove)
  *
  * */
+
+
 
 /**
  * Basic Text Construct, that adheres to the app's design system,
@@ -61,68 +57,114 @@ style: ChaiTextStyle,singleLine:Boolean=true){
         else->Int.MAX_VALUE
     })
 }
+/**
+ * Basic Text Construct that construct an animated text, and adheres to the app's design system,
+ * This is to be used by clients whenever they need a text component in their composables
+ * @param modifier modifier to be applied to the text component
+ * @param style ChaiTextStyle design to be applied, note the design includes
+ * the font-family+weight, color, and text size
+ * @param singleLine whether this text is a single line
+ */
+@Composable
+internal fun AnimatedChaiText(modifier: Modifier=Modifier,
+                              text: String,
+                              style: ChaiTextStyle,
+                              singleLine: Boolean=true){
+    val styleAnimationState by animateChaiTextStyleAsState(targetValue = style)
+    AnimateContentChange(targetState = text, modifier = modifier) {animatedText->
+        Text(text = animatedText, style = styleAnimationState.asComposedStyle(),maxLines = when(singleLine){
+                true->1
+                else->Int.MAX_VALUE
+            })
+    }
+}
 
 
 /**
  * Title based fonts
  * */
-@Composable
-fun CParagraph(dParagraph: String) {
-    Text(
-        text = dParagraph,
-        style = TextStyle(
-            color = ChaiBlack,
-            fontSize = 12.sp,
-            fontWeight = FontWeight.W500,
-            fontFamily = MontserratRegular,
-        ),
-        modifier = Modifier.fillMaxWidth()
-    )
-}
 
 @Composable
-fun CPageTitle(pageTitle: String) {
-    Text(
-        text = pageTitle,
-        style = TextStyle(
-            color = ChaiBlue,
-            fontSize = 33.sp,
-            fontWeight = FontWeight.W300,
-            fontFamily = MontserratThin,
-
-        ),
-        modifier = Modifier.fillMaxWidth()
-    )
-}
+@NonRestartableComposable
+fun ChaiParagraph(modifier: Modifier=Modifier,
+                      text:String,
+                      color: ChaiColor = ChaiColor.ChaiBlack)= ChaiText(
+    modifier=modifier,
+    text = text,
+    style = ChaiTextStyle.CParagraphStyle.change(color=color)
+)
 
 @Composable
-fun CSubtitle(dSubtitle: String) {
-    Text(
-        text = dSubtitle,
-        style = TextStyle(
-            color = ChaiRed,
-            fontSize = 15.sp,
-            fontWeight = FontWeight.W700,
-            fontFamily = MontserratRegular,
-
-        ),
-        modifier = Modifier.fillMaxWidth()
-    )
-}
+@NonRestartableComposable
+fun ChaiPageTitle(modifier:Modifier=Modifier,
+                  text: String,
+                  color: ChaiColor = ChaiColor.ChaiCoal) = AnimatedChaiText(
+    text = text,
+    modifier=modifier,
+    style = ChaiTextStyle.CPageTitleStyle.change(color=color))
 
 @Composable
-fun CActionText(cAction: String) {
-    Text(
-        text = cAction,
-        style = TextStyle(
-            color = ChaiRed,
-            fontSize = 15.sp,
-            fontWeight = FontWeight.W700,
-            fontFamily = MontserratRegular,
+@NonRestartableComposable
+fun ChaiSubtitle(modifier: Modifier=Modifier,text: String,color: ChaiColor= ChaiColor.ChaiBlack) =
+     ChaiText(text = text, modifier = modifier, style= ChaiTextStyle.CSubtitleStyle.change(color=color) )
 
-        ),
-        modifier = Modifier.fillMaxWidth()
-    )
-}
+//@Composable
+//fun CParagraph(dParagraph: String) {
+//    Text(
+//        text = dParagraph,
+//        style = TextStyle(
+//            color = ChaiBlack,
+//            fontSize = 12.sp,
+//            fontWeight = FontWeight.W500,
+//            fontFamily = MontserratRegular,
+//        ),
+//        modifier = Modifier.fillMaxWidth()
+//    )
+//}
+//
+//@Composable
+//fun CPageTitle(pageTitle: String) {
+//    Text(
+//        text = pageTitle,
+//        style = TextStyle(
+//            color = ChaiBlue,
+//            fontSize = 33.sp,
+//            fontWeight = FontWeight.W300,
+//            fontFamily = MontserratThin,
+//
+//        ),
+//        modifier = Modifier.fillMaxWidth()
+//    )
+//}
+//
+//@Composable
+//fun CSubtitle(dSubtitle: String) {
+//    Text(
+//        text = dSubtitle,
+//        style = TextStyle(
+//            color = ChaiRed,
+//            fontSize = 15.sp,
+//            fontWeight = FontWeight.W700,
+//            fontFamily = MontserratRegular,
+//
+//        ),
+//        modifier = Modifier.fillMaxWidth()
+//    )
+//}
+//
+//@Composable
+//fun CActionText(cAction: String) {
+//    Text(
+//        text = cAction,
+//        style = TextStyle(
+//            color = ChaiRed,
+//            fontSize = 15.sp,
+//            fontWeight = FontWeight.W700,
+//            fontFamily = MontserratRegular,
+//
+//        ),
+//        modifier = Modifier.fillMaxWidth()
+//    )
+//}
 
 

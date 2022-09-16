@@ -14,3 +14,39 @@
  * limitations under the License.
  */
 package com.droidconke.chai.images
+
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.NonRestartableComposable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.res.painterResource
+import com.droidconke.chai.atoms.ChaiColor
+import com.droidconke.chai.icons.ChaiIcon
+import com.droidconke.chai.modifier.chaiClickable
+
+/**
+ * An image component that uses icons
+ *
+ * @param icon to be used which is a drawable
+ * @param tint tint color to be applied to the icon
+ * @param contentDescription content description of the icon
+ * @param rippleEnabled whether ripple animation is enabled
+ * @param onClick on click listener attached to this image component
+ */
+@Composable
+@NonRestartableComposable
+fun ChaiImage(icon:ChaiIcon?,
+              tint:ChaiColor?=null,
+              contentDescription:String?=null,
+              rippleEnabled:Boolean=true,onClick:(()->Unit)?=null){
+    if (icon==null) return
+    Image(modifier = Modifier.chaiClickable(rippleEnabled=rippleEnabled,
+        onClick = onClick),
+        painter =painterResource(id = icon.drawableId),
+        contentDescription =contentDescription,
+    colorFilter = tint.toColorFilter())
+}
+
+private fun ChaiColor?.toColorFilter() = this?.run { ColorFilter.tint(color=value) }

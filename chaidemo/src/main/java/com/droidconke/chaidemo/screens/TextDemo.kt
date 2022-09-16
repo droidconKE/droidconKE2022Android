@@ -19,15 +19,18 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.droidconke.chai.ChaiDCKE22Theme
 import com.droidconke.chai.atoms.ChaiWhite
-import com.droidconke.chai.components.CPageTitle
-import com.droidconke.chai.components.CParagraph
-import com.droidconke.chai.components.CSubtitle
+import com.droidconke.chai.components.*
+import com.droidconke.chai.icons.ChaiIcon
 import com.droidconke.chai.utils.BreathingSpace13
 import com.droidconke.chai.utils.BreathingSpace26
 import com.droidconke.chai.utils.SeparatorSpace
@@ -44,12 +47,13 @@ fun TextScreen() {
                 .padding(horizontal = 13.dp, vertical = 5.dp)
         ) {
             BreathingSpace26()
-            CPageTitle("Welcome Message")
+            ChaiPageTitle(text="Welcome Message")
             SeparatorSpace()
-            CSubtitle("dcke 2022 welcome remarks as subtitle")
+            ChaiSubtitle(text="dcke 2022 welcome remarks as subtitle")
             SeparatorSpace()
-            CParagraph("Welcome to droidconKE 2022. Lorem something something")
+            ChaiParagraph(text="Welcome to droidconKE 2022. Lorem something something")
             BreathingSpace13()
+            IconButton(onClick = { /*TODO*/ }) { Icon(painter = painterResource(id = ChaiIcon.FeedIcon.drawableId), contentDescription = null)}
         }
     }
 }

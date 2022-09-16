@@ -39,11 +39,11 @@ fun ChaiDemo() {
                 .padding(horizontal = 13.dp, vertical = 5.dp)
         ) {
             BreathingSpace26()
-            CPageTitle("Chai Demo")
+            ChaiPageTitle(text ="Chai Demo" )
             SeparatorSpace()
-            CSubtitle("A catalog of the chai design system elements")
+            ChaiSubtitle(text="A catalog of the chai design system elements")
             SeparatorSpace()
-            CParagraph("Check the code that is with each view")
+            ChaiParagraph(text="Check the code that is with each view")
             BreathingSpace13()
         }
     }

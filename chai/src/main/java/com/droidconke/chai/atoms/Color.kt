@@ -111,7 +111,7 @@ value class ChaiColor internal constructor(val value:Color){
          * of colors that can be created by combining the three pigments
          * To convert one color to the other, a mapping of these color spaces is needed
          * from [xyz] plane to another [xyz] plane.
-         * for comprehensive explanation see [explanation] (https://en.wikipedia.org/wiki/Color_space)
+         * for comprehensive explanation see [full_explanation] (https://en.wikipedia.org/wiki/Color_space)
          * note: adapted from aosp
          */
         private fun multiplyColumn(column:Int,x:Float,y:Float,
@@ -268,7 +268,7 @@ private fun <T>AnimationSpec<T>.toColorSpec():AnimationSpec<T>{
     delayMillis = tweenSpec.delay,easing=tweenSpec.easing)
 }
 /**
- * This is supposed to be used to animate [ChaiColor] changes
+ * Animates [ChaiColor] changes from one color to the other
  * @param targetValue an instance of [ChaiColor]
  * @param animationSpec animationSpec to be used when color change is detected/happens
  * @return state object of type [ChaiColor]
