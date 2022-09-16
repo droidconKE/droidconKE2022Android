@@ -19,14 +19,22 @@ private fun <T> State<T>.toFlow() = snapshotFlow { this }
  * @return an animated state which is an instance ChaiDesign wrapped in [State]
  */
 @Composable
-internal inline fun <T> animateChaiAsState(initialValue:T,animationStates:List<State<*>>,
-                                           crossinline targetBuilder:(animatedValues:List<Any>)->T):State<T>{
-    val animationFlows:List<Flow<*>> = animationStates.map(State<*>::toFlow)
+internal inline fun <T> animateChaiAsState(
+    initialValue: T,
+    animationStates: List<State<*>>,
+    crossinline targetBuilder: (animatedValues: List<Any>) -> T
+): State<T> {
+    val animationFlows: List<Flow<*>> = animationStates.map(State<*>::toFlow)
     // (combine scales linearly; find a better option probably)?
-    return combine(flows=animationFlows){_animationFlows->
-        targetBuilder(_animationFlows.mapIndexed { index, flow -> (flow as State<*>).value ?:
-        throw NullPointerException("animation of the individual element at index $index of type " +
-                "is null hence cannot be animated")})
+    return combine(flows = animationFlows) { _animationFlows ->
+        targetBuilder(
+            _animationFlows.mapIndexed { index, flow ->
+                (flow as State<*>).value
+                    ?: throw NullPointerException(
+                        "animation of the individual element at index $index of type " +
+                            "is null hence cannot be animated"
+                    )
+            }
+        )
     }.collectAsState(initial = initialValue)
-
 }

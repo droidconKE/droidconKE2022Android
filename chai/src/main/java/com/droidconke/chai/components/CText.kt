@@ -36,8 +36,6 @@ import com.droidconke.chai.utils.AnimateContentChange
  *
  * */
 
-
-
 /**
  * Basic Text Construct, that adheres to the app's design system,
  * which is to be used by clients whenever they need
@@ -48,14 +46,21 @@ import com.droidconke.chai.utils.AnimateContentChange
  * @param singleLine whether this text is a single line
  */
 @Composable
-internal fun ChaiText(modifier: Modifier=Modifier,text:String,
-style: ChaiTextStyle,singleLine:Boolean=true){
+internal fun ChaiText(
+    modifier: Modifier = Modifier,
+    text: String,
+    style: ChaiTextStyle,
+    singleLine: Boolean = true
+) {
     val styleAnimationState by animateChaiTextStyleAsState(targetValue = style)
-    Text(text = text, style = styleAnimationState.asComposedStyle(),
-    modifier = modifier, maxLines = when(singleLine){
-        true->1
-        else->Int.MAX_VALUE
-    })
+    Text(
+        text = text, style = styleAnimationState.asComposedStyle(),
+        modifier = modifier,
+        maxLines = when (singleLine) {
+            true -> 1
+            else -> Int.MAX_VALUE
+        }
+    )
 }
 /**
  * Basic Text Construct that construct an animated text, and adheres to the app's design system,
@@ -66,51 +71,60 @@ style: ChaiTextStyle,singleLine:Boolean=true){
  * @param singleLine whether this text is a single line
  */
 @Composable
-internal fun AnimatedChaiText(modifier: Modifier=Modifier,
-                              text: String,
-                              style: ChaiTextStyle,
-                              singleLine: Boolean=true){
+internal fun AnimatedChaiText(
+    modifier: Modifier = Modifier,
+    text: String,
+    style: ChaiTextStyle,
+    singleLine: Boolean = true
+) {
     val styleAnimationState by animateChaiTextStyleAsState(targetValue = style)
-    AnimateContentChange(targetState = text, modifier = modifier) {animatedText->
-        Text(text = animatedText, style = styleAnimationState.asComposedStyle(),maxLines = when(singleLine){
-                true->1
-                else->Int.MAX_VALUE
-            })
+    AnimateContentChange(targetState = text, modifier = modifier) { animatedText ->
+        Text(
+            text = animatedText, style = styleAnimationState.asComposedStyle(),
+            maxLines = when (singleLine) {
+                true -> 1
+                else -> Int.MAX_VALUE
+            }
+        )
     }
 }
-
 
 /**
  * Title based fonts
  * */
 
 @Composable
-//directly calls another composable thus we need to tell compiler to skip this during recomposition
+// directly calls another composable thus we need to tell compiler to skip this during recomposition
 @NonRestartableComposable
-fun ChaiParagraph(modifier: Modifier=Modifier,
-                      text:String,
-                      color: ChaiColor = ChaiColor.ChaiBlack)= ChaiText(
-    modifier=modifier,
+fun ChaiParagraph(
+    modifier: Modifier = Modifier,
+    text: String,
+    color: ChaiColor = ChaiColor.ChaiBlack
+) = ChaiText(
+    modifier = modifier,
     text = text,
-    style = ChaiTextStyle.CParagraphStyle.change(color=color)
+    style = ChaiTextStyle.CParagraphStyle.change(color = color)
 )
 
 @Composable
 @NonRestartableComposable
-fun ChaiPageTitle(modifier:Modifier=Modifier,
-                  text: String,
-                  color: ChaiColor = ChaiColor.ChaiCoal) = AnimatedChaiText(
+fun ChaiPageTitle(
+    modifier: Modifier = Modifier,
+    text: String,
+    color: ChaiColor = ChaiColor.ChaiCoal
+) = AnimatedChaiText(
     text = text,
-    modifier=modifier,
-    style = ChaiTextStyle.CPageTitleStyle.change(color=color))
+    modifier = modifier,
+    style = ChaiTextStyle.CPageTitleStyle.change(color = color)
+)
 
 @Composable
 @NonRestartableComposable
-fun ChaiSubtitle(modifier: Modifier=Modifier,text: String,color: ChaiColor= ChaiColor.ChaiBlack) =
-     ChaiText(text = text, modifier = modifier, style= ChaiTextStyle.CSubtitleStyle.change(color=color) )
+fun ChaiSubtitle(modifier: Modifier = Modifier, text: String, color: ChaiColor = ChaiColor.ChaiBlack) =
+    ChaiText(text = text, modifier = modifier, style = ChaiTextStyle.CSubtitleStyle.change(color = color))
 
-//@Composable
-//fun CParagraph(dParagraph: String) {
+// @Composable
+// fun CParagraph(dParagraph: String) {
 //    Text(
 //        text = dParagraph,
 //        style = TextStyle(
@@ -121,10 +135,10 @@ fun ChaiSubtitle(modifier: Modifier=Modifier,text: String,color: ChaiColor= Chai
 //        ),
 //        modifier = Modifier.fillMaxWidth()
 //    )
-//}
+// }
 //
-//@Composable
-//fun CPageTitle(pageTitle: String) {
+// @Composable
+// fun CPageTitle(pageTitle: String) {
 //    Text(
 //        text = pageTitle,
 //        style = TextStyle(
@@ -136,10 +150,10 @@ fun ChaiSubtitle(modifier: Modifier=Modifier,text: String,color: ChaiColor= Chai
 //        ),
 //        modifier = Modifier.fillMaxWidth()
 //    )
-//}
+// }
 //
-//@Composable
-//fun CSubtitle(dSubtitle: String) {
+// @Composable
+// fun CSubtitle(dSubtitle: String) {
 //    Text(
 //        text = dSubtitle,
 //        style = TextStyle(
@@ -151,10 +165,10 @@ fun ChaiSubtitle(modifier: Modifier=Modifier,text: String,color: ChaiColor= Chai
 //        ),
 //        modifier = Modifier.fillMaxWidth()
 //    )
-//}
+// }
 //
-//@Composable
-//fun CActionText(cAction: String) {
+// @Composable
+// fun CActionText(cAction: String) {
 //    Text(
 //        text = cAction,
 //        style = TextStyle(
@@ -166,6 +180,4 @@ fun ChaiSubtitle(modifier: Modifier=Modifier,text: String,color: ChaiColor= Chai
 //        ),
 //        modifier = Modifier.fillMaxWidth()
 //    )
-//}
-
-
+// }

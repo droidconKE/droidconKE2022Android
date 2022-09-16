@@ -62,15 +62,15 @@ val ChaiBlack = Color(0xFF000000)
  */
 @Immutable // since we are using an internal constructor, values read from [ChaiColor] won't change after an instance is constructed
 @JvmInline
-value class ChaiColor internal constructor(val value:Color){
+value class ChaiColor internal constructor(val value: Color) {
     /**
      * Changes the alpha of the ChaiColor
      * @param alpha alpha in form float to be applied to current ChaiColor
      * @return an instance of ChaiColor with modified alpha value
      */
-    fun changeAlpha(alpha:Float) = ChaiColor(value.copy(alpha=alpha))
+    fun changeAlpha(alpha: Float) = ChaiColor(value.copy(alpha = alpha))
 
-    companion object{
+    companion object {
         // should not be used in real components but,
         // can be used as a base value for ChaiColor
         @Stable
@@ -78,31 +78,31 @@ value class ChaiColor internal constructor(val value:Color){
 
         /* these are the Primary colours from Chai's Design spec document*/
         @Stable
-        val ChaiBlue = ChaiColor(value=Color(0xFF000CEB))
+        val ChaiBlue = ChaiColor(value = Color(0xFF000CEB))
         @Stable
         val ChaiWhite = ChaiColor(value = Color(0xFFFFFFFF))
 
         /* these are the Secondary colours from Chai's Design spec document */
         @Stable
-        val ChaiRed = ChaiColor(value=Color(0xFFFF6E4D))
+        val ChaiRed = ChaiColor(value = Color(0xFFFF6E4D))
         @Stable
-        val ChaiTeal = ChaiColor(value=Color(0xFF00e2c3))
+        val ChaiTeal = ChaiColor(value = Color(0xFF00e2c3))
         @Stable
-        val ChaiFadedLime = ChaiColor(value=Color(0xFF7de1c3))
+        val ChaiFadedLime = ChaiColor(value = Color(0xFF7de1c3))
 
         /* these are the Neutrals from the Chai's Design spec document */
         @Stable
-        val ChaiLightGrey = ChaiColor(value=Color(0xFFF5F5F5))
+        val ChaiLightGrey = ChaiColor(value = Color(0xFFF5F5F5))
         @Stable
-        val ChaiGrey = ChaiColor(value=Color(0xFFB1B1B1))
+        val ChaiGrey = ChaiColor(value = Color(0xFFB1B1B1))
         @Stable
-        val ChaiDarkGrey = ChaiColor(value=Color(0xFF5A5A5A))
+        val ChaiDarkGrey = ChaiColor(value = Color(0xFF5A5A5A))
         @Stable
-        val ChaiDarkerGrey =ChaiColor(value= Color(0xFF191d1d))
+        val ChaiDarkerGrey = ChaiColor(value = Color(0xFF191d1d))
         @Stable
-        val ChaiCoal = ChaiColor(value=Color(0xFF20201E))
+        val ChaiCoal = ChaiColor(value = Color(0xFF20201E))
         @Stable
-        val ChaiBlack = ChaiColor(value=Color(0xFF000000))
+        val ChaiBlack = ChaiColor(value = Color(0xFF000000))
 
         /**
          * Typically colors are 3 dimensional planes i.e x,y,z
@@ -114,8 +114,13 @@ value class ChaiColor internal constructor(val value:Color){
          * for comprehensive explanation see [full_explanation] (https://en.wikipedia.org/wiki/Color_space)
          * note: adapted from aosp
          */
-        private fun multiplyColumn(column:Int,x:Float,y:Float,
-        z:Float,matrix:FloatArray) = x*matrix[column]+y*matrix[3+column]+z*matrix[6+column]
+        private fun multiplyColumn(
+            column: Int,
+            x: Float,
+            y: Float,
+            z: Float,
+            matrix: FloatArray
+        ) = x * matrix[column] + y * matrix[3 + column] + z * matrix[6 + column]
         private val M1 = floatArrayOf(
             0.80405736f,
             0.026893456f,
@@ -151,7 +156,6 @@ value class ChaiColor internal constructor(val value:Color){
                         val x = colorXyz.red
                         val y = colorXyz.green
                         val z = colorXyz.blue
-
 
                         val l = multiplyColumn(
                             column = 0,
@@ -250,7 +254,7 @@ value class ChaiColor internal constructor(val value:Color){
                 )
             }
     }
-    operator fun getValue(thisRef:Any?,property:KProperty<*>) = value
+    operator fun getValue(thisRef: Any?, property: KProperty<*>) = value
 }
 
 /**
@@ -262,10 +266,12 @@ value class ChaiColor internal constructor(val value:Color){
  * @receiver animation spec to be used, ideally should be an instance of [TweenSpec]
  * @return a new instance of animation spec whose duration is divided by 2
  */
-private fun <T>AnimationSpec<T>.toColorSpec():AnimationSpec<T>{
+private fun <T> AnimationSpec<T>.toColorSpec(): AnimationSpec<T> {
     val tweenSpec = this as TweenSpec<T> ?: return this
-    return tween(durationMillis = tweenSpec.durationMillis/2,
-    delayMillis = tweenSpec.delay,easing=tweenSpec.easing)
+    return tween(
+        durationMillis = tweenSpec.durationMillis / 2,
+        delayMillis = tweenSpec.delay, easing = tweenSpec.easing
+    )
 }
 /**
  * Animates [ChaiColor] changes from one color to the other
@@ -274,15 +280,19 @@ private fun <T>AnimationSpec<T>.toColorSpec():AnimationSpec<T>{
  * @return state object of type [ChaiColor]
  */
 @Composable
-internal fun animateChaiColorAsState(targetValue:ChaiColor,animationSpec: AnimationSpec<ChaiColor> = chaiAnimationSpec()
-):State<ChaiColor>{
+internal fun animateChaiColorAsState(
+    targetValue: ChaiColor,
+    animationSpec: AnimationSpec<ChaiColor> = chaiAnimationSpec()
+): State<ChaiColor> {
     val converter = remember(key1 = targetValue.value.colorSpace) {
         (ChaiColor.VectorConverter)(targetValue.value.colorSpace)
     }
-    return animateValueAsState(targetValue = targetValue,
-        typeConverter =converter,
+    return animateValueAsState(
+        targetValue = targetValue,
+        typeConverter = converter,
         animationSpec = animationSpec.toColorSpec(),
-        finishedListener = null)
+        finishedListener = null
+    )
 }
 /**
  * TOBE Replaced

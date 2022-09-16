@@ -27,9 +27,9 @@ import com.droidconke.chai.R
  */
 @Immutable
 @JvmInline
-value class ChaiIcon private constructor(@DrawableRes val drawableId:Int){
-    companion object{
-       @Stable
+value class ChaiIcon private constructor(@DrawableRes val drawableId: Int) {
+    companion object {
+        @Stable
         val About = ChaiIcon(drawableId = R.drawable.about_icon)
         @Stable
         val FeedIcon = ChaiIcon(drawableId = R.drawable.feed_icon)

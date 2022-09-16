@@ -16,7 +16,6 @@
 package com.droidconke.chai.images
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.ui.Modifier
@@ -37,17 +36,24 @@ import com.droidconke.chai.modifier.chaiClickable
  */
 @Composable
 @NonRestartableComposable
-fun ChaiImage(modifier: Modifier=Modifier,
-              icon:ChaiIcon?,
-              tint:ChaiColor?=null,
-              contentDescription:String?=null,
-              rippleEnabled:Boolean=true,onClick:(()->Unit)?=null){
-    if (icon==null) return
-    Image(modifier = modifier.chaiClickable(rippleEnabled=rippleEnabled,
-        onClick = onClick),
-        painter =painterResource(id = icon.drawableId),
-        contentDescription =contentDescription,
-    colorFilter = tint.toColorFilter())
+fun ChaiImage(
+    modifier: Modifier = Modifier,
+    icon: ChaiIcon?,
+    tint: ChaiColor? = null,
+    contentDescription: String? = null,
+    rippleEnabled: Boolean = true,
+    onClick: (() -> Unit)? = null
+) {
+    if (icon == null) return
+    Image(
+        modifier = modifier.chaiClickable(
+            rippleEnabled = rippleEnabled,
+            onClick = onClick
+        ),
+        painter = painterResource(id = icon.drawableId),
+        contentDescription = contentDescription,
+        colorFilter = tint.toColorFilter()
+    )
 }
 
-private fun ChaiColor?.toColorFilter() = this?.run { ColorFilter.tint(color=value) }
+private fun ChaiColor?.toColorFilter() = this?.run { ColorFilter.tint(color = value) }

@@ -7,7 +7,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.IntSize
 
-
 /**
  * Function which animates content change whenever state of a composable state
  *@param targetState composable's state to watch for changes
@@ -17,11 +16,14 @@ import androidx.compose.ui.unit.IntSize
 @Suppress("UNCHECKED_CAST")
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
-internal fun <T> AnimateContentChange(modifier:Modifier=Modifier,
-                                      targetState:T, animationSpec:AnimationSpec<Any> = chaiAnimationSpec(),
-                                      content:@Composable AnimatedVisibilityScope.(animatedTargetState:T)->Unit
-){
-    AnimatedContent(targetState = targetState, modifier = modifier,content=content,
+internal fun <T> AnimateContentChange(
+    modifier: Modifier = Modifier,
+    targetState: T,
+    animationSpec: AnimationSpec<Any> = chaiAnimationSpec(),
+    content: @Composable AnimatedVisibilityScope.(animatedTargetState: T) -> Unit
+) {
+    AnimatedContent(
+        targetState = targetState, modifier = modifier, content = content,
         transitionSpec = {
             fadeIn(
                 animationSpec = animationSpec as FiniteAnimationSpec<Float>,
@@ -33,5 +35,6 @@ internal fun <T> AnimateContentChange(modifier:Modifier=Modifier,
                     animationSpec as FiniteAnimationSpec<IntSize>
                 },
             )
-        })
+        }
+    )
 }
