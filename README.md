@@ -196,13 +196,6 @@ We would endlessly like to thank the following contributors
             <br />
             <sub><b>Beatrice Kinya</b></sub>
         </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/GibsonRuitiari">
-            <img src="https://avatars.githubusercontent.com/u/88240355?v=4" width="100;" alt="GibsonRuitiari"/>
-            <br />
-            <sub><b>8BitsLives .❤️</b></sub>
-        </a>
     </td></tr>
 <tr>
     <td align="center">
