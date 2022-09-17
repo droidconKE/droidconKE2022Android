@@ -15,11 +15,13 @@
  */
 package com.android254.data.network.util
 
+import com.android254.domain.models.DataResult
 import io.ktor.client.call.*
 import io.ktor.client.network.sockets.*
 import io.ktor.client.plugins.*
 import timber.log.Timber
 
+@Deprecated("Use dataResultSafeApiCall")
 suspend fun <T> safeApiCall(block: suspend () -> T): T {
     try {
         return block()
@@ -39,3 +41,18 @@ suspend fun <T> safeApiCall(block: suspend () -> T): T {
 
 class ServerError(cause: Throwable) : Exception(cause)
 class NetworkError : Exception()
+
+suspend fun <T : Any> dataResultSafeApiCall(
+    apiCall: suspend () -> DataResult<T>
+): DataResult<T> = try {
+    apiCall.invoke()
+} catch (throwable: Throwable) {
+    when (throwable) {
+        is ServerError, is NetworkError -> {
+            DataResult.Error("Login failed", networkError = true, exc = throwable)
+        }
+        else -> {
+            DataResult.Error("Login failed", exc = throwable)
+        }
+    }
+}
