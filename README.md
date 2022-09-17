@@ -169,17 +169,17 @@ We would endlessly like to thank the following contributors
         </a>
     </td>
     <td align="center">
-        <a href="https://github.com/VictorKabata">
-            <img src="https://avatars.githubusercontent.com/u/39780120?v=4" width="100;" alt="VictorKabata"/>
-            <br />
-            <sub><b>Victor Kabata</b></sub>
-        </a>
-    </td>
-    <td align="center">
         <a href="https://github.com/kibettheophilus">
             <img src="https://avatars.githubusercontent.com/u/61080898?v=4" width="100;" alt="kibettheophilus"/>
             <br />
             <sub><b>Kibet Theo</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/VictorKabata">
+            <img src="https://avatars.githubusercontent.com/u/39780120?v=4" width="100;" alt="VictorKabata"/>
+            <br />
+            <sub><b>Victor Kabata</b></sub>
         </a>
     </td>
     <td align="center">
