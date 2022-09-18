@@ -23,8 +23,6 @@ sealed class Screens(var route: String, @DrawableRes var icon: Int, var title: S
     object Feed : Screens("/feed", R.drawable.feed_icon, "Feed")
     object Sessions : Screens("/sessions", R.drawable.sessions_icon, "Sessions")
     object About : Screens("/about", R.drawable.about_icon, "About")
-    object Login : Screens("/login", R.drawable.droidcon_icon, "Login")
-    object SignUp : Screens("/signUp", R.drawable.droidcon_icon, "Sign Up")
     object Speakers : Screens("/speakers", R.drawable.droidcon_icon, "Speakers")
 }
 
