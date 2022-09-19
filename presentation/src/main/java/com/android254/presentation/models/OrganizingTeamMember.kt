@@ -7,93 +7,93 @@ data class OrganizingTeamMember(
     val id: Int = 0,
     val name: String = "",
     val desc: String = "",
-    @DrawableRes val image: Int,
+    val image: String,
 )
 
 var organizingTeamMembers = listOf<OrganizingTeamMember>(
     OrganizingTeamMember(
         name = "Frank Tamre",
         desc = "Main Man",
-        image = R.drawable.about_droidcon
+        image = "https://media-exp1.licdn.com/dms/image/C4D03AQGn58utIO-x3w/profile-displayphoto-shrink_200_200/0/1637478114039?e=2147483647&v=beta&t=3kIon0YJQNHZojD3Dt5HVODJqHsKdf2YKP1SfWeROnI"
     ),
     OrganizingTeamMember(
         name = "Marvin Collins",
         desc = "Main man 2",
-        image = R.drawable.about_droidcon
+        image = "https://media-exp1.licdn.com/dms/image/C4D03AQGn58utIO-x3w/profile-displayphoto-shrink_200_200/0/1637478114039?e=2147483647&v=beta&t=3kIon0YJQNHZojD3Dt5HVODJqHsKdf2YKP1SfWeROnI"
     ),
     OrganizingTeamMember(
         name = "Jackline",
         desc = "Main Chick",
-        image = R.drawable.about_droidcon
+        image = "https://media-exp1.licdn.com/dms/image/C4D03AQGn58utIO-x3w/profile-displayphoto-shrink_200_200/0/1637478114039?e=2147483647&v=beta&t=3kIon0YJQNHZojD3Dt5HVODJqHsKdf2YKP1SfWeROnI"
     ),
     OrganizingTeamMember(
         name = "John Mwendwa",
         desc = "A Hobbit",
-        image = R.drawable.about_droidcon
+        image = "https://media-exp1.licdn.com/dms/image/C4D03AQGn58utIO-x3w/profile-displayphoto-shrink_200_200/0/1637478114039?e=2147483647&v=beta&t=3kIon0YJQNHZojD3Dt5HVODJqHsKdf2YKP1SfWeROnI"
     ),
     OrganizingTeamMember(
         name = "Lincoln",
         desc = "A Stark",
-        image = R.drawable.about_droidcon
+        image = "https://media-exp1.licdn.com/dms/image/C4D03AQGn58utIO-x3w/profile-displayphoto-shrink_200_200/0/1637478114039?e=2147483647&v=beta&t=3kIon0YJQNHZojD3Dt5HVODJqHsKdf2YKP1SfWeROnI"
     ),
     OrganizingTeamMember(
         name = "Manuel Geek",
         desc = "FIFA Looser",
-        image = R.drawable.about_droidcon
+        image = "https://media-exp1.licdn.com/dms/image/C4D03AQGn58utIO-x3w/profile-displayphoto-shrink_200_200/0/1637478114039?e=2147483647&v=beta&t=3kIon0YJQNHZojD3Dt5HVODJqHsKdf2YKP1SfWeROnI"
     ),
     OrganizingTeamMember(
         name = "Kendy or Cendy",
         desc = "You guy my guy",
-        image = R.drawable.about_droidcon
+        image = "https://media-exp1.licdn.com/dms/image/C4D03AQGn58utIO-x3w/profile-displayphoto-shrink_200_200/0/1637478114039?e=2147483647&v=beta&t=3kIon0YJQNHZojD3Dt5HVODJqHsKdf2YKP1SfWeROnI"
     ),
     OrganizingTeamMember(
         name = "Harun Wangereka",
         desc = "The Other Guy",
-        image = R.drawable.about_droidcon
+        image = "https://media-exp1.licdn.com/dms/image/C4D03AQGn58utIO-x3w/profile-displayphoto-shrink_200_200/0/1637478114039?e=2147483647&v=beta&t=3kIon0YJQNHZojD3Dt5HVODJqHsKdf2YKP1SfWeROnI"
     ),
     OrganizingTeamMember(
         name = "Philomena",
         desc = "Main chick 2",
-        image = R.drawable.about_droidcon
+        image = "https://media-exp1.licdn.com/dms/image/C4D03AQGn58utIO-x3w/profile-displayphoto-shrink_200_200/0/1637478114039?e=2147483647&v=beta&t=3kIon0YJQNHZojD3Dt5HVODJqHsKdf2YKP1SfWeROnI"
     ),
     OrganizingTeamMember(
         name = "Michael",
         desc = "The Guy",
-        image = R.drawable.about_droidcon
+        image = "https://media-exp1.licdn.com/dms/image/C4D03AQGn58utIO-x3w/profile-displayphoto-shrink_200_200/0/1637478114039?e=2147483647&v=beta&t=3kIon0YJQNHZojD3Dt5HVODJqHsKdf2YKP1SfWeROnI"
     ),
     OrganizingTeamMember(
         name = "Danvick",
         desc = "The Dev",
-        image = R.drawable.about_droidcon
+        image = "https://media-exp1.licdn.com/dms/image/C4D03AQGn58utIO-x3w/profile-displayphoto-shrink_200_200/0/1637478114039?e=2147483647&v=beta&t=3kIon0YJQNHZojD3Dt5HVODJqHsKdf2YKP1SfWeROnI"
     ),
     OrganizingTeamMember(
         name = "Annie",
         desc = "Looser Team",
-        image = R.drawable.about_droidcon
+        image = "https://media-exp1.licdn.com/dms/image/C4D03AQGn58utIO-x3w/profile-displayphoto-shrink_200_200/0/1637478114039?e=2147483647&v=beta&t=3kIon0YJQNHZojD3Dt5HVODJqHsKdf2YKP1SfWeROnI"
     ),
     OrganizingTeamMember(
         name = "Chepsi",
         desc = "You guy my guy",
-        image = R.drawable.about_droidcon
+        image = "https://media-exp1.licdn.com/dms/image/C4D03AQGn58utIO-x3w/profile-displayphoto-shrink_200_200/0/1637478114039?e=2147483647&v=beta&t=3kIon0YJQNHZojD3Dt5HVODJqHsKdf2YKP1SfWeROnI"
     ),
     OrganizingTeamMember(
         name = "Monique",
         desc = "Strange school",
-        image = R.drawable.about_droidcon
+        image = "https://media-exp1.licdn.com/dms/image/C4D03AQGn58utIO-x3w/profile-displayphoto-shrink_200_200/0/1637478114039?e=2147483647&v=beta&t=3kIon0YJQNHZojD3Dt5HVODJqHsKdf2YKP1SfWeROnI"
     ),
     OrganizingTeamMember(
         name = "Cindy",
         desc = "The Girl",
-        image = R.drawable.about_droidcon
+        image = "https://media-exp1.licdn.com/dms/image/C4D03AQGn58utIO-x3w/profile-displayphoto-shrink_200_200/0/1637478114039?e=2147483647&v=beta&t=3kIon0YJQNHZojD3Dt5HVODJqHsKdf2YKP1SfWeROnI"
     ),
     OrganizingTeamMember(
         name = "Josh",
         desc = "The Guy",
-        image = R.drawable.about_droidcon
+        image = "https://media-exp1.licdn.com/dms/image/C4D03AQGn58utIO-x3w/profile-displayphoto-shrink_200_200/0/1637478114039?e=2147483647&v=beta&t=3kIon0YJQNHZojD3Dt5HVODJqHsKdf2YKP1SfWeROnI"
     ),
     OrganizingTeamMember(
         name = "Theo",
         desc = "Strange school",
-        image = R.drawable.about_droidcon
+        image = "https://media-exp1.licdn.com/dms/image/C4D03AQGn58utIO-x3w/profile-displayphoto-shrink_200_200/0/1637478114039?e=2147483647&v=beta&t=3kIon0YJQNHZojD3Dt5HVODJqHsKdf2YKP1SfWeROnI"
     ),
 )
