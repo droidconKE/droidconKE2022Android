@@ -22,13 +22,15 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
+import com.android254.presentation.auth.AuthViewModel
+import com.android254.presentation.auth.view.AuthDialog
 import com.android254.presentation.common.bottomnav.BottomNavigationBar
 import com.android254.presentation.common.components.DroidconAppBar
 import com.android254.presentation.common.navigation.Navigation
@@ -51,21 +53,45 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun MainScreen() {
+    val authViewModel = hiltViewModel<AuthViewModel>()
     val navController = rememberNavController()
     val bottomBarState = rememberSaveable { (mutableStateOf(true)) }
     val appBarState = rememberSaveable() {
         mutableStateOf(true)
     }
+    val isSignedIn by remember {
+        mutableStateOf(false)
+    }
+    var showAuthDialog by remember {
+        mutableStateOf(false)
+    }
     Scaffold(
         modifier = Modifier.fillMaxSize(),
-        topBar = { if (appBarState.value) DroidconAppBar() },
-        bottomBar = { if (bottomBarState.value) BottomNavigationBar(navController) },
+        topBar = {
+            if (appBarState.value) {
+                DroidconAppBar(
+                    isSignedIn = isSignedIn,
+                    onActionClicked = {
+                        showAuthDialog = !showAuthDialog
+                    }
+                )
+            }
+        },
+        bottomBar = { if (bottomBarState.value) BottomNavigationBar(navController) }
     ) { padding ->
 
         Column(
             modifier = Modifier
                 .padding(padding)
         ) {
+            if (showAuthDialog) {
+                AuthDialog(
+                    onDismiss = {
+                        showAuthDialog = false
+                    },
+                    viewModel = { authViewModel }
+                )
+            }
             Navigation(navController = navController, upDateBottomBarState = {
                 bottomBarState.value = it
             }, upDataAppBarState = {
