@@ -106,7 +106,7 @@ fun SpeakerComponent(
                 style = TextStyle(
                     color = colorResource(id = R.color.grey),
                     fontSize = 14.sp,
-                    fontFamily = FontFamily(Font(R.font.montserrat_regular)),// Extract the fonts or get them from chai system
+                    fontFamily = FontFamily(Font(R.font.montserrat_regular)),
                 ),
                 modifier = modifier.constrainAs(bioText) {
                     top.linkTo(nameText.bottom, margin = 8.dp)

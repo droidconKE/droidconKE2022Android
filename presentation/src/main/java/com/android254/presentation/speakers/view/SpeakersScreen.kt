@@ -48,11 +48,7 @@ fun SpeakersScreen(speakersViewModel: SpeakerViewModel = hiltViewModel()) {
             SmallTopAppBar(
                 title = {
                     Text(
-<<<<<<< HEAD
-                        text = stringResource(id = R.string.spekers_label),
-=======
                         text = stringResource(id = R.string.speakers_label),
->>>>>>> 0afbeb1 (fix lint + clean up)
                         fontSize = 24.sp,
                         fontFamily = FontFamily(Font(R.font.montserrat_regular)),
                         color = colorResource(id = R.color.dark)
@@ -82,7 +78,7 @@ fun SpeakersScreen(speakersViewModel: SpeakerViewModel = hiltViewModel()) {
             columns = GridCells.Adaptive(160.dp),
             contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 80.dp, bottom = 16.dp)
         ) {
-            items(speakers) {speaker->
+            items(speakers) { speaker ->
                 SpeakerComponent(speaker = speaker)
             }
         }

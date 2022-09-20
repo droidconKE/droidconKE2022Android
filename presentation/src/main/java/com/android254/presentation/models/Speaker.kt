@@ -36,4 +36,3 @@ val speakersList = listOf(
         bio = "1. Kenya Partner Lead at droidcon Berlin | Android | Kotlin | Flutter | C++"
     )
 )
-
