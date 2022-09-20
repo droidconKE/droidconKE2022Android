@@ -27,7 +27,6 @@ import coil.request.ImageRequest
 import com.android254.presentation.R
 import com.android254.presentation.common.theme.DroidconKE2022Theme
 import com.android254.presentation.models.OrganizingTeamMember
-import com.android254.presentation.models.organizingTeamMembers
 
 @Composable
 fun OrganizingTeamComponent(
@@ -95,7 +94,11 @@ fun Preview() {
     DroidconKE2022Theme {
         OrganizingTeamComponent(
             modifier = Modifier,
-            teamMember = organizingTeamMembers.first(),
+            teamMember = OrganizingTeamMember(
+                name = "Frank Tamre",
+                desc = "Main Man",
+                image = "https://media-exp1.licdn.com/dms/image/C4D03AQGn58utIO-x3w/profile-displayphoto-shrink_200_200/0/1637478114039?e=2147483647&v=beta&t=3kIon0YJQNHZojD3Dt5HVODJqHsKdf2YKP1SfWeROnI"
+            ),
             onClickMember = {}
         )
     }

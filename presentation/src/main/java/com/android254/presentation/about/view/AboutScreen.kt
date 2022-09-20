@@ -38,14 +38,19 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.android254.presentation.R
 import com.android254.presentation.common.components.DroidconAppBarWithFeedbackButton
 import com.android254.presentation.common.theme.DroidconKE2022Theme
 import com.android254.presentation.models.OrganizingTeamMember
-import com.android254.presentation.models.organizingTeamMembers
 
 @Composable
-fun AboutScreen() {
+fun AboutScreen(
+    aboutViewModel: AboutViewModel = hiltViewModel()
+) {
+
+    val teamMembers: List<OrganizingTeamMember> = aboutViewModel.organizingTeamMembers.value
+    val stakeHolderLogos = aboutViewModel.stakeHolderLogos.value
 
     Scaffold(
         topBar = {
@@ -68,7 +73,7 @@ fun AboutScreen() {
             Spacer(modifier = Modifier.height(40.dp))
             OrganizingTeamSection(
                 modifier = Modifier,
-                organizingTeam = organizingTeamMembers,
+                organizingTeam = teamMembers,
                 onClickMember = {
                     // TODO navigate to team screen
                 }
@@ -223,12 +228,3 @@ fun AboutScreenPreview() {
         AboutScreen()
     }
 }
-
-var stakeHolderLogos = listOf(
-    R.drawable.ic_android254,
-    R.drawable.kotlin_kenya_logo,
-    R.drawable.k_logo,
-    R.drawable.apps_lab_logo,
-    R.drawable.early_camp_logo,
-    R.drawable.ic_tiskos_logo,
-)
