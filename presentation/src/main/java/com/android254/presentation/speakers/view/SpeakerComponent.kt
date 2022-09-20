@@ -47,7 +47,6 @@ import com.android254.presentation.R
 import com.android254.presentation.common.theme.DroidconKE2022Theme
 import com.android254.presentation.models.Speaker
 
-
 @Composable
 
 fun SpeakerComponent(
