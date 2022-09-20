@@ -19,22 +19,31 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.material3.*
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SmallTopAppBar
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.sp
-import com.android254.presentation.R
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.android254.presentation.R
 import com.android254.presentation.common.theme.DroidconKE2022Theme
-import com.android254.presentation.models.Speaker
+import com.android254.presentation.speakers.SpeakerViewModel
+
 
 @Composable
-fun SpeakersScreen(speakers: List<Speaker>) {
+fun SpeakersScreen(speakersViewModel: SpeakerViewModel = hiltViewModel()) {
+    val speakers = speakersViewModel.getSpeakers()
     Scaffold(
         topBar = {
             SmallTopAppBar(
@@ -68,7 +77,7 @@ fun SpeakersScreen(speakers: List<Speaker>) {
             columns = GridCells.Adaptive(160.dp),
             contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 80.dp, bottom = 16.dp)
         ) {
-            items(speakers) { speaker ->
+            items(speakers) {speaker->
                 SpeakerComponent(speaker = speaker)
             }
         }

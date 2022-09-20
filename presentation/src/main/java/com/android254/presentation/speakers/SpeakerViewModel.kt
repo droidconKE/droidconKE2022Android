@@ -6,9 +6,9 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class SpeakerViewMode @Inject constructor() : ViewModel(){
+class SpeakerViewModel @Inject constructor() : ViewModel() {
 
-    val speakersList = listOf(
+    fun getSpeakers() = listOf(
         Speaker(
             imageUrl = "https://sessionize.com/image/09c1-400o400o2-cf-9587-423b-bd2e-415e6757286c.b33d8d6e-1f94-4765-a797-255efc34390d.jpg",
             name = "Harun Wangereka",
