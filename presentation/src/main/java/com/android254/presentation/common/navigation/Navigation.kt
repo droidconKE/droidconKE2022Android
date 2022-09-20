@@ -24,7 +24,6 @@ import com.android254.presentation.feed.view.FeedScreen
 import com.android254.presentation.home.view.HomeScreen
 import com.android254.presentation.sessions.view.SessionsScreen
 import com.android254.presentation.speakers.view.SpeakersScreen
-import speakersList
 
 @Composable
 fun Navigation(
