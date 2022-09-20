@@ -52,16 +52,20 @@ fun AboutScreen() {
             DroidconAppBarWithFeedbackButton(
                 onButtonClick = {
                     // TODO navigate to feedbackScreen
-                }
+                },
+                userProfile = "https://media-exp1.licdn.com/dms/image/C4D03AQGn58utIO-x3w/profile-displayphoto-shrink_200_200/0/1637478114039?e=2147483647&v=beta&t=3kIon0YJQNHZojD3Dt5HVODJqHsKdf2YKP1SfWeROnI"
             )
         }
     ) { paddingValues ->
 
-        Column(Modifier.padding(paddingValues)) {
+        Column(
+            Modifier
+                .padding(paddingValues)
+                .background(Color(0xFFFFFFFF))
+        ) {
             AboutDroidConSection(droidconDesc = stringResource(id = R.string.about_droidcon))
 
             Spacer(modifier = Modifier.height(40.dp))
-
             OrganizingTeamSection(
                 modifier = Modifier,
                 organizingTeam = organizingTeamMembers,
@@ -83,7 +87,6 @@ fun AboutDroidConSection(
 ) {
     Column(
         modifier = modifier
-
     ) {
 
         Image(
@@ -152,7 +155,7 @@ fun OrganizingTeamSection(
 
         LazyVerticalGrid(
             modifier = Modifier,
-            columns = GridCells.Adaptive(102.dp),
+            columns = GridCells.Adaptive(99.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp),
             horizontalArrangement = Arrangement.spacedBy(16.dp),
         ) {
@@ -173,6 +176,7 @@ fun OrganizingStakeHoldersSection(
 ) {
     Column(
         modifier = modifier
+            .padding(start = 20.dp, end = 20.dp)
             .fillMaxWidth()
             .background(
                 color = Color(0xFFF5F5F5),

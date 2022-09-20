@@ -14,9 +14,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.semantics.Role.Companion.Image
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -24,6 +24,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
 import com.android254.presentation.R
 import com.android254.presentation.common.theme.DroidconKE2022Theme
 
@@ -31,9 +33,11 @@ import com.android254.presentation.common.theme.DroidconKE2022Theme
 fun DroidconAppBarWithFeedbackButton(
     modifier: Modifier = Modifier,
     onButtonClick: () -> Unit,
+    userProfile: String,
 ) {
     Row(
-        modifier = modifier.fillMaxWidth()
+        modifier = modifier
+            .fillMaxWidth()
             .padding(start = 20.dp, end = 20.dp, top = 19.dp, bottom = 15.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -48,14 +52,16 @@ fun DroidconAppBarWithFeedbackButton(
 
         Spacer(modifier = Modifier.width(15.dp))
 
-        Image(
+        AsyncImage(
+            model = ImageRequest.Builder(LocalContext.current)
+                .data(userProfile)
+                .build(),
+            placeholder = painterResource(R.drawable.about_droidcon),
+            contentDescription = "User profile",
+            contentScale = ContentScale.Crop,
             modifier = Modifier
                 .size(30.dp)
                 .clip(CircleShape),
-            painter = painterResource(id = R.drawable.about_droidcon),
-            contentDescription = "User profile",
-            contentScale = ContentScale.Crop,
-
         )
     }
 }
@@ -63,7 +69,7 @@ fun DroidconAppBarWithFeedbackButton(
 @Composable
 fun FeedbackButton(
     modifier: Modifier = Modifier,
-    onButtonClick: () -> Unit
+    onButtonClick: () -> Unit,
 ) {
     Row(
         modifier = modifier
@@ -104,6 +110,9 @@ fun FeedbackButton(
 @Composable
 fun Preview() {
     DroidconKE2022Theme {
-        DroidconAppBarWithFeedbackButton(onButtonClick = {})
+        DroidconAppBarWithFeedbackButton(
+            onButtonClick = {},
+            userProfile = "https://media-exp1.licdn.com/dms/image/C4D03AQGn58utIO-x3w/profile-displayphoto-shrink_200_200/0/1637478114039?e=2147483647&v=beta&t=3kIon0YJQNHZojD3Dt5HVODJqHsKdf2YKP1SfWeROnI"
+        )
     }
 }
