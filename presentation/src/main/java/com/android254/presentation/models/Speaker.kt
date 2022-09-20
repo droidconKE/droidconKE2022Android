@@ -23,3 +23,4 @@ data class Speaker(
     val name: String = "Name",
     val bio: String = "bio"
 )
+
