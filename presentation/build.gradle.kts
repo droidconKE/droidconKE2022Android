@@ -63,6 +63,7 @@ android {
 
 dependencies {
     implementation(project(":domain"))
+    implementation(project(":chai"))
 
     implementation(libs.android.coreKtx)
     implementation(libs.android.appCompat)

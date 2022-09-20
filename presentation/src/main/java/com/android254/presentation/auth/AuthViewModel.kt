@@ -17,7 +17,6 @@ package com.android254.presentation.auth
 
 import android.content.Intent
 import androidx.lifecycle.ViewModel
-import com.android254.presentation.auth.view.GoogleSignInHandler
 import dagger.hilt.android.lifecycle.HiltViewModel
 import timber.log.Timber
 import javax.inject.Inject

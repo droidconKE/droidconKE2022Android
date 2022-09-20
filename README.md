@@ -35,9 +35,8 @@ This layer will include;
 
 This layer will contain;
 
-1. The Usecase
-2. The repository
-3. The relevant domain models.
+1. The repository
+2. The relevant domain models.
 
 ### Presentation
 
@@ -141,17 +140,17 @@ We would endlessly like to thank the following contributors
         </a>
     </td>
     <td align="center">
-        <a href="https://github.com/tamzi">
-            <img src="https://avatars.githubusercontent.com/u/3008932?v=4" width="100;" alt="tamzi"/>
-            <br />
-            <sub><b>Frank Tamre</b></sub>
-        </a>
-    </td>
-    <td align="center">
         <a href="https://github.com/michaelbukachi">
             <img src="https://avatars.githubusercontent.com/u/10145850?v=4" width="100;" alt="michaelbukachi"/>
             <br />
             <sub><b>Michael Bukachi</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/tamzi">
+            <img src="https://avatars.githubusercontent.com/u/3008932?v=4" width="100;" alt="tamzi"/>
+            <br />
+            <sub><b>Frank Tamre</b></sub>
         </a>
     </td></tr>
 <tr>
@@ -170,17 +169,17 @@ We would endlessly like to thank the following contributors
         </a>
     </td>
     <td align="center">
-        <a href="https://github.com/VictorKabata">
-            <img src="https://avatars.githubusercontent.com/u/39780120?v=4" width="100;" alt="VictorKabata"/>
-            <br />
-            <sub><b>Victor Kabata</b></sub>
-        </a>
-    </td>
-    <td align="center">
         <a href="https://github.com/kibettheophilus">
             <img src="https://avatars.githubusercontent.com/u/61080898?v=4" width="100;" alt="kibettheophilus"/>
             <br />
             <sub><b>Kibet Theo</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/VictorKabata">
+            <img src="https://avatars.githubusercontent.com/u/39780120?v=4" width="100;" alt="VictorKabata"/>
+            <br />
+            <sub><b>Victor Kabata</b></sub>
         </a>
     </td>
     <td align="center">
@@ -199,17 +198,17 @@ We would endlessly like to thank the following contributors
     </td></tr>
 <tr>
     <td align="center">
-        <a href="https://github.com/johnGachihi">
-            <img src="https://avatars.githubusercontent.com/u/25545884?v=4" width="100;" alt="johnGachihi"/>
-            <br />
-            <sub><b>John Gachihi</b></sub>
-        </a>
-    </td>
-    <td align="center">
         <a href="https://github.com/misshannah">
             <img src="https://avatars.githubusercontent.com/u/5990196?v=4" width="100;" alt="misshannah"/>
             <br />
             <sub><b>Hannah Olukoye</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/johnGachihi">
+            <img src="https://avatars.githubusercontent.com/u/25545884?v=4" width="100;" alt="johnGachihi"/>
+            <br />
+            <sub><b>John Gachihi</b></sub>
         </a>
     </td>
     <td align="center">
