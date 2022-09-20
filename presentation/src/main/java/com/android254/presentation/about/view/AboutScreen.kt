@@ -146,7 +146,7 @@ fun OrganizingTeamSection(
 
         Text(
             modifier = Modifier.fillMaxWidth(),
-            text = stringResource(id = R.string.organizing_team),
+            text = stringResource(id = R.string.about_organizing_team),
             style = TextStyle(
                 color = Color(0xFF000CEB),
                 fontWeight = FontWeight.Bold,
@@ -191,7 +191,7 @@ fun OrganizingStakeHoldersSection(
     ) {
         Text(
             modifier = Modifier.fillMaxWidth(),
-            text = stringResource(id = R.string.organizing_stake_holders),
+            text = stringResource(id = R.string.about_organizing_stake_holders),
             style = TextStyle(
                 color = Color(0xFF000CEB),
                 fontWeight = FontWeight.Bold,
