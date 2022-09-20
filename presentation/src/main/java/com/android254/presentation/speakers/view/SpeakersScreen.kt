@@ -40,7 +40,6 @@ import com.android254.presentation.R
 import com.android254.presentation.common.theme.DroidconKE2022Theme
 import com.android254.presentation.speakers.SpeakerViewModel
 
-
 @Composable
 fun SpeakersScreen(speakersViewModel: SpeakerViewModel = hiltViewModel()) {
     val speakers = speakersViewModel.getSpeakers()
@@ -49,7 +48,11 @@ fun SpeakersScreen(speakersViewModel: SpeakerViewModel = hiltViewModel()) {
             SmallTopAppBar(
                 title = {
                     Text(
+<<<<<<< HEAD
                         text = stringResource(id = R.string.spekers_label),
+=======
+                        text = stringResource(id = R.string.speakers_label),
+>>>>>>> 0afbeb1 (fix lint + clean up)
                         fontSize = 24.sp,
                         fontFamily = FontFamily(Font(R.font.montserrat_regular)),
                         color = colorResource(id = R.color.dark)
