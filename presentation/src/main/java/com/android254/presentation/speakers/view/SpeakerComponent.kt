@@ -47,14 +47,17 @@ import com.android254.presentation.R
 import com.android254.presentation.common.theme.DroidconKE2022Theme
 import com.android254.presentation.models.Speaker
 
+
 @Composable
 
 fun SpeakerComponent(
     modifier: Modifier = Modifier,
-    speaker: Speaker = Speaker(name = "ABC", bio = "A quick brown fox ...")
+    speaker: Speaker
 ) {
     Card(
-        modifier = modifier.padding(7.dp).height(350.dp),
+        modifier = modifier
+            .padding(7.dp)
+            .height(350.dp),
         shape = RoundedCornerShape(8.dp),
         elevation = CardDefaults.cardElevation(4.dp),
         colors = CardDefaults.cardColors(
@@ -141,6 +144,8 @@ fun SpeakerComponent(
 @Composable
 fun SpeakerComponentPreview() {
     DroidconKE2022Theme {
-        SpeakerComponent()
+        SpeakerComponent(
+            speaker = Speaker(name = "John Doe", bio = "Staff Engineer")
+        )
     }
 }
