@@ -16,12 +16,10 @@
 package com.android254.presentation.about.view
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -34,19 +32,19 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.android254.presentation.R
 import com.android254.presentation.common.components.DroidconAppBarWithFeedbackButton
+import com.android254.presentation.common.components.OrganizedBySection
 import com.android254.presentation.common.theme.DroidconKE2022Theme
 import com.android254.presentation.models.OrganizingTeamMember
 
 @Composable
 fun AboutScreen(
-    aboutViewModel: AboutViewModel = hiltViewModel()
+    aboutViewModel: AboutViewModel = hiltViewModel(),
 ) {
 
     val teamMembers: List<OrganizingTeamMember> = aboutViewModel.organizingTeamMembers.value
@@ -70,6 +68,7 @@ fun AboutScreen(
             AboutDroidConSection(droidconDesc = stringResource(id = R.string.about_droidcon))
 
             Spacer(modifier = Modifier.height(40.dp))
+
             OrganizingTeamSection(
                 modifier = Modifier,
                 organizingTeam = teamMembers,
@@ -77,9 +76,13 @@ fun AboutScreen(
                     // TODO navigate to team screen
                 }
             )
+
             Spacer(modifier = Modifier.height(40.dp))
 
-            OrganizingStakeHoldersSection(organizationLogos = stakeHolderLogos)
+            OrganizedBySection(
+                modifier = Modifier.padding(start = 20.dp, end = 20.dp),
+                organizationLogos = stakeHolderLogos
+            )
         }
     }
 }
@@ -167,53 +170,6 @@ fun OrganizingTeamSection(
                 OrganizingTeamComponent(
                     teamMember = teamMember,
                     onClickMember = onClickMember,
-                )
-            }
-        }
-    }
-}
-
-@Composable
-fun OrganizingStakeHoldersSection(
-    modifier: Modifier = Modifier,
-    organizationLogos: List<Int>,
-) {
-    Column(
-        modifier = modifier
-            .padding(start = 20.dp, end = 20.dp)
-            .fillMaxWidth()
-            .background(
-                color = Color(0xFFF5F5F5),
-                shape = RoundedCornerShape(10.dp)
-            )
-            .padding(horizontal = 80.dp, vertical = 20.dp)
-    ) {
-        Text(
-            modifier = Modifier.fillMaxWidth(),
-            text = stringResource(id = R.string.about_organizing_stake_holders),
-            style = TextStyle(
-                color = Color(0xFF000CEB),
-                fontWeight = FontWeight.Bold,
-                fontSize = 21.sp,
-                lineHeight = 25.sp,
-                fontFamily = FontFamily(Font(R.font.montserrat_bold)),
-            ),
-            textAlign = TextAlign.Center,
-        )
-
-        Spacer(modifier = Modifier.height(40.dp))
-
-        LazyVerticalGrid(
-            modifier = Modifier,
-            columns = GridCells.Fixed(3),
-            verticalArrangement = Arrangement.spacedBy(16.dp),
-            horizontalArrangement = Arrangement.spacedBy(16.dp),
-
-        ) {
-            items(organizationLogos) { logo ->
-                Image(
-                    painter = painterResource(id = logo),
-                    contentDescription = "Logo",
                 )
             }
         }
