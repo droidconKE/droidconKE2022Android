@@ -66,7 +66,6 @@ fun AboutScreen(
         Column(
             Modifier
                 .padding(paddingValues)
-                .background(Color(0xFFFFFFFF))
         ) {
             AboutDroidConSection(droidconDesc = stringResource(id = R.string.about_droidcon))
 

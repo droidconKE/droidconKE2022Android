@@ -1,6 +1,5 @@
 package com.android254.presentation.about.view
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -36,7 +35,6 @@ fun OrganizingTeamComponent(
 ) {
     Column(
         modifier = modifier
-            .background(Color(0xFFFFFFFF))
             .clickable(
                 onClick = { onClickMember(teamMember.id) }
             ),
