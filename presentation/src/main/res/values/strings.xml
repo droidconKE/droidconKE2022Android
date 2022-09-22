@@ -26,4 +26,8 @@
     <string name="feedback_event_label">How is/was the event</string>
     <string name="feedback_improve_label">Your feedback helps us improve</string>
     <string name="default_web_client_id">275140757840-t551kcoa9hj4j1kq9cgmk3m067jl2imq.apps.googleusercontent.com</string>
+    <string name="head_shot">Speakers headshot</string>
+    <string name="session_label">Session</string>
+    <string name="speakers_label">Speakers</string>
+    <string name="feedback">Feedback</string>
 </resources>

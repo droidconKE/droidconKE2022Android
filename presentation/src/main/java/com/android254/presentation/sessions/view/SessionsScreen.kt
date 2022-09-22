@@ -34,77 +34,9 @@ import com.android254.presentation.R
 import com.android254.presentation.common.components.EventDaySelectorButton
 import com.android254.presentation.common.components.SessionsCard
 import com.android254.presentation.common.theme.DroidconKE2022Theme
+import com.android254.presentation.models.SessionPresentationModel
 
-data class EventDay(val date: String = "16th")
-data class Event(
-    val startTime: String,
-    val endTime: String,
-    val title: String,
-    val subtitle: String,
-    val roomLabel: String?,
-    val presenter: String?,
-    val presenterPicture: String?,
-    val isMarked: Boolean = false
-)
-
-val eventDays = listOf<EventDay>(
-    EventDay("16th"),
-    EventDay("17th"),
-    EventDay("18th"),
-)
-
-val events = arrayListOf<Event>(
-    Event(
-        "09:00",
-        "09:30",
-        "Arrival",
-        "Registration & Breakfast",
-        null,
-        null,
-        null,
-        false
-    ),
-    Event(
-        "09:30",
-        "10:00",
-        "Opening",
-        "Welcome & Keynote",
-        "Room 1",
-        "Dr. John Doe",
-        null,
-        false
-    ),
-    Event(
-        "10:00",
-        "10:30",
-        "Android 254",
-        "The community and the efforts",
-        "Room 2",
-        "Greg Dawson",
-        null,
-        false
-    ),
-    Event(
-        "10:30",
-        "11:00",
-        "Break",
-        "Lunch",
-        null,
-        null,
-        null,
-        false
-    ),
-    Event(
-        "11:00",
-        "11:30",
-        "Session 1",
-        "Session 1",
-        "Room 3",
-        "Michael Kimathi",
-        null,
-        false
-    ),
-)
+val events = arrayListOf<SessionPresentationModel>()
 
 @Composable
 fun SessionsScreen(darkTheme: Boolean = isSystemInDarkTheme()) {
@@ -124,17 +56,34 @@ fun SessionsScreen(darkTheme: Boolean = isSystemInDarkTheme()) {
                 .fillMaxWidth()
                 .padding(start = 0.dp, end = 0.dp, top = 24.dp, bottom = 12.dp)
         ) {
+            /**
+             * Removed the dummy loop for the lint check
+             */
             Row() {
-                eventDays.forEachIndexed { index, eventDay ->
-                    EventDaySelectorButton(
-                        title = eventDay.date,
-                        subtitle = "Day ${index + 1}",
-                        onClick = { /*TODO*/ },
-                        selected = index == 0
-                    ) {
-                    }
-                    Spacer(Modifier.width(16.dp))
+                EventDaySelectorButton(
+                    title = "16th",
+                    subtitle = "Day 1",
+                    onClick = { /*TODO*/ },
+                    selected = true
+                ) {
                 }
+                Spacer(Modifier.width(16.dp))
+                EventDaySelectorButton(
+                    title = "17th",
+                    subtitle = "Day 2",
+                    onClick = { /*TODO*/ },
+                    selected = false
+                ) {
+                }
+                Spacer(Modifier.width(16.dp))
+                EventDaySelectorButton(
+                    title = "",
+                    subtitle = "Day 3",
+                    onClick = { /*TODO*/ },
+                    selected = false
+                ) {
+                }
+                Spacer(Modifier.width(16.dp))
             }
             Switch(checked = showMySessions.value, onCheckedChange = {
                 showMySessions.value = it
@@ -143,7 +92,7 @@ fun SessionsScreen(darkTheme: Boolean = isSystemInDarkTheme()) {
         LazyColumn(modifier = Modifier.fillMaxHeight()) {
             itemsIndexed(events) { index, event ->
                 Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.Start) {
-                    SessionsCard(session = event)
+                    SessionsCard(session = event, onclick = {})
                     if (index != events.size - 1) {
                         Box(
                             Modifier.padding(
