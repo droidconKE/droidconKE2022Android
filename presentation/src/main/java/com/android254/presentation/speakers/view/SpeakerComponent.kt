@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 package com.android254.presentation.speakers.view
+
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -30,6 +31,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -95,11 +97,13 @@ fun SpeakerComponent(
                     fontSize = 16.sp,
                     fontFamily = FontFamily(Font(R.font.montserrat_bold))
                 ),
-                modifier = modifier.constrainAs(nameText) {
-                    top.linkTo(image.bottom, margin = 8.dp)
-                    start.linkTo(parent.start)
-                    end.linkTo(parent.end)
-                }
+                modifier = modifier
+                    .testTag("name")
+                    .constrainAs(nameText) {
+                        top.linkTo(image.bottom, margin = 8.dp)
+                        start.linkTo(parent.start)
+                        end.linkTo(parent.end)
+                    }
             )
             Text(
                 text = speaker.bio,
@@ -108,11 +112,13 @@ fun SpeakerComponent(
                     fontSize = 14.sp,
                     fontFamily = FontFamily(Font(R.font.montserrat_regular)),
                 ),
-                modifier = modifier.constrainAs(bioText) {
-                    top.linkTo(nameText.bottom, margin = 8.dp)
-                    start.linkTo(parent.start)
-                    end.linkTo(parent.end)
-                }
+                modifier = modifier
+                    .testTag("bio")
+                    .constrainAs(bioText) {
+                        top.linkTo(nameText.bottom, margin = 8.dp)
+                        start.linkTo(parent.start)
+                        end.linkTo(parent.end)
+                    }
             )
             OutlinedButton(
                 onClick = { },
@@ -121,11 +127,12 @@ fun SpeakerComponent(
                     width = 2.dp,
                     color = colorResource(id = R.color.aqua)
                 ),
-                modifier = modifier.constrainAs(button) {
-                    top.linkTo(parent.top, margin = 270.dp)
-                    start.linkTo(parent.start)
-                    end.linkTo(parent.end)
-                }
+                modifier = modifier
+                    .constrainAs(button) {
+                        top.linkTo(parent.top, margin = 270.dp)
+                        start.linkTo(parent.start)
+                        end.linkTo(parent.end)
+                    }
             ) {
                 Text(
                     text = stringResource(R.string.session_label),
