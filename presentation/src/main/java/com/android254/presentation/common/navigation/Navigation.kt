@@ -52,7 +52,7 @@ fun Navigation(
             upDateBottomBarState(true)
             AboutScreen()
         }
-        composable(Screens.Speakers.route){
+        composable(Screens.Speakers.route) {
             upDataAppBarState(true)
             upDateBottomBarState(true)
             SpeakersScreen()

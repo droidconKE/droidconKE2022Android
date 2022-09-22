@@ -1,4 +1,3 @@
-
 /*
  * Copyright 2022 DroidconKE
  *
@@ -22,7 +21,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class SpeakerViewModel @Inject constructor() : ViewModel() {
+class SpeakersViewModel @Inject constructor() : ViewModel() {
 
     fun getSpeakers() = listOf(
         Speaker(
