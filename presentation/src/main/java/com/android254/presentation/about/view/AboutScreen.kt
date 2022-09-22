@@ -20,6 +20,8 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -38,9 +40,12 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.android254.presentation.R
 import com.android254.presentation.common.components.DroidconAppBarWithFeedbackButton
-import com.android254.presentation.common.components.OrganizedBySection
+import com.android254.presentation.common.components.OrganizedBySection2
 import com.android254.presentation.common.theme.DroidconKE2022Theme
 import com.android254.presentation.models.OrganizingTeamMember
+import com.google.accompanist.flowlayout.FlowRow
+import com.google.accompanist.flowlayout.MainAxisAlignment
+import com.google.accompanist.flowlayout.SizeMode
 
 @Composable
 fun AboutScreen(
@@ -61,15 +66,46 @@ fun AboutScreen(
         }
     ) { paddingValues ->
 
+        /**
+         * matches the design but can not be scrolled
+         * */
+        /*  Column(
+              Modifier
+                  .padding(paddingValues)
+          ) {
+              AboutDroidConSection(droidconDesc = stringResource(id = R.string.about_droidcon))
+
+              Spacer(modifier = Modifier.height(40.dp))
+
+              OrganizingTeamSection(
+                  modifier = Modifier,
+                  organizingTeam = teamMembers,
+                  onClickMember = {
+                      // TODO navigate to team screen
+                  }
+              )
+
+              Spacer(modifier = Modifier.height(40.dp))
+
+              OrganizedBySection(
+                  modifier = Modifier.padding(start = 20.dp, end = 20.dp),
+                  organizationLogos = stakeHolderLogos
+              )
+          }*/
+
+        /**
+         * can be scrolled
+         * */
         Column(
             Modifier
                 .padding(paddingValues)
+                .verticalScroll(rememberScrollState())
         ) {
             AboutDroidConSection(droidconDesc = stringResource(id = R.string.about_droidcon))
 
             Spacer(modifier = Modifier.height(40.dp))
 
-            OrganizingTeamSection(
+            OrganizingTeamSection2(
                 modifier = Modifier,
                 organizingTeam = teamMembers,
                 onClickMember = {
@@ -79,10 +115,12 @@ fun AboutScreen(
 
             Spacer(modifier = Modifier.height(40.dp))
 
-            OrganizedBySection(
+            OrganizedBySection2(
                 modifier = Modifier.padding(start = 20.dp, end = 20.dp),
                 organizationLogos = stakeHolderLogos
             )
+
+            Spacer(modifier = Modifier.height(40.dp))
         }
     }
 }
@@ -135,6 +173,9 @@ fun AboutDroidConSection(
     }
 }
 
+/**
+ * Great alignment that matches the design but can not be scrolled within a column
+ * */
 @Composable
 fun OrganizingTeamSection(
     modifier: Modifier = Modifier,
@@ -168,6 +209,53 @@ fun OrganizingTeamSection(
         ) {
             items(organizingTeam) { teamMember ->
                 OrganizingTeamComponent(
+                    teamMember = teamMember,
+                    onClickMember = onClickMember,
+                )
+            }
+        }
+    }
+}
+
+/**
+ * Uses flow row but the alignment is not the best esp on last row which has fewer items
+ * */
+@Composable
+fun OrganizingTeamSection2(
+    modifier: Modifier = Modifier,
+    organizingTeam: List<OrganizingTeamMember>,
+    onClickMember: (Int) -> Unit,
+) {
+    Column(
+        modifier = modifier
+            .padding(start = 20.dp, end = 20.dp)
+    ) {
+
+        Text(
+            modifier = Modifier.fillMaxWidth(),
+            text = stringResource(id = R.string.about_organizing_team),
+            style = TextStyle(
+                color = Color(0xFF000CEB),
+                fontWeight = FontWeight.Bold,
+                fontSize = 21.sp,
+                lineHeight = 25.sp,
+                fontFamily = FontFamily(Font(R.font.montserrat_bold)),
+            ),
+        )
+
+        Spacer(modifier = Modifier.height(40.dp))
+
+        FlowRow(
+            modifier = Modifier,
+            mainAxisAlignment = MainAxisAlignment.SpaceBetween,
+            mainAxisSize = SizeMode.Expand,
+            mainAxisSpacing = 16.dp,
+            crossAxisSpacing = 16.dp,
+            lastLineMainAxisAlignment = MainAxisAlignment.Start
+        ) {
+            organizingTeam.forEach { teamMember ->
+                OrganizingTeamComponent(
+                    modifier = Modifier.width(99.dp),
                     teamMember = teamMember,
                     onClickMember = onClickMember,
                 )
