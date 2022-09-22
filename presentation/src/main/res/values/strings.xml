@@ -26,7 +26,7 @@
     <string name="feedback_label">Feedback</string>
     <string name="feedback">Feedback</string>
     <string name="cancel">Cancel</string>
-    <string name="head_shot">Speakers headshot</string>
+    <string name="head_shot">Speaker headshot</string>
     <string name="session_label">Session</string>
     <string name="speakers_label">Speakers</string>
 </resources>
