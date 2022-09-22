@@ -52,7 +52,7 @@ import com.android254.presentation.models.Speaker
 fun SpeakerComponent(
     modifier: Modifier = Modifier,
     speaker: Speaker
-){
+) {
     Card(
         modifier = modifier.padding(7.dp).height(350.dp),
         shape = RoundedCornerShape(8.dp),
@@ -108,7 +108,7 @@ fun SpeakerComponent(
                 style = TextStyle(
                     color = colorResource(id = R.color.grey),
                     fontSize = 14.sp,
-                    fontFamily = FontFamily(Font(R.font.montserrat_regular)),// Extract the fonts or get them from chai system
+                    fontFamily = FontFamily(Font(R.font.montserrat_regular)), // Extract the fonts or get them from chai system
                 ),
                 modifier = modifier
                     .testTag("bio")

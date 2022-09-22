@@ -57,6 +57,5 @@ fun Navigation(
             upDateBottomBarState(false)
             SpeakersScreen()
         }
-
     }
 }
