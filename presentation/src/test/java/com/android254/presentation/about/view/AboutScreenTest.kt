@@ -15,10 +15,8 @@
  */
 package com.android254.presentation.about.view
 
-import androidx.compose.ui.test.assertIsDisplayed
-import androidx.compose.ui.test.assertTextEquals
+import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createComposeRule
-import androidx.compose.ui.test.onNodeWithTag
 import com.android254.presentation.common.theme.DroidconKE2022Theme
 import org.junit.Before
 import org.junit.Rule
@@ -50,7 +48,8 @@ class AboutScreenTest {
             }
         }
 
-        composeTestRule.onNodeWithTag("heading").assertIsDisplayed()
-        composeTestRule.onNodeWithTag("heading").assertTextEquals("About Screen")
+        composeTestRule.onNodeWithTag("about_screen").assertExists()
+        composeTestRule.onNodeWithTag("about_screen").assertIsDisplayed()
+        composeTestRule.onNodeWithTag("organizing_team_section").assertExists()
     }
 }
