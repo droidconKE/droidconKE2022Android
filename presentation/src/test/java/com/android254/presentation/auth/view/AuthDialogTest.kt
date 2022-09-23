@@ -13,61 +13,36 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android254.presentation.login.view
+package com.android254.presentation.auth.view
 
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertTextEquals
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
-import androidx.navigation.NavHostController
-import androidx.navigation.testing.TestNavHostController
-import androidx.test.core.app.ApplicationProvider
-import com.android254.presentation.auth.view.LoginScreen
 import com.android254.presentation.common.theme.DroidconKE2022Theme
-import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
-import org.robolectric.shadows.ShadowLog
 
 @RunWith(RobolectricTestRunner::class)
 @Config(instrumentedPackages = ["androidx.loader.content"])
-class LoginScreenTest {
-
-    lateinit var navController: NavHostController
+class AuthDialogTest {
 
     @get:Rule
     val composeTestRule = createComposeRule()
 
-    @Before
-    @Throws(Exception::class)
-    fun setUp() {
-        navController = TestNavHostController(ApplicationProvider.getApplicationContext())
-        ShadowLog.stream = System.out
-    }
-
     @Test
-    fun `should should show Login Screen and show the heading`() {
+    fun `test all widgets should be visible`() {
         composeTestRule.setContent {
             DroidconKE2022Theme {
-                LoginScreen(navController = navController, viewModel = { null })
+                AuthDialog()
             }
         }
 
-        composeTestRule.onNodeWithTag("heading").assertIsDisplayed()
-        composeTestRule.onNodeWithTag("heading").assertTextEquals("Sign In")
-    }
-
-    @Test
-    fun `should show Google Button`() {
-        composeTestRule.setContent {
-            DroidconKE2022Theme {
-                LoginScreen(navController = navController, viewModel = { null })
-            }
-        }
-
-        composeTestRule.onNodeWithTag("google_login_button").assertIsDisplayed()
+        // Google login button
+        composeTestRule.onNodeWithTag("google_button").assertIsDisplayed()
+        composeTestRule.onNodeWithTag("google_button").assertTextEquals("Sign in with Google")
     }
 }
