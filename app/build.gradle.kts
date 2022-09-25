@@ -5,6 +5,7 @@ plugins {
     id("org.jlleitschuh.gradle.ktlint")
     id("io.gitlab.arturbosch.detekt")
     kotlin("kapt")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -62,4 +63,7 @@ dependencies {
     testImplementation(libs.test.junit4)
     testImplementation(libs.android.hilt.compiler)
     kaptTest(libs.android.hilt.compiler)
+
+    implementation(platform("com.google.firebase:firebase-bom:30.4.1"))
+    implementation("com.google.firebase:firebase-messaging-ktx")
 }
