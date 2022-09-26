@@ -66,9 +66,6 @@ dependencies {
     testImplementation(libs.android.hilt.compiler)
     kaptTest(libs.android.hilt.compiler)
 
-    implementation(platform("com.google.firebase:firebase-bom:30.4.1"))
-    implementation("com.google.firebase:firebase-messaging-ktx")
-    implementation("com.google.firebase:firebase-crashlytics-ktx")
-    implementation("com.google.firebase:firebase-analytics-ktx")
-    implementation("com.google.firebase:firebase-perf-ktx")
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.bundles.firebase)
 }
