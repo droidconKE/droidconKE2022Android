@@ -19,7 +19,7 @@ jobs:
 
       - name: Create Google Services
         uses: actions/checkout@v2
-        run: echo '${{ secrets.GOOGLE_SERVICES_JSON }}' > .android/app/google-services.json
+        run: echo '${{ secrets.GOOGLE_SERVICES_JSON }}' > ./android/app/google-services.json
 
 
       - name: Checkout the Repository
