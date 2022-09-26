@@ -17,13 +17,8 @@ jobs:
           AUTH: ${{ secrets.KEYSTORE }}
         run: echo $AUTH | base64 --decode > /tmp/keystore
 
-      - name: Create file
-        run: cat /home/runner/work/droidconKE2022Android/droidconKE2022Android/app/google-services.json
-
-      - name: Putting data
-        env:
-          GOOGLE_SERVICES_JSON: ${{ secrets.GOOGLE_SERVICES_JSON }}
-        run: echo $GOOGLE_SERVICES_JSON > /home/runner/work/droidconKE2022Android/droidconKE2022Android/app/google-services.json
+      - name: Create Google Services
+        run: echo '${{ secrets.GOOGLE_SERVICES_JSON }}' > /home/runner/work/droidconKE2022Android/droidconKE2022Android/app/google-services.json
 
       - name: Checkout the Repository
         uses: actions/checkout@v2
