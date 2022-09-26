@@ -68,7 +68,7 @@ App will have the following features:
 5. Download the `google-services.json` file from the newly created app.
 6. Add `google-services.json` to the `app` folder within the project.
 
-That's it! You should be able to run the app and make your contributions! :]
+That's it! You should be able to run the app and make your contributions! :rocket:
 
 ## Designs
 
