@@ -18,7 +18,7 @@ jobs:
         run: echo $AUTH | base64 --decode > /tmp/keystore
 
       - name: Create Google Services
-        run: echo ${{ secrets.GOOGLE_SERVICES_JSON }} > google-services.json
+        run: echo '${{ secrets.GOOGLE_SERVICES_JSON }}' > app/google-services.json
 
       - name: Checkout the Repository
         uses: actions/checkout@v2
