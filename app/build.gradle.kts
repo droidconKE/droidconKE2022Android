@@ -7,6 +7,7 @@ plugins {
     kotlin("kapt")
     id("com.google.gms.google-services")
     id("com.google.firebase.crashlytics")
+    id("com.google.firebase.firebase-perf")
 }
 
 android {
@@ -69,4 +70,5 @@ dependencies {
     implementation("com.google.firebase:firebase-messaging-ktx")
     implementation("com.google.firebase:firebase-crashlytics-ktx")
     implementation("com.google.firebase:firebase-analytics-ktx")
+    implementation("com.google.firebase:firebase-perf-ktx")
 }
