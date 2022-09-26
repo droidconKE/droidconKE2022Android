@@ -58,6 +58,17 @@ App will have the following features:
 - Authentication
 - Feedback
 
+## Development and Setup
+#### Setup (google-services.json)
+
+1. Open [Google Firebase console](https://firebase.google.com/).
+2. Create a new project with an arbitrary name.
+3. Add an Android app by following the instructions.
+4. For the package name, put in `com.android254.droidconKE2022`. You don't need the SHA-1 signing certificate.
+5. Download the `google-services.json` file from the newly created app.
+6. Add `google-services.json` to the `app` folder within the project.
+
+That's it! You should be able to run the app and make your contributions! :]
 
 ## Designs
 
