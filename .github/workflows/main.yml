@@ -17,9 +17,6 @@ jobs:
           AUTH: ${{ secrets.KEYSTORE }}
         run: echo $AUTH | base64 --decode > /tmp/keystore
 
-      - name: Create Google Services
-        run: echo '${{ secrets.GOOGLE_SERVICES_JSON }}' > .android/app/google-services.json
-
       - name: Checkout the Repository
         uses: actions/checkout@v2
 
@@ -49,6 +46,9 @@ jobs:
 
       - name: Install Dependencies
         run: gem install bundler && bundle install
+
+      - name: Create Google Services Json
+        run: echo '${{ secrets.GOOGLE_SERVICES_JSON }}' > /home/runner/work/droidconKE2022Android/droidconKE2022Android/app/google-services.json
 
       - name: Run Release Build
         uses: maierj/fastlane-action@v1.4.0
