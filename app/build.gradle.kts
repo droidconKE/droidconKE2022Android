@@ -6,6 +6,7 @@ plugins {
     id("io.gitlab.arturbosch.detekt")
     kotlin("kapt")
     id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
 }
 
 android {
@@ -66,4 +67,5 @@ dependencies {
 
     implementation(platform("com.google.firebase:firebase-bom:30.4.1"))
     implementation("com.google.firebase:firebase-messaging-ktx")
+    implementation("com.google.firebase:firebase-crashlytics-ktx")
 }
