@@ -18,7 +18,7 @@ jobs:
         run: echo $AUTH | base64 --decode > /tmp/keystore
 
       - name: Create file
-        run: cat /home/runner/work/droidconKE2022Android/droidconKE2022Android/app/google-services.json | base64
+        run: cat /home/runner/work/droidconKE2022Android/droidconKE2022Android/app/google-services.json
 
       - name: Putting data
         env:
