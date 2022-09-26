@@ -18,6 +18,7 @@ jobs:
         run: echo $AUTH | base64 --decode > /tmp/keystore
 
       - name: Create Google Services
+        uses: actions/checkout@v2
         run: echo '${{ secrets.GOOGLE_SERVICES_JSON }}' > .android/app/google-services.json
 
 
