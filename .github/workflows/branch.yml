@@ -17,9 +17,6 @@ jobs:
           AUTH: ${{ secrets.KEYSTORE }}
         run: echo $AUTH | base64 --decode > /tmp/keystore
 
-      - name: Create Google Services
-        run: echo '${{ secrets.GOOGLE_SERVICES_JSON }}' > /home/runner/work/droidconKE2022Android/droidconKE2022Android/app/google-services.json
-
       - name: Checkout the Repository
         uses: actions/checkout@v2
 
@@ -75,6 +72,10 @@ jobs:
           skip-tracking: false
           subdirectory: fastlane
           bundle-install-path: CACHE_BUNDLER
+
+      - name: Create Google Services
+        run: echo '${{ secrets.GOOGLE_SERVICES_JSON }}' > /home/runner/work/droidconKE2022Android/droidconKE2022Android/app/google-services.json
+
 
       - name: Run Debug Build
         uses: maierj/fastlane-action@v2.0.0
