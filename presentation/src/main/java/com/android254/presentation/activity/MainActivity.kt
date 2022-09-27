@@ -86,17 +86,15 @@ fun MainScreen() {
         ) {
             if (showAuthDialog) {
                 AuthDialog(
-                    onDismiss = {
-                        showAuthDialog = false
-                    },
+                    onDismiss = { showAuthDialog = false },
                     viewModel = { authViewModel }
                 )
             }
-            Navigation(navController = navController, upDateBottomBarState = {
-                bottomBarState.value = it
-            }, upDataAppBarState = {
-                appBarState.value = it
-            })
+            Navigation(
+                navController = navController,
+                upDateBottomBarState = { bottomBarState.value = it },
+                upDataAppBarState = { appBarState.value = it }
+            )
         }
     }
 }
