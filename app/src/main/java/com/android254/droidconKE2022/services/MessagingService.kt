@@ -34,7 +34,6 @@ class MessagingService : FirebaseMessagingService() {
     }
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
-        // Check if message contains a data payload.
         if (remoteMessage.data.isNotEmpty()) {
             displayNotification(
                 remoteMessage.data["title"].orEmpty(),
