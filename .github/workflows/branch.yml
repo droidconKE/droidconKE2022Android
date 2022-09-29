@@ -3,6 +3,7 @@ name: branch
 on:
   push:
     branches-ignore: [ main, develop, release ]
+  pull_request: [ main ]
 
 env:
   APP_SIGN_KEYSTORE_PATH: /tmp/keystore
