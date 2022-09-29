@@ -40,7 +40,7 @@ class AboutScreenTest {
     }
 
     @Test
-    fun `should show About Screen and show the heading`() {
+    fun `should show About Screen and organizing team section`() {
 
         composeTestRule.setContent {
             DroidconKE2022Theme {
@@ -51,5 +51,30 @@ class AboutScreenTest {
         composeTestRule.onNodeWithTag("about_screen").assertExists()
         composeTestRule.onNodeWithTag("about_screen").assertIsDisplayed()
         composeTestRule.onNodeWithTag("organizing_team_section").assertExists()
+    }
+
+    @Test
+    fun `should show About Screen and the droidcon topBar`() {
+
+        composeTestRule.setContent {
+            DroidconKE2022Theme {
+                AboutScreen()
+            }
+        }
+
+        composeTestRule.onNodeWithTag("droidcon_topBar_with_Feedback").assertExists()
+        composeTestRule.onNodeWithTag("droidcon_topBar_with_Feedback").assertIsDisplayed()
+    }
+
+    @Test
+    fun `should show About Screen and show the organized by section`() {
+
+        composeTestRule.setContent {
+            DroidconKE2022Theme {
+                AboutScreen()
+            }
+        }
+
+        composeTestRule.onNodeWithTag("organized_by_section").assertExists()
     }
 }
