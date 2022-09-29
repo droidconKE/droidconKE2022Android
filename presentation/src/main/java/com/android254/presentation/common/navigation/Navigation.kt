@@ -23,6 +23,7 @@ import com.android254.presentation.about.view.AboutScreen
 import com.android254.presentation.feed.view.FeedScreen
 import com.android254.presentation.home.view.HomeScreen
 import com.android254.presentation.sessions.view.SessionsScreen
+import com.android254.presentation.speakers.view.SpeakersScreen
 
 @Composable
 fun Navigation(
@@ -50,6 +51,11 @@ fun Navigation(
             upDateAppBarState(false)
             upDateBottomBarState(true)
             AboutScreen()
+        }
+        composable(Screens.Speakers.route) {
+            upDateAppBarState(true)
+            upDateBottomBarState(true)
+            SpeakersScreen()
         }
     }
 }

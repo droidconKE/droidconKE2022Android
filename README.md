@@ -58,6 +58,17 @@ App will have the following features:
 - Authentication
 - Feedback
 
+## Development and Setup
+#### Setup (google-services.json)
+
+1. Open [Google Firebase console](https://firebase.google.com/).
+2. Create a new project with an arbitrary name.
+3. Add an Android app by following the instructions.
+4. For the package name, put in `com.android254.droidconKE2022`. You don't need the SHA-1 signing certificate.
+5. Download the `google-services.json` file from the newly created app.
+6. Add `google-services.json` to the `app` folder within the project.
+
+That's it! You should be able to run the app and make your contributions! :rocket:
 
 ## Designs
 
@@ -119,6 +130,13 @@ We would endlessly like to thank the following contributors
         </a>
     </td>
     <td align="center">
+        <a href="https://github.com/kibettheophilus">
+            <img src="https://avatars.githubusercontent.com/u/61080898?v=4" width="100;" alt="kibettheophilus"/>
+            <br />
+            <sub><b>Kibet Theo</b></sub>
+        </a>
+    </td>
+    <td align="center">
         <a href="https://github.com/wangerekaharun">
             <img src="https://avatars.githubusercontent.com/u/15122455?v=4" width="100;" alt="wangerekaharun"/>
             <br />
@@ -145,15 +163,15 @@ We would endlessly like to thank the following contributors
             <br />
             <sub><b>Michael Bukachi</b></sub>
         </a>
-    </td>
+    </td></tr>
+<tr>
     <td align="center">
         <a href="https://github.com/tamzi">
             <img src="https://avatars.githubusercontent.com/u/3008932?v=4" width="100;" alt="tamzi"/>
             <br />
             <sub><b>Frank Tamre</b></sub>
         </a>
-    </td></tr>
-<tr>
+    </td>
     <td align="center">
         <a href="https://github.com/keithchad">
             <img src="https://avatars.githubusercontent.com/u/63049827?v=4" width="100;" alt="keithchad"/>
@@ -169,10 +187,10 @@ We would endlessly like to thank the following contributors
         </a>
     </td>
     <td align="center">
-        <a href="https://github.com/kibettheophilus">
-            <img src="https://avatars.githubusercontent.com/u/61080898?v=4" width="100;" alt="kibettheophilus"/>
+        <a href="https://github.com/BKinya">
+            <img src="https://avatars.githubusercontent.com/u/30239692?v=4" width="100;" alt="BKinya"/>
             <br />
-            <sub><b>Kibet Theo</b></sub>
+            <sub><b>Beatrice Kinya</b></sub>
         </a>
     </td>
     <td align="center">
@@ -180,13 +198,6 @@ We would endlessly like to thank the following contributors
             <img src="https://avatars.githubusercontent.com/u/39780120?v=4" width="100;" alt="VictorKabata"/>
             <br />
             <sub><b>Victor Kabata</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/BKinya">
-            <img src="https://avatars.githubusercontent.com/u/30239692?v=4" width="100;" alt="BKinya"/>
-            <br />
-            <sub><b>Beatrice Kinya</b></sub>
         </a>
     </td>
     <td align="center">
@@ -212,17 +223,17 @@ We would endlessly like to thank the following contributors
         </a>
     </td>
     <td align="center">
-        <a href="https://github.com/MamboBryan">
-            <img src="https://avatars.githubusercontent.com/u/40160345?v=4" width="100;" alt="MamboBryan"/>
-            <br />
-            <sub><b>Mambo Bryan</b></sub>
-        </a>
-    </td>
-    <td align="center">
         <a href="https://github.com/janewaitara">
             <img src="https://avatars.githubusercontent.com/u/32500878?v=4" width="100;" alt="janewaitara"/>
             <br />
             <sub><b>Jane Waitara</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/MamboBryan">
+            <img src="https://avatars.githubusercontent.com/u/40160345?v=4" width="100;" alt="MamboBryan"/>
+            <br />
+            <sub><b>Mambo Bryan</b></sub>
         </a>
     </td>
     <td align="center">
