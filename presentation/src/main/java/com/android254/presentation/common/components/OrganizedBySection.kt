@@ -24,6 +24,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -53,6 +54,7 @@ fun OrganizedBySection(
                 shape = RoundedCornerShape(10.dp)
             )
             .padding(horizontal = 40.dp, vertical = 20.dp)
+            .testTag("organized_by_section"),
     ) {
         Text(
             modifier = Modifier.fillMaxWidth(),
@@ -80,7 +82,7 @@ fun OrganizedBySection(
                 Image(
                     modifier = Modifier.defaultMinSize(minWidth = 68.dp),
                     painter = painterResource(id = logo),
-                    contentDescription = "Logo",
+                    contentDescription = stringResource(id = R.string.logo),
                 )
             }
         }

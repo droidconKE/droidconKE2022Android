@@ -36,6 +36,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import coil.compose.AsyncImagePainter.State.Empty.painter
 import com.android254.presentation.R
 import com.android254.presentation.common.components.DroidconAppBarWithFeedbackButton
 import com.android254.presentation.common.components.OrganizedBySection
@@ -103,9 +104,10 @@ fun AboutDroidConSection(
     ) {
 
         Image(
+            modifier = Modifier.fillMaxWidth(),
             painter = painterResource(id = R.drawable.about_droidcon),
             contentScale = ContentScale.Fit,
-            contentDescription = "Logo",
+            contentDescription = stringResource(id = R.string.about_droidcon_image),
         )
 
         Spacer(modifier = Modifier.height(20.dp))

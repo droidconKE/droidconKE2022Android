@@ -30,6 +30,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -53,13 +54,14 @@ fun DroidconAppBarWithFeedbackButton(
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .padding(start = 20.dp, end = 20.dp, top = 19.dp, bottom = 15.dp),
+            .padding(start = 20.dp, end = 20.dp, top = 19.dp, bottom = 15.dp)
+            .testTag("droidcon_topBar_with_Feedback"),
         verticalAlignment = Alignment.CenterVertically
     ) {
 
         Image(
             painter = painterResource(id = R.drawable.droidcon_logo),
-            contentDescription = "DroidCon logo"
+            contentDescription = stringResource(id = R.string.logo)
         )
         Spacer(modifier = Modifier.weight(1f))
 
@@ -72,7 +74,7 @@ fun DroidconAppBarWithFeedbackButton(
                 .data(userProfile)
                 .build(),
             placeholder = painterResource(R.drawable.about_droidcon),
-            contentDescription = "User profile",
+            contentDescription = stringResource(id = R.string.user_profile),
             contentScale = ContentScale.Crop,
             modifier = Modifier
                 .size(30.dp)
