@@ -163,13 +163,6 @@ We would endlessly like to thank the following contributors
             <br />
             <sub><b>Michael Bukachi</b></sub>
         </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/tamzi">
-            <img src="https://avatars.githubusercontent.com/u/3008932?v=4" width="100;" alt="tamzi"/>
-            <br />
-            <sub><b>Frank Tamre</b></sub>
-        </a>
     </td></tr>
 <tr>
     <td align="center">
@@ -230,17 +223,17 @@ We would endlessly like to thank the following contributors
         </a>
     </td>
     <td align="center">
-        <a href="https://github.com/MamboBryan">
-            <img src="https://avatars.githubusercontent.com/u/40160345?v=4" width="100;" alt="MamboBryan"/>
-            <br />
-            <sub><b>Mambo Bryan</b></sub>
-        </a>
-    </td>
-    <td align="center">
         <a href="https://github.com/janewaitara">
             <img src="https://avatars.githubusercontent.com/u/32500878?v=4" width="100;" alt="janewaitara"/>
             <br />
             <sub><b>Jane Waitara</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/MamboBryan">
+            <img src="https://avatars.githubusercontent.com/u/40160345?v=4" width="100;" alt="MamboBryan"/>
+            <br />
+            <sub><b>Mambo Bryan</b></sub>
         </a>
     </td>
     <td align="center">
