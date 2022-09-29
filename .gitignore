@@ -20,3 +20,5 @@ buildSrc/build
 /keystore.properties
 
 /fastlane/report.xml
+
+app/google-services.json

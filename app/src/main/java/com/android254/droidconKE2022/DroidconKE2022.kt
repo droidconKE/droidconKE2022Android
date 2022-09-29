@@ -17,6 +17,7 @@ package com.android254.droidconKE2022
 
 import android.app.Application
 import androidx.annotation.Nullable
+import com.android254.droidconKE2022.crashlytics.CrashlyticsTree
 import dagger.hilt.android.HiltAndroidApp
 import org.jetbrains.annotations.NotNull
 import timber.log.Timber
@@ -40,7 +41,7 @@ class DroidconKE2022 : Application() {
             })
         }
         else -> {
-            // Plant Crashlytics Tree?
+            Timber.plant(CrashlyticsTree())
         }
     }
 }
