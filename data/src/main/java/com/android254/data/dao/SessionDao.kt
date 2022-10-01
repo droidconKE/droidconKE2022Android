@@ -21,7 +21,7 @@ import com.android254.data.db.model.Session
 
 @Dao
 interface SessionDao : BaseDao<Session> {
-
     @Query("SELECT * FROM SESSION")
     fun fetchSessions(): List<Session>
+
 }

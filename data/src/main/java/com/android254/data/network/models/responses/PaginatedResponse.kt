@@ -18,7 +18,7 @@ package com.android254.data.network.models.responses
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class GenericPaginatedResponse<ResponseData>(
+data class PaginatedResponse<ResponseData>(
     val data: List<ResponseData>,
     val meta: ResponseMetaData
 )

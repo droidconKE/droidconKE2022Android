@@ -16,7 +16,7 @@
 package com.android254.data.network
 
 import com.android254.data.network.apis.SessionApi
-import com.android254.data.network.models.responses.GenericPaginatedResponse
+import com.android254.data.network.models.responses.PaginatedResponse
 import com.android254.data.network.models.responses.PaginationMetaData
 import com.android254.data.network.models.responses.ResponseMetaData
 import com.android254.data.network.models.responses.SessionApiModel
@@ -33,8 +33,8 @@ import org.hamcrest.CoreMatchers.`is`
 class SessionApiTest {
     @Test
     fun `sessions are fetched successfully`() {
-        val expectedResponse: GenericPaginatedResponse<List<SessionApiModel>> =
-            GenericPaginatedResponse(
+        val expectedResponse: PaginatedResponse<List<SessionApiModel>> =
+            PaginatedResponse(
                 data = listOf(),
                 meta = ResponseMetaData(
                     paginator = PaginationMetaData(
