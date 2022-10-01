@@ -73,7 +73,7 @@ fun DroidconAppBarWithFeedbackButton(
             model = ImageRequest.Builder(LocalContext.current)
                 .data(userProfile)
                 .build(),
-            placeholder = painterResource(R.drawable.about_droidcon),
+            placeholder = painterResource(R.drawable.droidcon_icon),
             contentDescription = stringResource(id = R.string.user_profile),
             contentScale = ContentScale.Crop,
             modifier = Modifier

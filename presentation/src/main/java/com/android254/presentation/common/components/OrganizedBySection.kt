@@ -15,15 +15,14 @@
  */
 package com.android254.presentation.common.components
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -32,11 +31,11 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
 import com.android254.presentation.R
-import com.android254.presentation.common.theme.DroidconKE2022Theme
 import com.google.accompanist.flowlayout.FlowRow
 import com.google.accompanist.flowlayout.MainAxisAlignment
 import com.google.accompanist.flowlayout.SizeMode
@@ -44,7 +43,7 @@ import com.google.accompanist.flowlayout.SizeMode
 @Composable
 fun OrganizedBySection(
     modifier: Modifier = Modifier,
-    organizationLogos: List<Int>,
+    organizationLogos: List<String>,
 ) {
     Column(
         modifier = modifier
@@ -79,30 +78,16 @@ fun OrganizedBySection(
             crossAxisSpacing = 16.dp,
         ) {
             organizationLogos.forEach { logo ->
-                Image(
-                    modifier = Modifier.defaultMinSize(minWidth = 68.dp),
-                    painter = painterResource(id = logo),
+
+                AsyncImage(
+                    model = ImageRequest.Builder(LocalContext.current)
+                        .data(logo)
+                        .build(),
+                    placeholder = painterResource(R.drawable.ic_google_logo_icon),
                     contentDescription = stringResource(id = R.string.logo),
+                    modifier = Modifier.defaultMinSize(minWidth = 68.dp)
                 )
             }
         }
     }
 }
-
-@Preview
-@Composable
-fun OrganizedByPreview() {
-    DroidconKE2022Theme {
-        OrganizedBySection(organizationLogos = stakeHolderLogos.value)
-    }
-}
-var stakeHolderLogos = mutableStateOf(
-    listOf(
-        R.drawable.ic_android254,
-        R.drawable.kotlin_kenya_logo,
-        R.drawable.k_logo,
-        R.drawable.apps_lab_logo,
-        R.drawable.early_camp_logo,
-        R.drawable.ic_tiskos_logo,
-    )
-)

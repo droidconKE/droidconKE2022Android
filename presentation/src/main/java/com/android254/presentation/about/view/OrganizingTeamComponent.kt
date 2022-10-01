@@ -60,7 +60,7 @@ fun OrganizingTeamComponent(
             model = ImageRequest.Builder(LocalContext.current)
                 .data(teamMember.image)
                 .build(),
-            placeholder = painterResource(R.drawable.about_droidcon),
+            placeholder = painterResource(R.drawable.droidcon_icon),
             contentDescription = "Member profile",
             contentScale = ContentScale.Crop,
             modifier = Modifier

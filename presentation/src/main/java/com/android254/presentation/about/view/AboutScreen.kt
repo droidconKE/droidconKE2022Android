@@ -15,7 +15,6 @@
  */
 package com.android254.presentation.about.view
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -25,6 +24,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -36,7 +36,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import coil.compose.AsyncImagePainter.State.Empty.painter
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
 import com.android254.presentation.R
 import com.android254.presentation.common.components.DroidconAppBarWithFeedbackButton
 import com.android254.presentation.common.components.OrganizedBySection
@@ -52,6 +53,7 @@ fun AboutScreen(
 ) {
     val teamMembers: List<OrganizingTeamMember> = aboutViewModel.organizingTeamMembers.value
     val stakeHolderLogos = aboutViewModel.stakeHolderLogos.value
+    val sampleImageUrl = aboutViewModel.sampleImageUrl
 
     Scaffold(
         topBar = {
@@ -59,7 +61,7 @@ fun AboutScreen(
                 onButtonClick = {
                     // TODO navigate to feedbackScreen
                 },
-                userProfile = "https://media-exp1.licdn.com/dms/image/C4D03AQGn58utIO-x3w/profile-displayphoto-shrink_200_200/0/1637478114039?e=2147483647&v=beta&t=3kIon0YJQNHZojD3Dt5HVODJqHsKdf2YKP1SfWeROnI"
+                userProfile = sampleImageUrl
             )
         }
     ) { paddingValues ->
@@ -70,7 +72,10 @@ fun AboutScreen(
                 .verticalScroll(rememberScrollState())
                 .testTag("about_screen")
         ) {
-            AboutDroidConSection(droidconDesc = stringResource(id = R.string.about_droidcon))
+            AboutDroidConSection(
+                droidconDesc = stringResource(id = R.string.about_droidcon),
+                droidconImage = sampleImageUrl,
+            )
 
             Spacer(modifier = Modifier.height(40.dp))
 
@@ -98,16 +103,21 @@ fun AboutScreen(
 fun AboutDroidConSection(
     modifier: Modifier = Modifier,
     droidconDesc: String,
+    droidconImage: String,
 ) {
     Column(
         modifier = modifier
     ) {
 
-        Image(
-            modifier = Modifier.fillMaxWidth(),
-            painter = painterResource(id = R.drawable.about_droidcon),
-            contentScale = ContentScale.Fit,
+        AsyncImage(
+            model = ImageRequest.Builder(LocalContext.current)
+                .data(droidconImage)
+                .build(),
+            placeholder = painterResource(R.drawable.droidcon_icon),
             contentDescription = stringResource(id = R.string.about_droidcon_image),
+            contentScale = ContentScale.FillWidth,
+            modifier = Modifier
+                .fillMaxWidth()
         )
 
         Spacer(modifier = Modifier.height(20.dp))

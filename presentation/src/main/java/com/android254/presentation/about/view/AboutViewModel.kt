@@ -17,7 +17,6 @@ package com.android254.presentation.about.view
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import com.android254.presentation.R
 import com.android254.presentation.models.OrganizingTeamMember
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -25,7 +24,7 @@ import javax.inject.Inject
 @HiltViewModel
 class AboutViewModel @Inject constructor() : ViewModel() {
 
-    private val sampleImageUrl: String = "https://media-exp1.licdn.com/dms/image/C4D03AQGn58utIO-x3w/profile-displayphoto-shrink_200_200/0/1637478114039?e=2147483647&v=beta&t=3kIon0YJQNHZojD3Dt5HVODJqHsKdf2YKP1SfWeROnI"
+    val sampleImageUrl: String = "https://media-exp1.licdn.com/dms/image/C4D03AQGn58utIO-x3w/profile-displayphoto-shrink_200_200/0/1637478114039?e=2147483647&v=beta&t=3kIon0YJQNHZojD3Dt5HVODJqHsKdf2YKP1SfWeROnI"
 
     val organizingTeamMembers = mutableStateOf(
         listOf(
@@ -119,12 +118,12 @@ class AboutViewModel @Inject constructor() : ViewModel() {
 
     var stakeHolderLogos = mutableStateOf(
         listOf(
-            R.drawable.ic_android254,
-            R.drawable.kotlin_kenya_logo,
-            R.drawable.k_logo,
-            R.drawable.apps_lab_logo,
-            R.drawable.early_camp_logo,
-            R.drawable.ic_tiskos_logo,
+            sampleImageUrl,
+            sampleImageUrl,
+            sampleImageUrl,
+            sampleImageUrl,
+            sampleImageUrl,
+            sampleImageUrl,
         )
     )
 }
