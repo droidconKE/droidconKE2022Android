@@ -1,0 +1,55 @@
+/*
+ * Copyright 2022 DroidconKE
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.android254.data.network.models.payloads
+
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.descriptors.PrimitiveKind
+import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
+import kotlinx.serialization.descriptors.SerialDescriptor
+import kotlinx.serialization.encoding.Decoder
+import kotlinx.serialization.encoding.Encoder
+
+@Serializable
+data class Feedback(val rating: Rating, val message: String) {
+
+    @Serializable(with = FeedbackRatingSerializer::class)
+    enum class Rating(val value: Int) {
+        BAD(1),
+        OKAY(2),
+        GOOD(3);
+
+        companion object {
+            fun from(value: Int): Rating = when (value) {
+                1 -> BAD
+                2 -> OKAY
+                3 -> GOOD
+                else -> throw IllegalArgumentException("Invalid feedback rating code $value. Only 1, 2 and 3 allowed.")
+            }
+        }
+    }
+}
+
+class FeedbackRatingSerializer : KSerializer<Feedback.Rating> {
+    override val descriptor: SerialDescriptor =
+        PrimitiveSerialDescriptor("FeedbackRating", PrimitiveKind.INT)
+
+    override fun serialize(encoder: Encoder, value: Feedback.Rating) =
+        encoder.encodeInt(value.value)
+
+    override fun deserialize(decoder: Decoder): Feedback.Rating =
+        Feedback.Rating.from(decoder.decodeInt())
+}

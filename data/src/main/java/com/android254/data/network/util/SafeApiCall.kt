@@ -43,10 +43,11 @@ class ServerError(cause: Throwable) : Exception(cause)
 class NetworkError : Exception()
 
 suspend fun <T : Any> dataResultSafeApiCall(
-    apiCall: suspend () -> DataResult<T>
+    apiCall: suspend () -> T
 ): DataResult<T> = try {
-    apiCall.invoke()
+    DataResult.Success(apiCall.invoke())
 } catch (throwable: Throwable) {
+//    TODO: This logic doesn't seem right
     when (throwable) {
         is ServerError, is NetworkError -> {
             DataResult.Error("Login failed", networkError = true, exc = throwable)
