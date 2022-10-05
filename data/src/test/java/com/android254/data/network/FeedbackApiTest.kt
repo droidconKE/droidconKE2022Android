@@ -17,7 +17,7 @@ package com.android254.data.network
 
 import com.android254.data.network.models.payloads.Feedback
 import com.android254.data.network.apis.FeedbackApi
-import com.android254.data.network.models.Session
+import com.android254.data.network.models.SessionDataModel
 import com.android254.data.network.util.HttpClientFactory
 import com.android254.domain.models.DataResult
 
@@ -38,7 +38,7 @@ class FeedbackApiTest {
         val mockEngine = MockEngine { respondOk() }
         val httpClient = HttpClientFactory(MockTokenProvider()).create(mockEngine)
 
-        val session = Session(id = "1", title = "How to be Awesome")
+        val session = SessionDataModel(id = "1", title = "How to be Awesome")
         FeedbackApi(httpClient).postFeedback(
             Feedback(rating = Feedback.Rating.GOOD, message = "Was nice"),
             session
@@ -61,7 +61,7 @@ class FeedbackApiTest {
 
         val result = FeedbackApi(httpClient).postFeedback(
             Feedback(rating = Feedback.Rating.GOOD, message = "Was nice"),
-            Session(id = "1", title = "How to be Awesome")
+            SessionDataModel(id = "1", title = "How to be Awesome")
         )
 
         assertThat(result, `is`(DataResult.Success(Unit)))
@@ -74,7 +74,7 @@ class FeedbackApiTest {
 
         val result = FeedbackApi(httpClient).postFeedback(
             Feedback(rating = Feedback.Rating.BAD, message = "Food haikuwa na nyama"),
-            Session(id = "1", title = "How to be awesome")
+            SessionDataModel(id = "1", title = "How to be awesome")
         )
 
         assertThat(result, `is`(instanceOf(DataResult.Error::class.java)))

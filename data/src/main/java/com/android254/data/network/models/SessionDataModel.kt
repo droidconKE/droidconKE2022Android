@@ -16,7 +16,7 @@
 package com.android254.data.network.models
 
 /* TODO */
-data class Session(
+data class SessionDataModel(
     val id: String,
     val title: String
 )
