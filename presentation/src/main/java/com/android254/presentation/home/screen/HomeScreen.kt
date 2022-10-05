@@ -70,7 +70,6 @@ fun HomeScreen(
             navigateToSpeakers = navigateToSpeakers,
         )
         Spacer(modifier = Modifier.fillMaxSize())
-
     }
 }
 
