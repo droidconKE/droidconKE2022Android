@@ -22,7 +22,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
@@ -41,6 +40,8 @@ import com.android254.presentation.common.components.DroidconAppBarWithFeedbackB
 import com.android254.presentation.common.components.OrganizedBySection
 import com.android254.presentation.common.theme.DroidconKE2022Theme
 import com.android254.presentation.models.OrganizingTeamMember
+import com.droidconke.chai.atoms.ChaiBlue
+import com.droidconke.chai.atoms.ChaiCoal
 import com.droidconke.chai.atoms.type.MontserratBold
 import com.droidconke.chai.atoms.type.MontserratRegular
 import com.google.accompanist.flowlayout.FlowRow
@@ -128,7 +129,7 @@ fun AboutDroidConSection(
                 .padding(start = 20.dp, end = 20.dp),
             text = stringResource(id = R.string.about),
             style = TextStyle(
-                color = Color(0xFF000CEB),
+                color = ChaiBlue,
                 fontWeight = FontWeight.Bold,
                 fontSize = 21.sp,
                 lineHeight = 25.sp,
@@ -144,7 +145,7 @@ fun AboutDroidConSection(
                 .padding(start = 20.dp, end = 20.dp),
             text = droidconDesc,
             style = TextStyle(
-                color = Color(0xFF20201E),
+                color = ChaiCoal,
                 fontSize = 16.sp,
                 lineHeight = 19.sp,
                 fontFamily = MontserratRegular,
@@ -169,7 +170,7 @@ fun OrganizingTeamSection(
             modifier = Modifier.fillMaxWidth(),
             text = stringResource(id = R.string.about_organizing_team),
             style = TextStyle(
-                color = Color(0xFF000CEB),
+                color = ChaiBlue,
                 fontWeight = FontWeight.Bold,
                 fontSize = 21.sp,
                 lineHeight = 25.sp,

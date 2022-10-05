@@ -21,7 +21,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
@@ -34,6 +33,8 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.android254.presentation.R
+import com.droidconke.chai.atoms.ChaiBlue
+import com.droidconke.chai.atoms.ChaiLightGrey
 import com.droidconke.chai.atoms.type.MontserratBold
 import com.google.accompanist.flowlayout.FlowRow
 import com.google.accompanist.flowlayout.MainAxisAlignment
@@ -48,7 +49,7 @@ fun OrganizedBySection(
         modifier = modifier
             .fillMaxWidth()
             .background(
-                color = Color(0xFFF5F5F5),
+                color = ChaiLightGrey,
                 shape = RoundedCornerShape(10.dp)
             )
             .padding(horizontal = 40.dp, vertical = 20.dp)
@@ -58,7 +59,7 @@ fun OrganizedBySection(
             modifier = Modifier.fillMaxWidth(),
             text = stringResource(id = R.string.organized_by),
             style = TextStyle(
-                color = Color(0xFF000CEB),
+                color = ChaiBlue,
                 fontWeight = FontWeight.Bold,
                 fontSize = 21.sp,
                 lineHeight = 25.sp,

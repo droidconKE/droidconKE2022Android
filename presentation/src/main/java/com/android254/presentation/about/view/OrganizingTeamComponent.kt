@@ -24,7 +24,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -39,6 +38,9 @@ import coil.request.ImageRequest
 import com.android254.presentation.R
 import com.android254.presentation.common.theme.DroidconKE2022Theme
 import com.android254.presentation.models.OrganizingTeamMember
+import com.droidconke.chai.atoms.ChaiDarkerGrey
+import com.droidconke.chai.atoms.ChaiSmokeyGrey
+import com.droidconke.chai.atoms.ChaiTeal
 import com.droidconke.chai.atoms.type.MontserratRegular
 
 @Composable
@@ -65,7 +67,7 @@ fun OrganizingTeamComponent(
             modifier = Modifier
                 .size(99.dp)
                 .clip(RoundedCornerShape(12.dp))
-                .border(2.dp, Color(0xFF00E2C3), RoundedCornerShape(12.dp))
+                .border(2.dp, ChaiTeal, RoundedCornerShape(12.dp))
         )
 
         Spacer(Modifier.height(6.dp))
@@ -74,7 +76,7 @@ fun OrganizingTeamComponent(
             modifier = Modifier.fillMaxWidth(),
             text = teamMember.name,
             style = TextStyle(
-                color = Color(0xFF191D1D),
+                color = ChaiDarkerGrey,
                 fontWeight = FontWeight.Normal,
                 fontSize = 13.sp,
                 lineHeight = 16.sp,
@@ -89,7 +91,7 @@ fun OrganizingTeamComponent(
             modifier = Modifier.fillMaxWidth(),
             text = teamMember.desc,
             style = TextStyle(
-                color = Color(0xFF707070),
+                color = ChaiSmokeyGrey,
                 fontWeight = FontWeight.Normal,
                 fontSize = 11.sp,
                 lineHeight = 14.sp,

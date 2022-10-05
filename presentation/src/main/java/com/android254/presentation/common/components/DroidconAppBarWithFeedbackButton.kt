@@ -27,7 +27,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
@@ -42,6 +41,8 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.android254.presentation.R
 import com.android254.presentation.common.theme.DroidconKE2022Theme
+import com.droidconke.chai.atoms.ChaiCoal
+import com.droidconke.chai.atoms.ChaiTeal
 import com.droidconke.chai.atoms.type.MontserratRegular
 
 @Composable
@@ -91,7 +92,7 @@ fun FeedbackButton(
         modifier = modifier
             .clip(RoundedCornerShape(10.dp))
             .background(
-                color = Color(0xFF00E2C3).copy(alpha = 0.21f),
+                color = ChaiTeal.copy(alpha = 0.21f),
             )
             .clickable(onClick = onButtonClick)
             .padding(horizontal = 12.dp, vertical = 8.dp),
@@ -107,7 +108,7 @@ fun FeedbackButton(
             modifier = Modifier,
             text = stringResource(id = R.string.feedback),
             style = TextStyle(
-                color = Color(0xFF20201E),
+                color = ChaiCoal,
                 fontWeight = FontWeight.Bold,
                 fontSize = 12.sp,
                 lineHeight = 15.sp,
@@ -117,7 +118,7 @@ fun FeedbackButton(
         Icon(
             painter = painterResource(id = R.drawable.ic_send_icon),
             contentDescription = null,
-            tint = Color(0xFF00E2C3),
+            tint = ChaiTeal,
         )
     }
 }
