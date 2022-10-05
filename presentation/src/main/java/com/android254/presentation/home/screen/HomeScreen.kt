@@ -67,7 +67,7 @@ fun HomeScreen(
         HomeSpacer()
         HomeSpeakersSection(
             speakers = speakersViewModel.getSpeakers(),
-            navigateToSpeakers = navigateToSpeakers
+            navigateToSpeakers = navigateToSpeakers,
         )
         Spacer(modifier = Modifier.fillMaxSize())
 

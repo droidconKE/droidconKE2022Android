@@ -3,7 +3,11 @@ package com.android254.presentation.home.screen
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
+import androidx.compose.ui.test.onNodeWithText
 import com.android254.presentation.common.theme.DroidconKE2022Theme
+import com.android254.presentation.home.components.HomeSpeakerComponent
+import com.android254.presentation.home.components.HomeSpeakersSection
+import com.android254.presentation.models.Speaker
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -34,5 +38,18 @@ class HomeScreenTest {
         }
 
         composeTestRule.onNodeWithTag("home_header").assertIsDisplayed()
+    }
+
+    @Test
+    fun `Test speakers view is displayed`(){
+        composeTestRule.setContent {
+            HomeSpeakersSection(speakers = emptyList())
+        }
+
+        composeTestRule.onNodeWithTag("speakersLabel").assertIsDisplayed()
+        composeTestRule.onNodeWithTag("speakersRaw").assertExists()
+        composeTestRule.onNodeWithTag("viewAllBtn").assertExists()
+
+
     }
 }

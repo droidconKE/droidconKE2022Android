@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -19,6 +20,7 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -52,13 +54,16 @@ fun HomeSpeakersSection(
                 )
             ),
             modifier = Modifier
+                .testTag("speakersLabel")
                 .constrainAs(titleText) {
                     top.linkTo(parent.top)
                     start.linkTo(parent.start)
                     bottom.linkTo(speakersRow.top)
                 })
         TextButton(onClick = navigateToSpeakers,
-            modifier = Modifier.constrainAs(viewAllBtn) {
+            modifier = Modifier
+                .testTag("viewAllBtn")
+                .constrainAs(viewAllBtn) {
                 top.linkTo(parent.top)
                 end.linkTo(parent.end)
                 bottom.linkTo(speakersRow.top)
@@ -103,12 +108,13 @@ fun HomeSpeakersSection(
         }
         // TODO: fIX the scrolling and padding
         LazyRow(modifier = Modifier
+            .testTag("speakersRaw")
             .padding(vertical = 22.dp)
             .constrainAs(speakersRow) {
                 top.linkTo(titleText.bottom)
             }) {
-            items(4) { index ->
-                HomeSpeakerComponent(speaker = speakers[index])
+            items(speakers.take(4)) { speaker ->
+                HomeSpeakerComponent(speaker = speaker)
             }
         }
     }
