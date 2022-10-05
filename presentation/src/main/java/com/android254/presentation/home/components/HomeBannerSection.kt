@@ -13,6 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -20,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.android254.presentation.R
 import com.android254.presentation.common.theme.DroidconKE2022Theme
+import com.android254.presentation.home.viewstate.HomeViewState
 import com.droidconke.chai.atoms.ChaiBlack
 import com.droidconke.chai.atoms.ChaiTeal
 import com.droidconke.chai.atoms.ChaiWhite
@@ -27,19 +29,25 @@ import com.droidconke.chai.atoms.type.MontserratBold
 import com.droidconke.chai.atoms.type.MontserratRegular
 
 @Composable
-fun HomeBannerSection() {
-    HomeSpacer()
-    HomeEventBanner()
-    HomeSpacer()
-    HomeCallForSpeakersLink()
+fun HomeBannerSection(homeViewState: HomeViewState) {
+    with(homeViewState) {
+        if (isPosterVisible) {
+            HomeSpacer()
+            HomeEventPoster()
+        }
+        if (isCallForSpeakersVisible) {
+            HomeSpacer()
+            HomeCallForSpeakersLink()
+        }
+    }
 }
 
 @Composable
-fun HomeEventBanner() {
+fun HomeEventPoster() {
     Image(
         painter = painterResource(id = R.drawable.droidcon_event_banner),
         contentDescription = stringResource(id = R.string.home_banner_event_poster_description),
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier.fillMaxWidth().testTag("home_event_poster"),
         contentScale = ContentScale.FillWidth
     )
 }
@@ -48,7 +56,8 @@ fun HomeEventBanner() {
 fun HomeCallForSpeakersLink() {
     Card(
         shape = RoundedCornerShape(20.dp),
-        modifier = Modifier.fillMaxWidth().aspectRatio(4.2f),
+        modifier = Modifier.fillMaxWidth().aspectRatio(4.2f)
+            .testTag("home_call_for_speakers_link"),
         colors = CardDefaults.cardColors(containerColor = ChaiTeal)
     ) {
         Row(
@@ -95,7 +104,7 @@ fun HomeCallForSpeakersLink() {
 @Composable
 fun HomeBannerSectionPreview() {
     DroidconKE2022Theme {
-        HomeBannerSection()
+        HomeBannerSection(HomeViewState())
     }
 }
 
@@ -103,7 +112,7 @@ fun HomeBannerSectionPreview() {
 @Composable
 fun HomeEventBannerPreview() {
     DroidconKE2022Theme {
-        HomeEventBanner()
+        HomeEventPoster()
     }
 }
 

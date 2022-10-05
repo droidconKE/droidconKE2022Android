@@ -7,5 +7,5 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor() : ViewModel() {
-    val viewState = HomeViewState(isBannerSectionVisible = true)
+    val viewState = HomeViewState()
 }
