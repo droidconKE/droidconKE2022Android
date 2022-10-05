@@ -41,7 +41,10 @@ import com.android254.presentation.common.theme.DroidconKE2022Theme
 import com.android254.presentation.speakers.SpeakersViewModel
 
 @Composable
-fun SpeakersScreen(speakersViewModel: SpeakersViewModel = hiltViewModel()) {
+fun SpeakersScreen(
+    speakersViewModel: SpeakersViewModel = hiltViewModel(),
+    navigateToHomeScreen: () -> Unit = {}
+) {
     val speakers = speakersViewModel.getSpeakers()
     Scaffold(
         topBar = {
@@ -56,7 +59,7 @@ fun SpeakersScreen(speakersViewModel: SpeakersViewModel = hiltViewModel()) {
                 },
                 navigationIcon = {
                     IconButton(
-                        onClick = { },
+                        onClick = navigateToHomeScreen,
                     ) {
                         Icon(
                             painter = painterResource(id = R.drawable.ic_back_arrow),
@@ -83,6 +86,7 @@ fun SpeakersScreen(speakersViewModel: SpeakersViewModel = hiltViewModel()) {
         }
     }
 }
+
 @Preview
 @Composable
 fun SpeakersScreenPreview() {

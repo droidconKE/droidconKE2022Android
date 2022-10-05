@@ -106,7 +106,6 @@ fun HomeSpeakersSection(
                 }
             }
         }
-        // TODO: fIX the scrolling and padding
         LazyRow(modifier = Modifier
             .testTag("speakersRaw")
             .padding(vertical = 22.dp)

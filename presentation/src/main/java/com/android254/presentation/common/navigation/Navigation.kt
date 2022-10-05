@@ -57,7 +57,9 @@ fun Navigation(
         composable(Screens.Speakers.route) {
             upDataAppBarState(true)
             upDateBottomBarState(true)
-            SpeakersScreen()
+            SpeakersScreen(
+                navigateToHomeScreen = {navController.navigate(Screens.Home.route)}
+            )
         }
     }
 }
