@@ -29,8 +29,6 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.Font
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -43,6 +41,8 @@ import com.android254.presentation.common.components.DroidconAppBarWithFeedbackB
 import com.android254.presentation.common.components.OrganizedBySection
 import com.android254.presentation.common.theme.DroidconKE2022Theme
 import com.android254.presentation.models.OrganizingTeamMember
+import com.droidconke.chai.atoms.type.MontserratBold
+import com.droidconke.chai.atoms.type.MontserratRegular
 import com.google.accompanist.flowlayout.FlowRow
 import com.google.accompanist.flowlayout.MainAxisAlignment
 import com.google.accompanist.flowlayout.SizeMode
@@ -132,7 +132,7 @@ fun AboutDroidConSection(
                 fontWeight = FontWeight.Bold,
                 fontSize = 21.sp,
                 lineHeight = 25.sp,
-                fontFamily = FontFamily(Font(R.font.montserrat_bold)),
+                fontFamily = MontserratBold,
             ),
         )
 
@@ -147,7 +147,7 @@ fun AboutDroidConSection(
                 color = Color(0xFF20201E),
                 fontSize = 16.sp,
                 lineHeight = 19.sp,
-                fontFamily = FontFamily(Font(R.font.montserrat_light)),
+                fontFamily = MontserratRegular,
             ),
         )
     }
@@ -173,7 +173,7 @@ fun OrganizingTeamSection(
                 fontWeight = FontWeight.Bold,
                 fontSize = 21.sp,
                 lineHeight = 25.sp,
-                fontFamily = FontFamily(Font(R.font.montserrat_bold)),
+                fontFamily = MontserratBold,
             ),
         )
 

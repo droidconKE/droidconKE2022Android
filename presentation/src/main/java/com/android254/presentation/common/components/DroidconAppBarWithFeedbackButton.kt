@@ -34,8 +34,6 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.Font
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -44,6 +42,7 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.android254.presentation.R
 import com.android254.presentation.common.theme.DroidconKE2022Theme
+import com.droidconke.chai.atoms.type.MontserratRegular
 
 @Composable
 fun DroidconAppBarWithFeedbackButton(
@@ -112,7 +111,7 @@ fun FeedbackButton(
                 fontWeight = FontWeight.Bold,
                 fontSize = 12.sp,
                 lineHeight = 15.sp,
-                fontFamily = FontFamily(Font(R.font.montserrat_regular)),
+                fontFamily = MontserratRegular,
             ),
         )
         Icon(

@@ -29,8 +29,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.Font
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -41,6 +39,7 @@ import coil.request.ImageRequest
 import com.android254.presentation.R
 import com.android254.presentation.common.theme.DroidconKE2022Theme
 import com.android254.presentation.models.OrganizingTeamMember
+import com.droidconke.chai.atoms.type.MontserratRegular
 
 @Composable
 fun OrganizingTeamComponent(
@@ -79,7 +78,7 @@ fun OrganizingTeamComponent(
                 fontWeight = FontWeight.Normal,
                 fontSize = 13.sp,
                 lineHeight = 16.sp,
-                fontFamily = FontFamily(Font(R.font.montserrat_regular)),
+                fontFamily = MontserratRegular,
             ),
             textAlign = TextAlign.Center,
         )
@@ -94,7 +93,7 @@ fun OrganizingTeamComponent(
                 fontWeight = FontWeight.Normal,
                 fontSize = 11.sp,
                 lineHeight = 14.sp,
-                fontFamily = FontFamily(Font(R.font.montserrat_regular)),
+                fontFamily = MontserratRegular,
             ),
             textAlign = TextAlign.Center,
         )
