@@ -31,6 +31,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.android254.presentation.R
 import com.android254.presentation.common.theme.DroidconKE2022Theme
 import com.android254.presentation.home.components.HomeBannerSection
+import com.android254.presentation.home.components.HomeSpacer
 import com.android254.presentation.home.components.HomeSpeakersSection
 import com.android254.presentation.home.viewmodel.HomeViewModel
 import com.android254.presentation.speakers.SpeakersViewModel
@@ -55,6 +56,7 @@ fun HomeScreen(
             fontSize = 16.sp
         )
         HomeBannerSection(homeViewState)
+        HomeSpacer()
         HomeSpeakersSection(speakers = speakersViewModel.getSpeakers())
         Spacer(modifier = Modifier.fillMaxSize())
 
