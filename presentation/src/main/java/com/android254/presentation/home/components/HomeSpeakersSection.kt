@@ -106,7 +106,7 @@ fun HomeSpeakersSection(
                         .height(22.dp)
                         .width(35.dp)
                         .background(
-                            color = colorResource(id = R.color.blue_11),
+                            color = colorResource(id = R.color.light_blue),
                             shape = RoundedCornerShape(14.dp)
                         )
                 ) {
@@ -126,7 +126,7 @@ fun HomeSpeakersSection(
         }
         LazyRow(
             modifier = Modifier
-                .testTag("speakersRaw")
+                .testTag("speakersRow")
                 .padding(vertical = 22.dp)
                 .constrainAs(speakersRow) {
                     top.linkTo(titleText.bottom)

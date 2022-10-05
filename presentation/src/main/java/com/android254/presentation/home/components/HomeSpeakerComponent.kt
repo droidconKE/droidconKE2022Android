@@ -76,7 +76,6 @@ fun HomeSpeakerComponent(speaker: Speaker) {
                     start.linkTo(parent.start)
                     end.linkTo(parent.end)
                 },
-
         )
         Text(
             text = speaker.name,
