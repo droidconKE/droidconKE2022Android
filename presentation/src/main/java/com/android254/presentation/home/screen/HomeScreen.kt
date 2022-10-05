@@ -23,6 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -30,12 +31,15 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.android254.presentation.R
 import com.android254.presentation.common.theme.DroidconKE2022Theme
 import com.android254.presentation.home.components.HomeBannerSection
+import com.android254.presentation.home.components.HomeSpeakersSection
 import com.android254.presentation.home.viewmodel.HomeViewModel
+import com.android254.presentation.speakers.SpeakersViewModel
 import com.droidconke.chai.atoms.type.MontserratSemiBold
 
 @Composable
 fun HomeScreen(
-    homeViewModel: HomeViewModel = hiltViewModel()
+    homeViewModel: HomeViewModel = hiltViewModel(),
+    speakersViewModel: SpeakersViewModel = hiltViewModel()
 ) {
     val homeViewState = homeViewModel.viewState
     Column(
@@ -51,7 +55,9 @@ fun HomeScreen(
             fontSize = 16.sp
         )
         HomeBannerSection(homeViewState)
+        HomeSpeakersSection(speakers = speakersViewModel.getSpeakers())
         Spacer(modifier = Modifier.fillMaxSize())
+
     }
 }
 

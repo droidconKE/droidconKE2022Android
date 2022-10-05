@@ -34,5 +34,6 @@
     <string name="home_banner_call_for_speakers_image_description">Call for speakers</string>
     <string name="home_banner_call_for_speakers_label">Call for speakers</string>
     <string name="home_banner_call_for_speakers_apply_to_speak_label">Apply to be a speaker</string>
+    <string name="view_all_label">View All</string>
 
 </resources>
