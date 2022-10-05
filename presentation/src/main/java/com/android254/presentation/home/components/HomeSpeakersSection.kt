@@ -15,6 +15,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -35,7 +36,9 @@ import com.android254.presentation.speakers.SpeakersViewModel
 import okhttp3.internal.wait
 
 @Composable
-fun HomeSpeakersSection(speakers: List<Speaker>) {
+fun HomeSpeakersSection(
+    speakers: List<Speaker>,
+    navigateToSpeakers: ()-> Unit = {}) {
     ConstraintLayout(
         modifier = Modifier
             .fillMaxWidth()
@@ -54,7 +57,7 @@ fun HomeSpeakersSection(speakers: List<Speaker>) {
                     start.linkTo(parent.start)
                     bottom.linkTo(speakersRow.top)
                 })
-        TextButton(onClick = { /*TODO*/ },
+        TextButton(onClick = navigateToSpeakers,
             modifier = Modifier.constrainAs(viewAllBtn) {
                 top.linkTo(parent.top)
                 end.linkTo(parent.end)
@@ -65,9 +68,6 @@ fun HomeSpeakersSection(speakers: List<Speaker>) {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    /**
-                     * TODO: Update the count: state
-                     */
                     text = stringResource(R.string.view_all_label),
                     style = TextStyle(
                         color = colorResource(id = R.color.blue),
@@ -88,7 +88,7 @@ fun HomeSpeakersSection(speakers: List<Speaker>) {
                         )
                 ) {
                     Text(
-                        text = "100", // Todo: Update this with state
+                        text = "${speakers.size}",
                         modifier = Modifier.align(Alignment.Center),
                         style = TextStyle(
                             color = colorResource(id = R.color.blue),

@@ -2,21 +2,16 @@ package com.android254.presentation.home.components
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
@@ -56,8 +51,8 @@ fun HomeSpeakerComponent(speaker: Speaker){
                     shape = RoundedCornerShape(12.dp)
                 )
                 .border(BorderStroke(2.dp, color = colorResource(id = R.color.cyan)))
-                .height(72.dp)
-                .width(72.dp)
+                .height(85.dp)
+                .width(85.dp)
                 .constrainAs(headShot){
                     top.linkTo(parent.top)
                     start.linkTo(parent.start)
@@ -74,7 +69,7 @@ fun HomeSpeakerComponent(speaker: Speaker){
             },
             style = TextStyle(
                 color = colorResource(id = R.color.dark),
-                fontSize = 10.sp,
+                fontSize = 12.sp,
                 fontFamily = FontFamily(Font(R.font.montserrat_medium)
                 )
             ),
