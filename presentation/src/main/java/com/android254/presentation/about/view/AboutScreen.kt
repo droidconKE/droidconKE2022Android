@@ -52,7 +52,7 @@ import com.google.accompanist.flowlayout.SizeMode
 fun AboutScreen(
     aboutViewModel: AboutViewModel = hiltViewModel(),
 ) {
-    val teamMembers: List<OrganizingTeamMember> = aboutViewModel.organizingTeamMembers.value
+    val teamMembers: List<OrganizingTeamMember> = aboutViewModel.organizingTeamMembers
     val stakeHolderLogos = aboutViewModel.stakeHolderLogos.value
     val sampleImageUrl = aboutViewModel.sampleImageUrl
 
@@ -73,7 +73,7 @@ fun AboutScreen(
                 .verticalScroll(rememberScrollState())
                 .testTag("about_screen")
         ) {
-            AboutDroidConSection(
+            AboutDroidconSection(
                 droidconDesc = stringResource(id = R.string.about_droidcon),
                 droidconImage = sampleImageUrl,
             )
@@ -101,7 +101,7 @@ fun AboutScreen(
 }
 
 @Composable
-fun AboutDroidConSection(
+fun AboutDroidconSection(
     modifier: Modifier = Modifier,
     droidconDesc: String,
     droidconImage: String,
