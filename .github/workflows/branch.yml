@@ -3,6 +3,8 @@ name: branch
 on:
   push:
     branches-ignore: [ main, develop, release ]
+  pull_request:
+    branches: [ main ]
 
 env:
   APP_SIGN_KEYSTORE_PATH: /tmp/keystore
@@ -72,9 +74,6 @@ jobs:
           skip-tracking: false
           subdirectory: fastlane
           bundle-install-path: CACHE_BUNDLER
-
-      - name: Create Google Services Json
-        run: echo '${{ secrets.GOOGLE_SERVICES_JSON }}' > /home/runner/work/droidconKE2022Android/droidconKE2022Android/app/google-services.json
 
       - name: Run Debug Build
         uses: maierj/fastlane-action@v2.0.0
