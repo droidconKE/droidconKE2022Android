@@ -29,33 +29,37 @@ import com.android254.presentation.speakers.view.SpeakersScreen
 fun Navigation(
     navController: NavHostController,
     upDateBottomBarState: (Boolean) -> Unit,
-    upDataAppBarState: (Boolean) -> Unit
+    upDateAppBarState: (Boolean) -> Unit
 ) {
     NavHost(navController, startDestination = Screens.Home.route) {
         composable(Screens.Home.route) {
-            upDataAppBarState(true)
+            upDateAppBarState(true)
             upDateBottomBarState(true)
-            HomeScreen()
+            HomeScreen(
+                navigateToSpeakers = { navController.navigate(Screens.Speakers.route) }
+            )
         }
         composable(Screens.Sessions.route) {
-            upDataAppBarState(true)
+            upDateAppBarState(true)
             upDateBottomBarState(true)
             SessionsScreen()
         }
         composable(Screens.Feed.route) {
-            upDataAppBarState(true)
+            upDateAppBarState(true)
             upDateBottomBarState(true)
             FeedScreen()
         }
         composable(Screens.About.route) {
-            upDataAppBarState(true)
+            upDateAppBarState(false)
             upDateBottomBarState(true)
             AboutScreen()
         }
         composable(Screens.Speakers.route) {
-            upDataAppBarState(true)
+            upDateAppBarState(true)
             upDateBottomBarState(true)
-            SpeakersScreen()
+            SpeakersScreen(
+                navigateToHomeScreen = { navController.navigateUp() }
+            )
         }
     }
 }

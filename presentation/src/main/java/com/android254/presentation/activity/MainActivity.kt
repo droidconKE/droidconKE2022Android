@@ -93,7 +93,7 @@ fun MainScreen() {
             Navigation(
                 navController = navController,
                 upDateBottomBarState = { bottomBarState.value = it },
-                upDataAppBarState = { appBarState.value = it }
+                upDateAppBarState = { appBarState.value = it }
             )
         }
     }
