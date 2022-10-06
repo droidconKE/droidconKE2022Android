@@ -38,8 +38,6 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.Font
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -48,6 +46,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.android254.presentation.R
 import com.android254.presentation.models.Speaker
 import com.android254.presentation.speakers.SpeakersViewModel
+import com.droidconke.chai.atoms.type.MontserratBold
+import com.droidconke.chai.atoms.type.MontserratRegular
+import com.droidconke.chai.atoms.type.MontserratSemiBold
 
 @Composable
 fun HomeSpeakersSection(
@@ -64,9 +65,7 @@ fun HomeSpeakersSection(
             style = TextStyle(
                 color = colorResource(id = R.color.blue),
                 fontSize = 20.sp,
-                fontFamily = FontFamily(
-                    Font(R.font.montserrat_bold)
-                )
+                fontFamily = MontserratBold
             ),
             modifier = Modifier
                 .testTag("speakersLabel")
@@ -95,9 +94,7 @@ fun HomeSpeakersSection(
                     style = TextStyle(
                         color = colorResource(id = R.color.blue),
                         fontSize = 12.sp,
-                        fontFamily = FontFamily(
-                            Font(R.font.montserrat_semi_bold)
-                        )
+                        fontFamily = MontserratSemiBold
                     )
                 )
                 Spacer(modifier = Modifier.width(7.dp))
@@ -116,9 +113,7 @@ fun HomeSpeakersSection(
                         style = TextStyle(
                             color = colorResource(id = R.color.blue),
                             fontSize = 10.sp,
-                            fontFamily = FontFamily(
-                                Font(R.font.montserrat_regular)
-                            )
+                            fontFamily = MontserratRegular
                         ),
                     )
                 }

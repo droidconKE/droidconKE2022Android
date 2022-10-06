@@ -46,6 +46,7 @@ import coil.request.ImageRequest
 import com.android254.presentation.R
 import com.android254.presentation.common.theme.DroidconKE2022Theme
 import com.android254.presentation.models.Speaker
+import com.droidconke.chai.atoms.type.MontserratMedium
 
 @Composable
 fun HomeSpeakerComponent(speaker: Speaker) {
@@ -87,9 +88,7 @@ fun HomeSpeakerComponent(speaker: Speaker) {
             style = TextStyle(
                 color = colorResource(id = R.color.dark),
                 fontSize = 12.sp,
-                fontFamily = FontFamily(
-                    Font(R.font.montserrat_medium)
-                )
+                fontFamily = MontserratMedium
             ),
             textAlign = TextAlign.Center
         )
