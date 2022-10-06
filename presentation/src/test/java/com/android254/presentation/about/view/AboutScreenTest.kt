@@ -15,10 +15,8 @@
  */
 package com.android254.presentation.about.view
 
-import androidx.compose.ui.test.assertIsDisplayed
-import androidx.compose.ui.test.assertTextEquals
+import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createComposeRule
-import androidx.compose.ui.test.onNodeWithTag
 import com.android254.presentation.common.theme.DroidconKE2022Theme
 import org.junit.Before
 import org.junit.Rule
@@ -42,7 +40,7 @@ class AboutScreenTest {
     }
 
     @Test
-    fun `should show About Screen and show the heading`() {
+    fun `should show About Screen and organizing team section`() {
 
         composeTestRule.setContent {
             DroidconKE2022Theme {
@@ -50,7 +48,33 @@ class AboutScreenTest {
             }
         }
 
-        composeTestRule.onNodeWithTag("heading").assertIsDisplayed()
-        composeTestRule.onNodeWithTag("heading").assertTextEquals("About Screen")
+        composeTestRule.onNodeWithTag("about_screen").assertExists()
+        composeTestRule.onNodeWithTag("about_screen").assertIsDisplayed()
+        composeTestRule.onNodeWithTag("organizing_team_section").assertExists()
+    }
+
+    @Test
+    fun `should show About Screen and the droidcon topBar`() {
+
+        composeTestRule.setContent {
+            DroidconKE2022Theme {
+                AboutScreen()
+            }
+        }
+
+        composeTestRule.onNodeWithTag("droidcon_topBar_with_Feedback").assertExists()
+        composeTestRule.onNodeWithTag("droidcon_topBar_with_Feedback").assertIsDisplayed()
+    }
+
+    @Test
+    fun `should show About Screen and show the organized by section`() {
+
+        composeTestRule.setContent {
+            DroidconKE2022Theme {
+                AboutScreen()
+            }
+        }
+
+        composeTestRule.onNodeWithTag("organized_by_section").assertExists()
     }
 }
