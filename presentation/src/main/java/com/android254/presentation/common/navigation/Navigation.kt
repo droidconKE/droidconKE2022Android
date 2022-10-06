@@ -58,7 +58,7 @@ fun Navigation(
             upDataAppBarState(true)
             upDateBottomBarState(true)
             SpeakersScreen(
-                navigateToHomeScreen = { navController.navigateUp()}
+                navigateToHomeScreen = { navController.navigateUp() }
             )
         }
     }
