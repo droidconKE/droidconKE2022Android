@@ -45,9 +45,7 @@ class FeedbackApiTest {
         )
 
         mockEngine.requestHistory.first().run {
-            val expectedUrl = Constants.run {
-                "$BASE_URL/$EVENT_PATH_SEGMENT/feedback/sessions/${session.id}"
-            }
+            val expectedUrl = "${Constants.EVENT_BASE_URL}/feedback/sessions/${session.id}"
             assertThat(url.toString(), `is`(expectedUrl))
             assertThat(method, `is`(HttpMethod.Post))
             assertThat(body.toJsonString(), `is`("""{"rating":3,"message":"Was nice"}"""))

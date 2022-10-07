@@ -29,8 +29,7 @@ class FeedbackApi @Inject constructor(
     private val client: HttpClient
 ) {
     suspend fun postFeedback(feedback: Feedback, session: SessionDataModel) = dataResultSafeApiCall {
-        val url = "${Constants.BASE_URL}/${Constants.EVENT_PATH_SEGMENT}/feedback/sessions/${session.id}"
-        client.post(url) {
+        client.post("${Constants.EVENT_BASE_URL}/feedback/sessions/${session.id}") {
             setBody(feedback)
         }
         return@dataResultSafeApiCall
