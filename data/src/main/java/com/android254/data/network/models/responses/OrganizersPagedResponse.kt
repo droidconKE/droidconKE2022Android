@@ -20,12 +20,12 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class OrganizersPagedResponse(
-    @SerialName("data") var data: List<Organizer>,
+    @SerialName("data") var data: List<OrganizerData>,
     @SerialName("meta") var meta: Meta?
 )
 
 @Serializable
-data class Organizer(
+data class OrganizerData(
     @SerialName("id") var id: Int?,
     @SerialName("name") var name: String?,
     @SerialName("email") var email: String?,
@@ -37,13 +37,13 @@ data class Organizer(
     @SerialName("slug") var slug: String?,
     @SerialName("status") var status: String?,
     @SerialName("created_at") var createdAt: String?,
-    @SerialName("creater") var creater: Creator?,
+    @SerialName("creater") var creator: CreatorData?,
     @SerialName("upcoming_events_count") var upcomingEventsCount: Int?,
     @SerialName("total_events_count") var totalEventsCount: Int?
 )
 
 @Serializable
-data class Creator(
+data class CreatorData(
     @SerialName("id") var id: Int?,
     @SerialName("name") var name: String?,
     @SerialName("email") var email: String?,

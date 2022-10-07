@@ -27,8 +27,12 @@ class OrganizersApi @Inject constructor(
     private val client: HttpClient
 ) {
 
-    suspend fun fetchOrganizers(perPage: Int, page: Int): OrganizersPagedResponse =
-        safeApiCall {
-            client.get("${Constants.BASE_URL}/organizers?per_page=$perPage&page$page").body()
+    suspend fun fetchOrganizers(perPage: Int, page: Int): OrganizersPagedResponse? =
+        try {
+            safeApiCall {
+                client.get("${Constants.BASE_URL}/organizers?per_page=$perPage&page$page").body()
+            }
+        } catch (e: Exception) {
+            null
         }
 }

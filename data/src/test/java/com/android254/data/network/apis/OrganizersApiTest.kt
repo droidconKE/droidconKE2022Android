@@ -30,7 +30,6 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import org.junit.Assert.assertEquals
-import org.junit.Assert.assertThrows
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -150,10 +149,8 @@ class OrganizersApiTest {
         val httpClient = HttpClientFactory(DefaultTokenProvider(testDataStore)).create(mockEngine)
         val api = OrganizersApi(httpClient)
 
-        assertThrows(Exception::class.java) {
-            runBlocking {
-                api.fetchOrganizers(1, 1)
-            }
-        }
+        val actual = runBlocking { api.fetchOrganizers(1, 1) }
+
+        assertEquals(null, actual)
     }
 }
