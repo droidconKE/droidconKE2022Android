@@ -17,11 +17,14 @@ package com.android254.data.db.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import kotlinx.datetime.Instant
 
 @Entity
 data class Session(
-    @PrimaryKey(autoGenerate = true) val id: Long,
-    val name: String,
-    val publishDate: Instant
+    @PrimaryKey(autoGenerate = true) val id: Int,
+    val description: String,
+    val session_format: String,
+    val session_level: String,
+    val slug: String,
+//    TODO create converter val speakers: List<SpeakerApiModel>,
+    val title: String
 )

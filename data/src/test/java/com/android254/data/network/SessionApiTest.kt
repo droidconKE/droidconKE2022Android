@@ -15,7 +15,7 @@
  */
 package com.android254.data.network
 
-import com.android254.data.network.apis.SessionApi
+import com.android254.data.network.apis.SessionRemoteSource
 import com.android254.data.network.models.responses.PaginatedResponse
 import com.android254.data.network.models.responses.PaginationMetaData
 import com.android254.data.network.models.responses.ResponseMetaData
@@ -64,7 +64,7 @@ class SessionApiTest {
 
         runBlocking {
             // WHEN
-            val response = SessionApi(httpClient).fetchSessions()
+            val response = SessionRemoteSource(httpClient).fetchSessions()
             // THEN
             assertThat(response, `is`(expectedResponse))
         }

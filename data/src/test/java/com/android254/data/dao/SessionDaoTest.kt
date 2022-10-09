@@ -57,9 +57,16 @@ class SessionDaoTest {
 
     @Test
     fun `test sessionDao fetches all sessions`() = runTest {
-        val session = Session(0, "Welcome Keynote", "2010-06-01T22:19:44.475Z".toInstant())
+        val session = Session(
+            id = 0,
+            title = "Retrofiti: A Pragmatic Approach to using Retrofit in Android",
+            description = "This session is codelab covering some of the best practices and recommended approaches to building an application using the retrofit library.",
+            slug = "retrofiti-a-pragmatic-approach-to-using-retrofit-in-android-1583941090",
+            session_format = "Codelab / Workshop",
+            session_level = "Intermediate",
+        )
         sessionDao.insert(session)
         val result = sessionDao.fetchSessions().first()
-        assertThat(session.name, `is`(result.name))
+        assertThat(session.title, `is`(result.title))
     }
 }

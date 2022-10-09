@@ -19,6 +19,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class SessionApiModel(
+    val id: String,
     val description: String,
     val session_format: String,
     val session_level: String,

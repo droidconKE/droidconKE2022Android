@@ -57,6 +57,7 @@ dependencies {
     api(libs.kotlin.coroutines.datetime)
     implementation(libs.android.hilt)
     implementation(libs.timber)
+    implementation("androidx.test.ext:junit-ktx:1.1.3")
     kapt(libs.android.hilt.compiler)
     implementation(libs.datastore)
     implementation(libs.room.runtime)

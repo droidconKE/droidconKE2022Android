@@ -23,10 +23,10 @@ import io.ktor.client.call.*
 import io.ktor.client.request.*
 import javax.inject.Inject
 
-class SessionApi @Inject constructor(
+class SessionRemoteSource @Inject constructor(
     private val client: HttpClient
 ) {
-    suspend fun fetchSessions(perPage: Int = 200): PaginatedResponse<List<SessionApiModel>> {
+    suspend fun fetchSessions(perPage: Int = 200): PaginatedResponse<SessionApiModel> {
         return client.get("${Constants.BASE_URL}/events/droidconke2019-444/sessions") {
             url {
                 parameters.append("per_page", perPage.toString())
