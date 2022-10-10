@@ -24,32 +24,35 @@ import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 
 @Serializable
-data class Feedback(val rating: Rating, val message: String) {
+data class Feedback(val rating: FeedbackRating, val message: String)
 
-    @Serializable(with = FeedbackRatingSerializer::class)
-    enum class Rating(val value: Int) {
-        BAD(1),
-        OKAY(2),
-        GOOD(3);
-
-        companion object {
-            fun from(value: Int): Rating = when (value) {
-                1 -> BAD
-                2 -> OKAY
-                3 -> GOOD
-                else -> throw IllegalArgumentException("Invalid feedback rating code $value. Only 1, 2 and 3 allowed.")
-            }
-        }
-    }
+@Serializable(with = FeedbackRatingSerializer::class)
+sealed class FeedbackRating {
+    object BAD : FeedbackRating()
+    object OKAY : FeedbackRating()
+    object GOOD : FeedbackRating()
 }
 
-class FeedbackRatingSerializer : KSerializer<Feedback.Rating> {
+//
+
+private class FeedbackRatingSerializer : KSerializer<FeedbackRating> {
     override val descriptor: SerialDescriptor =
         PrimitiveSerialDescriptor("FeedbackRating", PrimitiveKind.INT)
 
-    override fun serialize(encoder: Encoder, value: Feedback.Rating) =
-        encoder.encodeInt(value.value)
+    override fun serialize(encoder: Encoder, value: FeedbackRating) {
+        val code = when (value) {
+            FeedbackRating.BAD -> 1
+            FeedbackRating.OKAY -> 2
+            FeedbackRating.GOOD -> 3
+        }
+        encoder.encodeInt(code)
+    }
 
-    override fun deserialize(decoder: Decoder): Feedback.Rating =
-        Feedback.Rating.from(decoder.decodeInt())
+    override fun deserialize(decoder: Decoder) =
+        when (val code = decoder.decodeInt()) {
+            1 -> FeedbackRating.BAD
+            2 -> FeedbackRating.OKAY
+            3 -> FeedbackRating.GOOD
+            else -> throw IllegalArgumentException("Invalid feedback rating code $code. Only 1, 2 and 3 allowed.")
+        }
 }
