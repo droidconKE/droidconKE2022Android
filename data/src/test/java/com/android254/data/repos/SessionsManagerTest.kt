@@ -15,25 +15,25 @@
  */
 package com.android254.data.repos
 
-import android.util.Log
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.android254.data.dao.SessionDao
 import com.android254.data.db.Database
 import com.android254.data.network.apis.SessionRemoteSource
-import com.android254.data.network.models.responses.*
 import com.android254.domain.models.DataResult
 import com.android254.domain.models.Success
-import io.mockk.every
+import io.mockk.coEvery
+import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.runBlocking
 import org.hamcrest.CoreMatchers
 import org.hamcrest.MatcherAssert.assertThat
+import org.junit.After
+import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-
 
 @RunWith(AndroidJUnit4::class)
 class SessionsManagerTest {
@@ -49,43 +49,23 @@ class SessionsManagerTest {
         ).allowMainThreadQueries().build()
 
         dao = database.sessionDao()
-
-        runBlocking {
-            val fetchSessions = mockApi.fetchSessions(200)
-            val results = PaginatedResponse(
-                data = listOf(
-                    SessionApiModel(
-                        "1",
-                        "",
-                        "",
-                        "",
-                        "",
-                        speakers = listOf(),
-                        "new title"
-                    )
-                ),
-                meta = ResponseMetaData(
-                    paginator = PaginationMetaData(
-                        1,
-                        1,
-                        false,
-                        "",
-                        "",
-                        "200",
-                        ""
-                    )
-                )
-            )
-            every { fetchSessions } returns results
-        }
     }
 
     @Test
     fun `test it fetches and saves sessions successfully`() {
         val repo = SessionsManager(mockApi, dao)
         runBlocking {
+            coEvery { mockApi.fetchSessions(200) } returns results
             val result = repo.fetchAndSaveSessions()
+            coVerify { mockApi.fetchSessions(200) }
             assertThat(result, CoreMatchers.`is`(DataResult.Success(Success)))
+            val databaseResult = dao.fetchSessions()
+            Assert.assertNotNull(databaseResult)
         }
+    }
+
+    @After
+    fun afterTest() {
+        database.close()
     }
 }

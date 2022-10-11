@@ -21,7 +21,6 @@ import androidx.test.core.app.ApplicationProvider
 import com.android254.data.db.Database
 import com.android254.data.db.model.Session
 import kotlinx.coroutines.test.runTest
-import kotlinx.datetime.toInstant
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.After
