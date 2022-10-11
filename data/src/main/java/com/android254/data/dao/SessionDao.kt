@@ -18,9 +18,10 @@ package com.android254.data.dao
 import androidx.room.Dao
 import androidx.room.Query
 import com.android254.data.db.model.Session
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface SessionDao : BaseDao<Session> {
     @Query("SELECT * FROM SESSION")
-    fun fetchSessions(): List<Session>
+    fun fetchSessions(): Flow<List<Session>>
 }

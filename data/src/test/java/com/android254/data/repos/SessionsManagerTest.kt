@@ -26,6 +26,7 @@ import com.android254.domain.models.Success
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.hamcrest.CoreMatchers
 import org.hamcrest.MatcherAssert.assertThat
@@ -54,13 +55,14 @@ class SessionsManagerTest {
     @Test
     fun `test it fetches and saves sessions successfully`() {
         val repo = SessionsManager(mockApi, dao)
+
         runBlocking {
+            Assert.assertEquals(dao.fetchSessions().first().isEmpty(), true)
             coEvery { mockApi.fetchSessions(200) } returns results
             val result = repo.fetchAndSaveSessions()
             coVerify { mockApi.fetchSessions(200) }
             assertThat(result, CoreMatchers.`is`(DataResult.Success(Success)))
-            val databaseResult = dao.fetchSessions()
-            Assert.assertNotNull(databaseResult)
+            Assert.assertEquals(dao.fetchSessions().first().count(), 1)
         }
     }
 
