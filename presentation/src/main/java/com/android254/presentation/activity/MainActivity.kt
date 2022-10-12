@@ -92,7 +92,11 @@ fun MainScreen() {
             Navigation(
                 navController = navController,
                 upDateBottomBarState = { bottomBarState.value = it },
-                upDateAppBarState = { appBarState.value = it }
+                upDateAppBarState = { appBarState.value = it },
+                isSignedIn = isSignedIn,
+                onActionClicked = {
+                    showAuthDialog = !showAuthDialog
+                }
             )
         }
     }

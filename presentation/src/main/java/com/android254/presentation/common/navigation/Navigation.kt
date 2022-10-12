@@ -31,13 +31,18 @@ fun Navigation(
     navController: NavHostController,
     upDateBottomBarState: (Boolean) -> Unit,
     upDateAppBarState: (Boolean) -> Unit,
+    isSignedIn: Boolean,
+    onActionClicked: () -> Unit = {},
 ) {
     NavHost(navController, startDestination = Screens.Home.route) {
         composable(Screens.Home.route) {
-            upDateAppBarState(true)
+            upDateAppBarState(false)
             upDateBottomBarState(true)
             HomeScreen(
-                navigateToSpeakers = { navController.navigate(Screens.Speakers.route) }
+                navigateToSpeakers = { navController.navigate(Screens.Speakers.route) },
+                isSignedIn = isSignedIn,
+                navigateToFeedbackScreen = { navController.navigate(Screens.FeedBack.route) },
+                onActionClicked = onActionClicked
             )
         }
         composable(Screens.Sessions.route) {
