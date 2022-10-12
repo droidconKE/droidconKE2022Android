@@ -45,4 +45,6 @@
     <string name="home_banner_call_for_speakers_apply_to_speak_label">Apply to be a speaker</string>
     <string name="view_all_label">View All</string>
 
+    <string name="top_bar_filter">Filter</string>
+
 </resources>
