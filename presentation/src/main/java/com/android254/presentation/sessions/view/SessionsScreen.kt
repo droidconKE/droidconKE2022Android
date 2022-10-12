@@ -84,7 +84,7 @@ fun SessionsScreen(darkTheme: Boolean = isSystemInDarkTheme()) {
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(start = 0.dp, end = 0.dp, top = 24.dp, bottom = 12.dp)
+                    .padding(start = 0.dp, end = 0.dp, top = 5.dp, bottom = 12.dp)
             ) {
                 /**
                  * Removed the dummy loop for the lint check
