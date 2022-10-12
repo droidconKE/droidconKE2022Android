@@ -30,7 +30,7 @@ import com.android254.presentation.speakers.view.SpeakersScreen
 fun Navigation(
     navController: NavHostController,
     upDateBottomBarState: (Boolean) -> Unit,
-    upDateAppBarState: (Boolean) -> Unit
+    upDateAppBarState: (Boolean) -> Unit,
 ) {
     NavHost(navController, startDestination = Screens.Home.route) {
         composable(Screens.Home.route) {
@@ -55,7 +55,9 @@ fun Navigation(
         composable(Screens.About.route) {
             upDateAppBarState(false)
             upDateBottomBarState(true)
-            AboutScreen()
+            AboutScreen(
+                navigateToFeedbackScreen = { navController.navigate(Screens.FeedBack.route) }
+            )
         }
         composable(Screens.Speakers.route) {
             upDateAppBarState(true)

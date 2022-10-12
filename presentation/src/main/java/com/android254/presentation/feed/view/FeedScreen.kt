@@ -34,12 +34,12 @@ import com.android254.presentation.common.theme.DroidconKE2022Theme
 
 @Composable
 fun FeedScreen(
-    navigateToFeedbackScreen: () -> Unit = {}
+    navigateToFeedbackScreen: () -> Unit = {},
 ) {
     Scaffold(topBar = {
         DroidconAppBarWithFeedbackButton(
             onButtonClick = {
-                // TODO navigate to feedbackScreen
+                navigateToFeedbackScreen()
             },
             userProfile = "https://media-exp1.licdn.com/dms/image/C4D03AQGn58utIO-x3w/profile-displayphoto-shrink_200_200/0/1637478114039?e=2147483647&v=beta&t=3kIon0YJQNHZojD3Dt5HVODJqHsKdf2YKP1SfWeROnI"
         )
