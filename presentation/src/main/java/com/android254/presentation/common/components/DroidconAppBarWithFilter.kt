@@ -95,7 +95,6 @@ fun LayoutIconButtons(
         Icon(
             modifier = Modifier
                 .clickable(
-                    enabled = isListActive,
                     onClick = onListIconClick
                 ),
             painter = painterResource(id = R.drawable.ic_listalt),
@@ -108,7 +107,6 @@ fun LayoutIconButtons(
         Icon(
             modifier = Modifier
                 .clickable(
-                    enabled = !isListActive,
                     onClick = onAgendaIconClick
                 ),
             painter = painterResource(id = R.drawable.ic_view_agenda),
