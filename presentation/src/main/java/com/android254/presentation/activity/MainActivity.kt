@@ -70,7 +70,6 @@ fun MainScreen() {
         topBar = {
             if (appBarState.value) {
                 DroidconAppBar(
-                    isSignedIn = isSignedIn,
                     onActionClicked = {
                         showAuthDialog = !showAuthDialog
                     }
