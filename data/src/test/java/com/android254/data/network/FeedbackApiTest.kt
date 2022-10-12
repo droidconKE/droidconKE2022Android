@@ -73,7 +73,7 @@ class FeedbackApiTest {
 
         val result = FeedbackApi(httpClient).postFeedback(
             Feedback(rating = FeedbackRating.BAD, message = "Food haikuwa na nyama"),
-            SessionDataModel(id = "1", title = "How to be awesome")
+            SessionDataModel(id = "1", title = "How to be Awesome")
         )
 
         assertThat(result, `is`(instanceOf(DataResult.Error::class.java)))
