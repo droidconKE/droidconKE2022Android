@@ -21,6 +21,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.android254.presentation.about.view.AboutScreen
 import com.android254.presentation.feed.view.FeedScreen
+import com.android254.presentation.feedback.view.FeedBackScreen
 import com.android254.presentation.home.screen.HomeScreen
 import com.android254.presentation.sessions.view.SessionsScreen
 import com.android254.presentation.speakers.view.SpeakersScreen
@@ -47,7 +48,9 @@ fun Navigation(
         composable(Screens.Feed.route) {
             upDateAppBarState(true)
             upDateBottomBarState(true)
-            FeedScreen()
+            FeedScreen(
+                navigateToFeedbackScreen = { navController.navigate(Screens.FeedBack.route) }
+            )
         }
         composable(Screens.About.route) {
             upDateAppBarState(false)
@@ -59,6 +62,13 @@ fun Navigation(
             upDateBottomBarState(true)
             SpeakersScreen(
                 navigateToHomeScreen = { navController.navigateUp() }
+            )
+        }
+        composable(Screens.FeedBack.route) {
+            upDateAppBarState(false)
+            upDateBottomBarState(false)
+            FeedBackScreen(
+                navigateBack = { navController.navigateUp() }
             )
         }
     }
