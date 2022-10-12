@@ -13,22 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android254.presentation.home.view
+package com.android254.presentation.models
 
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
-import com.android254.presentation.common.theme.DroidconKE2022Theme
-
-@Composable
-fun HomeScreen() {
-    Text(text = "Home Screen")
-}
-
-@Preview
-@Composable
-fun HomeScreenPreview() {
-    DroidconKE2022Theme {
-        HomeScreen()
-    }
-}
+data class OrganizingTeamMember(
+    val id: Int = 0,
+    val name: String = "",
+    val desc: String = "",
+    val image: String,
+)

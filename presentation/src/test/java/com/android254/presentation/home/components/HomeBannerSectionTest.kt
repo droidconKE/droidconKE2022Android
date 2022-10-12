@@ -13,11 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android254.presentation.about.view
+package com.android254.presentation.home.components
 
-import androidx.compose.ui.test.*
+import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.onNodeWithTag
 import com.android254.presentation.common.theme.DroidconKE2022Theme
+import com.android254.presentation.home.viewstate.HomeViewState
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -28,7 +30,8 @@ import org.robolectric.shadows.ShadowLog
 
 @RunWith(RobolectricTestRunner::class)
 @Config(instrumentedPackages = ["androidx.loader.content"])
-class AboutScreenTest {
+class HomeBannerSectionTest {
+    private val homeViewState = HomeViewState()
 
     @get:Rule
     val composeTestRule = createComposeRule()
@@ -40,41 +43,42 @@ class AboutScreenTest {
     }
 
     @Test
-    fun `should show About Screen and organizing team section`() {
-
+    fun `Test home poster is displayed`() {
         composeTestRule.setContent {
             DroidconKE2022Theme {
-                AboutScreen()
+                HomeBannerSection(homeViewState)
             }
         }
-
-        composeTestRule.onNodeWithTag("about_screen").assertExists()
-        composeTestRule.onNodeWithTag("about_screen").assertIsDisplayed()
-        composeTestRule.onNodeWithTag("organizing_team_section").assertExists()
+        composeTestRule.onNodeWithTag("home_event_poster").assertIsDisplayed()
     }
 
     @Test
-    fun `should show About Screen and the droidcon topBar`() {
-
+    fun `Test home poster is hidden`() {
         composeTestRule.setContent {
             DroidconKE2022Theme {
-                AboutScreen()
+                HomeBannerSection(homeViewState.copy(isPosterVisible = false))
             }
         }
-
-        composeTestRule.onNodeWithTag("droidcon_topBar_with_Feedback").assertExists()
-        composeTestRule.onNodeWithTag("droidcon_topBar_with_Feedback").assertIsDisplayed()
+        composeTestRule.onNodeWithTag("home_event_poster").assertDoesNotExist()
     }
 
     @Test
-    fun `should show About Screen and show the organized by section`() {
-
+    fun `Test home call for speakers is displayed`() {
         composeTestRule.setContent {
             DroidconKE2022Theme {
-                AboutScreen()
+                HomeBannerSection(homeViewState)
             }
         }
+        composeTestRule.onNodeWithTag("home_call_for_speakers_link").assertIsDisplayed()
+    }
 
-        composeTestRule.onNodeWithTag("organized_by_section").assertExists()
+    @Test
+    fun `Test home call for speakers is hidden`() {
+        composeTestRule.setContent {
+            DroidconKE2022Theme {
+                HomeBannerSection(homeViewState.copy(isCallForSpeakersVisible = false))
+            }
+        }
+        composeTestRule.onNodeWithTag("home_call_for_speakers_link").assertDoesNotExist()
     }
 }

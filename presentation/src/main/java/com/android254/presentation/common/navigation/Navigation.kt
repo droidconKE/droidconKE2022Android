@@ -21,7 +21,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.android254.presentation.about.view.AboutScreen
 import com.android254.presentation.feed.view.FeedScreen
-import com.android254.presentation.home.view.HomeScreen
+import com.android254.presentation.home.screen.HomeScreen
 import com.android254.presentation.sessions.view.SessionsScreen
 import com.android254.presentation.speakers.view.SpeakersScreen
 
@@ -29,33 +29,37 @@ import com.android254.presentation.speakers.view.SpeakersScreen
 fun Navigation(
     navController: NavHostController,
     upDateBottomBarState: (Boolean) -> Unit,
-    upDataAppBarState: (Boolean) -> Unit
+    upDateAppBarState: (Boolean) -> Unit
 ) {
     NavHost(navController, startDestination = Screens.Home.route) {
         composable(Screens.Home.route) {
-            upDataAppBarState(true)
+            upDateAppBarState(true)
             upDateBottomBarState(true)
-            HomeScreen()
+            HomeScreen(
+                navigateToSpeakers = { navController.navigate(Screens.Speakers.route) }
+            )
         }
         composable(Screens.Sessions.route) {
-            upDataAppBarState(true)
+            upDateAppBarState(true)
             upDateBottomBarState(true)
             SessionsScreen()
         }
         composable(Screens.Feed.route) {
-            upDataAppBarState(true)
+            upDateAppBarState(true)
             upDateBottomBarState(true)
             FeedScreen()
         }
         composable(Screens.About.route) {
-            upDataAppBarState(true)
+            upDateAppBarState(false)
             upDateBottomBarState(true)
             AboutScreen()
         }
         composable(Screens.Speakers.route) {
-            upDataAppBarState(true)
+            upDateAppBarState(true)
             upDateBottomBarState(true)
-            SpeakersScreen()
+            SpeakersScreen(
+                navigateToHomeScreen = { navController.navigateUp() }
+            )
         }
     }
 }

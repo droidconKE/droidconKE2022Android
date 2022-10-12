@@ -39,6 +39,7 @@ compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview"
 compose-preview-customview = "androidx.customview:customview:1.2.0-alpha01"
 compose-preview-customview-poolingcontainer = "androidx.customview:customview-poolingcontainer:1.0.0-rc01"
 compose-constraintlayout = "androidx.constraintlayout:constraintlayout-compose:1.0.0-rc02"
+accompanist-flowlayout = "com.google.accompanist:accompanist-flowlayout:0.25.1"
 gson-gson = "com.google.code.gson:gson:2.9.0"
 kotlin-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
 kotlin-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }

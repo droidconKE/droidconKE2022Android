@@ -38,6 +38,7 @@ val ChaiFadedLime = Color(0xFF7de1c3)
 
 val ChaiLightGrey = Color(0xFFF5F5F5)
 val ChaiGrey = Color(0xFFB1B1B1)
+val ChaiSmokeyGrey = Color(0xFF707070)
 val ChaiDarkGrey = Color(0xFF5A5A5A)
 val ChaiDarkerGrey = Color(0xFF191d1d)
 val ChaiCoal = Color(0xFF20201E)

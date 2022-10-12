@@ -24,9 +24,25 @@
     <string name="feedback_event_label">How is/was the event</string>
     <string name="feedback_improve_label">Your feedback helps us improve</string>
     <string name="feedback_label">Feedback</string>
+
+    <string name="about">About</string>
+    <string name="about_droidcon">Droidcon is a global conference focused on the engineering of Android applications. Droidcon provides a forum for developers to network with other developers, share techniques, announce apps and products, and to learn and teach.\n\nThis two-day developer focused gathering will be held in Nairobi Kenya on August 6th to 8th 2020 and will be the largest of its kind in Africa.\n\nIt will have workshops and codelabs focused on the building of Android applications and will give participants an excellent chance to learn about the local Android development ecosystem, opportunities and services as well as meet the engineers and companies who work on them.</string>
+    <string name="about_organizing_team">Organizing Team</string>
+    <string name="organized_by">Organized by;</string>
+    <string name="logo">Logo</string>
+    <string name="user_profile">User profile</string>
+    <string name="about_droidcon_image">droidcon Image</string>
+
     <string name="feedback">Feedback</string>
     <string name="cancel">Cancel</string>
     <string name="head_shot">Speaker headshot</string>
     <string name="session_label">Session</string>
     <string name="speakers_label">Speakers</string>
+    <string name="home_header_welcome_label">Welcome to the largest Focussed Android Developer community in Africa</string>
+    <string name="home_banner_event_poster_description">Event poster</string>
+    <string name="home_banner_call_for_speakers_image_description">Call for speakers</string>
+    <string name="home_banner_call_for_speakers_label">Call for speakers</string>
+    <string name="home_banner_call_for_speakers_apply_to_speak_label">Apply to be a speaker</string>
+    <string name="view_all_label">View All</string>
+
 </resources>

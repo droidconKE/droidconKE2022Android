@@ -13,11 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android254.presentation.about.view
+package com.android254.presentation.home.screen
 
-import androidx.compose.ui.test.*
+import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.onNodeWithTag
 import com.android254.presentation.common.theme.DroidconKE2022Theme
+import com.android254.presentation.home.components.HomeSpeakersSection
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -28,7 +30,7 @@ import org.robolectric.shadows.ShadowLog
 
 @RunWith(RobolectricTestRunner::class)
 @Config(instrumentedPackages = ["androidx.loader.content"])
-class AboutScreenTest {
+class HomeScreenTest {
 
     @get:Rule
     val composeTestRule = createComposeRule()
@@ -40,41 +42,24 @@ class AboutScreenTest {
     }
 
     @Test
-    fun `should show About Screen and organizing team section`() {
-
+    fun `Test home title is displayed`() {
         composeTestRule.setContent {
             DroidconKE2022Theme {
-                AboutScreen()
+                HomeScreen()
             }
         }
 
-        composeTestRule.onNodeWithTag("about_screen").assertExists()
-        composeTestRule.onNodeWithTag("about_screen").assertIsDisplayed()
-        composeTestRule.onNodeWithTag("organizing_team_section").assertExists()
+        composeTestRule.onNodeWithTag("home_header").assertIsDisplayed()
     }
 
     @Test
-    fun `should show About Screen and the droidcon topBar`() {
-
+    fun `Test speakers view is displayed`() {
         composeTestRule.setContent {
-            DroidconKE2022Theme {
-                AboutScreen()
-            }
+            HomeSpeakersSection(speakers = emptyList())
         }
 
-        composeTestRule.onNodeWithTag("droidcon_topBar_with_Feedback").assertExists()
-        composeTestRule.onNodeWithTag("droidcon_topBar_with_Feedback").assertIsDisplayed()
-    }
-
-    @Test
-    fun `should show About Screen and show the organized by section`() {
-
-        composeTestRule.setContent {
-            DroidconKE2022Theme {
-                AboutScreen()
-            }
-        }
-
-        composeTestRule.onNodeWithTag("organized_by_section").assertExists()
+        composeTestRule.onNodeWithTag("speakersLabel").assertIsDisplayed()
+        composeTestRule.onNodeWithTag("speakersRaw").assertExists()
+        composeTestRule.onNodeWithTag("viewAllBtn").assertExists()
     }
 }
