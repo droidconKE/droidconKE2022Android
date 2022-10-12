@@ -1,3 +1,18 @@
+/*
+ * Copyright 2022 DroidconKE
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.android254.presentation.common.components
 
 import androidx.compose.foundation.Image
@@ -21,7 +36,6 @@ import com.android254.presentation.R
 import com.android254.presentation.common.theme.DroidconKE2022Theme
 import com.droidconke.chai.atoms.*
 import com.droidconke.chai.atoms.type.MontserratRegular
-import androidx.compose.material3.SmallTopAppBar
 
 @Composable
 fun DroidconAppBarWithFilter(
@@ -82,7 +96,8 @@ fun LayoutIconButtons(
             modifier = Modifier
                 .clickable(
                     enabled = isListActive,
-                    onClick = onListIconClick),
+                    onClick = onListIconClick
+                ),
             painter = painterResource(id = R.drawable.ic_listalt),
             contentDescription = null,
             tint = listIconColor,
@@ -94,7 +109,8 @@ fun LayoutIconButtons(
             modifier = Modifier
                 .clickable(
                     enabled = !isListActive,
-                    onClick = onAgendaIconClick),
+                    onClick = onAgendaIconClick
+                ),
             painter = painterResource(id = R.drawable.ic_view_agenda),
             contentDescription = null,
             tint = agendaIconColor,
@@ -115,7 +131,8 @@ fun FilterButton(
         modifier = modifier
             .clickable(
                 enabled = isActive,
-                onClick = onButtonClick),
+                onClick = onButtonClick
+            ),
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically,
     ) {
@@ -154,9 +171,11 @@ fun ToolbarPreview() {
                 isFilterActive = true,
                 onFilterButtonClick = {},
             )
-            Spacer(modifier = Modifier
-                .height(32.dp)
-                .background(color = ChaiGrey))
+            Spacer(
+                modifier = Modifier
+                    .height(32.dp)
+                    .background(color = ChaiGrey)
+            )
 
             DroidconAppBarWithFilter(
                 modifier = Modifier.background(color = ChaiLightGrey),
@@ -166,9 +185,11 @@ fun ToolbarPreview() {
                 isFilterActive = false,
                 onFilterButtonClick = {},
             )
-            Spacer(modifier = Modifier
-                .height(32.dp)
-                .background(color = ChaiGrey))
+            Spacer(
+                modifier = Modifier
+                    .height(32.dp)
+                    .background(color = ChaiGrey)
+            )
 
             DroidconAppBarWithFilter(
                 isListActive = false,
@@ -177,9 +198,11 @@ fun ToolbarPreview() {
                 isFilterActive = true,
                 onFilterButtonClick = {}
             )
-            Spacer(modifier = Modifier
-                .height(32.dp)
-                .background(color = ChaiGrey))
+            Spacer(
+                modifier = Modifier
+                    .height(32.dp)
+                    .background(color = ChaiGrey)
+            )
 
             DroidconAppBarWithFilter(
                 isListActive = false,
