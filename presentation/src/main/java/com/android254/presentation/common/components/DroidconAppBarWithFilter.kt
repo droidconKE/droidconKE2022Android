@@ -49,7 +49,7 @@ fun DroidconAppBarWithFilter(
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .height(77.dp)
+            .height(64.dp)
             .padding(start = 20.dp, end = 20.dp, top = 19.dp, bottom = 15.dp)
             .testTag("droidcon_topBar_with_Filter"),
         verticalAlignment = Alignment.CenterVertically

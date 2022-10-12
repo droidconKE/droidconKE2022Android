@@ -41,12 +41,12 @@ fun Navigation(
             )
         }
         composable(Screens.Sessions.route) {
-            upDateAppBarState(true)
+            upDateAppBarState(false)
             upDateBottomBarState(true)
             SessionsScreen()
         }
         composable(Screens.Feed.route) {
-            upDateAppBarState(true)
+            upDateAppBarState(false)
             upDateBottomBarState(true)
             FeedScreen(
                 navigateToFeedbackScreen = { navController.navigate(Screens.FeedBack.route) }
@@ -60,7 +60,7 @@ fun Navigation(
             )
         }
         composable(Screens.Speakers.route) {
-            upDateAppBarState(true)
+            upDateAppBarState(false)
             upDateBottomBarState(true)
             SpeakersScreen(
                 navigateToHomeScreen = { navController.navigateUp() }
