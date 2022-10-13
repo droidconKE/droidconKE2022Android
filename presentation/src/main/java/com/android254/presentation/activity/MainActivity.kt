@@ -32,7 +32,6 @@ import androidx.navigation.compose.rememberNavController
 import com.android254.presentation.auth.AuthViewModel
 import com.android254.presentation.auth.view.AuthDialog
 import com.android254.presentation.common.bottomnav.BottomNavigationBar
-import com.android254.presentation.common.components.DroidconAppBar
 import com.android254.presentation.common.navigation.Navigation
 import com.android254.presentation.common.theme.DroidconKE2022Theme
 import dagger.hilt.android.AndroidEntryPoint
@@ -56,9 +55,6 @@ fun MainScreen() {
     val authViewModel = hiltViewModel<AuthViewModel>()
     val navController = rememberNavController()
     val bottomBarState = rememberSaveable { (mutableStateOf(true)) }
-    val appBarState = rememberSaveable() {
-        mutableStateOf(true)
-    }
     val isSignedIn by remember {
         mutableStateOf(false)
     }
@@ -67,15 +63,6 @@ fun MainScreen() {
     }
     Scaffold(
         modifier = Modifier.fillMaxSize(),
-        topBar = {
-            if (appBarState.value) {
-                DroidconAppBar(
-                    onActionClicked = {
-                        showAuthDialog = !showAuthDialog
-                    }
-                )
-            }
-        },
         bottomBar = { if (bottomBarState.value) BottomNavigationBar(navController) }
     ) { padding ->
 
@@ -92,7 +79,6 @@ fun MainScreen() {
             Navigation(
                 navController = navController,
                 upDateBottomBarState = { bottomBarState.value = it },
-                upDateAppBarState = { appBarState.value = it },
                 isSignedIn = isSignedIn,
                 onActionClicked = {
                     showAuthDialog = !showAuthDialog
