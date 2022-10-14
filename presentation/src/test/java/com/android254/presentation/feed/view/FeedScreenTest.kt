@@ -50,5 +50,8 @@ class FeedScreenTest {
 
         composeTestRule.onNodeWithTag("feeds_lazy_column").assertExists()
         composeTestRule.onNodeWithTag("feeds_lazy_column").assertIsDisplayed()
+
+        composeTestRule.onNodeWithTag("droidcon_topBar_with_Feedback").assertExists()
+        composeTestRule.onNodeWithTag("droidcon_topBar_with_Feedback").assertIsDisplayed()
     }
 }
