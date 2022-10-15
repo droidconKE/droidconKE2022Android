@@ -45,7 +45,7 @@ class HomeScreenTest {
     fun `Test home title is displayed`() {
         composeTestRule.setContent {
             DroidconKE2022Theme {
-                HomeScreen(isSignedIn = false)
+                HomeScreen()
             }
         }
 
@@ -67,7 +67,7 @@ class HomeScreenTest {
     fun `Not signedIn droidcon topBar is displayed`() {
         composeTestRule.setContent {
             DroidconKE2022Theme {
-                HomeScreen(isSignedIn = false)
+                HomeToolbar(isSignedIn = false)
             }
         }
 
@@ -79,7 +79,7 @@ class HomeScreenTest {
     fun `SignedIn droidcon topBar is displayed`() {
         composeTestRule.setContent {
             DroidconKE2022Theme {
-                HomeScreen(isSignedIn = true)
+                HomeToolbar(isSignedIn = true)
             }
         }
 

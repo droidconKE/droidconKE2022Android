@@ -55,9 +55,6 @@ fun MainScreen() {
     val authViewModel = hiltViewModel<AuthViewModel>()
     val navController = rememberNavController()
     val bottomBarState = rememberSaveable { (mutableStateOf(true)) }
-    val isSignedIn by remember {
-        mutableStateOf(false)
-    }
     var showAuthDialog by remember {
         mutableStateOf(false)
     }
@@ -79,7 +76,6 @@ fun MainScreen() {
             Navigation(
                 navController = navController,
                 upDateBottomBarState = { bottomBarState.value = it },
-                isSignedIn = isSignedIn,
                 onActionClicked = {
                     showAuthDialog = !showAuthDialog
                 }

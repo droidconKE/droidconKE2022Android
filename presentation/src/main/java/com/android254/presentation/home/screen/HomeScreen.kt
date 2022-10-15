@@ -49,7 +49,6 @@ fun HomeScreen(
     homeViewModel: HomeViewModel = hiltViewModel(),
     speakersViewModel: SpeakersViewModel = hiltViewModel(),
     navigateToSpeakers: () -> Unit = {},
-    isSignedIn: Boolean,
     navigateToFeedbackScreen: () -> Unit = {},
     onActionClicked: () -> Unit = {},
 ) {
@@ -57,18 +56,11 @@ fun HomeScreen(
 
     Scaffold(
         topBar = {
-            if (isSignedIn) {
-                DroidconAppBarWithFeedbackButton(
-                    onButtonClick = {
-                        navigateToFeedbackScreen()
-                    },
-                    userProfile = "https://media-exp1.licdn.com/dms/image/C4D03AQGn58utIO-x3w/profile-displayphoto-shrink_200_200/0/1637478114039?e=2147483647&v=beta&t=3kIon0YJQNHZojD3Dt5HVODJqHsKdf2YKP1SfWeROnI",
-                )
-            } else {
-                DroidconAppBar(
-                    onActionClicked = onActionClicked
-                )
-            }
+            HomeToolbar(
+                isSignedIn = homeViewState.isSignedIn,
+                navigateToFeedbackScreen = navigateToFeedbackScreen,
+                onActionClicked = onActionClicked
+            )
         }
     ) { paddingValues ->
 
@@ -97,12 +89,30 @@ fun HomeScreen(
     }
 }
 
+@Composable
+fun HomeToolbar(
+    isSignedIn: Boolean,
+    navigateToFeedbackScreen: () -> Unit = {},
+    onActionClicked: () -> Unit = {},
+) {
+    if (isSignedIn) {
+        DroidconAppBarWithFeedbackButton(
+            onButtonClick = {
+                navigateToFeedbackScreen()
+            },
+            userProfile = "https://media-exp1.licdn.com/dms/image/C4D03AQGn58utIO-x3w/profile-displayphoto-shrink_200_200/0/1637478114039?e=2147483647&v=beta&t=3kIon0YJQNHZojD3Dt5HVODJqHsKdf2YKP1SfWeROnI",
+        )
+    } else {
+        DroidconAppBar(
+            onActionClicked = onActionClicked
+        )
+    }
+}
+
 @Preview
 @Composable
 fun HomeScreenPreview() {
     DroidconKE2022Theme {
-        HomeScreen(
-            isSignedIn = false
-        )
+        HomeScreen()
     }
 }
