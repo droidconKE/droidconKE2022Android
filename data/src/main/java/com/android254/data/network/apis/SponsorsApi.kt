@@ -18,7 +18,9 @@ package com.android254.data.network.apis
 
 import com.android254.data.network.Constants
 import com.android254.data.network.models.responses.SponsorsPagedResponse
+import com.android254.data.network.util.dataResultSafeApiCall
 import com.android254.data.network.util.safeApiCall
+import com.android254.domain.models.DataResult
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.request.*
@@ -29,8 +31,9 @@ class SponsorsApi @Inject constructor(
 ) {
 
     suspend fun fetchSponsors(perPage: Int, page: Int): SponsorsPagedResponse =
-        safeApiCall {
+        safeApiCall{
             client.get("${Constants.BASE_URL}/events/droidconke-2022-797/feeds?per_page=$perPage&page$page").body()
-
         }
+
 }
+
