@@ -23,5 +23,6 @@ import com.android254.data.db.model.OrganizerEntity
 interface OrganizersDao : BaseDao<OrganizerEntity> {
 
     @Query("SELECT * FROM ORGANIZERS")
-    fun fetchSessions(): List<OrganizerEntity>
+    fun fetchOrganizers(): List<OrganizerEntity>
+
 }
