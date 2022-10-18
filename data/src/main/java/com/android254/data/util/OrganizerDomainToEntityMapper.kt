@@ -16,56 +16,56 @@
 package com.android254.data.util
 
 import com.android254.data.db.model.OrganizerEntity
-import com.android254.domain.models.Creator
-import com.android254.domain.models.Organizer
+import com.android254.domain.models.CreatorDomainModel
+import com.android254.domain.models.OrganizerDomainModel
 
 object OrganizerDomainToEntityMapper {
 
-    private fun Creator.toEntity() = OrganizerEntity.CreatorEntity(
-        id,
-        name,
-        email,
-        createdAt
+    private fun CreatorDomainModel.toEntity() = OrganizerEntity.CreatorEntity(
+        id = id,
+        name = name,
+        email = email,
+        createdAt = createdAt
     )
 
-    private fun OrganizerEntity.CreatorEntity.toDomain() = Creator(
-        id,
-        name,
-        email,
-        createdAt
+    private fun OrganizerEntity.CreatorEntity.toDomain() = CreatorDomainModel(
+        id = id,
+        name = name,
+        email = email,
+        createdAt = createdAt
     )
 
-    fun Organizer.toEntity() = OrganizerEntity(
-        id ?: 0,
-        name,
-        email,
-        description,
-        facebook,
-        twitter,
-        instagram,
-        logo,
-        slug,
-        status,
-        createdAt,
-        creater?.toEntity(),
-        upcomingEventsCount,
-        totalEventsCount
+    fun OrganizerDomainModel.toEntity() = OrganizerEntity(
+        id = id ?: 0,
+        name = name,
+        email = email,
+        description = description,
+        facebook = facebook,
+        twitter = twitter,
+        instagram = instagram,
+        logo = logo,
+        slug = slug,
+        status = status,
+        createdAt = createdAt,
+        creater = creater?.toEntity(),
+        upcomingEventsCount = upcomingEventsCount,
+        totalEventsCount = totalEventsCount
     )
 
-    fun OrganizerEntity.toDomain() = Organizer(
-        id,
-        name,
-        email,
-        description,
-        facebook,
-        twitter,
-        instagram,
-        logo,
-        slug,
-        status,
-        createdAt,
-        creater?.toDomain(),
-        upcomingEventsCount,
-        totalEventsCount
+    fun OrganizerEntity.toDomain() = OrganizerDomainModel(
+        id = id,
+        name = name,
+        email = email,
+        description = description,
+        facebook = facebook,
+        twitter = twitter,
+        instagram = instagram,
+        logo = logo,
+        slug = slug,
+        status = status,
+        createdAt = createdAt,
+        creater = creater?.toDomain(),
+        upcomingEventsCount = upcomingEventsCount,
+        totalEventsCount = totalEventsCount
     )
 }

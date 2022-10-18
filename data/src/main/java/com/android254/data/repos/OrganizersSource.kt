@@ -34,7 +34,7 @@ class OrganizersSource @Inject constructor(
     private fun getPagedOrganizers(page: Int = 1) {
         CoroutineScope(Dispatchers.IO).launch {
 
-            val response = api.fetchOrganizers(perPage = 10, page = page) ?: return@launch
+            val response = api.fetchOrganizers(page = page) ?: return@launch
 
             val organizers = response.data
 
@@ -52,5 +52,5 @@ class OrganizersSource @Inject constructor(
         getPagedOrganizers(page = 1)
     }
 
-    override fun getOrganizers() = dao.fetchSessions().map { it.toDomain() }
+    override fun getOrganizers() = dao.fetchOrganizers().map { it.toDomain() }
 }

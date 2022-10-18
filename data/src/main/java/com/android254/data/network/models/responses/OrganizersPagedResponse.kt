@@ -20,12 +20,12 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class OrganizersPagedResponse(
-    @SerialName("data") var data: List<OrganizerData>,
-    @SerialName("meta") var meta: Meta?
+    @SerialName("data") var data: List<OrganizerDataResponse>,
+    @SerialName("meta") var meta: MetaDataResponse?
 )
 
 @Serializable
-data class OrganizerData(
+data class OrganizerDataResponse(
     @SerialName("id") var id: Int?,
     @SerialName("name") var name: String?,
     @SerialName("email") var email: String?,
@@ -37,13 +37,13 @@ data class OrganizerData(
     @SerialName("slug") var slug: String?,
     @SerialName("status") var status: String?,
     @SerialName("created_at") var createdAt: String?,
-    @SerialName("creater") var creator: CreatorData?,
+    @SerialName("creater") var creator: CreatorDataResponse?,
     @SerialName("upcoming_events_count") var upcomingEventsCount: Int?,
     @SerialName("total_events_count") var totalEventsCount: Int?
 )
 
 @Serializable
-data class CreatorData(
+data class CreatorDataResponse(
     @SerialName("id") var id: Int?,
     @SerialName("name") var name: String?,
     @SerialName("email") var email: String?,
@@ -51,7 +51,7 @@ data class CreatorData(
 )
 
 @Serializable
-data class Paginator(
+data class PaginatorDataResponse(
     @SerialName("count") var count: Int? = null,
     @SerialName("per_page") var perPage: String? = null,
     @SerialName("current_page") var currentPage: Int? = null,
@@ -62,6 +62,6 @@ data class Paginator(
 )
 
 @Serializable
-data class Meta(
-    @SerialName("paginator") var paginator: Paginator?
+data class MetaDataResponse(
+    @SerialName("paginator") var paginator: PaginatorDataResponse?
 )

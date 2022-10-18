@@ -96,7 +96,7 @@ class OrganizersApiTest {
         val api = OrganizersApi(httpClient)
         runBlocking {
             val data = Json.decodeFromString<OrganizersPagedResponse>(validContent)
-            val response = api.fetchOrganizers(1, 1)
+            val response = api.fetchOrganizers(1)
             assertEquals(data, response)
         }
     }
@@ -149,7 +149,7 @@ class OrganizersApiTest {
         val httpClient = HttpClientFactory(DefaultTokenProvider(testDataStore)).create(mockEngine)
         val api = OrganizersApi(httpClient)
 
-        val actual = runBlocking { api.fetchOrganizers(1, 1) }
+        val actual = runBlocking { api.fetchOrganizers(1) }
 
         assertEquals(null, actual)
     }

@@ -15,7 +15,7 @@
  */
 package com.android254.domain.models
 
-data class Organizer(
+data class OrganizerDomainModel(
     val id: Int?,
     val name: String?,
     val email: String?,
@@ -27,12 +27,12 @@ data class Organizer(
     val slug: String?,
     val status: String?,
     val createdAt: String?,
-    val creater: Creator?,
+    val creater: CreatorDomainModel?,
     val upcomingEventsCount: Int?,
     val totalEventsCount: Int?
 )
 
-data class Creator(
+data class CreatorDomainModel(
     val id: Int?,
     val name: String?,
     val email: String?,
