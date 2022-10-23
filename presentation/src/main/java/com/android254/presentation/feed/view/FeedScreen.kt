@@ -18,12 +18,10 @@ package com.android254.presentation.feed.view
 import android.content.res.Configuration
 import android.widget.Toast
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -31,20 +29,37 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.android254.presentation.common.components.DroidconAppBarWithFeedbackButton
 import com.android254.presentation.common.theme.DroidconKE2022Theme
 
 @Composable
-fun FeedScreen() {
-    Box(modifier = Modifier.fillMaxSize()) {
-        val context = LocalContext.current
+fun FeedScreen(
+    navigateToFeedbackScreen: () -> Unit = {},
+) {
+    Scaffold(topBar = {
+        DroidconAppBarWithFeedbackButton(
+            onButtonClick = {
+                navigateToFeedbackScreen()
+            },
+            userProfile = "https://media-exp1.licdn.com/dms/image/C4D03AQGn58utIO-x3w/profile-displayphoto-shrink_200_200/0/1637478114039?e=2147483647&v=beta&t=3kIon0YJQNHZojD3Dt5HVODJqHsKdf2YKP1SfWeROnI"
+        )
+    }) { paddingValues ->
 
-        LazyColumn(
-            modifier = Modifier.testTag("feeds_lazy_column"),
-            verticalArrangement = Arrangement.spacedBy(4.dp)
+        Box(
+            modifier = Modifier
+                .padding(paddingValues)
+                .fillMaxSize()
         ) {
-            items(count = 10) {
-                FeedComponent(modifier = Modifier.fillMaxWidth()) { itemId ->
-                    Toast.makeText(context, "Clicked: $itemId", Toast.LENGTH_SHORT).show()
+            val context = LocalContext.current
+
+            LazyColumn(
+                modifier = Modifier.testTag("feeds_lazy_column"),
+                verticalArrangement = Arrangement.spacedBy(4.dp)
+            ) {
+                items(count = 10) {
+                    FeedComponent(modifier = Modifier.fillMaxWidth()) { itemId ->
+                        Toast.makeText(context, "Clicked: $itemId", Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
         }

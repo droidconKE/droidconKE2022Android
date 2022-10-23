@@ -21,6 +21,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.android254.presentation.about.view.AboutScreen
 import com.android254.presentation.feed.view.FeedScreen
+import com.android254.presentation.feedback.view.FeedBackScreen
 import com.android254.presentation.home.screen.HomeScreen
 import com.android254.presentation.sessions.view.SessionsScreen
 import com.android254.presentation.speakers.view.SpeakersScreen
@@ -29,36 +30,43 @@ import com.android254.presentation.speakers.view.SpeakersScreen
 fun Navigation(
     navController: NavHostController,
     upDateBottomBarState: (Boolean) -> Unit,
-    upDateAppBarState: (Boolean) -> Unit
+    onActionClicked: () -> Unit = {},
 ) {
     NavHost(navController, startDestination = Screens.Home.route) {
         composable(Screens.Home.route) {
-            upDateAppBarState(true)
             upDateBottomBarState(true)
             HomeScreen(
-                navigateToSpeakers = { navController.navigate(Screens.Speakers.route) }
+                navigateToSpeakers = { navController.navigate(Screens.Speakers.route) },
+                navigateToFeedbackScreen = { navController.navigate(Screens.FeedBack.route) },
+                onActionClicked = onActionClicked
             )
         }
         composable(Screens.Sessions.route) {
-            upDateAppBarState(true)
             upDateBottomBarState(true)
             SessionsScreen()
         }
         composable(Screens.Feed.route) {
-            upDateAppBarState(true)
             upDateBottomBarState(true)
-            FeedScreen()
+            FeedScreen(
+                navigateToFeedbackScreen = { navController.navigate(Screens.FeedBack.route) }
+            )
         }
         composable(Screens.About.route) {
-            upDateAppBarState(false)
             upDateBottomBarState(true)
-            AboutScreen()
+            AboutScreen(
+                navigateToFeedbackScreen = { navController.navigate(Screens.FeedBack.route) }
+            )
         }
         composable(Screens.Speakers.route) {
-            upDateAppBarState(true)
             upDateBottomBarState(true)
             SpeakersScreen(
                 navigateToHomeScreen = { navController.navigateUp() }
+            )
+        }
+        composable(Screens.FeedBack.route) {
+            upDateBottomBarState(false)
+            FeedBackScreen(
+                navigateBack = { navController.navigateUp() }
             )
         }
     }

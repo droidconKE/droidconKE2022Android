@@ -41,6 +41,7 @@ import com.android254.presentation.common.theme.Montserrat
 @Composable
 fun FeedBackScreen(
     darkTheme: Boolean = isSystemInDarkTheme(),
+    navigateBack: () -> Unit = {},
 ) {
     var value by remember {
         mutableStateOf("")
@@ -70,7 +71,7 @@ fun FeedBackScreen(
                     title = { Text(stringResource(R.string.feedback_label), modifier = Modifier.testTag("heading")) },
                     navigationIcon = {
                         IconButton(
-                            onClick = { /* doSomething() */ }
+                            onClick = { navigateBack() }
                         ) {
                             Icon(
                                 painter = painterResource(id = R.drawable.ic_back_arrow),

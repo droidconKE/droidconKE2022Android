@@ -33,7 +33,6 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -54,6 +53,7 @@ fun DroidconAppBarWithFeedbackButton(
     Row(
         modifier = modifier
             .fillMaxWidth()
+            .height(64.dp)
             .padding(start = 20.dp, end = 20.dp, top = 19.dp, bottom = 15.dp)
             .testTag("droidcon_topBar_with_Feedback"),
         verticalAlignment = Alignment.CenterVertically
@@ -109,7 +109,6 @@ fun FeedbackButton(
             text = stringResource(id = R.string.feedback),
             style = TextStyle(
                 color = ChaiCoal,
-                fontWeight = FontWeight.Bold,
                 fontSize = 12.sp,
                 lineHeight = 15.sp,
                 fontFamily = MontserratRegular,

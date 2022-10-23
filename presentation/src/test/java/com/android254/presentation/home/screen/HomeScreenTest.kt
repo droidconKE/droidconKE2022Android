@@ -59,7 +59,31 @@ class HomeScreenTest {
         }
 
         composeTestRule.onNodeWithTag("speakersLabel").assertIsDisplayed()
-        composeTestRule.onNodeWithTag("speakersRaw").assertExists()
+        composeTestRule.onNodeWithTag("speakersRow").assertExists()
         composeTestRule.onNodeWithTag("viewAllBtn").assertExists()
+    }
+
+    @Test
+    fun `Not signedIn droidcon topBar is displayed`() {
+        composeTestRule.setContent {
+            DroidconKE2022Theme {
+                HomeToolbar(isSignedIn = false)
+            }
+        }
+
+        composeTestRule.onNodeWithTag("droidcon_topBar_notSignedIn").assertExists()
+        composeTestRule.onNodeWithTag("droidcon_topBar_notSignedIn").assertIsDisplayed()
+    }
+
+    @Test
+    fun `SignedIn droidcon topBar is displayed`() {
+        composeTestRule.setContent {
+            DroidconKE2022Theme {
+                HomeToolbar(isSignedIn = true)
+            }
+        }
+
+        composeTestRule.onNodeWithTag("droidcon_topBar_with_Feedback").assertExists()
+        composeTestRule.onNodeWithTag("droidcon_topBar_with_Feedback").assertIsDisplayed()
     }
 }

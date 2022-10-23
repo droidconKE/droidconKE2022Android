@@ -15,7 +15,9 @@
  */
 package com.android254.presentation.sessions.view
 
+import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import com.android254.presentation.common.theme.DroidconKE2022Theme
 import org.junit.Before
@@ -53,5 +55,19 @@ class SessionScreenTest {
         composeTestRule.onNodeWithText("Day 1").assertExists()
         composeTestRule.onNodeWithText("Day 2").assertExists()
         composeTestRule.onNodeWithText("Day 3").assertExists()
+        composeTestRule.onNodeWithTag("droidcon_topBar_with_Filter").assertExists()
+        composeTestRule.onNodeWithTag("droidcon_topBar_with_Filter").assertIsDisplayed()
+    }
+
+    @Test
+    fun `should show topBar`() {
+        composeTestRule.setContent {
+            DroidconKE2022Theme() {
+                SessionsScreen()
+            }
+        }
+
+        composeTestRule.onNodeWithTag("droidcon_topBar_with_Filter").assertExists()
+        composeTestRule.onNodeWithTag("droidcon_topBar_with_Filter").assertIsDisplayed()
     }
 }
