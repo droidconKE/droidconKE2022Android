@@ -29,8 +29,6 @@ data class Feedback(val rating: FeedbackRating, val message: String)
 @Serializable(with = FeedbackRatingSerializer::class)
 enum class FeedbackRating { BAD, OKAY, GOOD }
 
-//
-
 private class FeedbackRatingSerializer : KSerializer<FeedbackRating> {
     override val descriptor: SerialDescriptor =
         PrimitiveSerialDescriptor("FeedbackRating", PrimitiveKind.INT)

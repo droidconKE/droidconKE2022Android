@@ -47,7 +47,6 @@ suspend fun <T : Any> dataResultSafeApiCall(
 ): DataResult<T> = try {
     DataResult.Success(apiCall.invoke())
 } catch (throwable: Throwable) {
-//    TODO: This logic doesn't seem right
     when (throwable) {
         is ServerError, is NetworkError -> {
             DataResult.Error("Login failed", networkError = true, exc = throwable)
