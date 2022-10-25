@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android254.data.network
+package com.android254.data.network.models
 
-object Constants {
-    const val BASE_URL = "https://api.droidcon.test/v1"
-    const val EVENT_BASE_URL = "https://api.droidcon.test/v1/events/droidconke-2022-797"
-}
+data class SessionDataModel(
+    val id: String,
+    val title: String
+)
