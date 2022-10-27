@@ -93,7 +93,7 @@ fun SponsorsCard(
                 mainAxisSpacing = 16.dp,
                 crossAxisSpacing = 16.dp,
             ) {
-                sponsorsLogos.forEach { sponsorLogo->
+                sponsorsLogos.forEach { sponsorLogo ->
                     AsyncImage(
                         model = ImageRequest.Builder(LocalContext.current)
                             .data(R.drawable.ic_droidcon_logo)
