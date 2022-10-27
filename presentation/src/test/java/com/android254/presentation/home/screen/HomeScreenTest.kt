@@ -18,6 +18,7 @@ package com.android254.presentation.home.screen
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
+import com.android254.presentation.common.components.SponsorsCard
 import com.android254.presentation.common.theme.DroidconKE2022Theme
 import com.android254.presentation.home.components.HomeSpeakersSection
 import org.junit.Before
@@ -85,5 +86,13 @@ class HomeScreenTest {
 
         composeTestRule.onNodeWithTag("droidcon_topBar_with_Feedback").assertExists()
         composeTestRule.onNodeWithTag("droidcon_topBar_with_Feedback").assertIsDisplayed()
+    }
+
+    @Test
+    fun `Test sponsors card is displayed`() {
+        composeTestRule.setContent {
+            SponsorsCard(sponsorsLogos = listOf("Google"))
+        }
+        composeTestRule.onNodeWithTag("sponsors_section")
     }
 }
