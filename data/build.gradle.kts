@@ -84,6 +84,9 @@ kotlin {
             languageSettings.apply {
                 optIn("kotlinx.coroutines.ExperimentalCoroutinesApi")
             }
+            dependencies {
+                implementation("com.google.truth:truth:1.0.1")
+            }
         }
     }
 }
