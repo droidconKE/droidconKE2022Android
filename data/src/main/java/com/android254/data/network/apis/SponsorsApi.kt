@@ -30,11 +30,11 @@ class SponsorsApi @Inject constructor(
     private val client: HttpClient
 ) {
 
-    suspend fun fetchSponsors(perPage: Int, page: Int): DataResult<SponsorsPagedResponse> {
-       return dataResultSafeApiCall{
+    suspend fun fetchSponsors(perPage: Int, page: Int): DataResult<SponsorsPagedResponse> =
+       dataResultSafeApiCall{
             val response = client.get("${Constants.BASE_URL}/events/droidconke-2022-797/feeds?per_page=$perPage&page=$page")
-            DataResult.Success(data = response.body())
+             response.body()
         }
-       }
+
 }
 
