@@ -24,14 +24,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SessionsViewModel @Inject constructor(
-    private val sessionsRepo: SessionsRepo
 ) : ViewModel() {
     var sessions = MutableLiveData<List<SessionPresentationModel>>(listOf())
-
-    private suspend fun getSessions() {
-        val results = sessionsRepo.fetchAndSaveSessions()
-        sessions.value = results.data?.map {
-            it.toPresentationModel()
-        }
-    }
 }

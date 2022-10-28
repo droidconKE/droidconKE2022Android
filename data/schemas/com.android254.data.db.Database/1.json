@@ -2,10 +2,10 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "40c359cb96cfc3d5e6c22e0c3f9f7b6b",
+    "identityHash": "4e4c4242a9d35f16b1730c3973287a8d",
     "entities": [
       {
-        "tableName": "SessionRoomModel",
+        "tableName": "Session",
         "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `description` TEXT NOT NULL, `session_format` TEXT NOT NULL, `session_level` TEXT NOT NULL, `slug` TEXT NOT NULL, `title` TEXT NOT NULL)",
         "fields": [
           {
@@ -58,7 +58,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '40c359cb96cfc3d5e6c22e0c3f9f7b6b')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '4e4c4242a9d35f16b1730c3973287a8d')"
     ]
   }
 }
