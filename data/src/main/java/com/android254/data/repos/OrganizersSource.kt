@@ -20,6 +20,7 @@ import com.android254.data.network.apis.OrganizersApi
 import com.android254.data.util.OrganizerDataToDomainMapper.toDomain
 import com.android254.data.util.OrganizerDomainToEntityMapper.toDomain
 import com.android254.data.util.OrganizerDomainToEntityMapper.toEntity
+import com.android254.domain.models.DataResult
 import com.android254.domain.repos.OrganizersRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -34,17 +35,20 @@ class OrganizersSource @Inject constructor(
     private fun getPagedOrganizers(page: Int = 1) {
         CoroutineScope(Dispatchers.IO).launch {
 
-            val response = api.fetchOrganizers(page = page) ?: return@launch
+            val response = api.fetchOrganizers(page = page)
 
-            val organizers = response.data
+            if (response is DataResult.Success) {
+                val data = response.data
 
-            organizers.forEach {
-                dao.insert(it.toDomain().toEntity())
+                data.data.forEach {
+                    dao.insert(it.toDomain().toEntity())
+                }
+
+                if (data.meta?.paginator?.hasMorePages == true) {
+                    getPagedOrganizers(page = page + 1)
+                }
             }
 
-            if (response.meta?.paginator?.hasMorePages == true) {
-                getPagedOrganizers(page = page + 1)
-            }
         }
     }
 
@@ -53,4 +57,5 @@ class OrganizersSource @Inject constructor(
     }
 
     override fun getOrganizers() = dao.fetchOrganizers().map { it.toDomain() }
+
 }

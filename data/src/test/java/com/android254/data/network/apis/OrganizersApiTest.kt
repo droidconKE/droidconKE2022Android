@@ -24,6 +24,7 @@ import androidx.test.core.app.ApplicationProvider
 import com.android254.data.network.models.responses.OrganizersPagedResponse
 import com.android254.data.network.util.HttpClientFactory
 import com.android254.data.preferences.DefaultTokenProvider
+import com.android254.domain.models.DataResult
 import io.ktor.client.engine.mock.*
 import io.ktor.http.*
 import kotlinx.coroutines.runBlocking
@@ -48,7 +49,7 @@ class OrganizersApiTest {
     }
 
     @Test
-    fun `api should return object on valid json`() {
+    fun `organizers api should return object on valid json`() {
         val validContent = """
             {
                 "data": [{
@@ -95,14 +96,14 @@ class OrganizersApiTest {
         val httpClient = HttpClientFactory(DefaultTokenProvider(testDataStore)).create(mockEngine)
         val api = OrganizersApi(httpClient)
         runBlocking {
-            val data = Json.decodeFromString<OrganizersPagedResponse>(validContent)
-            val response = api.fetchOrganizers(1)
-            assertEquals(data, response)
+            val expected = DataResult.Success(data =  Json.decodeFromString<OrganizersPagedResponse>(validContent))
+            val actual = api.fetchOrganizers(1)
+            assertEquals(expected, actual)
         }
     }
 
     @Test
-    fun `api should throw exception on invalid json`() {
+    fun `organizers api should throw exception on invalid json`() {
         val invalidContent = """
             {
                 "data": [{
@@ -151,6 +152,6 @@ class OrganizersApiTest {
 
         val actual = runBlocking { api.fetchOrganizers(1) }
 
-        assertEquals(null, actual)
+        assert(actual is DataResult.Error)
     }
 }
