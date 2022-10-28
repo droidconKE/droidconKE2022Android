@@ -16,8 +16,6 @@
 package com.android254.presentation.home.screen
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -36,6 +34,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.android254.presentation.R
 import com.android254.presentation.common.components.DroidconAppBar
 import com.android254.presentation.common.components.DroidconAppBarWithFeedbackButton
+import com.android254.presentation.common.components.SponsorsCard
 import com.android254.presentation.common.theme.DroidconKE2022Theme
 import com.android254.presentation.home.components.HomeBannerSection
 import com.android254.presentation.home.components.HomeSpacer
@@ -53,6 +52,7 @@ fun HomeScreen(
     onActionClicked: () -> Unit = {},
 ) {
     val homeViewState = homeViewModel.viewState
+    val sponsorsLogos = listOf("Google", "Company Z", "Company Y")
 
     Scaffold(
         topBar = {
@@ -84,7 +84,9 @@ fun HomeScreen(
                 speakers = speakersViewModel.getSpeakers(),
                 navigateToSpeakers = navigateToSpeakers,
             )
-            Spacer(modifier = Modifier.fillMaxSize())
+            HomeSpacer()
+            SponsorsCard(sponsorsLogos = sponsorsLogos)
+            HomeSpacer()
         }
     }
 }
