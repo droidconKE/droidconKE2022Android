@@ -19,21 +19,22 @@ package com.android254.data.network.apis
 import com.android254.data.network.Constants
 import com.android254.data.network.models.responses.SponsorsPagedResponse
 import com.android254.data.network.util.dataResultSafeApiCall
-import com.android254.data.network.util.safeApiCall
 import com.android254.domain.models.DataResult
-import io.ktor.client.*
-import io.ktor.client.call.*
-import io.ktor.client.request.*
+import io.ktor.client.HttpClient
+import io.ktor.client.call.body
+import io.ktor.client.request.get
 import javax.inject.Inject
+
 
 class SponsorsApi @Inject constructor(
     private val client: HttpClient
 ) {
 
-    suspend fun fetchSponsors(perPage: Int, page: Int): SponsorsPagedResponse =
-        safeApiCall{
-            client.get("${Constants.BASE_URL}/events/droidconke-2022-797/feeds?per_page=$perPage&page$page").body()
+    suspend fun fetchSponsors(perPage: Int, page: Int): DataResult<SponsorsPagedResponse> {
+       return dataResultSafeApiCall{
+            val response = client.get("${Constants.BASE_URL}/events/droidconke-2022-797/feeds?per_page=$perPage&page=$page")
+            DataResult.Success(data = response.body())
         }
-
+       }
 }
 
