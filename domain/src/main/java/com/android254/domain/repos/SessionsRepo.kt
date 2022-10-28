@@ -15,10 +15,8 @@
  */
 package com.android254.domain.repos
 
-import com.android254.domain.models.DataResult
 import com.android254.domain.models.ResourceResult
 import com.android254.domain.models.SessionDomainModel
-import com.android254.domain.models.Success
 
 interface SessionsRepo {
     suspend fun fetchAndSaveSessions(): ResourceResult<List<SessionDomainModel>>

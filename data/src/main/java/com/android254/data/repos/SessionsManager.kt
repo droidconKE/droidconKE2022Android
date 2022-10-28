@@ -20,7 +20,6 @@ import com.android254.data.network.apis.SessionRemoteSource
 import com.android254.data.network.util.NetworkError
 import com.android254.data.repos.mappers.toDomainModel
 import com.android254.data.repos.mappers.toEntity
-import com.android254.domain.models.DataResult
 import com.android254.domain.models.ResourceResult
 import com.android254.domain.models.SessionDomainModel
 import com.android254.domain.models.Success
@@ -28,13 +27,14 @@ import com.android254.domain.repos.SessionsRepo
 import javax.inject.Inject
 
 class SessionsManager @Inject constructor(
-    private val api: SessionRemoteSource, private val dao: SessionDao
+    private val api: SessionRemoteSource,
+    private val dao: SessionDao
 ) : SessionsRepo {
     override suspend fun fetchAndSaveSessions(): ResourceResult<List<SessionDomainModel>> {
         return try {
             val response = api.fetchSessions()
 
-            val data = response.data.flatMap { (key, value) -> value }
+            val data = response.data.flatMap { (_, value) -> value }
 
             if (data.isEmpty()) {
                 ResourceResult.Empty()
@@ -46,9 +46,11 @@ class SessionsManager @Inject constructor(
 
             dao.insert(sessions)
 
-            ResourceResult.Success(data = sessions.map {
-                it.toDomainModel()
-            })
+            ResourceResult.Success(
+                data = sessions.map {
+                    it.toDomainModel()
+                }
+            )
         } catch (e: Exception) {
             when (e) {
                 is NetworkError -> ResourceResult.Error("Network error", networkError = true)
