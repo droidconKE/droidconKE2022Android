@@ -23,5 +23,5 @@ import com.android254.data.db.model.Session
 interface SessionDao : BaseDao<Session> {
 
     @Query("SELECT * FROM SESSION")
-    fun fetchSessions(): List<Session>
+    suspend fun fetchSessions(): List<Session> // This should be suspended or return FLow [Note: Don't suspend Flows]
 }

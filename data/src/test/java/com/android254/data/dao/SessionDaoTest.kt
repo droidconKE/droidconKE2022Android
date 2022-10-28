@@ -15,51 +15,44 @@
  */
 package com.android254.data.dao
 
-import android.content.Context
-import androidx.room.Room
-import androidx.test.core.app.ApplicationProvider
-import com.android254.data.db.Database
 import com.android254.data.db.model.Session
+import com.google.common.truth.Truth
+import io.mockk.*
+import io.mockk.impl.annotations.MockK
 import kotlinx.coroutines.test.runTest
 import kotlinx.datetime.toInstant
-import org.hamcrest.CoreMatchers.`is`
-import org.hamcrest.MatcherAssert.assertThat
-import org.junit.After
 import org.junit.Before
 import org.junit.Test
-import org.junit.runner.RunWith
-import org.robolectric.RobolectricTestRunner
-import java.io.IOException
 
-@RunWith(RobolectricTestRunner::class)
 class SessionDaoTest {
-
+    private lateinit var session: Session
+    @MockK
     private lateinit var sessionDao: SessionDao
-    private lateinit var db: Database
 
     @Before
     fun setup() {
-        val context = ApplicationProvider.getApplicationContext<Context>()
-        db = Room.inMemoryDatabaseBuilder(
-            context,
-            Database::class.java
+        MockKAnnotations.init(this, relaxUnitFun = true)
+        session = Session(
+            id = 0,
+            name = "Welcome Keynote",
+            publishDate = "2010-06-01T22:19:44.475Z".toInstant()
         )
-            .allowMainThreadQueries() // TODO Please delete me
-            .build()
-        sessionDao = db.sessionDao()
-    }
 
-    @After
-    @Throws(IOException::class)
-    fun tearDown() {
-        db.close()
+        coJustRun { sessionDao.insert(session) }
+        coEvery { sessionDao.fetchSessions() } returns listOf(session)
     }
 
     @Test
     fun `test sessionDao fetches all sessions`() = runTest {
-        val session = Session(0, "Welcome Keynote", "2010-06-01T22:19:44.475Z".toInstant())
+        // Given
         sessionDao.insert(session)
-        val result = sessionDao.fetchSessions().first()
-        assertThat(session.name, `is`(result.name))
+
+        // When
+        val result = sessionDao.fetchSessions().first().name
+
+        // Then
+        coVerify(atLeast = 1) { sessionDao.insert(session) }
+        coVerify { sessionDao.insert(session) }
+        Truth.assertThat(result).isEqualTo(session.name)
     }
 }
