@@ -132,6 +132,13 @@ We would endlessly like to thank the following contributors
         </a>
     </td>
     <td align="center">
+        <a href="https://github.com/janewaitara">
+            <img src="https://avatars.githubusercontent.com/u/32500878?v=4" width="100;" alt="janewaitara"/>
+            <br />
+            <sub><b>Jane Waitara</b></sub>
+        </a>
+    </td>
+    <td align="center">
         <a href="https://github.com/chepsi">
             <img src="https://avatars.githubusercontent.com/u/61404564?v=4" width="100;" alt="chepsi"/>
             <br />
@@ -143,13 +150,6 @@ We would endlessly like to thank the following contributors
             <img src="https://avatars.githubusercontent.com/u/13868653?v=4" width="100;" alt="gissilali"/>
             <br />
             <sub><b>Gibson Silali</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/janewaitara">
-            <img src="https://avatars.githubusercontent.com/u/32500878?v=4" width="100;" alt="janewaitara"/>
-            <br />
-            <sub><b>Jane Waitara</b></sub>
         </a>
     </td></tr>
 <tr>
@@ -197,6 +197,13 @@ We would endlessly like to thank the following contributors
     </td></tr>
 <tr>
     <td align="center">
+        <a href="https://github.com/johnGachihi">
+            <img src="https://avatars.githubusercontent.com/u/25545884?v=4" width="100;" alt="johnGachihi"/>
+            <br />
+            <sub><b>John Gachihi</b></sub>
+        </a>
+    </td>
+    <td align="center">
         <a href="https://github.com/GibsonRuitiari">
             <img src="https://avatars.githubusercontent.com/u/88240355?v=4" width="100;" alt="GibsonRuitiari"/>
             <br />
@@ -208,13 +215,6 @@ We would endlessly like to thank the following contributors
             <img src="https://avatars.githubusercontent.com/u/5990196?v=4" width="100;" alt="misshannah"/>
             <br />
             <sub><b>Hannah Olukoye</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/johnGachihi">
-            <img src="https://avatars.githubusercontent.com/u/25545884?v=4" width="100;" alt="johnGachihi"/>
-            <br />
-            <sub><b>John Gachihi</b></sub>
         </a>
     </td>
     <td align="center">
