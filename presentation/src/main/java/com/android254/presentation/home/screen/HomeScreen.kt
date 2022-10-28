@@ -16,12 +16,11 @@
 package com.android254.presentation.home.screen
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -33,6 +32,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.android254.presentation.R
+import com.android254.presentation.common.components.DroidconAppBar
+import com.android254.presentation.common.components.DroidconAppBarWithFeedbackButton
+import com.android254.presentation.common.components.SponsorsCard
 import com.android254.presentation.common.theme.DroidconKE2022Theme
 import com.android254.presentation.home.components.HomeBannerSection
 import com.android254.presentation.home.components.HomeSpacer
@@ -45,29 +47,67 @@ import com.droidconke.chai.atoms.type.MontserratSemiBold
 fun HomeScreen(
     homeViewModel: HomeViewModel = hiltViewModel(),
     speakersViewModel: SpeakersViewModel = hiltViewModel(),
-    navigateToSpeakers: () -> Unit = {}
+    navigateToSpeakers: () -> Unit = {},
+    navigateToFeedbackScreen: () -> Unit = {},
+    onActionClicked: () -> Unit = {},
 ) {
     val homeViewState = homeViewModel.viewState
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 20.dp)
-            .verticalScroll(rememberScrollState()),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(
-            text = stringResource(id = R.string.home_header_welcome_label),
-            modifier = Modifier.testTag("home_header"),
-            fontFamily = MontserratSemiBold,
-            fontSize = 16.sp
+    val sponsorsLogos = listOf("Google", "Company Z", "Company Y")
+
+    Scaffold(
+        topBar = {
+            HomeToolbar(
+                isSignedIn = homeViewState.isSignedIn,
+                navigateToFeedbackScreen = navigateToFeedbackScreen,
+                onActionClicked = onActionClicked
+            )
+        }
+    ) { paddingValues ->
+
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(paddingValues)
+                .padding(horizontal = 20.dp)
+                .verticalScroll(rememberScrollState()),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text(
+                text = stringResource(id = R.string.home_header_welcome_label),
+                modifier = Modifier.testTag("home_header"),
+                fontFamily = MontserratSemiBold,
+                fontSize = 16.sp
+            )
+            HomeBannerSection(homeViewState)
+            HomeSpacer()
+            HomeSpeakersSection(
+                speakers = speakersViewModel.getSpeakers(),
+                navigateToSpeakers = navigateToSpeakers,
+            )
+            HomeSpacer()
+            SponsorsCard(sponsorsLogos = sponsorsLogos)
+            HomeSpacer()
+        }
+    }
+}
+
+@Composable
+fun HomeToolbar(
+    isSignedIn: Boolean,
+    navigateToFeedbackScreen: () -> Unit = {},
+    onActionClicked: () -> Unit = {},
+) {
+    if (isSignedIn) {
+        DroidconAppBarWithFeedbackButton(
+            onButtonClick = {
+                navigateToFeedbackScreen()
+            },
+            userProfile = "https://media-exp1.licdn.com/dms/image/C4D03AQGn58utIO-x3w/profile-displayphoto-shrink_200_200/0/1637478114039?e=2147483647&v=beta&t=3kIon0YJQNHZojD3Dt5HVODJqHsKdf2YKP1SfWeROnI",
         )
-        HomeBannerSection(homeViewState)
-        HomeSpacer()
-        HomeSpeakersSection(
-            speakers = speakersViewModel.getSpeakers(),
-            navigateToSpeakers = navigateToSpeakers,
+    } else {
+        DroidconAppBar(
+            onActionClicked = onActionClicked
         )
-        Spacer(modifier = Modifier.fillMaxSize())
     }
 }
 

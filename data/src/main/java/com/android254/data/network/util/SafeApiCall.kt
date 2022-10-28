@@ -43,9 +43,9 @@ class ServerError(cause: Throwable) : Exception(cause)
 class NetworkError : Exception()
 
 suspend fun <T : Any> dataResultSafeApiCall(
-    apiCall: suspend () -> DataResult<T>
+    apiCall: suspend () -> T
 ): DataResult<T> = try {
-    apiCall.invoke()
+    DataResult.Success(apiCall.invoke())
 } catch (throwable: Throwable) {
     when (throwable) {
         is ServerError, is NetworkError -> {

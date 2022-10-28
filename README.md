@@ -132,6 +132,13 @@ We would endlessly like to thank the following contributors
         </a>
     </td>
     <td align="center">
+        <a href="https://github.com/janewaitara">
+            <img src="https://avatars.githubusercontent.com/u/32500878?v=4" width="100;" alt="janewaitara"/>
+            <br />
+            <sub><b>Jane Waitara</b></sub>
+        </a>
+    </td>
+    <td align="center">
         <a href="https://github.com/chepsi">
             <img src="https://avatars.githubusercontent.com/u/61404564?v=4" width="100;" alt="chepsi"/>
             <br />
@@ -144,6 +151,14 @@ We would endlessly like to thank the following contributors
             <br />
             <sub><b>Gibson Silali</b></sub>
         </a>
+    </td></tr>
+<tr>
+    <td align="center">
+        <a href="https://github.com/BKinya">
+            <img src="https://avatars.githubusercontent.com/u/30239692?v=4" width="100;" alt="BKinya"/>
+            <br />
+            <sub><b>Beatrice Kinya</b></sub>
+        </a>
     </td>
     <td align="center">
         <a href="https://github.com/michaelbukachi">
@@ -151,8 +166,7 @@ We would endlessly like to thank the following contributors
             <br />
             <sub><b>Michael Bukachi</b></sub>
         </a>
-    </td></tr>
-<tr>
+    </td>
     <td align="center">
         <a href="https://github.com/tamzi">
             <img src="https://avatars.githubusercontent.com/u/3008932?v=4" width="100;" alt="tamzi"/>
@@ -175,34 +189,13 @@ We would endlessly like to thank the following contributors
         </a>
     </td>
     <td align="center">
-        <a href="https://github.com/BKinya">
-            <img src="https://avatars.githubusercontent.com/u/30239692?v=4" width="100;" alt="BKinya"/>
-            <br />
-            <sub><b>Beatrice Kinya</b></sub>
-        </a>
-    </td>
-    <td align="center">
         <a href="https://github.com/VictorKabata">
             <img src="https://avatars.githubusercontent.com/u/39780120?v=4" width="100;" alt="VictorKabata"/>
             <br />
             <sub><b>Victor Kabata</b></sub>
         </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/GibsonRuitiari">
-            <img src="https://avatars.githubusercontent.com/u/88240355?v=4" width="100;" alt="GibsonRuitiari"/>
-            <br />
-            <sub><b>8BitsLives .❤️</b></sub>
-        </a>
     </td></tr>
 <tr>
-    <td align="center">
-        <a href="https://github.com/misshannah">
-            <img src="https://avatars.githubusercontent.com/u/5990196?v=4" width="100;" alt="misshannah"/>
-            <br />
-            <sub><b>Hannah Olukoye</b></sub>
-        </a>
-    </td>
     <td align="center">
         <a href="https://github.com/johnGachihi">
             <img src="https://avatars.githubusercontent.com/u/25545884?v=4" width="100;" alt="johnGachihi"/>
@@ -211,10 +204,17 @@ We would endlessly like to thank the following contributors
         </a>
     </td>
     <td align="center">
-        <a href="https://github.com/janewaitara">
-            <img src="https://avatars.githubusercontent.com/u/32500878?v=4" width="100;" alt="janewaitara"/>
+        <a href="https://github.com/GibsonRuitiari">
+            <img src="https://avatars.githubusercontent.com/u/88240355?v=4" width="100;" alt="GibsonRuitiari"/>
             <br />
-            <sub><b>Jane Waitara</b></sub>
+            <sub><b>8BitsLives .❤️</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/misshannah">
+            <img src="https://avatars.githubusercontent.com/u/5990196?v=4" width="100;" alt="misshannah"/>
+            <br />
+            <sub><b>Hannah Olukoye</b></sub>
         </a>
     </td>
     <td align="center">

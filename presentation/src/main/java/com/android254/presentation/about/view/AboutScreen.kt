@@ -51,6 +51,7 @@ import com.google.accompanist.flowlayout.SizeMode
 @Composable
 fun AboutScreen(
     aboutViewModel: AboutViewModel = hiltViewModel(),
+    navigateToFeedbackScreen: () -> Unit = {},
 ) {
     val teamMembers: List<OrganizingTeamMember> = aboutViewModel.organizingTeamMembers
     val stakeHolderLogos = aboutViewModel.stakeHolderLogos.value
@@ -60,7 +61,7 @@ fun AboutScreen(
         topBar = {
             DroidconAppBarWithFeedbackButton(
                 onButtonClick = {
-                    // TODO navigate to feedbackScreen
+                    navigateToFeedbackScreen()
                 },
                 userProfile = sampleImageUrl
             )
