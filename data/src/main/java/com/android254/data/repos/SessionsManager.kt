@@ -18,28 +18,41 @@ package com.android254.data.repos
 import com.android254.data.dao.SessionDao
 import com.android254.data.network.apis.SessionRemoteSource
 import com.android254.data.network.util.NetworkError
+import com.android254.data.repos.mappers.toDomainModel
 import com.android254.data.repos.mappers.toEntity
 import com.android254.domain.models.DataResult
+import com.android254.domain.models.ResourceResult
+import com.android254.domain.models.SessionDomainModel
 import com.android254.domain.models.Success
 import com.android254.domain.repos.SessionsRepo
 import javax.inject.Inject
 
 class SessionsManager @Inject constructor(
-    private val api: SessionRemoteSource,
-    private val dao: SessionDao
+    private val api: SessionRemoteSource, private val dao: SessionDao
 ) : SessionsRepo {
-    override suspend fun fetchAndSaveSessions(): DataResult<Success> {
+    override suspend fun fetchAndSaveSessions(): ResourceResult<List<SessionDomainModel>> {
         return try {
             val response = api.fetchSessions()
-            val sessions = response.data.map {
+
+            val data = response.data.flatMap { (key, value) -> value }
+
+            if (data.isEmpty()) {
+                ResourceResult.Empty()
+            }
+
+            val sessions = data.map {
                 it.toEntity()
             }
+
             dao.insert(sessions)
-            DataResult.Success(Success)
+
+            ResourceResult.Success(data = sessions.map {
+                it.toDomainModel()
+            })
         } catch (e: Exception) {
             when (e) {
-                is NetworkError -> DataResult.Error("Network error", networkError = true)
-                else -> DataResult.Error("Error fetching sessions", networkError = true)
+                is NetworkError -> ResourceResult.Error("Network error", networkError = true)
+                else -> ResourceResult.Error("Error fetching sessions", networkError = true)
             }
         }
     }

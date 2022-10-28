@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "790d41065469aa1985cbf7ba2a17a90e",
+    "identityHash": "40c359cb96cfc3d5e6c22e0c3f9f7b6b",
     "entities": [
       {
-        "tableName": "Session",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `publishDate` INTEGER NOT NULL)",
+        "tableName": "SessionRoomModel",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `description` TEXT NOT NULL, `session_format` TEXT NOT NULL, `session_level` TEXT NOT NULL, `slug` TEXT NOT NULL, `title` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -15,20 +15,40 @@
             "notNull": true
           },
           {
-            "fieldPath": "name",
-            "columnName": "name",
+            "fieldPath": "description",
+            "columnName": "description",
             "affinity": "TEXT",
             "notNull": true
           },
           {
-            "fieldPath": "publishDate",
-            "columnName": "publishDate",
-            "affinity": "INTEGER",
+            "fieldPath": "session_format",
+            "columnName": "session_format",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "session_level",
+            "columnName": "session_level",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "slug",
+            "columnName": "slug",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
             "notNull": true
           }
         ],
         "primaryKey": {
-          "columnNames": ["id"],
+          "columnNames": [
+            "id"
+          ],
           "autoGenerate": true
         },
         "indices": [],
@@ -38,7 +58,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '790d41065469aa1985cbf7ba2a17a90e')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '40c359cb96cfc3d5e6c22e0c3f9f7b6b')"
     ]
   }
 }

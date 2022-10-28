@@ -24,6 +24,5 @@ data class SessionApiModel(
     val session_format: String,
     val session_level: String,
     val slug: String,
-    val speakers: List<SpeakerApiModel>,
     val title: String
 )

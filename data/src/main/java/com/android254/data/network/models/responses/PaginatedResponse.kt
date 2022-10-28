@@ -19,6 +19,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class PaginatedResponse<ResponseData>(
-    val data: List<ResponseData>,
+    val data: ResponseData,
     val meta: ResponseMetaData
 )
