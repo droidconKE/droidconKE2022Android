@@ -57,7 +57,6 @@ dependencies {
     api(libs.kotlin.coroutines.datetime)
     implementation(libs.android.hilt)
     implementation(libs.timber)
-    implementation("androidx.paging:paging-common-ktx:3.1.1")
     kapt(libs.android.hilt.compiler)
     implementation(libs.datastore)
     implementation(libs.room.runtime)
@@ -70,10 +69,7 @@ dependencies {
     implementation(libs.ktor.auth)
     androidTestImplementation(libs.android.test.junit4)
     androidTestImplementation(libs.android.test.espresso)
-
-    // paging
     implementation(libs.paging.common)
-
     testImplementation(libs.test.junit4)
     testImplementation(libs.kotlin.coroutines.test)
     testImplementation(libs.test.androidx.core)
