@@ -17,8 +17,10 @@ import com.droidconke.chai.atoms.ChaiBlue
 
 @Composable
 fun FeedShareSection() {
-    Column(modifier = Modifier
-        .fillMaxWidth()) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+    ) {
         TextButton(
             onClick = {
             }

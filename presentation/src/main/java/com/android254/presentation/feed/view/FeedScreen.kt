@@ -60,7 +60,6 @@ fun FeedScreen(
                 Text(text = "Whoops Material 3!")
                 Text(text = "Whoops Material 3!")
             }
-
         },
         scaffoldState = bottomSheetScaffoldState,
         sheetShape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp),

@@ -16,7 +16,6 @@
 
 package com.android254.presentation.common.bottomsheet
 
-
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.AnimationSpec
 import androidx.compose.animation.core.SpringSpec
@@ -662,7 +661,6 @@ internal data class FractionalThreshold(
         return lerp(fromValue, toValue, fraction)
     }
 }
-
 
 /**
  * Specifies how resistance is calculated in [swipeable].
