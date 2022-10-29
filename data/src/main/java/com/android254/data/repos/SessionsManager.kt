@@ -25,7 +25,9 @@ import com.android254.domain.models.SessionDomainModel
 import com.android254.domain.models.Success
 import com.android254.domain.repos.SessionsRepo
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class SessionsManager @Inject constructor(
     private val api: SessionRemoteSource,
     private val dao: SessionDao

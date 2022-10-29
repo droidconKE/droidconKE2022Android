@@ -21,15 +21,16 @@ import com.android254.data.network.models.responses.ResponseMetaData
 import com.android254.data.network.models.responses.SessionApiModel
 
 val results = PaginatedResponse(
-    data = listOf(
-        SessionApiModel(
-            "1",
-            "",
-            "",
-            "",
-            "",
-            speakers = listOf(),
-            "new title"
+    data = mapOf(
+        "2022-11-16" to listOf(
+            SessionApiModel(
+                "1",
+                "",
+                "",
+                "",
+                "",
+                "new title"
+            )
         )
     ),
     meta = ResponseMetaData(

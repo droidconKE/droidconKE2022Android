@@ -27,19 +27,33 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
 import com.android254.presentation.R
 import com.android254.presentation.common.components.DroidconAppBarWithFilter
 import com.android254.presentation.common.components.EventDaySelectorButton
+import com.android254.presentation.common.components.MultiToggleButton
 import com.android254.presentation.common.components.SessionsCard
 import com.android254.presentation.common.theme.DroidconKE2022Theme
+import com.android254.presentation.common.theme.Montserrat
 import com.android254.presentation.models.SessionPresentationModel
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.dialog.MaterialDialogs
 
 val events = arrayListOf<SessionPresentationModel>()
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun SessionsScreen(darkTheme: Boolean = isSystemInDarkTheme()) {
     val showMySessions = remember {
@@ -54,6 +68,10 @@ fun SessionsScreen(darkTheme: Boolean = isSystemInDarkTheme()) {
         mutableStateOf(true)
     }
 
+    val isFilterDialogOpen = rememberSaveable {
+        mutableStateOf(false)
+    }
+
     Scaffold(
         topBar = {
             DroidconAppBarWithFilter(
@@ -66,7 +84,7 @@ fun SessionsScreen(darkTheme: Boolean = isSystemInDarkTheme()) {
                 },
                 isFilterActive = isFilterActive.value,
                 onFilterButtonClick = {
-                    /*TODO open the filter modal*/
+                    isFilterDialogOpen.value = true
                 }
             )
         }
@@ -136,6 +154,53 @@ fun SessionsScreen(darkTheme: Boolean = isSystemInDarkTheme()) {
                                 Image(
                                     painter = painterResource(id = if (index % 2 == 0) R.drawable.ic_green_session_card_spacer else R.drawable.ic_orange_session_card_spacer),
                                     contentDescription = "spacer icon"
+                                )
+                            }
+                        }
+                    }
+                }
+            }
+            if (isFilterDialogOpen.value) {
+                Dialog(
+                    properties = DialogProperties(
+                        usePlatformDefaultWidth = false,
+                        dismissOnClickOutside = true
+                    ),
+                    onDismissRequest = {
+                        isFilterDialogOpen.value = false
+                    }
+                ) {
+                    Surface(modifier = Modifier.fillMaxSize()) {
+                        Column(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                        ) {
+                            Row(
+                                horizontalArrangement = Arrangement.SpaceBetween,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .background(
+                                        Color.Cyan
+                                    )
+                            ) {
+                                Spacer(Modifier.weight(1f))
+                                TextButton(onClick = { isFilterDialogOpen.value = false }) {
+                                    Text(text = "Cancel")
+                                }
+                            }
+
+                            Column(
+                                Modifier.fillMaxWidth().padding(horizontal = 12.dp),
+                            ) {
+                                Text(text = "Level", style = TextStyle(
+                                    fontSize = 20.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    fontFamily = Montserrat
+                                ))
+                                MultiToggleButton(
+                                    currentSelection = "Beginner",
+                                    toggleStates = arrayOf("Beginner", "Intermediate", "Expert"),
+                                    onToggleChange = {}
                                 )
                             }
                         }

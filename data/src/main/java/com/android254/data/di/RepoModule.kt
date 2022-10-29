@@ -16,7 +16,9 @@
 package com.android254.data.di
 
 import com.android254.data.repos.AuthManager
+import com.android254.data.repos.SessionsManager
 import com.android254.domain.repos.AuthRepo
+import com.android254.domain.repos.SessionsRepo
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -30,4 +32,9 @@ abstract class RepoModule {
     @Binds
     @Singleton
     abstract fun provideAuthRepo(repo: AuthManager): AuthRepo
+
+
+    @Binds
+    @Singleton
+    abstract fun provideSessionsRepo(repo: SessionsManager): SessionsRepo
 }
