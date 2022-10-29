@@ -17,7 +17,6 @@ package com.android254.presentation.sessions.view
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.android254.domain.repos.SessionsRepo
 import com.android254.presentation.models.SessionPresentationModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject

@@ -16,17 +16,26 @@
 package com.android254.presentation.feed.view
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.ArrowForward
 import androidx.compose.material.icons.rounded.Newspaper
-import androidx.compose.material3.*
+import androidx.compose.material3.Card
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -34,6 +43,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.android254.presentation.R
 import com.android254.presentation.common.theme.DroidconKE2022Theme
+import com.droidconke.chai.atoms.ChaiBlue
 
 @Composable
 fun FeedComponent(modifier: Modifier, onClickItem: (Int) -> Unit) {
@@ -43,7 +53,7 @@ fun FeedComponent(modifier: Modifier, onClickItem: (Int) -> Unit) {
             .fillMaxWidth()
             .wrapContentHeight(),
         onClick = { onClickItem(1) },
-        shape = RoundedCornerShape(0.dp)
+        shape = RoundedCornerShape(0.dp),
     ) {
         Column(
             modifier = Modifier.padding(vertical = 8.dp, horizontal = 16.dp),
@@ -87,17 +97,16 @@ fun FeedComponent(modifier: Modifier, onClickItem: (Int) -> Unit) {
                 ) {
                     Text(
                         text = stringResource(id = R.string.share),
-                        color = MaterialTheme.colorScheme.onBackground,
+                        color = ChaiBlue,
                         fontSize = MaterialTheme.typography.labelLarge.fontSize,
                         fontWeight = MaterialTheme.typography.labelLarge.fontWeight,
                         fontStyle = MaterialTheme.typography.labelLarge.fontStyle
                     )
 
                     Icon(
-                        imageVector = Icons.Rounded.ArrowForward,
+                        painter = painterResource(id = R.drawable.ic_share),
                         contentDescription = stringResource(id = R.string.share),
-                        modifier = Modifier.padding(end = 8.dp),
-                        tint = Color(0xFF673AB7)
+                        modifier = Modifier.padding(start = 8.dp)
                     )
                 }
 
