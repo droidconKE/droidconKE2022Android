@@ -13,17 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android254.data.db.model
+package com.android254.presentation.sessions.view
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import com.android254.domain.models.SessionDomainModel
+import com.android254.presentation.models.SessionPresentationModel
 
-@Entity
-data class Session(
-    @PrimaryKey(autoGenerate = true) val id: Int,
-    val description: String,
-    val session_format: String,
-    val session_level: String,
-    val slug: String,
-    val title: String
+fun SessionDomainModel.toPresentationModel() = SessionPresentationModel(
+    id = this.id.toString(),
+    sessionTitle = this.title,
+    sessionDescription = this.description,
+    sessionVenue = "",
+    sessionSpeakerImage = "",
+    sessionSpeakerName = "",
+    sessionStartTime = "",
+    sessionEndTime = "",
+    amOrPm = "",
+    isStarred = false,
 )
