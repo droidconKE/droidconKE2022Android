@@ -20,7 +20,6 @@ import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -29,7 +28,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
@@ -51,15 +49,7 @@ fun FeedScreen(
     val scope = rememberCoroutineScope()
     BottomSheetScaffold(
         sheetContent = {
-            Column {
-                Text(text = "Whoops Material 3!")
-                Text(text = "Whoops Material 3!")
-                Text(text = "Whoops Material 3!")
-                Text(text = "Whoops Material 3!")
-                Text(text = "Whoops Material 3!")
-                Text(text = "Whoops Material 3!")
-                Text(text = "Whoops Material 3!")
-            }
+            FeedShareSection()
         },
         scaffoldState = bottomSheetScaffoldState,
         sheetShape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp),
