@@ -13,14 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android254.data.db.model
+package com.android254.data.network.models.responses
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import kotlinx.serialization.Serializable
 
-@Entity
-data class Session(
-    @PrimaryKey(autoGenerate = true) val id: Int,
+@Serializable
+data class SessionApiModel(
+    val id: String,
     val description: String,
     val session_format: String,
     val session_level: String,
