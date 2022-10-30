@@ -26,7 +26,7 @@ import javax.inject.Inject
 class SessionRemoteSource @Inject constructor(
     private val client: HttpClient
 ) {
-    suspend fun fetchSessions(perPage: Int = 200): PaginatedResponse<Map<String, List<SessionApiModel>>> {
+    suspend fun fetchSessions(perPage: Int = 200): PaginatedResponse<List<SessionApiModel>> {
         return client.get("${Constants.BASE_URL}/events/${Constants.EVENT_SLUG}/sessions") {
             url {
                 parameters.append("per_page", perPage.toString())
