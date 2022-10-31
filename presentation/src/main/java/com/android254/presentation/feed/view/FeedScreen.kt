@@ -25,7 +25,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
@@ -50,35 +49,34 @@ fun FeedScreen(
             FeedShareSection()
         },
         scaffoldState = bottomSheetScaffoldState,
-        sheetShape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp),
-        sheetPeekHeight = 0.dp,
-    ) {
-        Scaffold(topBar = {
+        topBar = {
             DroidconAppBarWithFeedbackButton(
                 onButtonClick = {
                     navigateToFeedbackScreen()
                 },
                 userProfile = "https://media-exp1.licdn.com/dms/image/C4D03AQGn58utIO-x3w/profile-displayphoto-shrink_200_200/0/1637478114039?e=2147483647&v=beta&t=3kIon0YJQNHZojD3Dt5HVODJqHsKdf2YKP1SfWeROnI"
             )
-        }) { paddingValues ->
-
-            Box(
-                modifier = Modifier
-                    .padding(paddingValues)
-                    .fillMaxSize()
+        },
+        sheetShape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp),
+        sheetElevation = 16.dp,
+        sheetPeekHeight = 0.dp,
+    ) { paddingValues ->
+        Box(
+            modifier = Modifier
+                .padding(paddingValues)
+                .fillMaxSize()
+        ) {
+            LazyColumn(
+                modifier = Modifier.testTag("feeds_lazy_column"),
+                verticalArrangement = Arrangement.spacedBy(4.dp)
             ) {
-                LazyColumn(
-                    modifier = Modifier.testTag("feeds_lazy_column"),
-                    verticalArrangement = Arrangement.spacedBy(4.dp)
-                ) {
-                    items(count = 10) {
-                        FeedComponent(modifier = Modifier.fillMaxWidth()) {
-                            scope.launch {
-                                if (bottomSheetScaffoldState.bottomSheetState.isCollapsed) {
-                                    bottomSheetScaffoldState.bottomSheetState.expand()
-                                } else {
-                                    bottomSheetScaffoldState.bottomSheetState.collapse()
-                                }
+                items(count = 10) {
+                    FeedComponent(modifier = Modifier.fillMaxWidth()) {
+                        scope.launch {
+                            if (bottomSheetScaffoldState.bottomSheetState.isCollapsed) {
+                                bottomSheetScaffoldState.bottomSheetState.expand()
+                            } else {
+                                bottomSheetScaffoldState.bottomSheetState.collapse()
                             }
                         }
                     }

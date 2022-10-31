@@ -49,6 +49,7 @@ import com.android254.presentation.R
 import com.android254.presentation.common.theme.DroidconKE2022Theme
 import com.droidconke.chai.atoms.ChaiBlue
 import com.droidconke.chai.atoms.ChaiLightGrey
+import com.droidconke.chai.atoms.ChaiSmokeyGrey
 import com.droidconke.chai.atoms.type.MontserratBold
 
 @Composable
@@ -123,7 +124,7 @@ fun FeedComponent(modifier: Modifier, onClickItem: (Int) -> Unit) {
 
                 Text(
                     text = "5 hours ago",
-                    color = MaterialTheme.colorScheme.onBackground,
+                    color = ChaiSmokeyGrey,
                     fontSize = MaterialTheme.typography.labelLarge.fontSize,
                     fontWeight = MaterialTheme.typography.labelLarge.fontWeight,
                     fontStyle = MaterialTheme.typography.labelLarge.fontStyle

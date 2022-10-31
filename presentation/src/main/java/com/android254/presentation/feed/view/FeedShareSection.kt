@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.android254.presentation.R
 import com.android254.presentation.common.theme.DroidconKE2022Theme
+import com.droidconke.chai.atoms.ChaiSmokeyGrey
 import com.droidconke.chai.atoms.ChaiTeal
 import com.droidconke.chai.atoms.type.MontserratBold
 
@@ -67,8 +68,8 @@ fun FeedShareSection() {
             }
 
             Text(
-                text = "CANCEL",
-                color = MaterialTheme.colorScheme.onBackground,
+                text = stringResource(id = R.string.cancel).uppercase(),
+                color = ChaiSmokeyGrey,
                 fontSize = MaterialTheme.typography.labelLarge.fontSize,
                 fontWeight = MaterialTheme.typography.labelLarge.fontWeight,
                 fontStyle = MaterialTheme.typography.labelLarge.fontStyle
