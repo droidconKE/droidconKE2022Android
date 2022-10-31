@@ -29,7 +29,7 @@ class OrganizersApi @Inject constructor(
     private val client: HttpClient
 ) {
 
-    private val organizersUrl = "${Constants.BASE_URL}/organizers?"
+    private val organizersUrl = "${Constants.BASE_URL}/organizers/droidconKe/team?type=individual/company&"
 
     suspend fun fetchOrganizers(page: Int): DataResult<OrganizersPagedResponse> = dataResultSafeApiCall {
         client.get("${organizersUrl}per_page=100&page$page").body()
