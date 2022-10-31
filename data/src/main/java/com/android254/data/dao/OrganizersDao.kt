@@ -24,5 +24,4 @@ interface OrganizersDao : BaseDao<OrganizerEntity> {
 
     @Query("SELECT * FROM ORGANIZERS")
     fun fetchOrganizers(): List<OrganizerEntity>
-
 }

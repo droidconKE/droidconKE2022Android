@@ -18,7 +18,6 @@ package com.android254.data.network.apis
 import com.android254.data.network.Constants
 import com.android254.data.network.models.responses.OrganizersPagedResponse
 import com.android254.data.network.util.dataResultSafeApiCall
-import com.android254.data.network.util.safeApiCall
 import com.android254.domain.models.DataResult
 import io.ktor.client.*
 import io.ktor.client.call.*
@@ -34,5 +33,4 @@ class OrganizersApi @Inject constructor(
     suspend fun fetchOrganizers(page: Int): DataResult<OrganizersPagedResponse> = dataResultSafeApiCall {
         client.get("${organizersUrl}per_page=100&page$page").body()
     }
-
 }

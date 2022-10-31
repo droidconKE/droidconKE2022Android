@@ -57,7 +57,7 @@ class FeedScreenTest {
     }
 
     @Test
-    fun `test share bottom sheet is shown` () {
+    fun `test share bottom sheet is shown`() {
         composeTestRule.setContent {
             DroidconKE2022Theme {
                 FeedScreen()
