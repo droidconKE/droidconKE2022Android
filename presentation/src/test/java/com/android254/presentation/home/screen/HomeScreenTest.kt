@@ -109,6 +109,5 @@ class HomeScreenTest {
         composeTestRule.onNodeWithTag("sectionHeader").assertIsDisplayed()
         composeTestRule.onNodeWithTag("viewAll").assertIsDisplayed()
         composeTestRule.onNodeWithTag("sessions").assertExists()
-
     }
 }

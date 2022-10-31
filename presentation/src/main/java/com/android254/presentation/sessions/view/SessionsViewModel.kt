@@ -24,7 +24,6 @@ import javax.inject.Inject
 @HiltViewModel
 class SessionsViewModel @Inject constructor() : ViewModel() {
     var sessions = mutableStateOf(sessionsList)
-
 }
 val sessionsList = listOf(
     SessionPresentationModel(
