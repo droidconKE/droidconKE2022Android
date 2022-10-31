@@ -44,5 +44,8 @@
     <string name="view_all_label">View All</string>
     <string name="top_bar_filter">Filter</string>
     <string name="sponsors_title">Sponsors</string>
+    <string name="sessions_label">Sessions</string>
+    <string name="session_image">Session Image</string>
+    <string name="format_plus_label">+%d</string>
 
 </resources>
