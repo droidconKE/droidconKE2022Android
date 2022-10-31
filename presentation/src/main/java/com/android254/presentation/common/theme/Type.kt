@@ -25,7 +25,9 @@ import com.android254.presentation.R
 
 val Montserrat = FontFamily(
     Font(R.font.montserrat_regular),
-    Font(R.font.montserrat_bold)
+    Font(R.font.montserrat_light, weight = FontWeight.Light),
+    Font(R.font.montserrat_semi_bold, weight = FontWeight.SemiBold),
+    Font(R.font.montserrat_bold, weight = FontWeight.Bold)
 )
 
 val AppTypography = Typography(

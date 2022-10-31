@@ -53,7 +53,8 @@ import com.droidconke.chai.atoms.type.MontserratSemiBold
 @Composable
 fun HomeSpeakersSection(
     speakers: List<Speaker>,
-    navigateToSpeakers: () -> Unit = {}
+    navigateToSpeakers: () -> Unit = {},
+    navigateToSpeaker: (String) -> Unit = {}
 ) {
     ConstraintLayout(
         modifier = Modifier
@@ -128,7 +129,9 @@ fun HomeSpeakersSection(
                 }
         ) {
             items(speakers.take(4)) { speaker ->
-                HomeSpeakerComponent(speaker = speaker)
+                HomeSpeakerComponent(speaker = speaker, onClick = {
+                    navigateToSpeaker.invoke(speaker.twitterHandle)
+                })
             }
         }
     }

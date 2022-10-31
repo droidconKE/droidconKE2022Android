@@ -48,6 +48,7 @@ fun HomeScreen(
     homeViewModel: HomeViewModel = hiltViewModel(),
     speakersViewModel: SpeakersViewModel = hiltViewModel(),
     navigateToSpeakers: () -> Unit = {},
+    navigateToSpeaker: (String) -> Unit = {},
     navigateToFeedbackScreen: () -> Unit = {},
     onActionClicked: () -> Unit = {},
 ) {
@@ -83,6 +84,7 @@ fun HomeScreen(
             HomeSpeakersSection(
                 speakers = speakersViewModel.getSpeakers(),
                 navigateToSpeakers = navigateToSpeakers,
+                navigateToSpeaker = navigateToSpeaker
             )
             HomeSpacer()
             SponsorsCard(sponsorsLogos = sponsorsLogos)

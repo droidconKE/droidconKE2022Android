@@ -16,21 +16,21 @@
 package com.android254.data.network.apis
 
 import com.android254.data.network.Constants
-import com.android254.data.network.models.responses.PaginatedResponse
-import com.android254.data.network.models.responses.SessionApiModel
+import com.android254.data.network.models.responses.OrganizersPagedResponse
+import com.android254.data.network.util.dataResultSafeApiCall
+import com.android254.domain.models.DataResult
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.request.*
 import javax.inject.Inject
 
-class SessionRemoteSource @Inject constructor(
+class OrganizersApi @Inject constructor(
     private val client: HttpClient
 ) {
-    suspend fun fetchSessions(perPage: Int = 200): PaginatedResponse<List<SessionApiModel>> {
-        return client.get("${Constants.BASE_URL}/events/${Constants.EVENT_SLUG}/sessions") {
-            url {
-                parameters.append("per_page", perPage.toString())
-            }
-        }.body()
+
+    private val organizersUrl = "${Constants.BASE_URL}/organizers/droidconKe/team?type=individual/company&"
+
+    suspend fun fetchOrganizers(page: Int): DataResult<OrganizersPagedResponse> = dataResultSafeApiCall {
+        client.get("${organizersUrl}per_page=100&page$page").body()
     }
 }

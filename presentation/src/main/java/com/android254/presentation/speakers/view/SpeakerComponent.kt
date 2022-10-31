@@ -17,6 +17,7 @@ package com.android254.presentation.speakers.view
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -51,10 +52,15 @@ import com.android254.presentation.models.Speaker
 @Composable
 fun SpeakerComponent(
     modifier: Modifier = Modifier,
-    speaker: Speaker
+    speaker: Speaker,
+    onClick: () -> Unit = {}
 ) {
     Card(
-        modifier = modifier.padding(7.dp).height(350.dp),
+        modifier = modifier
+            .padding(7.dp)
+            .height(350.dp).clickable {
+                onClick.invoke()
+            },
         shape = RoundedCornerShape(8.dp),
         elevation = CardDefaults.cardElevation(4.dp),
         colors = CardDefaults.cardColors(
@@ -64,7 +70,7 @@ fun SpeakerComponent(
         ConstraintLayout(
             modifier = modifier
                 .padding(16.dp)
-                .fillMaxWidth(),
+                .fillMaxWidth()
         ) {
             val (image, nameText, bioText, button) = createRefs()
             AsyncImage(
@@ -108,7 +114,7 @@ fun SpeakerComponent(
                 style = TextStyle(
                     color = colorResource(id = R.color.grey),
                     fontSize = 14.sp,
-                    fontFamily = FontFamily(Font(R.font.montserrat_regular)), // Extract the fonts or get them from chai system
+                    fontFamily = FontFamily(Font(R.font.montserrat_regular)) // Extract the fonts or get them from chai system
                 ),
                 modifier = modifier
                     .testTag("bio")
@@ -135,7 +141,7 @@ fun SpeakerComponent(
                 Text(
                     text = stringResource(R.string.session_label),
                     color = colorResource(id = R.color.aqua),
-                    fontFamily = FontFamily(Font(R.font.montserrat_semi_bold)),
+                    fontFamily = FontFamily(Font(R.font.montserrat_semi_bold))
                 )
             }
         }
