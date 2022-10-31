@@ -38,7 +38,9 @@ fun Navigation(
             HomeScreen(
                 navigateToSpeakers = { navController.navigate(Screens.Speakers.route) },
                 navigateToFeedbackScreen = { navController.navigate(Screens.FeedBack.route) },
-                onActionClicked = onActionClicked
+                navigateToSessionScreen = { navController.navigate(Screens.Sessions.route) },
+                onActionClicked = onActionClicked,
+                onSessionClicked = {},
             )
         }
         composable(Screens.Sessions.route) {

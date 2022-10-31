@@ -15,15 +15,40 @@
  */
 package com.android254.presentation.sessions.view
 
-import androidx.lifecycle.MutableLiveData
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import com.android254.domain.repos.SessionsRepo
 import com.android254.presentation.models.SessionPresentationModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class SessionsViewModel @Inject constructor(
-) : ViewModel() {
-    var sessions = MutableLiveData<List<SessionPresentationModel>>(listOf())
+class SessionsViewModel @Inject constructor() : ViewModel() {
+    var sessions = mutableStateOf(sessionsList)
+
 }
+val sessionsList = listOf(
+    SessionPresentationModel(
+        id = "545",
+        sessionTitle = "Transforming farmers lives using Android in Kenya",
+        sessionDescription = "",
+        sessionVenue = "Room 1",
+        sessionSpeakerName = "Harun Wangereka",
+        sessionStartTime = "10.00 am",
+        sessionEndTime = "",
+        amOrPm = "",
+        isStarred = false,
+        sessionSpeakerImage = "https://firebasestorage.googleapis.com/v0/b/mobifishtest.appspot.com/o/FWMmgzPWAAMh9rp.png?alt=media&token=6378094c-a4b8-45cb-a23e-a6cd4280560a",
+    ),
+    SessionPresentationModel(
+        id = "545",
+        sessionTitle = "Compose Beyond Material Design",
+        sessionDescription = "",
+        sessionVenue = "Room 1",
+        sessionSpeakerName = "Harun Wangereka",
+        sessionStartTime = "10.00 am",
+        sessionEndTime = "",
+        amOrPm = "",
+        isStarred = false,
+        sessionSpeakerImage = "https://firebasestorage.googleapis.com/v0/b/mobifishtest.appspot.com/o/FVIona4WIAEWR93.png?alt=media&token=ddc69aaf-fa81-48a8-a8e5-008cebfe161f",
+    ),
+)
