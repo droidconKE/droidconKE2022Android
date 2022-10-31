@@ -13,11 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android254.domain.models
+package com.android254.domain.repos
 
-sealed class ResourceResult<T>(open val data: T? = null, open val message: String? = null) {
-    data class Success<T>(override val data: T?) : ResourceResult<T>(data)
-    data class Error<T>(override val message: String, override val data: T? = null, val networkError: Boolean = false) : ResourceResult<T>(data, message)
-    class Loading<T>(val isLoading: Boolean = true) : ResourceResult<T>(null)
-    class Empty : ResourceResult<Nothing>(null)
+import com.android254.domain.models.OrganizerDomainModel
+
+interface OrganizersRepository {
+
+    fun fetchOrganizers()
+
+    fun getOrganizers(): List<OrganizerDomainModel>
 }
