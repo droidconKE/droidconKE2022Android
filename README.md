@@ -111,6 +111,13 @@ We would endlessly like to thank the following contributors
 <table>
 <tr>
     <td align="center">
+        <a href="https://github.com/wangerekaharun">
+            <img src="https://avatars.githubusercontent.com/u/15122455?v=4" width="100;" alt="wangerekaharun"/>
+            <br />
+            <sub><b>Harun Wangereka</b></sub>
+        </a>
+    </td>
+    <td align="center">
         <a href="https://github.com/jumaallan">
             <img src="https://avatars.githubusercontent.com/u/25085146?v=4" width="100;" alt="jumaallan"/>
             <br />
@@ -122,13 +129,6 @@ We would endlessly like to thank the following contributors
             <img src="https://avatars.githubusercontent.com/u/13868653?v=4" width="100;" alt="gissilali"/>
             <br />
             <sub><b>Gibson Silali</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/wangerekaharun">
-            <img src="https://avatars.githubusercontent.com/u/15122455?v=4" width="100;" alt="wangerekaharun"/>
-            <br />
-            <sub><b>Harun Wangereka</b></sub>
         </a>
     </td>
     <td align="center">
