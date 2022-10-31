@@ -27,6 +27,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -62,6 +63,7 @@ fun HomeSessionSection(
         Spacer(modifier = Modifier.height(16.dp))
         LazyRow(
             horizontalArrangement = Arrangement.spacedBy(8.dp),
+            modifier = Modifier.testTag("sessions")
         ) {
             items(sessions) { session ->
                 HomeSessionContent(
@@ -85,6 +87,7 @@ fun HomeSectionHeader(
         horizontalArrangement = Arrangement.SpaceBetween,
         modifier = modifier
             .padding(vertical = 16.dp)
+            .testTag("sectionHeader")
     ) {
         Text(
             text = sectionLabel,
@@ -100,7 +103,9 @@ fun HomeSectionHeader(
         Spacer(modifier = Modifier.weight(1f))
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.clickable { onViewAllClicked() }
+            modifier = Modifier
+                .clickable { onViewAllClicked() }
+                .testTag("viewAll")
         ) {
             Text(
                 text = stringResource(id = R.string.view_all_label),

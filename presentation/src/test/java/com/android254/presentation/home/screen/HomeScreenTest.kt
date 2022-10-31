@@ -20,6 +20,7 @@ import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import com.android254.presentation.common.components.SponsorsCard
 import com.android254.presentation.common.theme.DroidconKE2022Theme
+import com.android254.presentation.home.components.HomeSessionSection
 import com.android254.presentation.home.components.HomeSpeakersSection
 import org.junit.Before
 import org.junit.Rule
@@ -94,5 +95,20 @@ class HomeScreenTest {
             SponsorsCard(sponsorsLogos = listOf("Google"))
         }
         composeTestRule.onNodeWithTag("sponsors_section")
+    }
+
+    @Test
+    fun `Test sessions is displayed`() {
+        composeTestRule.setContent {
+            HomeSessionSection(
+                sessions = emptyList(),
+                onViewAllSessionClicked = {},
+                onSessionClick = {}
+            )
+        }
+        composeTestRule.onNodeWithTag("sectionHeader").assertIsDisplayed()
+        composeTestRule.onNodeWithTag("viewAll").assertIsDisplayed()
+        composeTestRule.onNodeWithTag("sessions").assertExists()
+
     }
 }
