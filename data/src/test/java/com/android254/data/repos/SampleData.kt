@@ -28,7 +28,6 @@ val results = PaginatedResponse(
             "",
             "",
             "",
-            speakers = listOf(),
             "new title"
         )
     ),

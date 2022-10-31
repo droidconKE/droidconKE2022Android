@@ -15,9 +15,26 @@
  */
 package com.android254.domain.models
 
-sealed class ResourceResult<T>(open val data: T? = null, open val message: String? = null) {
-    data class Success<T>(override val data: T?) : ResourceResult<T>(data)
-    data class Error<T>(override val message: String, override val data: T? = null, val networkError: Boolean = false) : ResourceResult<T>(data, message)
-    class Loading<T>(val isLoading: Boolean = true) : ResourceResult<T>(null)
-    class Empty : ResourceResult<Nothing>(null)
-}
+data class OrganizerDomainModel(
+    val id: Int?,
+    val name: String?,
+    val email: String?,
+    val description: String?,
+    val facebook: String?,
+    val twitter: String?,
+    val instagram: String?,
+    val logo: String?,
+    val slug: String?,
+    val status: String?,
+    val createdAt: String?,
+    val creater: CreatorDomainModel?,
+    val upcomingEventsCount: Int?,
+    val totalEventsCount: Int?
+)
+
+data class CreatorDomainModel(
+    val id: Int?,
+    val name: String?,
+    val email: String?,
+    val createdAt: String?
+)

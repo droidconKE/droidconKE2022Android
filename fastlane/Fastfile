@@ -31,6 +31,11 @@ platform :android do
     gradle(task: "detekt")
   end
 
+desc "Runs tests on the codebase"
+lane :test do
+  gradle(task: "testDebug")
+end
+
   desc "Builds on all branches"
   lane :branch do
     gradle(task: "buildDebug")

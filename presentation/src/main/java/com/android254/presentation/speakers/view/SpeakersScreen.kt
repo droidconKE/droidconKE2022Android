@@ -43,7 +43,8 @@ import com.android254.presentation.speakers.SpeakersViewModel
 @Composable
 fun SpeakersScreen(
     speakersViewModel: SpeakersViewModel = hiltViewModel(),
-    navigateToHomeScreen: () -> Unit = {}
+    navigateToHomeScreen: () -> Unit = {},
+    navigateToSpeaker: (String) -> Unit = {}
 ) {
     val speakers = speakersViewModel.getSpeakers()
     Scaffold(
@@ -81,7 +82,9 @@ fun SpeakersScreen(
             contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 80.dp, bottom = 16.dp)
         ) {
             items(speakers) { speaker ->
-                SpeakerComponent(speaker = speaker)
+                SpeakerComponent(speaker = speaker, onClick = {
+                    navigateToSpeaker.invoke(speaker.twitterHandle)
+                })
             }
         }
     }

@@ -35,4 +35,24 @@ class SpeakersViewModel @Inject constructor() : ViewModel() {
             bio = "Kenya Partner Lead at droidcon Berlin | Android | Kotlin | Flutter | C++"
         )
     )
+
+    fun getSpeakerByTwitterHandle(twitterHandle: String) = Speaker(
+        imageUrl = "https://media-exp1.licdn.com/dms/image/C4D03AQGn58utIO-x3w/profile-displayphoto-shrink_200_200/0/1637478114039?e=2147483647&v=beta&t=3kIon0YJQNHZojD3Dt5HVODJqHsKdf2YKP1SfWeROnI",
+        name = "Frank Tamre",
+        tagline = "Kenya Partner Lead at droidcon Berlin | Android | Kotlin | Flutter",
+        bio = """
+                    Worked at Intel, co-Founded Moringa School, 
+                    then started @earlycamp to train young children 
+                    from 5-16 on how to solve problems with technology. 
+                    Started 818interactive to tell African stories 
+                    with Games to a global audience. Community wise 
+                    I organize #Android & #Kotlin developers every 
+                    month for a meetUp to chat about technology. 
+                    I Lead a cool team in organizing #droidConKE 
+                    the largest android developer focussed event 
+                    in Sub Saharan Africa. I train people,mentor them, 
+                    build things, am highly experimental, 
+                    read a lot and socialize vertically.
+        """.trimIndent()
+    )
 }

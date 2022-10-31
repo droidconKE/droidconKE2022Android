@@ -24,8 +24,6 @@ import com.android254.data.network.util.HttpClientFactory
 import io.ktor.client.engine.mock.*
 import io.ktor.http.*
 import kotlinx.coroutines.runBlocking
-import kotlinx.serialization.encodeToString
-import kotlinx.serialization.json.Json
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Test
 import org.hamcrest.CoreMatchers.`is`
@@ -38,26 +36,38 @@ class SessionApiTest {
                 data = listOf(),
                 meta = ResponseMetaData(
                     paginator = PaginationMetaData(
-                        count = 1,
+                        count = 0,
                         current_page = 1,
-                        has_more_pages = true,
-                        next_page = "",
-                        next_page_url = "",
-                        per_page = "",
-                        previous_page_url = ""
+                        has_more_pages = false,
+                        next_page = null,
+                        next_page_url = null,
+                        per_page = "20",
+                        previous_page_url = null
                     )
                 )
             )
 
-        val mockHttpEngine = MockEngine {
-            if (it.method == HttpMethod.Get && it.url.toString() == "${Constants.BASE_URL}/events/droidconke2019-444/sessions?per_page=20") {
-                respond(
-                    content = Json.encodeToString(expectedResponse),
-                    headers = headersOf(HttpHeaders.ContentType, "application/json")
-                )
-            } else {
-                respondError(HttpStatusCode.NotFound)
+        val responseText = """
+            {
+               data: [],
+               meta: {
+                 "paginator": {
+                      "count": 0,
+                      "per_page": "20",
+                      "current_page": 1,
+                      "next_page": null,
+                      "has_more_pages": false,
+                      "next_page_url": null,
+                      "previous_page_url": null
+                    }
+               }
             }
+        """.trimIndent()
+        val mockHttpEngine = MockEngine {
+            respond(
+                content = responseText,
+                headers = headersOf(HttpHeaders.ContentType, "application/json")
+            )
         }
 
         val httpClient = HttpClientFactory(MockTokenProvider()).create(mockHttpEngine)

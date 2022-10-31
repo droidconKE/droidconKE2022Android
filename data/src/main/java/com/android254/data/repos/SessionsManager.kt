@@ -22,7 +22,6 @@ import com.android254.data.repos.mappers.toDomainModel
 import com.android254.data.repos.mappers.toEntity
 import com.android254.domain.models.ResourceResult
 import com.android254.domain.models.SessionDomainModel
-import com.android254.domain.models.Success
 import com.android254.domain.repos.SessionsRepo
 import javax.inject.Inject
 
@@ -34,7 +33,7 @@ class SessionsManager @Inject constructor(
         return try {
             val response = api.fetchSessions()
 
-            val data = response.data.flatMap { (_, value) -> value }
+            val data = response.data
 
             if (data.isEmpty()) {
                 ResourceResult.Empty()
@@ -54,7 +53,7 @@ class SessionsManager @Inject constructor(
         } catch (e: Exception) {
             when (e) {
                 is NetworkError -> ResourceResult.Error("Network error", networkError = true)
-                else -> ResourceResult.Error("Error fetching sessions", networkError = true)
+                else -> ResourceResult.Error("Error fetching sessions", networkError = false)
             }
         }
     }

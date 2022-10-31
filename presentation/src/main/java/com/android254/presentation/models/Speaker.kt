@@ -21,5 +21,7 @@ package com.android254.presentation.models
 data class Speaker(
     val imageUrl: String = "",
     val name: String = "Name",
-    val bio: String = "bio"
+    val tagline: String = "",
+    val bio: String = "bio",
+    val twitterHandle: String = "TwitterHandle"
 )
