@@ -54,18 +54,17 @@ fun Navigation(
             upDateBottomBarState(true)
             SessionsScreen(
                 navigateToSessionDetailsScreen = { sessionId ->
-                    navController.navigate("${Screens.SessionDetails.route}/$sessionId")
+                    navController.navigate(Screens.SessionDetails.route.replace("{${Screens.SessionDetails.sessionIdNavigationArgument}}", sessionId))
                 }
             )
         }
-        val sessionIdArgument = "sessionId"
         composable(
-            "${Screens.SessionDetails.route}/{$sessionIdArgument}",
-            arguments = listOf(navArgument(sessionIdArgument) { type = NavType.StringType })
+            Screens.SessionDetails.route,
+            arguments = listOf(navArgument(Screens.SessionDetails.sessionIdNavigationArgument) { type = NavType.StringType })
         ) { backStackEntry ->
             upDateBottomBarState(false)
             SessionDetailsScreen(
-                sessionId = requireNotNull(backStackEntry.arguments?.getString(sessionIdArgument)),
+                sessionId = requireNotNull(backStackEntry.arguments?.getString(Screens.SessionDetails.sessionIdNavigationArgument)),
                 onNavigationIconClick = {
                     navController.popBackStack()
                 },
