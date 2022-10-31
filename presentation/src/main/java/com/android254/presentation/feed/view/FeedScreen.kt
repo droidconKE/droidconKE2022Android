@@ -16,7 +16,6 @@
 package com.android254.presentation.feed.view
 
 import android.content.res.Configuration
-import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -31,7 +30,6 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -53,7 +51,7 @@ fun FeedScreen(
         },
         scaffoldState = bottomSheetScaffoldState,
         sheetShape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp),
-        sheetPeekHeight = 0.dp
+        sheetPeekHeight = 0.dp,
     ) {
         Scaffold(topBar = {
             DroidconAppBarWithFeedbackButton(
@@ -69,15 +67,12 @@ fun FeedScreen(
                     .padding(paddingValues)
                     .fillMaxSize()
             ) {
-                val context = LocalContext.current
-
                 LazyColumn(
                     modifier = Modifier.testTag("feeds_lazy_column"),
                     verticalArrangement = Arrangement.spacedBy(4.dp)
                 ) {
                     items(count = 10) {
-                        FeedComponent(modifier = Modifier.fillMaxWidth()) { itemId ->
-                            Toast.makeText(context, "Clicked: $itemId", Toast.LENGTH_SHORT).show()
+                        FeedComponent(modifier = Modifier.fillMaxWidth()) {
                             scope.launch {
                                 if (bottomSheetScaffoldState.bottomSheetState.isCollapsed) {
                                     bottomSheetScaffoldState.bottomSheetState.expand()

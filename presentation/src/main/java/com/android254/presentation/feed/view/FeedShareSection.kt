@@ -1,5 +1,6 @@
 package com.android254.presentation.feed.view
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -8,6 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
@@ -17,12 +19,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.android254.presentation.R
 import com.android254.presentation.common.theme.DroidconKE2022Theme
+import com.droidconke.chai.atoms.ChaiTeal
+import com.droidconke.chai.atoms.type.MontserratBold
 
 @Composable
 fun FeedShareSection() {
@@ -30,13 +37,13 @@ fun FeedShareSection() {
         modifier = Modifier
             .fillMaxWidth()
             .padding(16.dp)
+            .testTag("share_bottom_sheet")
     ) {
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(bottom = 16.dp)
         ) {
             TextButton(
                 onClick = {
@@ -45,9 +52,10 @@ fun FeedShareSection() {
                 Text(
                     text = stringResource(id = R.string.share),
                     color = Color.Black,
-                    fontSize = MaterialTheme.typography.labelLarge.fontSize,
-                    fontWeight = MaterialTheme.typography.labelLarge.fontWeight,
-                    fontStyle = MaterialTheme.typography.labelLarge.fontStyle
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 16.sp,
+                    lineHeight = 25.sp,
+                    fontFamily = MontserratBold,
                 )
 
                 Icon(
@@ -68,8 +76,8 @@ fun FeedShareSection() {
         }
 
         val platforms = mapOf(
-            "Twitter" to R.drawable.ic_whatsapp,
-            "Facebook" to R.drawable.ic_whatsapp,
+            "Twitter" to R.drawable.ic_twitter,
+            "Facebook" to R.drawable.ic_facebook,
             "WhatsApp" to R.drawable.ic_whatsapp,
             "Telegram" to R.drawable.ic_telegram
         )
@@ -80,7 +88,9 @@ fun FeedShareSection() {
                 items(platforms.toList()) { platform ->
                     PlatformButton(platform = platform.first, icon = platform.second)
                 }
-            }
+            },
+            modifier = Modifier
+                .padding(top = 16.dp)
         )
     }
 }
@@ -92,7 +102,11 @@ fun PlatformButton(platform: String, icon: Int) {
         shape = MaterialTheme.shapes.small,
         modifier = Modifier
             .fillMaxWidth()
-            .padding(6.dp)
+            .padding(6.dp),
+        border = BorderStroke(1.dp, ChaiTeal),
+        colors = ButtonDefaults.outlinedButtonColors(
+            contentColor = Color.White
+        )
     ) {
         Icon(
             painter = painterResource(id = icon),
