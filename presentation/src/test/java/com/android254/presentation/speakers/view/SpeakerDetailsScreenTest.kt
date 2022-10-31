@@ -15,8 +15,10 @@
  */
 package com.android254.presentation.speakers.view
 
-import androidx.compose.ui.test.*
+import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.onNodeWithTag
+import androidx.compose.ui.test.performScrollTo
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -25,23 +27,21 @@ import org.robolectric.annotation.Config
 
 @RunWith(RobolectricTestRunner::class)
 @Config(instrumentedPackages = ["androidx.loader.content"])
-class SpeakersScreenTest {
+class SpeakerDetailsScreenTest {
     @get:Rule
     val composeTestRule = createComposeRule()
 
     @Test
-    fun `should show heading and show speaker details card`() {
+    fun `all components should be displayed properly`() {
         composeTestRule.setContent {
-            SpeakersScreen()
+            SpeakerDetailsScreen(twitterHandle = "test")
         }
 
         with(composeTestRule) {
-            onNodeWithText("Speakers").assertIsDisplayed()
-            onNodeWithContentDescription("Back arrow icon").assertIsDisplayed()
-            onNodeWithContentDescription("Speaker headshot").assertIsDisplayed()
-            onNodeWithText("Harun Wangereka").assertIsDisplayed()
-            onNodeWithText("kenya partner lead", substring = true, ignoreCase = true)
-            onNodeWithText("Session").assertIsDisplayed()
+            onNodeWithTag("speaker_image").assertIsDisplayed()
+            onNodeWithTag("speaker_name").assertIsDisplayed()
+            onNodeWithTag("speaker_tagline").assertIsDisplayed()
+            onNodeWithTag("twitter_button").performScrollTo().assertIsDisplayed()
         }
     }
 }
