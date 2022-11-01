@@ -53,7 +53,7 @@ class SponsorsApiTest {
         )
         val mockHttpEngine = MockEngine {
             if (it.method == HttpMethod.Get &&
-                it.url.toString() == "${Constants.BASE_URL}/events/droidconke-2022-797/feeds?per_page=10&page=1"
+                it.url.toString() == "${Constants.BASE_URL}/events/droidconke-2022-797/feeds?per_page=10"
             ) {
                 respond(
                     content = Json.encodeToString(expectedResult),
@@ -68,7 +68,7 @@ class SponsorsApiTest {
 
         runBlocking {
             // Act
-            val response = SponsorsApi(httpClient).fetchSponsors(10, 1)
+            val response = SponsorsApi(httpClient).fetchSponsors()
 
             // Assert
             assertThat(response is DataResult.Success, `is`(true))
@@ -89,7 +89,7 @@ class SponsorsApiTest {
         val httpClient = HttpClientFactory(MockTokenProvider()).create(mockEngine)
         runBlocking {
             // Act
-            val response = SponsorsApi(httpClient).fetchSponsors(20, 1)
+            val response = SponsorsApi(httpClient).fetchSponsors()
             // Assert
             assertThat(response is DataResult.Error, `is`(true))
             val message = (response as DataResult.Error).message
