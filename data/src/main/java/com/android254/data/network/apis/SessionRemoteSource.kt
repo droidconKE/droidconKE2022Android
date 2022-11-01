@@ -16,7 +16,7 @@
 package com.android254.data.network.apis
 
 import com.android254.data.network.Constants
-import com.android254.data.network.models.responses.PaginatedResponse
+import com.android254.data.network.models.responses.EventScheduleResponse
 import com.android254.data.network.models.responses.SessionApiModel
 import io.ktor.client.*
 import io.ktor.client.call.*
@@ -26,10 +26,11 @@ import javax.inject.Inject
 class SessionRemoteSource @Inject constructor(
     private val client: HttpClient
 ) {
-    suspend fun fetchSessions(perPage: Int = 200): PaginatedResponse<Map<String, List<SessionApiModel>>> {
-        return client.get("${Constants.BASE_URL}/events/${Constants.EVENT_SLUG}/sessions") {
+    suspend fun fetchSessions(perPage: Int = 200): EventScheduleResponse<Map<String, List<SessionApiModel>>> {
+        return client.get("https://droidcon-erp.herokuapp.com/api/v1/events/droidconke-2022-281/schedule") {
+            header("Api-Authorization-Key","droidconKe-2020")
             url {
-                parameters.append("per_page", perPage.toString())
+                parameters.append("grouped", "true")
             }
         }.body()
     }

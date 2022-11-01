@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "4e4c4242a9d35f16b1730c3973287a8d",
+    "identityHash": "5d3974094bc2a88ed73938238ef8250d",
     "entities": [
       {
-        "tableName": "Session",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `description` TEXT NOT NULL, `session_format` TEXT NOT NULL, `session_level` TEXT NOT NULL, `slug` TEXT NOT NULL, `title` TEXT NOT NULL)",
+        "tableName": "sessions",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `description` TEXT NOT NULL, `session_format` TEXT NOT NULL, `session_level` TEXT NOT NULL, `slug` TEXT NOT NULL, `title` TEXT NOT NULL, `backgroundColor` TEXT NOT NULL, `borderColor` TEXT NOT NULL, `end_date_time` TEXT NOT NULL, `end_time` TEXT NOT NULL, `is_bookmarked` INTEGER NOT NULL, `is_keynote` INTEGER NOT NULL, `is_serviceSession` INTEGER NOT NULL, `session_image` TEXT, `start_date_time` TEXT NOT NULL, `start_time` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -43,6 +43,66 @@
             "columnName": "title",
             "affinity": "TEXT",
             "notNull": true
+          },
+          {
+            "fieldPath": "backgroundColor",
+            "columnName": "backgroundColor",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "borderColor",
+            "columnName": "borderColor",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "end_date_time",
+            "columnName": "end_date_time",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "end_time",
+            "columnName": "end_time",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "is_bookmarked",
+            "columnName": "is_bookmarked",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "is_keynote",
+            "columnName": "is_keynote",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "is_serviceSession",
+            "columnName": "is_serviceSession",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "session_image",
+            "columnName": "session_image",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "start_date_time",
+            "columnName": "start_date_time",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "start_time",
+            "columnName": "start_time",
+            "affinity": "TEXT",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -58,7 +118,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '4e4c4242a9d35f16b1730c3973287a8d')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '5d3974094bc2a88ed73938238ef8250d')"
     ]
   }
 }

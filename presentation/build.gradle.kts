@@ -77,6 +77,7 @@ dependencies {
     implementation(libs.kotlin.coroutines.play.services)
     implementation(libs.gms.play.services.auth)
     implementation(libs.accompanist.flowlayout)
+    implementation(libs.lottie.compose)
     kapt(libs.android.hilt.compiler)
     implementation(libs.android.hilt.navigation.compose)
     kapt(libs.android.hilt.androidx.compiler)

@@ -16,7 +16,7 @@
 package com.android254.data.network
 
 import com.android254.data.network.apis.SessionRemoteSource
-import com.android254.data.network.models.responses.PaginatedResponse
+import com.android254.data.network.models.responses.EventScheduleResponse
 import com.android254.data.network.models.responses.PaginationMetaData
 import com.android254.data.network.models.responses.ResponseMetaData
 import com.android254.data.network.models.responses.SessionApiModel
@@ -33,20 +33,9 @@ import org.hamcrest.CoreMatchers.`is`
 class SessionApiTest {
     @Test
     fun `sessions are fetched successfully`() {
-        val expectedResponse: PaginatedResponse<List<SessionApiModel>> =
-            PaginatedResponse(
+        val expectedResponse: EventScheduleResponse<List<SessionApiModel>> =
+            EventScheduleResponse(
                 data = listOf(),
-                meta = ResponseMetaData(
-                    paginator = PaginationMetaData(
-                        count = 1,
-                        current_page = 1,
-                        has_more_pages = true,
-                        next_page = "",
-                        next_page_url = "",
-                        per_page = "",
-                        previous_page_url = ""
-                    )
-                )
             )
 
         val mockHttpEngine = MockEngine {

@@ -15,18 +15,42 @@
  */
 package com.android254.presentation.sessions.view
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import com.android254.domain.models.SessionDomainModel
 import com.android254.presentation.models.SessionPresentationModel
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
-fun SessionDomainModel.toPresentationModel() = SessionPresentationModel(
-    id = this.id.toString(),
-    sessionTitle = this.title,
-    sessionDescription = this.description,
-    sessionVenue = "",
-    sessionSpeakerImage = "",
-    sessionSpeakerName = "",
-    sessionStartTime = "",
-    sessionEndTime = "",
-    amOrPm = "",
-    isStarred = false,
+@RequiresApi(Build.VERSION_CODES.O)
+fun SessionDomainModel.toPresentationModel(): SessionPresentationModel {
+    val startTime = getTimePeriod(this.start_date_time)
+    return SessionPresentationModel(
+        id = this.id.toString(),
+        sessionTitle = this.title,
+        sessionDescription = this.description,
+        sessionVenue = "",
+        sessionSpeakerImage = "",
+        sessionSpeakerName = "",
+        sessionStartTime = startTime.time,
+        sessionEndTime = this.end_time,
+        amOrPm = startTime.period,
+        isStarred = false,
+    )
+}
+
+@RequiresApi(Build.VERSION_CODES.O)
+private fun getTimePeriod(time: String): FormattedTime {
+    val pattern = "yyyy-MM-dd HH:mm:ss"
+    val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd' 'HH:mm:ss")
+    val localDate = LocalDate.parse(time, formatter)
+    return FormattedTime(
+       "08:45",
+        "AM"
+    )
+}
+
+data class FormattedTime(
+    val time: String,
+    val period: String
 )

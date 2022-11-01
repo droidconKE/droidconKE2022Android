@@ -22,6 +22,9 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface SessionDao : BaseDao<Session> {
-    @Query("SELECT * FROM SESSION")
-    fun fetchSessions(): Flow<List<Session>>
+    @Query("SELECT * FROM sessions")
+    fun fetchSessions(): List<Session>
+
+    @Query("DELETE FROM sessions")
+    fun clearSessions()
 }

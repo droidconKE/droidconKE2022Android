@@ -22,42 +22,52 @@ import com.android254.data.repos.mappers.toDomainModel
 import com.android254.data.repos.mappers.toEntity
 import com.android254.domain.models.ResourceResult
 import com.android254.domain.models.SessionDomainModel
-import com.android254.domain.models.Success
 import com.android254.domain.repos.SessionsRepo
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
 class SessionsManager @Inject constructor(
     private val api: SessionRemoteSource,
     private val dao: SessionDao
 ) : SessionsRepo {
-    override suspend fun fetchAndSaveSessions(): ResourceResult<List<SessionDomainModel>> {
-        return try {
-            val response = api.fetchSessions()
-
-            val data = response.data.flatMap { (_, value) -> value }
-
-            if (data.isEmpty()) {
-                ResourceResult.Empty()
+    override suspend fun fetchAndSaveSessions(fetchFromRemote: Boolean): Flow<ResourceResult<List<SessionDomainModel>>> {
+        return flow {
+            emit(ResourceResult.Loading(isLoading = true))
+            val sessions = dao.fetchSessions()
+            val isDbEmpty = sessions.isEmpty()
+            emit(ResourceResult.Success(data = sessions.map {
+                it.toDomainModel()
+            }))
+            val shouldJustLoadFromCache = !isDbEmpty && !fetchFromRemote
+            if (shouldJustLoadFromCache) {
+                emit(ResourceResult.Loading(isLoading = false))
+                return@flow
             }
 
-            val sessions = data.map {
-                it.toEntity()
-            }
-
-            dao.insert(sessions)
-
-            ResourceResult.Success(
-                data = sessions.map {
-                    it.toDomainModel()
+            try {
+                val response = api.fetchSessions()
+                val remoteSessions = response.data.flatMap { (_, value) -> value }
+                if (remoteSessions.isEmpty()) {
+                    emit(ResourceResult.Empty("No sessions just yet"))
                 }
-            )
-        } catch (e: Exception) {
-            when (e) {
-                is NetworkError -> ResourceResult.Error("Network error", networkError = true)
-                else -> ResourceResult.Error("Error fetching sessions", networkError = true)
+                remoteSessions.let {
+                    dao.clearSessions()
+                    val sessionEntities = it.map { session -> session.toEntity() }
+                    dao.insert()
+                    emit(ResourceResult.Success(
+                        data = sessionEntities.map { sessionEntity -> sessionEntity.toDomainModel() }
+                    ))
+                    emit(ResourceResult.Loading(isLoading = false))
+                }
+            } catch (e: Exception) {
+                when (e) {
+                    is NetworkError -> emit(ResourceResult.Error("Network error"))
+                    else -> emit(ResourceResult.Error("Error fetching sessions"))
+                }
             }
+
+
         }
     }
 }

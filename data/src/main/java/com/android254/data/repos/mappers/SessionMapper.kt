@@ -25,7 +25,17 @@ fun Session.toDomainModel() = SessionDomainModel(
     title = this.title,
     session_format = this.session_format,
     session_level = this.session_level,
-    slug = this.slug
+    slug = this.slug,
+    backgroundColor = this.backgroundColor,
+    borderColor = this.borderColor,
+    end_date_time = this.end_date_time,
+    is_bookmarked = this.is_bookmarked,
+    end_time = this.end_time,
+    is_keynote = this.is_keynote,
+    is_serviceSession = this.is_serviceSession,
+    session_image = this.session_image,
+    start_date_time = this.start_date_time,
+    start_time = this.start_time
 )
 
 fun SessionApiModel.toEntity() = Session(
@@ -34,5 +44,15 @@ fun SessionApiModel.toEntity() = Session(
     title = title,
     session_format = session_format,
     session_level = session_level,
-    slug = slug
+    slug = slug,
+    backgroundColor = this.backgroundColor,
+    borderColor = this.borderColor,
+    end_date_time = this.end_date_time,
+    is_bookmarked = this.is_bookmarked,
+    end_time = this.end_time,
+    is_keynote = this.is_keynote,
+    is_serviceSession = this.is_serviceSession,
+    session_image = this.session_image,
+    start_date_time = this.start_date_time,
+    start_time = this.start_time
 )

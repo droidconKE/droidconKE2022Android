@@ -21,6 +21,15 @@ data class SessionDomainModel(
     val session_format: String,
     val session_level: String,
     val slug: String,
-//    TODO create converter val speakers: List<SpeakerApiModel>,
-    val title: String
+    val title: String,
+    val backgroundColor: String,
+    val borderColor: String,
+    val end_date_time: String,
+    val end_time: String,
+    val is_bookmarked: Boolean,
+    val is_keynote: Boolean,
+    val is_serviceSession: Boolean,
+    val session_image: String?,
+    val start_date_time: String,
+    val start_time: String,
 )

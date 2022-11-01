@@ -15,12 +15,12 @@
  */
 package com.android254.data.repos
 
-import com.android254.data.network.models.responses.PaginatedResponse
+import com.android254.data.network.models.responses.EventScheduleResponse
 import com.android254.data.network.models.responses.PaginationMetaData
 import com.android254.data.network.models.responses.ResponseMetaData
 import com.android254.data.network.models.responses.SessionApiModel
 
-val results = PaginatedResponse(
+val results = EventScheduleResponse(
     data = mapOf(
         "2022-11-16" to listOf(
             SessionApiModel(

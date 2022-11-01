@@ -39,16 +39,18 @@ import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import coil.compose.AsyncImage
 import com.android254.presentation.models.SessionPresentationModel
+import com.droidconke.chai.atoms.type.MontserratBold
+import com.droidconke.chai.atoms.type.MontserratSemiBold
 
 @Composable
 fun SessionsCard(session: SessionPresentationModel, onclick: () -> Unit) {
     Card(
         modifier = Modifier
-            .fillMaxWidth(0.95f)
+            .fillMaxWidth()
             .wrapContentHeight(),
         shape = RoundedCornerShape(5),
-        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
+        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.onPrimary),
         onClick = onclick
     ) {
         Row(
@@ -75,11 +77,11 @@ fun RowScope.SessionTimeComponent(sessionStartTime: String, sessionAmOrPm: Strin
     ) {
         Text(
             text = sessionStartTime,
-            style = MaterialTheme.typography.titleMedium.copy(fontSize = 18.sp)
+            style = MaterialTheme.typography.titleMedium.copy(fontSize = 18.sp, fontFamily = MontserratSemiBold)
         )
         Text(
             text = sessionAmOrPm,
-            style = MaterialTheme.typography.titleMedium.copy(fontSize = 18.sp)
+            style = MaterialTheme.typography.titleMedium.copy(fontSize = 18.sp, fontFamily = MontserratSemiBold)
         )
     }
 }
@@ -106,35 +108,25 @@ fun RowScope.SessionDetails(session: SessionPresentationModel) {
 @Composable
 fun SessionTitleComponent(sessionTitle: String, sessionIsStarred: Boolean) {
     val interactionSource = remember { MutableInteractionSource() }
-    ConstraintLayout(
+    Row(
         Modifier
             .fillMaxWidth()
             .padding(bottom = 20.dp)
     ) {
-        val (sessionTitleRef, starIcon) = createRefs()
         Text(
             text = sessionTitle,
             style = MaterialTheme.typography.titleSmall.copy(
                 fontWeight = FontWeight.Bold,
-                fontSize = 18.sp,
-                lineHeight = 18.sp
+                fontSize = 16.sp,
+                lineHeight = 24.sp,
+                fontFamily = MontserratBold,
+                color = MaterialTheme.colorScheme.onSurface
             ),
-            modifier = Modifier.constrainAs(sessionTitleRef) {
-                start.linkTo(parent.start)
-            }
+            modifier = Modifier.weight(1f)
         )
-
         Icon(
             imageVector = if (sessionIsStarred) Icons.Rounded.StarOutline else Icons.Rounded.Star,
             contentDescription = "star session",
-            modifier = Modifier
-                .size(30.dp)
-                .constrainAs(starIcon) {
-                    end.linkTo(parent.end)
-                    top.linkTo(sessionTitleRef.top)
-                    bottom.linkTo(sessionTitleRef.bottom)
-                }
-                .clickable(indication = null, interactionSource = interactionSource) {},
             tint = MaterialTheme.colorScheme.primary
         )
     }

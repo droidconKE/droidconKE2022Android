@@ -44,5 +44,9 @@
     <string name="view_all_label">View All</string>
     <string name="top_bar_filter">Filter</string>
     <string name="sponsors_title">Sponsors</string>
+    <string name="title_filter_level">Level</string>
+    <string name="title_filter_session_type">Session Type</string>
+    <string name="title_filter_room">Room</string>
+    <string name="title_filter_topic">Topic</string>
 
 </resources>
