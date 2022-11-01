@@ -34,5 +34,7 @@ data class SessionApiModel(
     val slug: String,
     val start_date_time: String,
     val start_time: String,
-    val title: String
+    val title: String,
+    val rooms : List<SessionRoomApiModel>,
+    val speakers : List<SpeakerApiModel>
 )

@@ -19,19 +19,27 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import com.android254.domain.models.SessionDomainModel
 import com.android254.presentation.models.SessionPresentationModel
+import com.android254.presentation.models.Speaker
+import com.google.android.gms.auth.api.Auth
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
 @RequiresApi(Build.VERSION_CODES.O)
 fun SessionDomainModel.toPresentationModel(): SessionPresentationModel {
     val startTime = getTimePeriod(this.start_date_time)
+    val gson = Gson()
+    val typeToken = object : TypeToken<List<Speaker>>() {}.type
+    val speakers = gson.fromJson<List<Speaker>>(this.speakers, typeToken)
+    val hasNoSpeakers = speakers.isEmpty()
     return SessionPresentationModel(
         id = this.id.toString(),
         sessionTitle = this.title,
         sessionDescription = this.description,
-        sessionVenue = "",
-        sessionSpeakerImage = "",
-        sessionSpeakerName = "",
+        sessionVenue = this.rooms,
+        sessionSpeakerImage = if (hasNoSpeakers) "" else speakers.first().avatar.toString(),
+        sessionSpeakerName = if (hasNoSpeakers) "" else speakers.first().name,
         sessionStartTime = startTime.time,
         sessionEndTime = this.end_time,
         amOrPm = startTime.period,

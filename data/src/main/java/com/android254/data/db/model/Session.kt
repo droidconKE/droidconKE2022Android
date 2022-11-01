@@ -36,4 +36,6 @@ data class Session(
     val session_image: String?,
     val start_date_time: String,
     val start_time: String,
+    val rooms: String,
+    val speakers : String
 )

@@ -57,12 +57,13 @@ fun SessionsCard(session: SessionPresentationModel, onclick: () -> Unit) {
             Modifier
                 .fillMaxWidth()
                 .wrapContentHeight()
-                .padding(PaddingValues(top = 20.dp))
+                .padding(PaddingValues(top = 20.dp, bottom = 8.dp))
         ) {
             SessionTimeComponent(
                 session.sessionStartTime,
                 session.amOrPm
             )
+            Spacer(modifier = Modifier.width(8.dp))
             SessionDetails(session = session)
         }
     }
@@ -97,7 +98,7 @@ fun RowScope.SessionDetails(session: SessionPresentationModel) {
         SessionsDescriptionComponent(session.sessionDescription)
         Spacer(modifier = Modifier.height(12.dp))
         TimeAndVenueComponent(session)
-        Spacer(modifier = Modifier.height(4.dp))
+        Spacer(modifier = Modifier.height(12.dp))
         SessionPresenterComponents(
             sessionSpeakerImageUrl = session.sessionSpeakerImage,
             sessionSpeakerName = session.sessionSpeakerName
@@ -176,7 +177,7 @@ fun SessionPresenterComponents(sessionSpeakerImageUrl: String, sessionSpeakerNam
         Spacer(modifier = Modifier.width(10.dp))
         Text(
             text = sessionSpeakerName,
-            style = MaterialTheme.typography.bodySmall.copy(color = MaterialTheme.colorScheme.primary)
+            style = MaterialTheme.typography.bodyMedium.copy(color = MaterialTheme.colorScheme.primary, fontFamily = MontserratSemiBold)
         )
     }
 }

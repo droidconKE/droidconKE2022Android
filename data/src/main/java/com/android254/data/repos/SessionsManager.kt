@@ -54,13 +54,14 @@ class SessionsManager @Inject constructor(
                 remoteSessions.let {
                     dao.clearSessions()
                     val sessionEntities = it.map { session -> session.toEntity() }
-                    dao.insert()
+                    dao.insert(sessionEntities)
                     emit(ResourceResult.Success(
                         data = sessionEntities.map { sessionEntity -> sessionEntity.toDomainModel() }
                     ))
                     emit(ResourceResult.Loading(isLoading = false))
                 }
             } catch (e: Exception) {
+                emit(ResourceResult.Loading(isLoading = true))
                 when (e) {
                     is NetworkError -> emit(ResourceResult.Error("Network error"))
                     else -> emit(ResourceResult.Error("Error fetching sessions"))

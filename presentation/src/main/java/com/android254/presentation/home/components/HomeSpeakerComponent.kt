@@ -54,11 +54,11 @@ fun HomeSpeakerComponent(speaker: Speaker) {
             .width(90.dp)
             .padding(end = 16.dp),
 
-    ) {
+        ) {
         val (headShot, speakerName) = createRefs()
         AsyncImage(
             model = ImageRequest.Builder(LocalContext.current)
-                .data(speaker.imageUrl)
+                .data(speaker.avatar)
                 .build(),
             placeholder = painterResource(R.drawable.smiling),
             contentDescription = stringResource(R.string.head_shot),
@@ -98,7 +98,20 @@ fun HomeSpeakerComponent(speaker: Speaker) {
 fun HomeSpeakerComponentPreview() {
     DroidconKE2022Theme {
         Surface(color = Color.White) {
-            HomeSpeakerComponent(speaker = Speaker(name = "Harun Wangereka", bio = "Staff Engineer"))
+            HomeSpeakerComponent(
+                speaker = Speaker(
+                    avatar = "String?",
+                    biography = "String",
+                    blog = "String",
+                    company_website = "String",
+                    facebook = "String",
+                    instagram = "String",
+                    linkedin = "String",
+                    name = "String",
+                    tagline = "String",
+                    twitter = "String"
+                )
+            )
         }
     }
 }

@@ -78,6 +78,7 @@ dependencies {
     implementation(libs.gms.play.services.auth)
     implementation(libs.accompanist.flowlayout)
     implementation(libs.lottie.compose)
+    implementation(libs.gson.gson)
     kapt(libs.android.hilt.compiler)
     implementation(libs.android.hilt.navigation.compose)
     kapt(libs.android.hilt.androidx.compiler)

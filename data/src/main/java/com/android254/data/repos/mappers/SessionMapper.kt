@@ -18,6 +18,7 @@ package com.android254.data.repos.mappers
 import com.android254.data.db.model.Session
 import com.android254.data.network.models.responses.SessionApiModel
 import com.android254.domain.models.SessionDomainModel
+import com.google.gson.Gson
 
 fun Session.toDomainModel() = SessionDomainModel(
     id = this.id,
@@ -35,24 +36,31 @@ fun Session.toDomainModel() = SessionDomainModel(
     is_serviceSession = this.is_serviceSession,
     session_image = this.session_image,
     start_date_time = this.start_date_time,
-    start_time = this.start_time
+    start_time = this.start_time,
+    rooms = this.rooms,
+    speakers = this.speakers
 )
 
-fun SessionApiModel.toEntity() = Session(
-    id = 0,
-    description = description,
-    title = title,
-    session_format = session_format,
-    session_level = session_level,
-    slug = slug,
-    backgroundColor = this.backgroundColor,
-    borderColor = this.borderColor,
-    end_date_time = this.end_date_time,
-    is_bookmarked = this.is_bookmarked,
-    end_time = this.end_time,
-    is_keynote = this.is_keynote,
-    is_serviceSession = this.is_serviceSession,
-    session_image = this.session_image,
-    start_date_time = this.start_date_time,
-    start_time = this.start_time
-)
+fun SessionApiModel.toEntity(): Session {
+    val gson = Gson()
+    return Session(
+        id = 0,
+        description = description,
+        title = title,
+        session_format = session_format,
+        session_level = session_level,
+        slug = slug,
+        backgroundColor = this.backgroundColor,
+        borderColor = this.borderColor,
+        end_date_time = this.end_date_time,
+        is_bookmarked = this.is_bookmarked,
+        end_time = this.end_time,
+        is_keynote = this.is_keynote,
+        is_serviceSession = this.is_serviceSession,
+        session_image = this.session_image,
+        start_date_time = this.start_date_time,
+        start_time = this.start_time,
+        rooms = this.rooms.joinToString(separator = ",") { it.title },
+        speakers = gson.toJson(this.speakers)
+    )
+}

@@ -69,7 +69,7 @@ fun SpeakerComponent(
             val (image, nameText, bioText, button) = createRefs()
             AsyncImage(
                 model = ImageRequest.Builder(LocalContext.current)
-                    .data(speaker.imageUrl)
+                    .data(speaker.avatar)
                     .build(),
                 placeholder = painterResource(R.drawable.smiling),
                 contentDescription = stringResource(R.string.head_shot),
@@ -104,7 +104,7 @@ fun SpeakerComponent(
                     }
             )
             Text(
-                text = speaker.bio,
+                text = speaker.biography.toString(),
                 style = TextStyle(
                     color = colorResource(id = R.color.grey),
                     fontSize = 14.sp,
@@ -147,7 +147,18 @@ fun SpeakerComponent(
 fun SpeakerComponentPreview() {
     DroidconKE2022Theme {
         SpeakerComponent(
-            speaker = Speaker(name = "John Doe", bio = "Staff Engineer")
+            speaker =   Speaker(
+                avatar = "String?",
+                biography = "String",
+                blog = "String",
+                company_website = "String",
+                facebook = "String",
+                instagram = "String",
+                linkedin = "String",
+                name = "String",
+                tagline = "String",
+                twitter = "String"
+            )
         )
     }
 }

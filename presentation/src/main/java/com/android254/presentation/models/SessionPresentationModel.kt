@@ -25,5 +25,5 @@ data class SessionPresentationModel(
     val sessionStartTime: String,
     val sessionEndTime: String,
     val amOrPm: String,
-    val isStarred: Boolean
+    val isStarred: Boolean,
 )
