@@ -13,15 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android254.data.dao
+package com.android254.data.repos.mappers
 
-import androidx.room.Dao
-import androidx.room.Query
 import com.android254.data.db.model.Session
-import kotlinx.coroutines.flow.Flow
+import com.android254.data.network.models.responses.SessionApiModel
+import com.android254.domain.models.SessionDomainModel
 
-@Dao
-interface SessionDao : BaseDao<Session> {
-    @Query("SELECT * FROM SESSION")
-    fun fetchSessions(): Flow<List<Session>>
-}
+fun Session.toDomainModel() = SessionDomainModel(
+    id = this.id,
+    description = this.description,
+    title = this.title,
+    session_format = this.session_format,
+    session_level = this.session_level,
+    slug = this.slug
+)
+
+fun SessionApiModel.toEntity() = Session(
+    id = 0,
+    description = description,
+    title = title,
+    session_format = session_format,
+    session_level = session_level,
+    slug = slug
+)

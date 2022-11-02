@@ -19,8 +19,8 @@ import com.android254.data.db.model.Session
 import com.google.common.truth.Truth
 import io.mockk.*
 import io.mockk.impl.annotations.MockK
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.test.runTest
-import kotlinx.datetime.toInstant
 import org.junit.Before
 import org.junit.Test
 
@@ -34,12 +34,15 @@ class SessionDaoTest {
         MockKAnnotations.init(this, relaxUnitFun = true)
         session = Session(
             id = 0,
-            name = "Welcome Keynote",
-            publishDate = "2010-06-01T22:19:44.475Z".toInstant()
+            title = "Retrofiti: A Pragmatic Approach to using Retrofit in Android",
+            description = "This session is codelab covering some of the best practices and recommended approaches to building an application using the retrofit library.",
+            slug = "retrofiti-a-pragmatic-approach-to-using-retrofit-in-android-1583941090",
+            session_format = "Codelab / Workshop",
+            session_level = "Intermediate",
         )
 
         coJustRun { sessionDao.insert(session) }
-        coEvery { sessionDao.fetchSessions() } returns listOf(session)
+        coEvery { sessionDao.fetchSessions() } returns flow { emit(listOf(session)) }
     }
 
     @Test
@@ -48,11 +51,11 @@ class SessionDaoTest {
         sessionDao.insert(session)
 
         // When
-        val result = sessionDao.fetchSessions().first().name
+        val result = sessionDao.fetchSessions().first()
 
         // Then
         coVerify(atLeast = 1) { sessionDao.insert(session) }
         coVerify { sessionDao.insert(session) }
-        Truth.assertThat(result).isEqualTo(session.name)
+        Truth.assertThat(result.first().title).isEqualTo(session.title)
     }
 }

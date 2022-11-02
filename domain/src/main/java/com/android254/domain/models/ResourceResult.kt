@@ -13,17 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android254.data.db.model
+package com.android254.domain.models
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-
-@Entity
-data class Session(
-    @PrimaryKey(autoGenerate = true) val id: Int,
-    val description: String,
-    val session_format: String,
-    val session_level: String,
-    val slug: String,
-    val title: String
-)
+sealed class ResourceResult<T>(open val data: T? = null, open val message: String? = null) {
+    data class Success<T>(override val data: T?) : ResourceResult<T>(data)
+    data class Error<T>(override val message: String, override val data: T? = null, val networkError: Boolean = false) : ResourceResult<T>(data, message)
+    class Loading<T>(val isLoading: Boolean = true) : ResourceResult<T>(null)
+    class Empty : ResourceResult<Nothing>(null)
+}

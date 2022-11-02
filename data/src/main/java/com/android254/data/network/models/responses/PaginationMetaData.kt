@@ -13,17 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android254.data.db.model
+package com.android254.data.network.models.responses
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import kotlinx.serialization.Serializable
 
-@Entity
-data class Session(
-    @PrimaryKey(autoGenerate = true) val id: Int,
-    val description: String,
-    val session_format: String,
-    val session_level: String,
-    val slug: String,
-    val title: String
+@Serializable
+data class PaginationMetaData(
+    val count: Int,
+    val current_page: Int,
+    val has_more_pages: Boolean,
+    val next_page: String?,
+    val next_page_url: String?,
+    val per_page: String,
+    val previous_page_url: String?
 )

@@ -18,12 +18,29 @@ package com.android254.data.db.model
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity
-data class Session(
-    @PrimaryKey(autoGenerate = true) val id: Int,
-    val description: String,
-    val session_format: String,
-    val session_level: String,
-    val slug: String,
-    val title: String
-)
+@Entity(tableName = "ORGANIZERS")
+class OrganizerEntity(
+    @PrimaryKey(autoGenerate = false)
+    var id: Int,
+    var name: String?,
+    var email: String?,
+    var description: String?,
+    var facebook: String?,
+    var twitter: String?,
+    var instagram: String?,
+    var logo: String?,
+    var slug: String?,
+    var status: String?,
+    var createdAt: String?,
+    var creater: CreatorEntity?,
+    var upcomingEventsCount: Int?,
+    var totalEventsCount: Int?
+) {
+
+    class CreatorEntity(
+        val id: Int?,
+        val name: String?,
+        val email: String?,
+        val createdAt: String?
+    )
+}

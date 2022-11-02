@@ -13,17 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android254.data.db.model
+package com.android254.domain.models
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+data class OrganizerDomainModel(
+    val id: Int?,
+    val name: String?,
+    val email: String?,
+    val description: String?,
+    val facebook: String?,
+    val twitter: String?,
+    val instagram: String?,
+    val logo: String?,
+    val slug: String?,
+    val status: String?,
+    val createdAt: String?,
+    val creater: CreatorDomainModel?,
+    val upcomingEventsCount: Int?,
+    val totalEventsCount: Int?
+)
 
-@Entity
-data class Session(
-    @PrimaryKey(autoGenerate = true) val id: Int,
-    val description: String,
-    val session_format: String,
-    val session_level: String,
-    val slug: String,
-    val title: String
+data class CreatorDomainModel(
+    val id: Int?,
+    val name: String?,
+    val email: String?,
+    val createdAt: String?
 )

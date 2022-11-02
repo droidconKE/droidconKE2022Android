@@ -13,17 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android254.data.db.model
+package com.android254.presentation.sessions.view
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import com.android254.presentation.models.SessionPresentationModel
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-@Entity
-data class Session(
-    @PrimaryKey(autoGenerate = true) val id: Int,
-    val description: String,
-    val session_format: String,
-    val session_level: String,
-    val slug: String,
-    val title: String
-)
+@HiltViewModel
+class SessionsViewModel @Inject constructor() : ViewModel() {
+    var sessions = MutableLiveData<List<SessionPresentationModel>>(listOf())
+}
