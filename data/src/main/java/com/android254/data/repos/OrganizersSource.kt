@@ -48,7 +48,6 @@ class OrganizersSource @Inject constructor(
                     getPagedOrganizers(page = page + 1)
                 }
             }
-
         }
     }
 
@@ -57,5 +56,4 @@ class OrganizersSource @Inject constructor(
     }
 
     override fun getOrganizers() = dao.fetchOrganizers().map { it.toDomain() }
-
 }

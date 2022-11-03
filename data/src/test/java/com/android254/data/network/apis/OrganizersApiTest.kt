@@ -96,7 +96,7 @@ class OrganizersApiTest {
         val httpClient = HttpClientFactory(DefaultTokenProvider(testDataStore)).create(mockEngine)
         val api = OrganizersApi(httpClient)
         runBlocking {
-            val expected = DataResult.Success(data =  Json.decodeFromString<OrganizersPagedResponse>(validContent))
+            val expected = DataResult.Success(data = Json.decodeFromString<OrganizersPagedResponse>(validContent))
             val actual = api.fetchOrganizers(1)
             assertEquals(expected, actual)
         }
