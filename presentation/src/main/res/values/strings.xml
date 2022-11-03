@@ -44,6 +44,9 @@
     <string name="view_all_label">View All</string>
     <string name="top_bar_filter">Filter</string>
     <string name="sponsors_title">Sponsors</string>
+    <string name="sessions_label">Sessions</string>
+    <string name="session_image">Session Image</string>
+    <string name="format_plus_label">+%d</string>
     <string name="speaker_details_label">Speaker</string>
     <string name="bio_label">Bio</string>
     <string name="twitter_handle_label">Twitter Handle</string>
