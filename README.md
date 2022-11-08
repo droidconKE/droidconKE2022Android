@@ -229,6 +229,13 @@ We would endlessly like to thank the following contributors
         </a>
     </td>
     <td align="center">
+        <a href="https://github.com/polojerry">
+            <img src="https://avatars.githubusercontent.com/u/32608592?v=4" width="100;" alt="polojerry"/>
+            <br />
+            <sub><b>Jeremiah Polo</b></sub>
+        </a>
+    </td>
+    <td align="center">
         <a href="https://github.com/etonotieno">
             <img src="https://avatars.githubusercontent.com/u/25648109?v=4" width="100;" alt="etonotieno"/>
             <br />
