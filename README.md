@@ -222,10 +222,32 @@ We would endlessly like to thank the following contributors
         </a>
     </td>
     <td align="center">
+        <a href="https://github.com/vickiekamau">
+            <img src="https://avatars.githubusercontent.com/u/38817564?v=4" width="100;" alt="vickiekamau"/>
+            <br />
+            <sub><b>Vickie Kamau</b></sub>
+        </a>
+    </td>
+    <td align="center">
         <a href="https://github.com/misshannah">
             <img src="https://avatars.githubusercontent.com/u/5990196?v=4" width="100;" alt="misshannah"/>
             <br />
             <sub><b>Hannah Olukoye</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/rashanjyot">
+            <img src="https://avatars.githubusercontent.com/u/23249027?v=4" width="100;" alt="rashanjyot"/>
+            <br />
+            <sub><b>Rashanjyot Singh Arora</b></sub>
+        </a>
+    </td></tr>
+<tr>
+    <td align="center">
+        <a href="https://github.com/polojerry">
+            <img src="https://avatars.githubusercontent.com/u/32608592?v=4" width="100;" alt="polojerry"/>
+            <br />
+            <sub><b>Jeremiah Polo</b></sub>
         </a>
     </td>
     <td align="center">
