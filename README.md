@@ -96,6 +96,10 @@ androidx-splashscreen = { module = "androidx.core:core-splashscreen", version.re
 - Define variables using **CamelCase**.\
 - Check if the library can be added to any existing bundles.
 
+## Material 3 Bottom Sheets
+At the time of working on this app, Material 3 didn't have BottomSheet classes. Solution was to copy them from AOSP. They can be found in the `com/android254/presentation/common/bottomsheet` packages and have been used to do the Share feed and Fitter Bottom Sheets.
+You can find more information [here](https://stackoverflow.com/questions/72518262/how-to-implement-bottomsheet-in-material-3-jetpack-compose-android).
+
 
 ## Contributing
 
@@ -111,6 +115,13 @@ We would endlessly like to thank the following contributors
 <table>
 <tr>
     <td align="center">
+        <a href="https://github.com/wangerekaharun">
+            <img src="https://avatars.githubusercontent.com/u/15122455?v=4" width="100;" alt="wangerekaharun"/>
+            <br />
+            <sub><b>Harun Wangereka</b></sub>
+        </a>
+    </td>
+    <td align="center">
         <a href="https://github.com/jumaallan">
             <img src="https://avatars.githubusercontent.com/u/25085146?v=4" width="100;" alt="jumaallan"/>
             <br />
@@ -122,13 +133,6 @@ We would endlessly like to thank the following contributors
             <img src="https://avatars.githubusercontent.com/u/13868653?v=4" width="100;" alt="gissilali"/>
             <br />
             <sub><b>Gibson Silali</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/wangerekaharun">
-            <img src="https://avatars.githubusercontent.com/u/15122455?v=4" width="100;" alt="wangerekaharun"/>
-            <br />
-            <sub><b>Harun Wangereka</b></sub>
         </a>
     </td>
     <td align="center">

@@ -47,7 +47,9 @@ fun Navigation(
                     )
                 },
                 navigateToFeedbackScreen = { navController.navigate(Screens.FeedBack.route) },
-                onActionClicked = onActionClicked
+                navigateToSessionScreen = { navController.navigate(Screens.Sessions.route) },
+                onActionClicked = onActionClicked,
+                onSessionClicked = {},
             )
         }
         composable(Screens.Sessions.route) {

@@ -18,6 +18,7 @@ package com.android254.presentation.feed.view
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
+import androidx.compose.ui.test.performClick
 import com.android254.presentation.common.theme.DroidconKE2022Theme
 import org.junit.Before
 import org.junit.Rule
@@ -53,5 +54,17 @@ class FeedScreenTest {
 
         composeTestRule.onNodeWithTag("droidcon_topBar_with_Feedback").assertExists()
         composeTestRule.onNodeWithTag("droidcon_topBar_with_Feedback").assertIsDisplayed()
+    }
+
+    @Test
+    fun `test share bottom sheet is shown`() {
+        composeTestRule.setContent {
+            DroidconKE2022Theme {
+                FeedScreen()
+            }
+        }
+        composeTestRule.onNodeWithTag("share_button").assertExists()
+        composeTestRule.onNodeWithTag("share_button").performClick()
+        composeTestRule.onNodeWithTag("share_bottom_sheet").assertIsDisplayed()
     }
 }
