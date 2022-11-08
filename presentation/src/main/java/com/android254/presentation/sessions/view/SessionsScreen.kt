@@ -38,10 +38,24 @@ import com.android254.presentation.common.components.SessionsCard
 import com.android254.presentation.common.theme.DroidconKE2022Theme
 import com.android254.presentation.models.SessionPresentationModel
 
-val events = arrayListOf<SessionPresentationModel>()
+val events = arrayListOf(
+    // TODO: Remove dummy value later
+    SessionPresentationModel(
+        id = "1",
+        sessionTitle = "Compose Beyond Material Design",
+        sessionDescription = "Been in the tech industry for over 20 years. Am passionate about developer communities, motivating people and building successfulBeen in the tech industry for over 20 years.",
+        sessionVenue = "Room 1",
+        sessionSpeakerImage = "",
+        sessionSpeakerName = "Frank Tamre",
+        sessionStartTime = "9.30AM",
+        sessionEndTime = "10:15AM",
+        amOrPm = "",
+        isStarred = false,
+    )
+)
 
 @Composable
-fun SessionsScreen(darkTheme: Boolean = isSystemInDarkTheme()) {
+fun SessionsScreen(darkTheme: Boolean = isSystemInDarkTheme(), navigateToSessionDetailsScreen: (sessionId: String) -> Unit) {
     val showMySessions = remember {
         mutableStateOf(false)
     }
@@ -123,7 +137,7 @@ fun SessionsScreen(darkTheme: Boolean = isSystemInDarkTheme()) {
             LazyColumn(modifier = Modifier.fillMaxHeight()) {
                 itemsIndexed(events) { index, event ->
                     Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.Start) {
-                        SessionsCard(session = event, onclick = {})
+                        SessionsCard(session = event, onclick = { navigateToSessionDetailsScreen(event.id) })
                         if (index != events.size - 1) {
                             Box(
                                 Modifier.padding(
@@ -150,6 +164,8 @@ fun SessionsScreen(darkTheme: Boolean = isSystemInDarkTheme()) {
 @Composable
 fun SessionsScreenPreview() {
     DroidconKE2022Theme {
-        SessionsScreen()
+        SessionsScreen(
+            navigateToSessionDetailsScreen = {}
+        )
     }
 }

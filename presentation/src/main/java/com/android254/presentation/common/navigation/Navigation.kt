@@ -25,6 +25,7 @@ import com.android254.presentation.about.view.AboutScreen
 import com.android254.presentation.feed.view.FeedScreen
 import com.android254.presentation.feedback.view.FeedBackScreen
 import com.android254.presentation.home.screen.HomeScreen
+import com.android254.presentation.sessionDetails.view.SessionDetailsScreen
 import com.android254.presentation.sessions.view.SessionsScreen
 import com.android254.presentation.speakers.view.SpeakerDetailsScreen
 import com.android254.presentation.speakers.view.SpeakersScreen
@@ -32,12 +33,12 @@ import com.android254.presentation.speakers.view.SpeakersScreen
 @Composable
 fun Navigation(
     navController: NavHostController,
-    upDateBottomBarState: (Boolean) -> Unit,
+    updateBottomBarState: (Boolean) -> Unit,
     onActionClicked: () -> Unit = {},
 ) {
     NavHost(navController, startDestination = Screens.Home.route) {
         composable(Screens.Home.route) {
-            upDateBottomBarState(true)
+            updateBottomBarState(true)
             HomeScreen(
                 navigateToSpeakers = { navController.navigate(Screens.Speakers.route) },
                 navigateToSpeaker = { twitterHandle ->
@@ -52,23 +53,39 @@ fun Navigation(
             )
         }
         composable(Screens.Sessions.route) {
-            upDateBottomBarState(true)
-            SessionsScreen()
+            updateBottomBarState(true)
+            SessionsScreen(
+                navigateToSessionDetailsScreen = { sessionId ->
+                    navController.navigate(Screens.SessionDetails.route.replace("{${Screens.SessionDetails.sessionIdNavigationArgument}}", sessionId))
+                }
+            )
+        }
+        composable(
+            Screens.SessionDetails.route,
+            arguments = listOf(navArgument(Screens.SessionDetails.sessionIdNavigationArgument) { type = NavType.StringType })
+        ) { backStackEntry ->
+            updateBottomBarState(false)
+            SessionDetailsScreen(
+                sessionId = requireNotNull(backStackEntry.arguments?.getString(Screens.SessionDetails.sessionIdNavigationArgument)),
+                onNavigationIconClick = {
+                    navController.popBackStack()
+                },
+            )
         }
         composable(Screens.Feed.route) {
-            upDateBottomBarState(true)
+            updateBottomBarState(true)
             FeedScreen(
                 navigateToFeedbackScreen = { navController.navigate(Screens.FeedBack.route) }
             )
         }
         composable(Screens.About.route) {
-            upDateBottomBarState(true)
+            updateBottomBarState(true)
             AboutScreen(
                 navigateToFeedbackScreen = { navController.navigate(Screens.FeedBack.route) }
             )
         }
         composable(Screens.Speakers.route) {
-            upDateBottomBarState(true)
+            updateBottomBarState(true)
             SpeakersScreen(
                 navigateToHomeScreen = { navController.navigateUp() },
                 navigateToSpeaker = { twitterHandle ->
@@ -77,7 +94,7 @@ fun Navigation(
             )
         }
         composable(Screens.FeedBack.route) {
-            upDateBottomBarState(false)
+            updateBottomBarState(false)
             FeedBackScreen(
                 navigateBack = { navController.navigateUp() }
             )
@@ -89,7 +106,7 @@ fun Navigation(
         ) {
             val twitterHandle = it.arguments?.getString("twitterHandle")
                 ?: throw IllegalStateException("Speaker data missing.")
-            upDateBottomBarState(false)
+            updateBottomBarState(false)
             SpeakerDetailsScreen(
                 twitterHandle = twitterHandle,
                 navigateBack = { navController.navigateUp() }

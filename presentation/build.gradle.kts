@@ -92,6 +92,7 @@ dependencies {
     testImplementation(libs.compose.ui.test.junit)
     testImplementation(libs.android.test.espresso)
     testImplementation(libs.test.navigation)
+    testImplementation(libs.test.mockk)
 }
 
 kotlin {

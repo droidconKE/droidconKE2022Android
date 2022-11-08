@@ -25,6 +25,7 @@ sealed class Screens(var route: String, @DrawableRes var icon: Int, var title: S
     object About : Screens("/about", R.drawable.about_icon, "About")
     object Speakers : Screens("/speakers", R.drawable.droidcon_icon, "Speakers")
     object FeedBack : Screens("/feedback", R.drawable.droidcon_icon, "FeedBack")
+    object SessionDetails : Screens("/sessionDetails/{sessionId}", R.drawable.droidcon_icon, "Session Details") { const val sessionIdNavigationArgument = "sessionId" }
     object SpeakerDetails : Screens("/speaker_details/{twitterHandle}", R.drawable.droidcon_icon, "Speaker Details")
 }
 
