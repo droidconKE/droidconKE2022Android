@@ -54,7 +54,7 @@ fun HomeSpeakerComponent(speaker: Speaker) {
             .width(90.dp)
             .padding(end = 16.dp),
 
-        ) {
+    ) {
         val (headShot, speakerName) = createRefs()
         AsyncImage(
             model = ImageRequest.Builder(LocalContext.current)

@@ -21,13 +21,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.android254.domain.models.DataResult
 import com.android254.domain.models.ResourceResult
 import com.android254.domain.repos.SessionsRepo
+import com.android254.domain.utils.SimpleQueryBuilder
 import com.android254.presentation.models.SessionPresentationModel
+import com.android254.presentation.sessions.mappers.toPresentationModel
+import com.android254.presentation.sessions.utils.FilterKeys
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.async
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -35,6 +35,7 @@ import javax.inject.Inject
 data class Error(
     val message: String
 )
+
 
 @RequiresApi(Build.VERSION_CODES.O)
 @HiltViewModel
@@ -54,6 +55,7 @@ class SessionsViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
+
             sessionsRepo.fetchAndSaveSessions(true).collectLatest { result ->
                 when (result) {
                     is ResourceResult.Success -> {
@@ -80,5 +82,9 @@ class SessionsViewModel @Inject constructor(
                 }
             }
         }
+    }
+
+    fun fetchSessionsByFilter() {
+
     }
 }

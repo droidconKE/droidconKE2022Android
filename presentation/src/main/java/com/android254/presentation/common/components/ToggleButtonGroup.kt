@@ -2,13 +2,10 @@ package com.android254.presentation.common.components
 
 import android.widget.ToggleButton
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.shape.CornerBasedShape
 import androidx.compose.foundation.shape.CornerSize
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -51,7 +48,6 @@ fun MultiToggleButton(
             val buttonCount = chunkendOptions[it].size
             val shape = MaterialTheme.shapes.small
 
-
             repeat(buttonCount) { index ->
                 val buttonShape = when (index) {
                     0 -> shape.copy(bottomEnd = squareCorner, topEnd = squareCorner)
@@ -83,15 +79,12 @@ fun MultiToggleButton(
                     contentColor = contentColor,
                     textStyle = textStyle,
                     onClick = {
-
                     },
                 )
             }
         }
     }
-
 }
-
 
 @Composable
 private fun ToggleButton(

@@ -33,7 +33,6 @@ abstract class RepoModule {
     @Singleton
     abstract fun provideAuthRepo(repo: AuthManager): AuthRepo
 
-
     @Binds
     @Singleton
     abstract fun provideSessionsRepo(repo: SessionsManager): SessionsRepo

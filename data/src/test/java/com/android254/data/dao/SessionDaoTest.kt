@@ -65,10 +65,23 @@ class SessionDaoTest {
             slug = "retrofiti-a-pragmatic-approach-to-using-retrofit-in-android-1583941090",
             session_format = "Codelab / Workshop",
             session_level = "Intermediate",
+            speakers = "",
+            rooms = "",
+            start_time = "",
+            session_image = "",
+            start_date_time = "",
+            is_serviceSession = false,
+            is_keynote = false,
+            end_time = "",
+            is_bookmarked = true,
+            end_date_time = "",
+            borderColor = "",
+            backgroundColor = ""
+
         )
         sessionDao.insert(session)
         runBlocking {
-            val result = sessionDao.fetchSessions().first().first()
+            val result = sessionDao.fetchSessions().first()
             assertThat(session.title, `is`(result.title))
         }
     }

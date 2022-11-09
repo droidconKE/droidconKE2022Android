@@ -17,8 +17,6 @@ package com.android254.data.network
 
 import com.android254.data.network.apis.SessionRemoteSource
 import com.android254.data.network.models.responses.EventScheduleResponse
-import com.android254.data.network.models.responses.PaginationMetaData
-import com.android254.data.network.models.responses.ResponseMetaData
 import com.android254.data.network.models.responses.SessionApiModel
 import com.android254.data.network.util.HttpClientFactory
 import io.ktor.client.engine.mock.*

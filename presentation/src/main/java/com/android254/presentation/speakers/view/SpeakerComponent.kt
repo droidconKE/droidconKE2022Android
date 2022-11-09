@@ -147,7 +147,7 @@ fun SpeakerComponent(
 fun SpeakerComponentPreview() {
     DroidconKE2022Theme {
         SpeakerComponent(
-            speaker =   Speaker(
+            speaker = Speaker(
                 avatar = "String?",
                 biography = "String",
                 blog = "String",

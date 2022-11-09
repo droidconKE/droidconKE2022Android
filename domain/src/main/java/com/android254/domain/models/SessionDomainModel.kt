@@ -33,5 +33,5 @@ data class SessionDomainModel(
     val start_date_time: String,
     val start_time: String,
     val rooms: String,
-    val speakers : String
+    val speakers: String
 )

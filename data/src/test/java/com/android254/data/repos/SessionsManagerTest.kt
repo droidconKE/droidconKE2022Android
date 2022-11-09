@@ -57,12 +57,12 @@ class SessionsManagerTest {
         val repo = SessionsManager(mockApi, dao)
 
         runBlocking {
-            Assert.assertEquals(dao.fetchSessions().first().isEmpty(), true)
+            Assert.assertEquals(dao.fetchSessions().first(), true)
             coEvery { mockApi.fetchSessions(200) } returns results
-            val result = repo.fetchAndSaveSessions()
+            val result = repo.fetchAndSaveSessions(false)
             coVerify { mockApi.fetchSessions(200) }
             assertThat(result, CoreMatchers.`is`(DataResult.Success(Success)))
-            Assert.assertEquals(dao.fetchSessions().first().count(), 1)
+            Assert.assertEquals(dao.fetchSessions().first(), 1)
         }
     }
 

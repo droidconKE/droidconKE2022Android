@@ -11,7 +11,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.android254.presentation.R
-import com.android254.presentation.common.bottomsheet.BottomSheetValue
 import com.droidconke.chai.atoms.type.MontserratBold
 import com.droidconke.chai.atoms.type.MontserratSemiBold
 import java.util.*
@@ -35,9 +34,7 @@ data class FilterOption(
 
 class FilterAdapter(
     val categories: MutableMap<FilterCategory, List<FilterOption>>,
-) {
-
-}
+)
 
 private fun createFilterAdapter(): FilterAdapter {
     return FilterAdapter(
@@ -197,7 +194,8 @@ fun SessionsFilterPanel(onDismiss: () -> Unit) {
                 .height(48.dp)
         ) {
             Text(
-                text = "Filter".uppercase(), style = TextStyle(
+                text = "Filter".uppercase(),
+                style = TextStyle(
                     fontSize = 18.sp,
                     fontFamily = MontserratSemiBold,
                     letterSpacing = 2.sp

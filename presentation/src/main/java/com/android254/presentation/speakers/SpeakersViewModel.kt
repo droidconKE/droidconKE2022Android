@@ -23,7 +23,5 @@ import javax.inject.Inject
 @HiltViewModel
 class SpeakersViewModel @Inject constructor() : ViewModel() {
 
-    fun getSpeakers() = listOf<Speaker>(
-
-    )
+    fun getSpeakers() = listOf<Speaker>()
 }

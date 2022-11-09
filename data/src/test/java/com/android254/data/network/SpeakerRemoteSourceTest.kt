@@ -61,12 +61,16 @@ class SpeakerRemoteSourceTest {
         // GIVEN
         val expectedResponse = listOf(
             SpeakerApiModel(
-                id = "1",
-                name = "John Doe",
-                shortBio = "Cool guy",
-                bio = "Very cool guy",
-                avatar = "https://example.com",
-                twitter = null
+                avatar = "",
+                biography = "String",
+                blog = "String",
+                company_website = "",
+                facebook = "",
+                instagram = "",
+                linkedin = "",
+                name = "",
+                tagline = "",
+                twitter = ""
             ),
         )
         val mockHttpEngine = MockEngine {

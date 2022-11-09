@@ -36,9 +36,13 @@ class SessionsManager @Inject constructor(
             emit(ResourceResult.Loading(isLoading = true))
             val sessions = dao.fetchSessions()
             val isDbEmpty = sessions.isEmpty()
-            emit(ResourceResult.Success(data = sessions.map {
-                it.toDomainModel()
-            }))
+            emit(
+                ResourceResult.Success(
+                    data = sessions.map {
+                        it.toDomainModel()
+                    }
+                )
+            )
             val shouldJustLoadFromCache = !isDbEmpty && !fetchFromRemote
             if (shouldJustLoadFromCache) {
                 emit(ResourceResult.Loading(isLoading = false))
@@ -55,9 +59,11 @@ class SessionsManager @Inject constructor(
                     dao.clearSessions()
                     val sessionEntities = it.map { session -> session.toEntity() }
                     dao.insert(sessionEntities)
-                    emit(ResourceResult.Success(
-                        data = sessionEntities.map { sessionEntity -> sessionEntity.toDomainModel() }
-                    ))
+                    emit(
+                        ResourceResult.Success(
+                            data = sessionEntities.map { sessionEntity -> sessionEntity.toDomainModel() }
+                        )
+                    )
                     emit(ResourceResult.Loading(isLoading = false))
                 }
             } catch (e: Exception) {
@@ -67,8 +73,6 @@ class SessionsManager @Inject constructor(
                     else -> emit(ResourceResult.Error("Error fetching sessions"))
                 }
             }
-
-
         }
     }
 }

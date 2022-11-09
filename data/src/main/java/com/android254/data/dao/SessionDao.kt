@@ -17,8 +17,9 @@ package com.android254.data.dao
 
 import androidx.room.Dao
 import androidx.room.Query
+import androidx.room.RawQuery
+import androidx.sqlite.db.SupportSQLiteQuery
 import com.android254.data.db.model.Session
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface SessionDao : BaseDao<Session> {
@@ -27,4 +28,7 @@ interface SessionDao : BaseDao<Session> {
 
     @Query("DELETE FROM sessions")
     fun clearSessions()
+
+    @RawQuery
+    fun fetchSessionsWithFilters(query: SupportSQLiteQuery) : List<Session>
 }

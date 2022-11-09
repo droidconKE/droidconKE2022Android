@@ -17,7 +17,6 @@ package com.android254.data.network.util
 
 import kotlinx.coroutines.flow.Flow
 
-
 interface TokenProvider {
 
     suspend fun fetch(): Flow<String?>

@@ -15,7 +15,6 @@
  */
 package com.android254.data.network.apis
 
-import com.android254.data.network.Constants
 import com.android254.data.network.models.responses.EventScheduleResponse
 import com.android254.data.network.models.responses.SessionApiModel
 import io.ktor.client.*
@@ -28,7 +27,7 @@ class SessionRemoteSource @Inject constructor(
 ) {
     suspend fun fetchSessions(perPage: Int = 200): EventScheduleResponse<Map<String, List<SessionApiModel>>> {
         return client.get("https://droidcon-erp.herokuapp.com/api/v1/events/droidconke-2022-281/schedule") {
-            header("Api-Authorization-Key","droidconKe-2020")
+            header("Api-Authorization-Key", "droidconKe-2020")
             url {
                 parameters.append("grouped", "true")
             }

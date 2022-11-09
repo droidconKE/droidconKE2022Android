@@ -13,14 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android254.presentation.sessions.view
+package com.android254.presentation.sessions.mappers
 
 import android.os.Build
 import androidx.annotation.RequiresApi
 import com.android254.domain.models.SessionDomainModel
 import com.android254.presentation.models.SessionPresentationModel
 import com.android254.presentation.models.Speaker
-import com.google.android.gms.auth.api.Auth
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.time.LocalDate
@@ -53,7 +52,7 @@ private fun getTimePeriod(time: String): FormattedTime {
     val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd' 'HH:mm:ss")
     val localDate = LocalDate.parse(time, formatter)
     return FormattedTime(
-       "08:45",
+        "08:45",
         "AM"
     )
 }

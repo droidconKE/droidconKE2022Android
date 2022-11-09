@@ -1,6 +1,5 @@
 package com.android254.presentation.common.components
 
-import android.annotation.SuppressLint
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.AnimatedVisibilityScope
 import androidx.compose.animation.core.tween
@@ -22,8 +21,6 @@ import kotlinx.coroutines.launch
 
 internal const val ANIMATION_TIME = 500L
 private const val DIALOG_BUILD_TIME = 50L
-
-
 
 @Composable
 internal fun AnimatedModalBottomSheetTransition(

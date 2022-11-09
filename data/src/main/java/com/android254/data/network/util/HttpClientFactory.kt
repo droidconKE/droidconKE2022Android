@@ -30,7 +30,6 @@ import kotlinx.serialization.json.Json
 import timber.log.Timber
 import javax.inject.Inject
 
-
 class HttpClientFactory @Inject constructor(private val tokenProvider: TokenProvider) {
 
     fun create(engine: HttpClientEngine) = HttpClient(engine) {

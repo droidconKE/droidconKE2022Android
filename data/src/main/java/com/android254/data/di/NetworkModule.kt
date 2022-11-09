@@ -16,7 +16,6 @@
 package com.android254.data.di
 
 import com.android254.data.network.util.HttpClientFactory
-import com.android254.data.network.util.TokenProvider
 import com.android254.data.preferences.DefaultTokenProvider
 import dagger.Module
 import dagger.Provides
