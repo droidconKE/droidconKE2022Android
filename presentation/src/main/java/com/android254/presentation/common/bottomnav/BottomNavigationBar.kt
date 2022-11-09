@@ -20,17 +20,27 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.android254.presentation.common.navigation.Screens
 import com.android254.presentation.common.navigation.bottomNavigationDestinations
 import com.android254.presentation.common.theme.DroidconKE2022Theme
+import com.android254.presentation.common.theme.bottomBlack
+import com.android254.presentation.common.theme.bottomOrange
+import com.android254.presentation.common.theme.bottomPurple
+import androidx.compose.runtime.getValue
+import androidx.navigation.NavDestination.Companion.hierarchy
 
 @Composable
 fun BottomNavigationBar(navController: NavHostController) {
     BottomAppBar {
+        val navBackStackEntry by navController.currentBackStackEntryAsState()
+        val currentDestination = navBackStackEntry?.destination
+
         bottomNavigationDestinations.forEach { destination ->
+            val selected = currentDestination?.hierarchy?.any { it.route == destination.route } == true
             NavigationBarItem(
-                selected = false,
+                selected = selected,
                 icon = {
                     Icon(
                         painter = painterResource(id = destination.icon),
@@ -45,8 +55,14 @@ fun BottomNavigationBar(navController: NavHostController) {
                         restoreState = true
                         popUpTo(Screens.Home.route)
                     }
-                }
-            )
+                },
+                colors = NavigationBarItemDefaults.colors(
+                    selectedIconColor = bottomPurple,
+                    unselectedIconColor = bottomBlack,
+                    selectedTextColor = bottomOrange,
+                    unselectedTextColor = bottomBlack
+
+                ))
         }
     }
 }
