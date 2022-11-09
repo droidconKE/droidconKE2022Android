@@ -96,6 +96,10 @@ androidx-splashscreen = { module = "androidx.core:core-splashscreen", version.re
 - Define variables using **CamelCase**.\
 - Check if the library can be added to any existing bundles.
 
+## Material 3 Bottom Sheets
+At the time of working on this app, Material 3 didn't have BottomSheet classes. Solution was to copy them from AOSP. They can be found in the `com/android254/presentation/common/bottomsheet` packages and have been used to do the Share feed and Fitter Bottom Sheets.
+You can find more information [here](https://stackoverflow.com/questions/72518262/how-to-implement-bottomsheet-in-material-3-jetpack-compose-android).
+
 
 ## Contributing
 
@@ -111,6 +115,13 @@ We would endlessly like to thank the following contributors
 <table>
 <tr>
     <td align="center">
+        <a href="https://github.com/wangerekaharun">
+            <img src="https://avatars.githubusercontent.com/u/15122455?v=4" width="100;" alt="wangerekaharun"/>
+            <br />
+            <sub><b>Harun Wangereka</b></sub>
+        </a>
+    </td>
+    <td align="center">
         <a href="https://github.com/jumaallan">
             <img src="https://avatars.githubusercontent.com/u/25085146?v=4" width="100;" alt="jumaallan"/>
             <br />
@@ -118,17 +129,17 @@ We would endlessly like to thank the following contributors
         </a>
     </td>
     <td align="center">
+        <a href="https://github.com/gissilali">
+            <img src="https://avatars.githubusercontent.com/u/13868653?v=4" width="100;" alt="gissilali"/>
+            <br />
+            <sub><b>Gibson Silali</b></sub>
+        </a>
+    </td>
+    <td align="center">
         <a href="https://github.com/kibettheophilus">
             <img src="https://avatars.githubusercontent.com/u/61080898?v=4" width="100;" alt="kibettheophilus"/>
             <br />
             <sub><b>Kibet Theo</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/wangerekaharun">
-            <img src="https://avatars.githubusercontent.com/u/15122455?v=4" width="100;" alt="wangerekaharun"/>
-            <br />
-            <sub><b>Harun Wangereka</b></sub>
         </a>
     </td>
     <td align="center">
@@ -143,13 +154,6 @@ We would endlessly like to thank the following contributors
             <img src="https://avatars.githubusercontent.com/u/61404564?v=4" width="100;" alt="chepsi"/>
             <br />
             <sub><b>Evans Chepsiror</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/gissilali">
-            <img src="https://avatars.githubusercontent.com/u/13868653?v=4" width="100;" alt="gissilali"/>
-            <br />
-            <sub><b>Gibson Silali</b></sub>
         </a>
     </td></tr>
 <tr>
@@ -211,6 +215,20 @@ We would endlessly like to thank the following contributors
         </a>
     </td>
     <td align="center">
+        <a href="https://github.com/MamboBryan">
+            <img src="https://avatars.githubusercontent.com/u/40160345?v=4" width="100;" alt="MamboBryan"/>
+            <br />
+            <sub><b>Mambo Bryan</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/vickiekamau">
+            <img src="https://avatars.githubusercontent.com/u/38817564?v=4" width="100;" alt="vickiekamau"/>
+            <br />
+            <sub><b>Vickie Kamau</b></sub>
+        </a>
+    </td>
+    <td align="center">
         <a href="https://github.com/misshannah">
             <img src="https://avatars.githubusercontent.com/u/5990196?v=4" width="100;" alt="misshannah"/>
             <br />
@@ -218,10 +236,18 @@ We would endlessly like to thank the following contributors
         </a>
     </td>
     <td align="center">
-        <a href="https://github.com/MamboBryan">
-            <img src="https://avatars.githubusercontent.com/u/40160345?v=4" width="100;" alt="MamboBryan"/>
+        <a href="https://github.com/rashanjyot">
+            <img src="https://avatars.githubusercontent.com/u/23249027?v=4" width="100;" alt="rashanjyot"/>
             <br />
-            <sub><b>Mambo Bryan</b></sub>
+            <sub><b>Rashanjyot Singh Arora</b></sub>
+        </a>
+    </td></tr>
+<tr>
+    <td align="center">
+        <a href="https://github.com/polojerry">
+            <img src="https://avatars.githubusercontent.com/u/32608592?v=4" width="100;" alt="polojerry"/>
+            <br />
+            <sub><b>Jeremiah Polo</b></sub>
         </a>
     </td>
     <td align="center">

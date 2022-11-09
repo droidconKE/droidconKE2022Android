@@ -94,6 +94,7 @@ dependencies {
     testImplementation(libs.compose.ui.test.junit)
     testImplementation(libs.android.test.espresso)
     testImplementation(libs.test.navigation)
+    testImplementation(libs.test.mockk)
 }
 
 kotlin {
@@ -104,4 +105,11 @@ kotlin {
             }
         }
     }
+}
+
+/**
+ * Excluding the folder as it has classes from Google AOSP which don't pass most rules
+ */
+tasks.withType<io.gitlab.arturbosch.detekt.Detekt>().configureEach {
+    exclude("**/com/android254/presentation/common/bottomsheet/**")
 }

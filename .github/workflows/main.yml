@@ -40,7 +40,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gems-
       - name: Setup Ruby
-        uses: actions/setup-ruby@v1
+        uses: ruby/setup-ruby@v1
         with:
           ruby-version: '2.6'
 

@@ -69,6 +69,7 @@ dependencies {
     implementation(libs.gson.gson)
     implementation(libs.ktor.json)
     implementation(libs.ktor.auth)
+
     androidTestImplementation(libs.android.test.junit4)
     androidTestImplementation(libs.android.test.espresso)
 

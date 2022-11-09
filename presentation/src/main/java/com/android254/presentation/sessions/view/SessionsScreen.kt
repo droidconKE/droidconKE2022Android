@@ -45,7 +45,21 @@ import com.android254.presentation.sessions.components.EventDaySelector
 import com.android254.presentation.sessions.components.SessionList
 import kotlinx.coroutines.launch
 
-val events = arrayListOf<SessionPresentationModel>()
+val events = arrayListOf(
+    // TODO: Remove dummy value later
+    SessionPresentationModel(
+        id = "1",
+        sessionTitle = "Compose Beyond Material Design",
+        sessionDescription = "Been in the tech industry for over 20 years. Am passionate about developer communities, motivating people and building successfulBeen in the tech industry for over 20 years.",
+        sessionVenue = "Room 1",
+        sessionSpeakerImage = "",
+        sessionSpeakerName = "Frank Tamre",
+        sessionStartTime = "9.30AM",
+        sessionEndTime = "10:15AM",
+        amOrPm = "",
+        isStarred = false,
+    )
+)
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
@@ -144,6 +158,8 @@ fun SessionsScreen(
 @Composable
 fun SessionsScreenPreview() {
     DroidconKE2022Theme {
-        SessionsScreen()
+        SessionsScreen(
+            navigateToSessionDetailsScreen = {}
+        )
     }
 }

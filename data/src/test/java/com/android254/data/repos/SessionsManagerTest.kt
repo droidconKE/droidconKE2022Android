@@ -17,26 +17,28 @@ package com.android254.data.repos
 
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
-import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.android254.data.dao.SessionDao
 import com.android254.data.db.Database
+import com.android254.data.db.model.Session
 import com.android254.data.network.apis.SessionRemoteSource
-import com.android254.domain.models.DataResult
-import com.android254.domain.models.Success
+import com.android254.data.network.util.NetworkError
+import com.android254.domain.models.ResourceResult
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.hamcrest.CoreMatchers
+import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.After
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
 
-@RunWith(AndroidJUnit4::class)
+@RunWith(RobolectricTestRunner::class)
 class SessionsManagerTest {
     private val mockApi = mockk<SessionRemoteSource>()
     private lateinit var dao: SessionDao
@@ -53,9 +55,7 @@ class SessionsManagerTest {
     }
 
     @Test
-    fun `test it fetches and saves sessions successfully`() {
-        val repo = SessionsManager(mockApi, dao)
-
+    fun `test network errors are properly handled`() {
         runBlocking {
             Assert.assertEquals(dao.fetchSessions().first(), true)
             coEvery { mockApi.fetchSessions(200) } returns results

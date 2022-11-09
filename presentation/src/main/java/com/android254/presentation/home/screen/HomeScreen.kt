@@ -36,10 +36,10 @@ import com.android254.presentation.common.components.DroidconAppBar
 import com.android254.presentation.common.components.DroidconAppBarWithFeedbackButton
 import com.android254.presentation.common.components.SponsorsCard
 import com.android254.presentation.common.theme.DroidconKE2022Theme
-import com.android254.presentation.home.components.HomeBannerSection
-import com.android254.presentation.home.components.HomeSpacer
-import com.android254.presentation.home.components.HomeSpeakersSection
+import com.android254.presentation.home.components.*
 import com.android254.presentation.home.viewmodel.HomeViewModel
+import com.android254.presentation.models.SessionPresentationModel
+import com.android254.presentation.sessions.view.SessionsViewModel
 import com.android254.presentation.speakers.SpeakersViewModel
 import com.droidconke.chai.atoms.type.MontserratSemiBold
 
@@ -47,9 +47,13 @@ import com.droidconke.chai.atoms.type.MontserratSemiBold
 fun HomeScreen(
     homeViewModel: HomeViewModel = hiltViewModel(),
     speakersViewModel: SpeakersViewModel = hiltViewModel(),
+    sessionsViewModel: SessionsViewModel = hiltViewModel(),
     navigateToSpeakers: () -> Unit = {},
+    navigateToSpeaker: (String) -> Unit = {},
     navigateToFeedbackScreen: () -> Unit = {},
+    navigateToSessionScreen: () -> Unit = {},
     onActionClicked: () -> Unit = {},
+    onSessionClicked: (SessionPresentationModel) -> Unit = {},
 ) {
     val homeViewState = homeViewModel.viewState
     val sponsorsLogos = listOf("Google", "Company Z", "Company Y")
@@ -80,9 +84,16 @@ fun HomeScreen(
             )
             HomeBannerSection(homeViewState)
             HomeSpacer()
+            HomeSessionSection(
+                sessions = sessionsViewModel.sessions.value,
+                onSessionClick = onSessionClicked,
+                onViewAllSessionClicked = navigateToSessionScreen,
+            )
+            HomeSpacer()
             HomeSpeakersSection(
                 speakers = speakersViewModel.getSpeakers(),
                 navigateToSpeakers = navigateToSpeakers,
+                navigateToSpeaker = navigateToSpeaker
             )
             HomeSpacer()
             SponsorsCard(sponsorsLogos = sponsorsLogos)

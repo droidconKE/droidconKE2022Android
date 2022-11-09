@@ -48,7 +48,9 @@ class SessionScreenTest {
     fun hasExpectedButtons() {
         composeTestRule.setContent {
             DroidconKE2022Theme() {
-                SessionsScreen()
+                SessionsScreen(
+                    navigateToSessionDetailsScreen = {}
+                )
             }
         }
 
@@ -63,7 +65,9 @@ class SessionScreenTest {
     fun `should show topBar`() {
         composeTestRule.setContent {
             DroidconKE2022Theme() {
-                SessionsScreen()
+                SessionsScreen(
+                    navigateToSessionDetailsScreen = {}
+                )
             }
         }
 

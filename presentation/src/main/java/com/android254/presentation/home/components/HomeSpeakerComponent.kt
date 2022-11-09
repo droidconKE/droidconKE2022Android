@@ -17,6 +17,7 @@ package com.android254.presentation.home.components
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -47,12 +48,13 @@ import com.android254.presentation.models.Speaker
 import com.droidconke.chai.atoms.type.MontserratMedium
 
 @Composable
-fun HomeSpeakerComponent(speaker: Speaker) {
+fun HomeSpeakerComponent(speaker: Speaker, onClick: () -> Unit = {}) {
     ConstraintLayout(
         modifier = Modifier
             .height(110.dp)
             .width(90.dp)
-            .padding(end = 16.dp),
+            .padding(end = 16.dp)
+            .clickable { onClick.invoke() }
 
     ) {
         val (headShot, speakerName) = createRefs()
