@@ -78,6 +78,7 @@ dependencies {
     testImplementation(libs.test.robolectric)
     testImplementation(libs.ktor.mock)
     testImplementation(libs.test.mockk)
+    testImplementation(libs.google.truth)
 }
 
 kotlin {

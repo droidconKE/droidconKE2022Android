@@ -22,12 +22,12 @@ import com.android254.data.network.util.NetworkError
 import com.android254.data.network.util.TokenProvider
 import com.android254.domain.models.DataResult
 import com.android254.domain.models.Success
+import com.google.common.truth.Truth
 import io.mockk.*
-import kotlinx.coroutines.runBlocking
-import org.hamcrest.CoreMatchers.`is`
-import org.hamcrest.MatcherAssert.assertThat
+import io.mockk.impl.annotations.MockK
+import kotlinx.coroutines.test.runTest
+import org.junit.Before
 import org.junit.Test
-import java.lang.Exception
 
 class AuthManagerTest {
     private val fakeUserDetails = UserDetails(
@@ -37,49 +37,65 @@ class AuthManagerTest {
         avatar = "http://test.com"
     )
 
-    @Test
-    fun `test getAndSaveApiToken successfully`() {
-        val mockApi = mockk<AuthApi>()
-        val mockTokenProvider = mockk<TokenProvider>()
+    @MockK
+    private lateinit var authApi: AuthApi
 
-        runBlocking {
-            val repo = AuthManager(mockApi, mockTokenProvider)
-            coEvery { mockApi.googleLogin(any()) } returns AccessToken("test", user = fakeUserDetails)
-            coEvery { mockTokenProvider.update(any()) } just Runs
+    @MockK
+    private lateinit var tokenProvider: TokenProvider
 
-            val result = repo.getAndSaveApiToken("test")
-            assertThat(result, `is`(DataResult.Success(Success)))
-            coVerify { mockTokenProvider.update("test") }
-        }
+    private lateinit var authManager: AuthManager
+    private lateinit var exception: Exception
+    private lateinit var networkError: NetworkError
+
+    @Before
+    fun setup() {
+        MockKAnnotations.init(this, relaxUnitFun = true)
+        authManager = AuthManager(authApi, tokenProvider)
+        networkError = NetworkError()
+        exception = Exception()
     }
 
     @Test
-    fun `test getAndSaveApiToken failure - network error`() {
-        val mockApi = mockk<AuthApi>()
-        val mockTokenProvider = mockk<TokenProvider>()
+    fun `test getAndSaveApiToken successfully`() = runTest {
+        // Given
+        coEvery { authApi.googleLogin(any()) } returns AccessToken(
+            "test",
+            user = fakeUserDetails
+        )
+        coEvery { tokenProvider.update(any()) } just Runs
 
-        runBlocking {
-            val repo = AuthManager(mockApi, mockTokenProvider)
-            val exc = NetworkError()
+        // When
+        val result = authManager.getAndSaveApiToken("test")
 
-            coEvery { mockApi.googleLogin(any()) } throws exc
-            val result = repo.getAndSaveApiToken("test")
-            assertThat(result, `is`(DataResult.Error("Login failed", true, exc)))
-        }
+        //Then
+        coVerify { tokenProvider.update("test") }
+
+        // And
+        Truth.assertThat(result).isEqualTo(DataResult.Success(Success))
     }
 
     @Test
-    fun `test getAndSaveApiToken failure - other error`() {
-        val mockApi = mockk<AuthApi>()
-        val mockTokenProvider = mockk<TokenProvider>()
+    fun `test getAndSaveApiToken failure - network error`() = runTest {
+        // Given
+        val exc = NetworkError()
+        coEvery { authApi.googleLogin(any()) } throws networkError
 
-        runBlocking {
-            val repo = AuthManager(mockApi, mockTokenProvider)
-            val exc = Exception()
+        // When
+        val result = authManager.getAndSaveApiToken("test")
 
-            coEvery { mockApi.googleLogin(any()) } throws exc
-            val result = repo.getAndSaveApiToken("test")
-            assertThat(result, `is`(DataResult.Error("Login failed", exc = exc)))
-        }
+        // Then
+        Truth.assertThat(result).isEqualTo(DataResult.Error("Login failed", true, networkError))
+    }
+
+    @Test
+    fun `test getAndSaveApiToken failure - other error`() = runTest {
+        // Given
+        coEvery { authApi.googleLogin(any()) } throws exception
+
+        // When
+        val result = authManager.getAndSaveApiToken("test")
+
+        // Then
+        Truth.assertThat(result).isEqualTo(DataResult.Error("Login failed", exc = exception))
     }
 }

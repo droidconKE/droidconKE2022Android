@@ -29,12 +29,11 @@ import com.android254.data.network.models.responses.UserDetails
 import com.android254.data.network.util.HttpClientFactory
 import com.android254.data.network.util.ServerError
 import com.android254.data.preferences.DefaultTokenProvider
+import com.google.common.truth.Truth
 import io.ktor.client.engine.mock.*
 import io.ktor.http.*
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.runBlocking
-import org.hamcrest.CoreMatchers.`is`
-import org.hamcrest.MatcherAssert.assertThat
+import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -55,19 +54,21 @@ class AuthApiTest {
 
     @Test(expected = ServerError::class)
     fun `test ServerError is thrown when a server exception occurs`() {
+        // Given
         val mockEngine = MockEngine {
             delay(500)
             respondError(HttpStatusCode.InternalServerError)
         }
         val httpClient = HttpClientFactory(DefaultTokenProvider(testDataStore)).create(mockEngine)
         val api = AuthApi(httpClient)
-        runBlocking {
-            api.logout()
-        }
+
+        // When
+        runTest { api.logout() }
     }
 
     @Test
     fun `test successful logout`() {
+        // Given
         val mockEngine = MockEngine {
             respond(
                 content = """{"message": "Success"}""",
@@ -77,14 +78,18 @@ class AuthApiTest {
         }
         val httpClient = HttpClientFactory(DefaultTokenProvider(testDataStore)).create(mockEngine)
         val api = AuthApi(httpClient)
-        runBlocking {
-            val response = api.logout()
-            assertThat(response, `is`(Status("Success")))
+
+        // Then
+        runTest {
+            api.logout().also {
+                Truth.assertThat(it).isEqualTo(Status("Success"))
+            }
         }
     }
 
     @Test
     fun `test successful google login`() {
+        // Given
         val content = """
             {
               "token": "test",
@@ -106,18 +111,23 @@ class AuthApiTest {
         }
         val httpClient = HttpClientFactory(DefaultTokenProvider(testDataStore)).create(mockEngine)
         val api = AuthApi(httpClient)
-        runBlocking {
-            val accessToken = AccessToken(
-                token = "test",
-                user = UserDetails(
-                    name = "Magak Emmanuel",
-                    email = "emashmagak@gmail.com",
-                    gender = null,
-                    avatar = "http://localhost:8000/upload/avatar/img-20181016-wa0026jpg.jpg"
-                )
+
+        val accessToken = AccessToken(
+            token = "test",
+            user = UserDetails(
+                name = "Magak Emmanuel",
+                email = "emashmagak@gmail.com",
+                gender = null,
+                avatar = "http://localhost:8000/upload/avatar/img-20181016-wa0026jpg.jpg"
             )
-            val response = api.googleLogin(GoogleToken("some token"))
-            assertThat(response, `is`(accessToken))
+        )
+
+        // Then
+        runTest {
+            api.googleLogin(GoogleToken("some token")).also {
+                Truth.assertThat(it).isEqualTo(accessToken)
+            }
         }
+
     }
 }

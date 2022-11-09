@@ -15,50 +15,24 @@
  */
 package com.android254.data.dao
 
-import android.content.Context
-import androidx.room.Room
-import androidx.test.core.app.ApplicationProvider
-import com.android254.data.db.Database
 import com.android254.data.db.model.Session
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.runBlocking
+import com.google.common.truth.Truth
+import io.mockk.*
+import io.mockk.impl.annotations.MockK
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.test.runTest
-import org.hamcrest.CoreMatchers.`is`
-import org.hamcrest.MatcherAssert.assertThat
-import org.junit.After
 import org.junit.Before
 import org.junit.Test
-import org.junit.runner.RunWith
-import org.robolectric.RobolectricTestRunner
-import java.io.IOException
 
-@RunWith(RobolectricTestRunner::class)
 class SessionDaoTest {
-
+    private lateinit var session: Session
+    @MockK
     private lateinit var sessionDao: SessionDao
-    private lateinit var db: Database
 
     @Before
     fun setup() {
-        val context = ApplicationProvider.getApplicationContext<Context>()
-        db = Room.inMemoryDatabaseBuilder(
-            context,
-            Database::class.java
-        )
-            .allowMainThreadQueries() // TODO Please delete me
-            .build()
-        sessionDao = db.sessionDao()
-    }
-
-    @After
-    @Throws(IOException::class)
-    fun tearDown() {
-        db.close()
-    }
-
-    @Test
-    fun `test sessionDao fetches all sessions`() = runTest {
-        val session = Session(
+        MockKAnnotations.init(this, relaxUnitFun = true)
+        session = Session(
             id = 0,
             title = "Retrofiti: A Pragmatic Approach to using Retrofit in Android",
             description = "This session is codelab covering some of the best practices and recommended approaches to building an application using the retrofit library.",
@@ -66,10 +40,22 @@ class SessionDaoTest {
             session_format = "Codelab / Workshop",
             session_level = "Intermediate",
         )
+
+        coJustRun { sessionDao.insert(session) }
+        coEvery { sessionDao.fetchSessions() } returns flow { emit(listOf(session)) }
+    }
+
+    @Test
+    fun `test sessionDao fetches all sessions`() = runTest {
+        // Given
         sessionDao.insert(session)
-        runBlocking {
-            val result = sessionDao.fetchSessions().first().first()
-            assertThat(session.title, `is`(result.title))
-        }
+
+        // When
+        val result = sessionDao.fetchSessions().first()
+
+        // Then
+        coVerify(atLeast = 1) { sessionDao.insert(session) }
+        coVerify { sessionDao.insert(session) }
+        Truth.assertThat(result.first().title).isEqualTo(session.title)
     }
 }
