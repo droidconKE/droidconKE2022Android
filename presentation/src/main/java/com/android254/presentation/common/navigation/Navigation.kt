@@ -15,6 +15,8 @@
  */
 package com.android254.presentation.common.navigation
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -30,6 +32,7 @@ import com.android254.presentation.sessions.view.SessionsScreen
 import com.android254.presentation.speakers.view.SpeakerDetailsScreen
 import com.android254.presentation.speakers.view.SpeakersScreen
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun Navigation(
     navController: NavHostController,
@@ -54,11 +57,7 @@ fun Navigation(
         }
         composable(Screens.Sessions.route) {
             updateBottomBarState(true)
-            SessionsScreen(
-                navigateToSessionDetailsScreen = { sessionId ->
-                    navController.navigate(Screens.SessionDetails.route.replace("{${Screens.SessionDetails.sessionIdNavigationArgument}}", sessionId))
-                }
-            )
+            SessionsScreen(navController = navController)
         }
         composable(
             Screens.SessionDetails.route,

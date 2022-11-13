@@ -54,6 +54,7 @@ android {
     packagingOptions {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            pickFirsts.add("META-INF/io.netty.versions.properties")
         }
     }
 
@@ -79,6 +80,8 @@ dependencies {
     implementation(libs.accompanist.flowlayout)
     implementation(libs.lottie.compose)
     implementation(libs.gson.gson)
+    implementation(libs.kotlin.coroutines.datetime)
+    implementation(libs.zeko.query.builder)
     kapt(libs.android.hilt.compiler)
     implementation(libs.android.hilt.navigation.compose)
     kapt(libs.android.hilt.androidx.compiler)

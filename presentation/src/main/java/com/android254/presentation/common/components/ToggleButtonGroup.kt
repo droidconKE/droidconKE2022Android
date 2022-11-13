@@ -1,13 +1,15 @@
 package com.android254.presentation.common.components
 
-import android.widget.ToggleButton
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CornerBasedShape
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
@@ -17,15 +19,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.android254.presentation.common.theme.Montserrat
+import com.android254.presentation.models.SessionsFilterOption
+import com.android254.presentation.sessions.view.SessionsViewModel
 import com.droidconke.chai.atoms.type.MontserratBold
-import java.util.*
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun MultiToggleButton(
-    currentSelections: String,
-    toggleStates: List<String>,
-    onToggleChange: (String) -> Int,
+    currentSelections: List<SessionsFilterOption>,
+    toggleStates: List<SessionsFilterOption>,
     modifier: Modifier = Modifier,
     borderSize: Dp = 1.dp,
     buttonHeight: Dp = 40.dp,
@@ -33,28 +37,31 @@ fun MultiToggleButton(
     borderColor: Color = selectedColor,
     border: BorderStroke = BorderStroke(borderSize, selectedColor),
     enabled: Boolean = true,
+    onClick: (SessionsFilterOption) -> Unit,
+    viewModel: SessionsViewModel = hiltViewModel()
 ) {
     val unselectedColor = Color.Unspecified
     val selectedContentColor = MaterialTheme.colorScheme.onPrimary
     val unselectedContentColor = MaterialTheme.colorScheme.primary
-    val chunkendOptions = toggleStates.chunked(3)
-    val rowCount = chunkendOptions.size
-    repeat(rowCount) {
+    val chunkedOptions = toggleStates.chunked(3)
+    println(currentSelections)
+
+    chunkedOptions.forEach { filterOptions ->
         Row(modifier = modifier) {
             val squareCorner = CornerSize(0.dp)
-            val selectionIndex = rememberSaveable() {
-                mutableStateOf(0)
-            }
-            val buttonCount = chunkendOptions[it].size
+            val buttonCount = filterOptions.size
             val shape = MaterialTheme.shapes.small
 
-            repeat(buttonCount) { index ->
+            filterOptions.forEachIndexed { index, sessionsFilterOption ->
                 val buttonShape = when (index) {
                     0 -> shape.copy(bottomEnd = squareCorner, topEnd = squareCorner)
-                    buttonCount - 1 -> shape.copy(topStart = squareCorner, bottomStart = squareCorner)
+                    buttonCount - 1 -> shape.copy(
+                        topStart = squareCorner,
+                        bottomStart = squareCorner
+                    )
                     else -> shape.copy(all = squareCorner)
                 }
-                val isButtonSelected = selectionIndex.value == index
+                val isButtonSelected = currentSelections.contains(sessionsFilterOption)
                 val backgroundColor = if (isButtonSelected) selectedColor else unselectedColor
                 val contentColor =
                     if (isButtonSelected) selectedContentColor else unselectedContentColor
@@ -74,11 +81,14 @@ fun MultiToggleButton(
                     backgroundColor = backgroundColor,
                     elevation = ButtonDefaults.buttonElevation(),
                     enabled = enabled,
-                    buttonTexts = chunkendOptions[it],
+                    buttonTexts = filterOptions.map {
+                        it.label
+                    },
                     index = index,
                     contentColor = contentColor,
                     textStyle = textStyle,
                     onClick = {
+                        onClick(sessionsFilterOption)
                     },
                 )
             }

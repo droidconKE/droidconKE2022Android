@@ -20,5 +20,10 @@ import com.android254.domain.models.SessionDomainModel
 import kotlinx.coroutines.flow.Flow
 
 interface SessionsRepo {
-    suspend fun fetchAndSaveSessions(fetchFromRemote: Boolean = false): Flow<ResourceResult<List<SessionDomainModel>>>
+    suspend fun fetchAndSaveSessions(
+        fetchFromRemote: Boolean = false,
+        query: String? = null
+    ): Flow<ResourceResult<List<SessionDomainModel>>>
+
+    suspend fun fetchSessionById(id: String): Flow<ResourceResult<SessionDomainModel>>
 }

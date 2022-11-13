@@ -15,15 +15,21 @@
  */
 package com.android254.presentation.models
 
+import com.android254.presentation.sessions.components.EventDate
+
 data class SessionPresentationModel(
     val id: String,
-    val sessionTitle: String,
-    val sessionDescription: String,
-    val sessionVenue: String,
-    val sessionSpeakerImage: String,
-    val sessionSpeakerName: String,
-    val sessionStartTime: String,
-    val sessionEndTime: String,
+    val title: String,
+    val description: String,
+    val venue: String,
+    val speakerImage: String,
+    val speakerName: String,
+    val startTime: String,
+    val endTime: String,
     val amOrPm: String,
     val isStarred: Boolean,
+    val format: String,
+    val level: String,
+    val startDate: String,
+    val endDate: String
 )

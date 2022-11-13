@@ -83,7 +83,7 @@ fun SpeakersScreen(
         ) {
             items(speakers) { speaker ->
                 SpeakerComponent(speaker = speaker, onClick = {
-                    navigateToSpeaker.invoke(speaker.twitterHandle)
+                    navigateToSpeaker.invoke(speaker.twitter.toString())
                 })
             }
         }

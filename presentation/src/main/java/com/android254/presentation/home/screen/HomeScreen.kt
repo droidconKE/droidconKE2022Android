@@ -15,6 +15,8 @@
  */
 package com.android254.presentation.home.screen
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -43,6 +45,7 @@ import com.android254.presentation.sessions.view.SessionsViewModel
 import com.android254.presentation.speakers.SpeakersViewModel
 import com.droidconke.chai.atoms.type.MontserratSemiBold
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun HomeScreen(
     homeViewModel: HomeViewModel = hiltViewModel(),
@@ -85,7 +88,7 @@ fun HomeScreen(
             HomeBannerSection(homeViewState)
             HomeSpacer()
             HomeSessionSection(
-                sessions = sessionsViewModel.sessions.value,
+                sessions = sessionsViewModel.sessions.value!!,
                 onSessionClick = onSessionClicked,
                 onViewAllSessionClicked = navigateToSessionScreen,
             )
@@ -122,6 +125,7 @@ fun HomeToolbar(
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Preview
 @Composable
 fun HomeScreenPreview() {

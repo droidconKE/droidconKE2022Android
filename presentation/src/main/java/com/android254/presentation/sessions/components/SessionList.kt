@@ -14,16 +14,20 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.android254.presentation.R
 import com.android254.presentation.common.components.SessionsCard
 import com.android254.presentation.common.components.SessionsLoadingSkeleton
+import com.android254.presentation.common.navigation.Screens
 import com.android254.presentation.models.SessionPresentationModel
 import com.android254.presentation.sessions.view.SessionsViewModel
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun SessionList(
-    viewModel: SessionsViewModel = hiltViewModel()
+    viewModel: SessionsViewModel = hiltViewModel(),
+    navController: NavHostController
 ) {
     val sessions: List<SessionPresentationModel> by viewModel.sessions.observeAsState(arrayListOf())
     val loading: Boolean by viewModel.loading.observeAsState(false)
@@ -33,9 +37,19 @@ fun SessionList(
         SessionsLoadingSkeleton()
     } else {
         LazyColumn(modifier = Modifier.fillMaxHeight()) {
-            itemsIndexed(sessions) { index, event ->
+            itemsIndexed(sessions) { index, session ->
                 Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.Start) {
-                    SessionsCard(session = event, onclick = {})
+                    SessionsCard(session = session, onclick = {
+                        navController.navigate(
+                            Screens.SessionDetails.route.replace(
+                                oldValue = "{sessionId}",
+                                newValue = session.id
+                            )
+                        ) {
+                            launchSingleTop = true
+                            restoreState = true
+                        }
+                    })
                     if (index != sessions.size - 1) {
                         Box(
                             Modifier.padding(

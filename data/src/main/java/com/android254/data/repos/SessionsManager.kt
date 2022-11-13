@@ -15,6 +15,7 @@
  */
 package com.android254.data.repos
 
+import androidx.sqlite.db.SimpleSQLiteQuery
 import com.android254.data.dao.SessionDao
 import com.android254.data.network.apis.SessionRemoteSource
 import com.android254.data.network.util.NetworkError
@@ -31,11 +32,20 @@ class SessionsManager @Inject constructor(
     private val api: SessionRemoteSource,
     private val dao: SessionDao
 ) : SessionsRepo {
-    override suspend fun fetchAndSaveSessions(fetchFromRemote: Boolean): Flow<ResourceResult<List<SessionDomainModel>>> {
+    override suspend fun fetchAndSaveSessions(
+        fetchFromRemote: Boolean,
+        query: String?
+    ): Flow<ResourceResult<List<SessionDomainModel>>> {
         return flow {
             emit(ResourceResult.Loading(isLoading = true))
-            val sessions = dao.fetchSessions()
+            val sessions = if (query == null) {
+                dao.fetchSessions()
+            } else {
+                dao.fetchSessionsWithFilters(SimpleSQLiteQuery(query))
+            }
+
             val isDbEmpty = sessions.isEmpty()
+            val hasAQuery = query != null
             emit(
                 ResourceResult.Success(
                     data = sessions.map {
@@ -43,8 +53,8 @@ class SessionsManager @Inject constructor(
                     }
                 )
             )
-            val shouldJustLoadFromCache = !isDbEmpty && !fetchFromRemote
-            if (shouldJustLoadFromCache) {
+            val shouldLoadFromCache = (!isDbEmpty && !fetchFromRemote) || hasAQuery
+            if (shouldLoadFromCache) {
                 emit(ResourceResult.Loading(isLoading = false))
                 return@flow
             }
@@ -73,6 +83,21 @@ class SessionsManager @Inject constructor(
                     else -> emit(ResourceResult.Error("Error fetching sessions"))
                 }
             }
+        }
+    }
+
+    override suspend fun fetchSessionById(id: String): Flow<ResourceResult<SessionDomainModel>> {
+        return flow {
+            emit(ResourceResult.Loading(isLoading = true))
+            val session = dao.getSessionById(id)
+            if (session == null) {
+                emit(ResourceResult.Loading(isLoading = false))
+                emit(ResourceResult.Error(message = "requested event no longer available"))
+                return@flow
+            }
+            emit(ResourceResult.Loading(isLoading = false))
+            emit(ResourceResult.Success(data = session.toDomainModel()))
+            return@flow
         }
     }
 }

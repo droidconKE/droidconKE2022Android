@@ -91,7 +91,7 @@ fun SpeakerDetailsScreen(
 
         AsyncImage(
             model = ImageRequest.Builder(LocalContext.current)
-                .data(speaker.imageUrl)
+                .data(speaker.avatar)
                 .build(),
             placeholder = painterResource(R.drawable.smiling),
             contentDescription = stringResource(R.string.head_shot),
@@ -145,7 +145,7 @@ fun SpeakerDetailsScreen(
                     .align(Alignment.CenterHorizontally)
             )
             Text(
-                text = speaker.tagline,
+                text = speaker.tagline.toString(),
                 textAlign = TextAlign.Center,
                 fontSize = 14.sp,
                 lineHeight = 20.sp,
@@ -170,7 +170,7 @@ fun SpeakerDetailsScreen(
             )
 
             Text(
-                text = speaker.bio,
+                text = speaker.biography.toString(),
                 fontSize = 14.sp,
                 lineHeight = 20.sp,
                 modifier = Modifier
@@ -209,7 +209,7 @@ fun SpeakerDetailsScreen(
 
             OutlinedButton(
                 onClick = {
-                    uriHandler.openUri("https://twitter.com/${speaker.twitterHandle}")
+                    uriHandler.openUri("https://twitter.com/${speaker.twitter}")
                 },
                 shape = RoundedCornerShape(10.dp),
                 border = BorderStroke(1.dp, colorResource(id = R.color.blue)),
@@ -223,7 +223,7 @@ fun SpeakerDetailsScreen(
                     tint = ChaiBlue
                 )
                 Text(
-                    text = speaker.twitterHandle,
+                    text = speaker.twitter.toString(),
                     fontSize = 16.sp,
                     lineHeight = 19.sp,
                     color = colorResource(id = R.color.blue),

@@ -17,61 +17,39 @@ package com.android254.presentation.sessions.view
 
 import android.os.Build
 import androidx.annotation.RequiresApi
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.android254.presentation.R
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.android254.presentation.common.bottomsheet.BottomSheetScaffold
 import com.android254.presentation.common.bottomsheet.rememberBottomSheetScaffoldState
 import com.android254.presentation.common.components.*
 import com.android254.presentation.common.theme.DroidconKE2022Theme
-import com.android254.presentation.models.SessionPresentationModel
+import com.android254.presentation.sessions.components.EventDate
 import com.android254.presentation.sessions.components.EventDaySelector
 import com.android254.presentation.sessions.components.SessionList
+import com.android254.presentation.sessions.components.SessionsFilterPanel
 import kotlinx.coroutines.launch
-
-val events = arrayListOf(
-    // TODO: Remove dummy value later
-    SessionPresentationModel(
-        id = "1",
-        sessionTitle = "Compose Beyond Material Design",
-        sessionDescription = "Been in the tech industry for over 20 years. Am passionate about developer communities, motivating people and building successfulBeen in the tech industry for over 20 years.",
-        sessionVenue = "Room 1",
-        sessionSpeakerImage = "",
-        sessionSpeakerName = "Frank Tamre",
-        sessionStartTime = "9.30AM",
-        sessionEndTime = "10:15AM",
-        amOrPm = "",
-        isStarred = false,
-    )
-)
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun SessionsScreen(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    viewModel: SessionsViewModel = hiltViewModel()
+    navController: NavHostController,
 ) {
     val showMySessions = remember {
         mutableStateOf(false)
     }
-
-
 
     val scope = rememberCoroutineScope()
 
@@ -88,13 +66,14 @@ fun SessionsScreen(
     val isFilterDialogOpen = rememberSaveable {
         mutableStateOf(false)
     }
+
     BottomSheetScaffold(
         sheetContent = {
             SessionsFilterPanel(onDismiss = {
                 scope.launch {
                     bottomSheetScaffoldState.bottomSheetState.collapse()
                 }
-            })
+            }, onChange = {})
         },
         scaffoldState = bottomSheetScaffoldState,
         sheetShape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp),
@@ -139,15 +118,13 @@ fun SessionsScreen(
                         .fillMaxWidth()
                         .padding(start = 0.dp, end = 0.dp, top = 5.dp, bottom = 12.dp)
                 ) {
-                    EventDaySelector(onSelect = { date ->
-//                        updateFilter()
-                    })
+                    EventDaySelector()
                     Switch(checked = showMySessions.value, onCheckedChange = {
                         showMySessions.value = it
                         isFilterActive.value = !it
                     })
                 }
-                SessionList()
+                SessionList(navController = navController)
             }
         }
     }
@@ -158,8 +135,6 @@ fun SessionsScreen(
 @Composable
 fun SessionsScreenPreview() {
     DroidconKE2022Theme {
-        SessionsScreen(
-            navigateToSessionDetailsScreen = {}
-        )
+        SessionsScreen(navController = rememberNavController())
     }
 }

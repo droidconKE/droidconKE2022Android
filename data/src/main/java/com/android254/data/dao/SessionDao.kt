@@ -29,6 +29,9 @@ interface SessionDao : BaseDao<Session> {
     @Query("DELETE FROM sessions")
     fun clearSessions()
 
+    @Query("SELECT * FROM sessions WHERE id = :id")
+    fun getSessionById(id: String): Session?
+
     @RawQuery
-    fun fetchSessionsWithFilters(query: SupportSQLiteQuery) : List<Session>
+    fun fetchSessionsWithFilters(query: SupportSQLiteQuery): List<Session>
 }

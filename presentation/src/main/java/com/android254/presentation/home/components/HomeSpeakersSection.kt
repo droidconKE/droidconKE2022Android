@@ -130,7 +130,7 @@ fun HomeSpeakersSection(
         ) {
             items(speakers.take(4)) { speaker ->
                 HomeSpeakerComponent(speaker = speaker, onClick = {
-                    navigateToSpeaker.invoke(speaker.twitterHandle)
+                    speaker.twitter?.let { navigateToSpeaker.invoke(it) }
                 })
             }
         }
