@@ -165,7 +165,7 @@ class SessionsViewModel @Inject constructor(
     }
 
     private suspend fun fetchSessions(query: String? = null) {
-        sessionsRepo.fetchAndSaveSessions().collectLatest { result ->
+        sessionsRepo.fetchAndSaveSessions(query = query).collectLatest { result ->
             when (result) {
                 is ResourceResult.Success -> {
                     result.data.let { sessionDomainModels ->
@@ -177,7 +177,8 @@ class SessionsViewModel @Inject constructor(
                             sessionDomainModels?.map { sessionDomainModel ->
                                 sessionDomainModel.toPresentationModel()
                             }?.filter {
-                                it.startDate.split(" ").first().toLocalDate().dayOfMonth == selectedEventDate.value?.value?.dayOfMonth
+                                it.startDate.split(" ").first()
+                                    .toLocalDate().dayOfMonth == selectedEventDate.value?.value?.dayOfMonth
                             }
                     }
                 }
@@ -228,6 +229,7 @@ class SessionsViewModel @Inject constructor(
 
     fun clearSelectedFilterList() {
         _selectedFilterOptions.value = listOf()
+        _filterState.value = SessionsFilterState()
         viewModelScope.launch {
             fetchSessions()
         }
@@ -235,9 +237,8 @@ class SessionsViewModel @Inject constructor(
 
     fun updateSelectedDay(date: EventDate) {
         _selectedEventDate.value = date
-        _displayableSessions.value =
-            _sessions.value?.filter {
-                it.startDate.split(" ").first().toLocalDate().dayOfMonth == selectedEventDate.value?.value?.dayOfMonth
-            }
+        viewModelScope.launch {
+            fetchSessions(query = getQuery())
+        }
     }
 }
