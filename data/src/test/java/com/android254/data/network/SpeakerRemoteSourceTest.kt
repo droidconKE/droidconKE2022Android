@@ -67,11 +67,10 @@ class SpeakerRemoteSourceTest {
         val expectedResponse = SpeakersPagedResponse(
             data = listOf(
                 SpeakerDTO(
-                    id = "1",
                     name = "John Doe",
-                    shortBio = "Cool guy",
                     bio = "Very cool guy",
                     avatar = "https://example.com",
+                    tagline = "Wassup",
                     twitter = null
                 )
             ),

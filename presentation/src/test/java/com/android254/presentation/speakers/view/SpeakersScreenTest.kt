@@ -17,6 +17,12 @@ package com.android254.presentation.speakers.view
 
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createComposeRule
+import com.android254.domain.models.ResourceResult
+import com.android254.domain.models.Speaker
+import com.android254.domain.repos.SpeakersRepo
+import com.android254.presentation.speakers.SpeakersViewModel
+import io.mockk.coEvery
+import io.mockk.mockk
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -26,13 +32,23 @@ import org.robolectric.annotation.Config
 @RunWith(RobolectricTestRunner::class)
 @Config(instrumentedPackages = ["androidx.loader.content"])
 class SpeakersScreenTest {
+    private val speakersRepo = mockk<SpeakersRepo>()
+
     @get:Rule
     val composeTestRule = createComposeRule()
 
     @Test
     fun `should show heading and show speaker details card`() {
+        coEvery { speakersRepo.fetchSpeakers() } returns ResourceResult.Success(
+            listOf(
+                Speaker(
+                    name = "Harun Wangereka",
+                    tagline = "kenya partner lead"
+                )
+            )
+        )
         composeTestRule.setContent {
-            SpeakersScreen()
+            SpeakersScreen(SpeakersViewModel(speakersRepo))
         }
 
         with(composeTestRule) {

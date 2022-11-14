@@ -52,7 +52,7 @@ import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 fun SpeakersScreen(
     speakersViewModel: SpeakersViewModel = hiltViewModel(),
     navigateToHomeScreen: () -> Unit = {},
-    navigateToSpeaker: (String) -> Unit = {}
+    navigateToSpeaker: (Int) -> Unit = {}
 ) {
     val context = LocalContext.current
     val isRefreshing by speakersViewModel.isLoading.collectAsState()
@@ -108,7 +108,7 @@ fun SpeakersScreen(
             ) {
                 items(speakers) { speaker ->
                     SpeakerComponent(speaker = speaker, onClick = {
-                        navigateToSpeaker.invoke(speaker.twitterHandle)
+                        navigateToSpeaker.invoke(speaker.id)
                     })
                 }
             }

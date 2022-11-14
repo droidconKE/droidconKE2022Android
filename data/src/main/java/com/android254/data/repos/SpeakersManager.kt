@@ -17,36 +17,47 @@ package com.android254.data.repos
 
 import com.android254.data.db.Database
 import com.android254.data.network.apis.SpeakersApi
+import com.android254.data.repos.mappers.toDomainModel
+import com.android254.data.repos.mappers.toEntity
 import com.android254.domain.models.DataResult
 import com.android254.domain.models.ResourceResult
 import com.android254.domain.models.Speaker
 import com.android254.domain.repos.SpeakersRepo
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class SpeakersManager @Inject constructor(
     db: Database,
     private val api: SpeakersApi
 ) : SpeakersRepo {
-    val speakerDao = db.speakerDao()
+    private val speakerDao = db.speakerDao()
 
-    override suspend fun fetchSpeakers(): ResourceResult<List<Speaker>> {
-        return when (val result = api.fetchSpeakers()) {
-            is DataResult.Success -> {
-                val data = result.data.data
-                if (data.isEmpty()) {
-                    ResourceResult.Empty()
+    override suspend fun fetchSpeakers(): ResourceResult<List<Speaker>> = withContext(Dispatchers.IO) {
+        val speakers = speakerDao.fetchSpeakers()
+        if (speakers.isEmpty()) {
+            when (val result = api.fetchSpeakers()) {
+                is DataResult.Success -> {
+                    val data = result.data.data
+                    if (data.isEmpty()) {
+                        ResourceResult.Empty()
+                    }
+                    speakerDao.insert(data.map { it.toEntity() })
                 }
-                ResourceResult.Success(emptyList())
-            }
-            is DataResult.Error -> {
-                ResourceResult.Error(
-                    result.message,
-                    networkError = result.message.contains("network", ignoreCase = true)
-                )
-            }
-            else -> {
-                ResourceResult.Success(emptyList())
+                is DataResult.Error -> {
+                    return@withContext ResourceResult.Error(
+                        result.message,
+                        networkError = result.message.contains("network", ignoreCase = true)
+                    )
+                }
+                else -> {
+                }
             }
         }
+        return@withContext ResourceResult.Success(speakerDao.fetchSpeakers().map { it.toDomainModel() })
     }
+
+    override suspend fun fetchSpeakerCount(): ResourceResult<Int> = ResourceResult.Success(speakerDao.fetchSpeakerCount())
+
+    override suspend fun getSpeakerById(id: Int): ResourceResult<Speaker> = ResourceResult.Success(speakerDao.getSpeakerById(id).toDomainModel())
 }
