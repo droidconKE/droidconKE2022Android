@@ -31,9 +31,9 @@ class SpeakersManager @Inject constructor(
     db: Database,
     private val api: SpeakersApi
 ) : SpeakersRepo {
-    val speakerDao = db.speakerDao()
+    private val speakerDao = db.speakerDao()
 
-    override suspend fun fetchSpeakers(): ResourceResult<List<Speaker>> = withContext(Dispatchers.IO){
+    override suspend fun fetchSpeakers(): ResourceResult<List<Speaker>> = withContext(Dispatchers.IO) {
         val speakers = speakerDao.fetchSpeakers()
         if (speakers.isEmpty()) {
             when (val result = api.fetchSpeakers()) {
@@ -59,5 +59,9 @@ class SpeakersManager @Inject constructor(
 
     override suspend fun fetchSpeakerCount(): ResourceResult<Int> {
         return ResourceResult.Success(speakerDao.fetchSpeakerCount())
+    }
+
+    override suspend fun getSpeakerById(id: Int): ResourceResult<Speaker> {
+        return ResourceResult.Success(speakerDao.getSpeakerById(id).toDomainModel())
     }
 }

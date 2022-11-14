@@ -34,7 +34,7 @@ import com.android254.presentation.speakers.view.SpeakersScreen
 fun Navigation(
     navController: NavHostController,
     updateBottomBarState: (Boolean) -> Unit,
-    onActionClicked: () -> Unit = {},
+    onActionClicked: () -> Unit = {}
 ) {
     NavHost(navController, startDestination = Screens.Home.route) {
         composable(Screens.Home.route) {
@@ -49,7 +49,7 @@ fun Navigation(
                 navigateToFeedbackScreen = { navController.navigate(Screens.FeedBack.route) },
                 navigateToSessionScreen = { navController.navigate(Screens.Sessions.route) },
                 onActionClicked = onActionClicked,
-                onSessionClicked = {},
+                onSessionClicked = {}
             )
         }
         composable(Screens.Sessions.route) {
@@ -69,7 +69,7 @@ fun Navigation(
                 sessionId = requireNotNull(backStackEntry.arguments?.getString(Screens.SessionDetails.sessionIdNavigationArgument)),
                 onNavigationIconClick = {
                     navController.popBackStack()
-                },
+                }
             )
         }
         composable(Screens.Feed.route) {
@@ -88,8 +88,8 @@ fun Navigation(
             updateBottomBarState(true)
             SpeakersScreen(
                 navigateToHomeScreen = { navController.navigateUp() },
-                navigateToSpeaker = { twitterHandle ->
-                    navController.navigate(Screens.SpeakerDetails.route.replace("{twitterHandle}", twitterHandle))
+                navigateToSpeaker = { speakerId ->
+                    navController.navigate(Screens.SpeakerDetails.route.replace("{speakerId}", "$speakerId"))
                 }
             )
         }
@@ -102,13 +102,13 @@ fun Navigation(
 
         composable(
             Screens.SpeakerDetails.route,
-            arguments = listOf(navArgument("twitterHandle") { type = NavType.StringType })
+            arguments = listOf(navArgument("speakerId") { type = NavType.IntType })
         ) {
-            val twitterHandle = it.arguments?.getString("twitterHandle")
+            val speakerId = it.arguments?.getInt("speakerId")
                 ?: throw IllegalStateException("Speaker data missing.")
             updateBottomBarState(false)
             SpeakerDetailsScreen(
-                twitterHandle = twitterHandle,
+                id = speakerId,
                 navigateBack = { navController.navigateUp() }
             )
         }

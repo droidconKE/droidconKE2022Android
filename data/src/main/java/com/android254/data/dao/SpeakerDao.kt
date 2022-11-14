@@ -28,5 +28,5 @@ interface SpeakerDao : BaseDao<SpeakerEntity> {
     suspend fun fetchSpeakerCount(): Int
 
     @Query("SELECT * FROM speakers WHERE id = :id")
-    suspend fun getSpeakerByTwitterHandle(id: Int): SpeakerEntity
+    suspend fun getSpeakerById(id: Int): SpeakerEntity
 }
