@@ -245,11 +245,4 @@ class SessionsViewModel @Inject constructor(
             fetchSessions(fetchFromRemote = true)
         }
     }
-
-    fun updateBookmarkStatus(id: String) {
-        viewModelScope.launch {
-            println("$id is starring...")
-            sessionsRepo.toggleBookmarkStatus(id)
-        }
-    }
 }

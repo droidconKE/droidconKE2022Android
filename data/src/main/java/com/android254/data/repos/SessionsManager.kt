@@ -27,7 +27,6 @@ import com.android254.domain.models.ResourceResult
 import com.android254.domain.models.SessionDomainModel
 import com.android254.domain.repos.SessionsRepo
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
@@ -105,13 +104,24 @@ class SessionsManager @Inject constructor(
         }
     }
 
-    override suspend fun toggleBookmarkStatus(id: String): Boolean {
-        try {
-            val response = api.updateBookmarkedStatus(id)
-            dao.updateBookmarkedStatus(id, false)
-        } catch (e: Exception) {
-        }
+    override suspend fun toggleBookmarkStatus(id: String): Flow<ResourceResult<Boolean>> {
 
-        return true
+        return flow {
+            try {
+                api.updateBookmarkedStatus(id)
+                dao.updateBookmarkedStatus(id, false)
+            } catch (e: Exception) {
+                emit(ResourceResult.Loading(isLoading = true))
+                when (e) {
+                    is NetworkError -> {
+                        emit(ResourceResult.Error("Network error"))
+                    }
+                    else -> {
+                        emit(ResourceResult.Error("Error fetching sessions"))
+                    }
+                }
+            }
+            emit(ResourceResult.Success(data = true))
+        }
     }
 }

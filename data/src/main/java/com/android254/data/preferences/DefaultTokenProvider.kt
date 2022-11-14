@@ -37,7 +37,7 @@ class DefaultTokenProvider @Inject constructor(private val dataStore: DataStore<
         .catch {
             emit(emptyPreferences())
         }.map { preferences ->
-            preferences[PreferencesKeys.ACCESS_TOKEN]
+            println( preferences[PreferencesKeys.ACCESS_TOKEN] + " tokennnnnzzzzzzzzzzzzzzz"); preferences[PreferencesKeys.ACCESS_TOKEN]
         }
 
     override suspend fun update(accessToken: String) {

@@ -27,5 +27,5 @@ interface SessionsRepo {
 
     suspend fun fetchSessionById(id: String): Flow<ResourceResult<SessionDomainModel>>
 
-    suspend fun toggleBookmarkStatus(id: String) : Boolean
+    suspend fun toggleBookmarkStatus(id: String): Flow<ResourceResult<Boolean>>
 }
