@@ -13,17 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android254.data.db.model
+package com.android254.domain.models
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-
-@Entity
-data class Session(
-    @PrimaryKey(autoGenerate = true) val id: Int,
-    val description: String,
-    val session_format: String,
-    val session_level: String,
-    val slug: String,
-    val title: String
+data class Speaker(
+    val imageUrl: String = "",
+    val name: String = "Name",
+    val tagline: String = "",
+    val bio: String = "bio",
+    val twitterHandle: String = "TwitterHandle"
 )

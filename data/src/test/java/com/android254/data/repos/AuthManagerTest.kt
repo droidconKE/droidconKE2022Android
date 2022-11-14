@@ -16,8 +16,8 @@
 package com.android254.data.repos
 
 import com.android254.data.network.apis.AuthApi
-import com.android254.data.network.models.responses.AccessToken
-import com.android254.data.network.models.responses.UserDetails
+import com.android254.data.network.models.responses.AccessTokenDTO
+import com.android254.data.network.models.responses.UserDetailsDTO
 import com.android254.data.network.util.NetworkError
 import com.android254.data.network.util.TokenProvider
 import com.android254.domain.models.DataResult
@@ -30,7 +30,7 @@ import org.junit.Test
 import java.lang.Exception
 
 class AuthManagerTest {
-    private val fakeUserDetails = UserDetails(
+    private val fakeUserDetails = UserDetailsDTO(
         name = "Test",
         email = "test@gmail.com",
         gender = null,
@@ -44,7 +44,7 @@ class AuthManagerTest {
 
         runBlocking {
             val repo = AuthManager(mockApi, mockTokenProvider)
-            coEvery { mockApi.googleLogin(any()) } returns AccessToken("test", user = fakeUserDetails)
+            coEvery { mockApi.googleLogin(any()) } returns AccessTokenDTO("test", user = fakeUserDetails)
             coEvery { mockTokenProvider.update(any()) } just Runs
 
             val result = repo.getAndSaveApiToken("test")

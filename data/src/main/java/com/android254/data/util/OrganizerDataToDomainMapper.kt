@@ -15,18 +15,18 @@
  */
 package com.android254.data.util
 
-import com.android254.data.network.models.responses.CreatorDataResponse
-import com.android254.data.network.models.responses.OrganizerDataResponse
-import com.android254.domain.models.CreatorDomainModel
-import com.android254.domain.models.OrganizerDomainModel
+import com.android254.data.network.models.responses.CreatorDTO
+import com.android254.data.network.models.responses.OrganizerDTO
+import com.android254.domain.models.Creator
+import com.android254.domain.models.Organizer
 
 object OrganizerDataToDomainMapper {
 
-    private fun CreatorDataResponse.toDomain() = CreatorDomainModel(
+    private fun CreatorDTO.toDomain() = Creator(
         id = id, name = name, email = email, createdAt = createdAt
     )
 
-    fun OrganizerDataResponse.toDomain() = OrganizerDomainModel(
+    fun OrganizerDTO.toDomain() = Organizer(
         id = id,
         name = name,
         email = email,
@@ -38,7 +38,7 @@ object OrganizerDataToDomainMapper {
         slug = slug,
         status = status,
         createdAt = createdAt,
-        creater = creator?.toDomain(),
+        creator = creator?.toDomain(),
         upcomingEventsCount = upcomingEventsCount,
         totalEventsCount = totalEventsCount
     )

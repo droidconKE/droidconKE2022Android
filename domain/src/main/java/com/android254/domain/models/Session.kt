@@ -15,7 +15,7 @@
  */
 package com.android254.domain.models
 
-data class SessionDomainModel(
+data class Session(
     val id: Int,
     val description: String,
     val session_format: String,

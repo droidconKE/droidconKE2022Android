@@ -16,7 +16,8 @@
 package com.android254.data.network
 
 import com.android254.data.network.apis.SponsorsApi
-import com.android254.data.network.models.responses.SponsorsData
+import com.android254.data.network.apis.samplePaginationMetaData
+import com.android254.data.network.models.responses.SponsorDTO
 import com.android254.data.network.models.responses.SponsorsPagedResponse
 import com.android254.data.network.util.HttpClientFactory
 import com.android254.domain.models.DataResult
@@ -26,7 +27,6 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import org.hamcrest.CoreMatchers.`is`
-import org.hamcrest.CoreMatchers.any
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -40,7 +40,7 @@ class SponsorsApiTest {
         // Arrange
         val expectedResult = SponsorsPagedResponse(
             data = listOf(
-                SponsorsData(
+                SponsorDTO(
                     title = "AABC",
                     topic = "abc",
                     url = "abc",
@@ -49,7 +49,7 @@ class SponsorsApiTest {
                     image = "abc"
                 )
             ),
-            meta = null
+            meta = samplePaginationMetaData
         )
         val mockHttpEngine = MockEngine {
             if (it.method == HttpMethod.Get &&
@@ -93,7 +93,7 @@ class SponsorsApiTest {
             // Assert
             assertThat(response is DataResult.Error, `is`(true))
             val message = (response as DataResult.Error).message
-            assertThat(message, `is`("Login failed"))
+            assertThat(message, `is`("Server error"))
         }
     }
 }

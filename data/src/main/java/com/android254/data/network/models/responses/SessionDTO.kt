@@ -18,4 +18,11 @@ package com.android254.data.network.models.responses
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Status(val message: String)
+data class SessionDTO(
+    val id: String,
+    val description: String,
+    val session_format: String,
+    val session_level: String,
+    val slug: String,
+    val title: String
+)

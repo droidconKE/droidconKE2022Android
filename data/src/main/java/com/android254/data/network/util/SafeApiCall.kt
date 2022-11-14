@@ -47,12 +47,16 @@ suspend fun <T : Any> dataResultSafeApiCall(
 ): DataResult<T> = try {
     DataResult.Success(apiCall.invoke())
 } catch (throwable: Throwable) {
+    Timber.e(throwable)
     when (throwable) {
-        is ServerError, is NetworkError -> {
-            DataResult.Error("Login failed", networkError = true, exc = throwable)
+        is ServerResponseException, is NoTransformationFoundException -> {
+            DataResult.Error("Server error", exc = throwable)
+        }
+        is ConnectTimeoutException -> {
+            DataResult.Error("Network error", exc = throwable, networkError = true)
         }
         else -> {
-            DataResult.Error("Login failed", exc = throwable)
+            DataResult.Error("Client error", exc = throwable)
         }
     }
 }

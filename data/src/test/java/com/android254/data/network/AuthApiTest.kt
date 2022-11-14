@@ -23,9 +23,9 @@ import androidx.datastore.preferences.preferencesDataStoreFile
 import androidx.test.core.app.ApplicationProvider
 import com.android254.data.network.apis.AuthApi
 import com.android254.data.network.models.payloads.GoogleToken
-import com.android254.data.network.models.responses.AccessToken
-import com.android254.data.network.models.responses.Status
-import com.android254.data.network.models.responses.UserDetails
+import com.android254.data.network.models.responses.AccessTokenDTO
+import com.android254.data.network.models.responses.StatusDTO
+import com.android254.data.network.models.responses.UserDetailsDTO
 import com.android254.data.network.util.HttpClientFactory
 import com.android254.data.network.util.ServerError
 import com.android254.data.preferences.DefaultTokenProvider
@@ -79,7 +79,7 @@ class AuthApiTest {
         val api = AuthApi(httpClient)
         runBlocking {
             val response = api.logout()
-            assertThat(response, `is`(Status("Success")))
+            assertThat(response, `is`(StatusDTO("Success")))
         }
     }
 
@@ -107,9 +107,9 @@ class AuthApiTest {
         val httpClient = HttpClientFactory(DefaultTokenProvider(testDataStore)).create(mockEngine)
         val api = AuthApi(httpClient)
         runBlocking {
-            val accessToken = AccessToken(
+            val accessToken = AccessTokenDTO(
                 token = "test",
-                user = UserDetails(
+                user = UserDetailsDTO(
                     name = "Magak Emmanuel",
                     email = "emashmagak@gmail.com",
                     gender = null,

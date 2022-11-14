@@ -17,7 +17,6 @@ package com.android254.data.network
 
 import com.android254.data.network.models.payloads.Feedback
 import com.android254.data.network.apis.FeedbackApi
-import com.android254.data.network.models.SessionDataModel
 import com.android254.data.network.models.payloads.FeedbackRating
 import com.android254.data.network.util.HttpClientFactory
 import com.android254.domain.models.DataResult
@@ -39,14 +38,14 @@ class FeedbackApiTest {
         val mockEngine = MockEngine { respondOk() }
         val httpClient = HttpClientFactory(MockTokenProvider()).create(mockEngine)
 
-        val session = SessionDataModel(id = "1", title = "How to be Awesome")
+        val sessionId = "1"
         FeedbackApi(httpClient).postFeedback(
             Feedback(rating = FeedbackRating.GOOD, message = "Was nice"),
-            session
+            sessionId
         )
 
         mockEngine.requestHistory.first().run {
-            val expectedUrl = "${Constants.EVENT_BASE_URL}/feedback/sessions/${session.id}"
+            val expectedUrl = "${Constants.EVENT_BASE_URL}/feedback/sessions/$sessionId"
             assertThat(url.toString(), `is`(expectedUrl))
             assertThat(method, `is`(HttpMethod.Post))
             assertThat(body.toJsonString(), `is`("""{"rating":3,"message":"Was nice"}"""))
@@ -58,9 +57,10 @@ class FeedbackApiTest {
         val mockEngine = MockEngine { respondOk() }
         val httpClient = HttpClientFactory(MockTokenProvider()).create(mockEngine)
 
+        val sessionId = "1"
         val result = FeedbackApi(httpClient).postFeedback(
             Feedback(rating = FeedbackRating.GOOD, message = "Was nice"),
-            SessionDataModel(id = "1", title = "How to be Awesome")
+            sessionId
         )
 
         assertThat(result, `is`(DataResult.Success(Unit)))
@@ -71,9 +71,10 @@ class FeedbackApiTest {
         val mockEngine = MockEngine { respondError(HttpStatusCode.InternalServerError) }
         val httpClient = HttpClientFactory(MockTokenProvider()).create(mockEngine)
 
+        val sessionId = "1"
         val result = FeedbackApi(httpClient).postFeedback(
             Feedback(rating = FeedbackRating.BAD, message = "Food haikuwa na nyama"),
-            SessionDataModel(id = "1", title = "How to be Awesome")
+            sessionId
         )
 
         assertThat(result, `is`(instanceOf(DataResult.Error::class.java)))

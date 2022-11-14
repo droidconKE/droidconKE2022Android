@@ -15,7 +15,10 @@
  */
 package com.android254.presentation.speakers.view
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
@@ -25,8 +28,10 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SmallTopAppBar
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -38,7 +43,10 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.android254.presentation.R
 import com.android254.presentation.common.theme.DroidconKE2022Theme
+import com.android254.presentation.models.SpeakerUI
 import com.android254.presentation.speakers.SpeakersViewModel
+import com.google.accompanist.swiperefresh.SwipeRefresh
+import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 
 @Composable
 fun SpeakersScreen(
@@ -46,7 +54,19 @@ fun SpeakersScreen(
     navigateToHomeScreen: () -> Unit = {},
     navigateToSpeaker: (String) -> Unit = {}
 ) {
-    val speakers = speakersViewModel.getSpeakers()
+    val context = LocalContext.current
+    val isRefreshing by speakersViewModel.isLoading.collectAsState()
+    val toastMessage by speakersViewModel.message.collectAsState(initial = "")
+    val speakers = remember { mutableStateListOf<SpeakerUI>() }
+
+    LaunchedEffect(toastMessage) {
+        if (toastMessage.isNotEmpty()) {
+            Toast.makeText(context, toastMessage, Toast.LENGTH_SHORT).show()
+        }
+    }
+    LaunchedEffect(Unit) {
+        speakers.addAll(speakersViewModel.getSpeakers())
+    }
     Scaffold(
         topBar = {
             SmallTopAppBar(
@@ -60,7 +80,7 @@ fun SpeakersScreen(
                 },
                 navigationIcon = {
                     IconButton(
-                        onClick = navigateToHomeScreen,
+                        onClick = navigateToHomeScreen
                     ) {
                         Icon(
                             painter = painterResource(id = R.drawable.ic_back_arrow),
@@ -77,14 +97,20 @@ fun SpeakersScreen(
             )
         }
     ) { paddingValues ->
-        LazyVerticalGrid(
-            columns = GridCells.Adaptive(160.dp),
-            contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 80.dp, bottom = 16.dp)
+        SwipeRefresh(
+            state = rememberSwipeRefreshState(isRefreshing = isRefreshing),
+            onRefresh = { /*TODO*/ },
+            modifier = Modifier.fillMaxWidth().padding(paddingValues)
         ) {
-            items(speakers) { speaker ->
-                SpeakerComponent(speaker = speaker, onClick = {
-                    navigateToSpeaker.invoke(speaker.twitterHandle)
-                })
+            LazyVerticalGrid(
+                columns = GridCells.Adaptive(160.dp),
+                contentPadding = PaddingValues(start = 16.dp, end = 16.dp, bottom = 16.dp)
+            ) {
+                items(speakers) { speaker ->
+                    SpeakerComponent(speaker = speaker, onClick = {
+                        navigateToSpeaker.invoke(speaker.twitterHandle)
+                    })
+                }
             }
         }
     }

@@ -44,7 +44,8 @@ import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.android254.presentation.R
-import com.android254.presentation.models.Speaker
+import com.android254.presentation.models.SpeakerUI
+import com.android254.presentation.models.speakersDummyData
 import com.android254.presentation.speakers.SpeakersViewModel
 import com.droidconke.chai.atoms.type.MontserratBold
 import com.droidconke.chai.atoms.type.MontserratRegular
@@ -52,7 +53,7 @@ import com.droidconke.chai.atoms.type.MontserratSemiBold
 
 @Composable
 fun HomeSpeakersSection(
-    speakers: List<Speaker>,
+    speakers: List<SpeakerUI>,
     navigateToSpeakers: () -> Unit = {},
     navigateToSpeaker: (String) -> Unit = {}
 ) {
@@ -142,6 +143,6 @@ fun HomeSpeakersSection(
 fun HomeSpeakersSectionPreview() {
     val viewModel = hiltViewModel<SpeakersViewModel>()
     Surface(color = Color.White) {
-        HomeSpeakersSection(speakers = viewModel.getSpeakers())
+        HomeSpeakersSection(speakers = speakersDummyData)
     }
 }

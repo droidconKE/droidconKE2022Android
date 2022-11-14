@@ -47,12 +47,12 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.android254.presentation.R
 import com.android254.presentation.common.theme.DroidconKE2022Theme
-import com.android254.presentation.models.Speaker
+import com.android254.presentation.models.SpeakerUI
 
 @Composable
 fun SpeakerComponent(
     modifier: Modifier = Modifier,
-    speaker: Speaker,
+    speaker: SpeakerUI,
     onClick: () -> Unit = {}
 ) {
     Card(
@@ -153,7 +153,7 @@ fun SpeakerComponent(
 fun SpeakerComponentPreview() {
     DroidconKE2022Theme {
         SpeakerComponent(
-            speaker = Speaker(name = "John Doe", bio = "Staff Engineer")
+            speaker = SpeakerUI(name = "John Doe", bio = "Staff Engineer")
         )
     }
 }

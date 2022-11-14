@@ -39,6 +39,7 @@ import com.android254.presentation.common.theme.DroidconKE2022Theme
 import com.android254.presentation.home.components.*
 import com.android254.presentation.home.viewmodel.HomeViewModel
 import com.android254.presentation.models.SessionPresentationModel
+import com.android254.presentation.models.speakersDummyData
 import com.android254.presentation.sessions.view.SessionsViewModel
 import com.android254.presentation.speakers.SpeakersViewModel
 import com.droidconke.chai.atoms.type.MontserratSemiBold
@@ -91,7 +92,7 @@ fun HomeScreen(
             )
             HomeSpacer()
             HomeSpeakersSection(
-                speakers = speakersViewModel.getSpeakers(),
+                speakers = speakersDummyData,
                 navigateToSpeakers = navigateToSpeakers,
                 navigateToSpeaker = navigateToSpeaker
             )

@@ -18,7 +18,7 @@ package com.android254.data.db.model
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "ORGANIZERS")
+@Entity(tableName = "organizers")
 class OrganizerEntity(
     @PrimaryKey(autoGenerate = false)
     var id: Int,

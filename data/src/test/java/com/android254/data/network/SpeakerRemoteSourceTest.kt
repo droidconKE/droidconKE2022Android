@@ -15,13 +15,16 @@
  */
 package com.android254.data.network
 
-import com.android254.data.network.apis.SpeakerRemoteSource
-import com.android254.data.network.models.responses.SpeakerApiModel
+import com.android254.data.network.apis.SpeakersApi
+import com.android254.data.network.apis.samplePaginationMetaData
+import com.android254.data.network.models.responses.SpeakerDTO
+import com.android254.data.network.models.responses.SpeakersPagedResponse
 import com.android254.data.network.util.HttpClientFactory
-import com.android254.data.network.util.ServerError
+import com.android254.domain.models.DataResult
 import io.ktor.client.engine.mock.*
 import io.ktor.client.plugins.*
 import io.ktor.http.*
+import io.ktor.util.reflect.*
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
@@ -30,8 +33,8 @@ import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Test
 
 class SpeakerRemoteSourceTest {
-    @Test(expected = ServerError::class)
-    fun `test ServerError is thrown when http client returns server error response`() {
+    @Test
+    fun `test DataResult error is returned when http client returns server error response`() {
         val mockHttpEngine = MockEngine {
             respondError(HttpStatusCode.InternalServerError)
         }
@@ -39,12 +42,13 @@ class SpeakerRemoteSourceTest {
             .create(mockHttpEngine)
 
         runBlocking {
-            SpeakerRemoteSource(httpClient).fetchSpeakers()
+            val result = SpeakersApi(httpClient).fetchSpeakers()
+            assert(result is DataResult.Error)
         }
     }
 
-    @Test(expected = ResponseException::class)
-    fun `test ResponseException is thrown when http client returns error response beside server error`() {
+    @Test
+    fun `test DataResult error is returned when http client returns error response beside server error`() {
         val mockHttpEngine = MockEngine {
             respondError(HttpStatusCode.NotFound)
         }
@@ -52,45 +56,43 @@ class SpeakerRemoteSourceTest {
             .create(mockHttpEngine)
 
         runBlocking {
-            SpeakerRemoteSource(httpClient).fetchSpeakers()
+            val result = SpeakersApi(httpClient).fetchSpeakers()
+            assert(result is DataResult.Error)
         }
     }
 
     @Test
     fun `test successful speakers fetch`() {
         // GIVEN
-        val expectedResponse = listOf(
-            SpeakerApiModel(
-                id = "1",
-                name = "John Doe",
-                shortBio = "Cool guy",
-                bio = "Very cool guy",
-                avatar = "https://example.com",
-                twitter = null
+        val expectedResponse = SpeakersPagedResponse(
+            data = listOf(
+                SpeakerDTO(
+                    id = "1",
+                    name = "John Doe",
+                    shortBio = "Cool guy",
+                    bio = "Very cool guy",
+                    avatar = "https://example.com",
+                    twitter = null
+                )
             ),
+            meta = samplePaginationMetaData
         )
         val mockHttpEngine = MockEngine {
             // To ensure correct http method and url are used
-            if (it.method == HttpMethod.Get &&
-                it.url.toString() == "${Constants.BASE_URL}/speakers"
-            ) {
-                respond(
-                    content = Json.encodeToString(expectedResponse),
-                    headers = headersOf(HttpHeaders.ContentType, "application/json")
-                )
-            } else {
-                respondError(HttpStatusCode.NotFound)
-            }
+            respond(
+                content = Json.encodeToString(expectedResponse),
+                headers = headersOf(HttpHeaders.ContentType, "application/json")
+            )
         }
         val httpClient = HttpClientFactory(MockTokenProvider())
             .create(mockHttpEngine)
 
         runBlocking {
             // WHEN
-            val response = SpeakerRemoteSource(httpClient).fetchSpeakers()
+            val response = SpeakersApi(httpClient).fetchSpeakers()
 
             // THEN
-            assertThat(response, `is`(expectedResponse))
+            assertThat(response, `is`(DataResult.Success(expectedResponse)))
         }
     }
 }

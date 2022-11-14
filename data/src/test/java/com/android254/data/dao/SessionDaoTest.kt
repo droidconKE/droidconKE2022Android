@@ -19,7 +19,7 @@ import android.content.Context
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import com.android254.data.db.Database
-import com.android254.data.db.model.Session
+import com.android254.data.db.model.SessionEntity
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runTest
@@ -58,7 +58,7 @@ class SessionDaoTest {
 
     @Test
     fun `test sessionDao fetches all sessions`() = runTest {
-        val session = Session(
+        val session = SessionEntity(
             id = 0,
             title = "Retrofiti: A Pragmatic Approach to using Retrofit in Android",
             description = "This session is codelab covering some of the best practices and recommended approaches to building an application using the retrofit library.",

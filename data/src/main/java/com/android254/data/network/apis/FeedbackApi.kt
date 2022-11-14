@@ -16,7 +16,6 @@
 package com.android254.data.network.apis
 
 import com.android254.data.network.Constants
-import com.android254.data.network.models.SessionDataModel
 import com.android254.data.network.models.payloads.Feedback
 import com.android254.data.network.util.dataResultSafeApiCall
 
@@ -28,8 +27,8 @@ import javax.inject.Inject
 class FeedbackApi @Inject constructor(
     private val client: HttpClient
 ) {
-    suspend fun postFeedback(feedback: Feedback, session: SessionDataModel) = dataResultSafeApiCall {
-        client.post("${Constants.EVENT_BASE_URL}/feedback/sessions/${session.id}") {
+    suspend fun postFeedback(feedback: Feedback, sessionId: String) = dataResultSafeApiCall {
+        client.post("${Constants.EVENT_BASE_URL}/feedback/sessions/$sessionId") {
             setBody(feedback)
         }
         return@dataResultSafeApiCall

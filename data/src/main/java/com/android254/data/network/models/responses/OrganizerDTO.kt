@@ -15,14 +15,37 @@
  */
 package com.android254.data.network.models.responses
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class SessionApiModel(
-    val id: String,
+data class OrganizersPagedResponse(
+    val data: List<OrganizerDTO>,
+    val meta: ResponseMetaData
+)
+
+@Serializable
+data class OrganizerDTO(
+    val id: Int,
+    val name: String,
+    val email: String,
     val description: String,
-    val session_format: String,
-    val session_level: String,
+    val facebook: String?,
+    val twitter: String?,
+    val instagram: String?,
+    val logo: String,
     val slug: String,
-    val title: String
+    val status: String,
+    @SerialName("created_at") val createdAt: String,
+    val creator: CreatorDTO,
+    @SerialName("upcoming_events_count") val upcomingEventsCount: Int,
+    @SerialName("total_events_count") val totalEventsCount: Int
+)
+
+@Serializable
+data class CreatorDTO(
+    val id: Int,
+    val name: String,
+    val email: String,
+    @SerialName("created_at") val createdAt: String
 )

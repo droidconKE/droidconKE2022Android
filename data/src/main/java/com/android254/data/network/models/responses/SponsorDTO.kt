@@ -13,28 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android254.domain.models
+package com.android254.data.network.models.responses
 
-data class OrganizerDomainModel(
-    val id: Int?,
-    val name: String?,
-    val email: String?,
-    val description: String?,
-    val facebook: String?,
-    val twitter: String?,
-    val instagram: String?,
-    val logo: String?,
-    val slug: String?,
-    val status: String?,
-    val createdAt: String?,
-    val creater: CreatorDomainModel?,
-    val upcomingEventsCount: Int?,
-    val totalEventsCount: Int?
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+
+@Serializable
+data class SponsorsPagedResponse(
+    val data: List<SponsorDTO>,
+    val meta: ResponseMetaData
 )
 
-data class CreatorDomainModel(
-    val id: Int?,
-    val name: String?,
-    val email: String?,
-    val createdAt: String?
+@Serializable
+data class SponsorDTO(
+    val title: String,
+    val body: String,
+    val topic: String,
+    val url: String,
+    val image: String,
+    @SerialName("created_at") var createdAt: String
+
 )

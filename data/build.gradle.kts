@@ -17,6 +17,12 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+
+        if (File("api_key.txt").exists()) {
+            buildConfigField("String", "API_KEY", "\"${File("api_key.txt").readText()}\"")
+        } else {
+            buildConfigField("String", "API_KEY", "\"\"")
+        }
     }
 
     ksp {
@@ -69,6 +75,7 @@ dependencies {
     implementation(libs.ktor.content.negotiation)
     implementation(libs.ktor.json)
     implementation(libs.ktor.auth)
+    implementation(libs.ktor.logging)
 
     androidTestImplementation(libs.android.test.junit4)
     androidTestImplementation(libs.android.test.espresso)
