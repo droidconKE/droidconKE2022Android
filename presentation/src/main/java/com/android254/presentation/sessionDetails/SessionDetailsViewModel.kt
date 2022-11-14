@@ -39,7 +39,6 @@ class SessionDetailsViewModel @Inject constructor(
 
     var sessionDetails: LiveData<SessionDetailsPresentationModel> = _sessionDetails
 
-
     @RequiresApi(Build.VERSION_CODES.O)
     fun getSessionDetailsById(sessionId: String) {
         viewModelScope.launch {
@@ -52,15 +51,12 @@ class SessionDetailsViewModel @Inject constructor(
                     }
 
                     is ResourceResult.Error -> {
-
                     }
 
                     is ResourceResult.Loading -> {
-
                     }
 
                     is ResourceResult.Empty -> {
-
                     }
 
                     else -> Unit

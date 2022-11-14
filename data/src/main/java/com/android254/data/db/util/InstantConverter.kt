@@ -15,15 +15,10 @@
  */
 package com.android254.data.db.util
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.room.TypeConverter
 import kotlinx.datetime.Instant
-import java.time.OffsetDateTime
-import java.time.format.DateTimeFormatter
 
 class InstantConverter {
-
 
     @TypeConverter
     fun longToInstant(value: Long?): Instant? =
@@ -32,6 +27,4 @@ class InstantConverter {
     @TypeConverter
     fun instantToLong(instant: Instant?): Long? =
         instant?.toEpochMilliseconds()
-
-
 }

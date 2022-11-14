@@ -21,10 +21,8 @@ import com.android254.domain.models.SessionDomainModel
 import com.android254.presentation.models.SessionDetailsPresentationModel
 import com.android254.presentation.models.SessionPresentationModel
 import com.android254.presentation.models.Speaker
-import com.android254.presentation.sessions.components.EventDate
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -93,7 +91,7 @@ fun getTwitterHandle(speakers: List<Speaker>): String {
 @RequiresApi(Build.VERSION_CODES.O)
 private fun getTimePeriod(time: String): FormattedTime {
     val pattern = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
-     LocalDateTime.parse(time, pattern).toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm"))
+    LocalDateTime.parse(time, pattern).toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm"))
     return FormattedTime(
         LocalDateTime.parse(time, pattern).toLocalTime().format(DateTimeFormatter.ofPattern("hh:mm")),
         LocalDateTime.parse(time, pattern).toLocalTime().format(DateTimeFormatter.ofPattern("a")),
@@ -101,7 +99,6 @@ private fun getTimePeriod(time: String): FormattedTime {
 }
 
 private fun getDateString(dateTime: String) {
-
 }
 
 data class FormattedTime(

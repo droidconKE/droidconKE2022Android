@@ -426,7 +426,6 @@ private fun TopBar(onNavigationIconClick: () -> Unit) {
     )
 }
 
-
 object TestTag {
     private const val PREFIX = "sessionDetailsScreen:"
 

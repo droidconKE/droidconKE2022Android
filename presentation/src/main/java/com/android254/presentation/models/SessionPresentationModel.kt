@@ -15,8 +15,6 @@
  */
 package com.android254.presentation.models
 
-import com.android254.presentation.sessions.components.EventDate
-
 data class SessionPresentationModel(
     val id: String,
     val title: String,

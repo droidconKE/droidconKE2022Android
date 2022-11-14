@@ -25,15 +25,12 @@ import io.ktor.client.call.body
 import io.ktor.client.request.get
 import javax.inject.Inject
 
-
 class SponsorsApi @Inject constructor(
     private val client: HttpClient
 ) {
 
     suspend fun fetchSponsors(): DataResult<SponsorsPagedResponse> =
-       dataResultSafeApiCall{
+        dataResultSafeApiCall {
             client.get("${Constants.BASE_URL}/events/droidconke-2022-797/feeds?per_page=10").body()
         }
-
 }
-

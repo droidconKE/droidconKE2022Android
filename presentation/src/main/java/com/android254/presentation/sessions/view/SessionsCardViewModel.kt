@@ -19,13 +19,10 @@ class SessionsCardViewModel @Inject constructor(
                 when (it) {
                     is ResourceResult.Empty -> {}
                     is ResourceResult.Error -> {
-
                     }
                     is ResourceResult.Loading -> {
-
                     }
                     is ResourceResult.Success -> {
-
                     }
                 }
             }

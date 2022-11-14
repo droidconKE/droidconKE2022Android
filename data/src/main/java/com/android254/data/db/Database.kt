@@ -20,7 +20,6 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.android254.data.dao.SessionDao
 import com.android254.data.db.model.Session
-import com.android254.data.db.util.DateStringConverter
 import com.android254.data.db.util.InstantConverter
 
 @Database(

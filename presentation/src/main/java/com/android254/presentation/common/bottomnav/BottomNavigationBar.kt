@@ -62,7 +62,8 @@ fun BottomNavigationBar(navController: NavHostController) {
                     selectedTextColor = bottomOrange,
                     unselectedTextColor = bottomBlack
 
-                ))
+                )
+            )
         }
     }
 }

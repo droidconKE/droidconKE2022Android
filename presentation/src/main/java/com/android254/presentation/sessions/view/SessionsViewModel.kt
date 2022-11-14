@@ -36,11 +36,9 @@ import kotlinx.datetime.LocalDate
 import kotlinx.datetime.toLocalDate
 import javax.inject.Inject
 
-
 data class Error(
     val message: String
 )
-
 
 @RequiresApi(Build.VERSION_CODES.O)
 @HiltViewModel
@@ -57,7 +55,7 @@ class SessionsViewModel @Inject constructor(
     private val _selectedFilterOptions: MutableLiveData<List<SessionsFilterOption>> =
         MutableLiveData(
             mutableListOf()
-        );
+        )
     private val _filterState: MutableLiveData<SessionsFilterState> = MutableLiveData(
         SessionsFilterState()
     )

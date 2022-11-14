@@ -17,7 +17,6 @@ package com.android254.presentation.common.components
 
 import android.os.Build
 import androidx.annotation.RequiresApi
-import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -27,7 +26,6 @@ import androidx.compose.material.icons.rounded.StarOutline
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -43,7 +41,6 @@ import coil.compose.AsyncImage
 import com.android254.presentation.R
 import com.android254.presentation.models.SessionPresentationModel
 import com.android254.presentation.sessions.view.SessionsCardViewModel
-import com.android254.presentation.sessions.view.SessionsViewModel
 import com.droidconke.chai.atoms.type.MontserratBold
 import com.droidconke.chai.atoms.type.MontserratSemiBold
 
@@ -207,7 +204,6 @@ fun TimeAndVenueComponent(session: SessionPresentationModel) {
             fontSize = 12.sp,
             fontWeight = FontWeight.Bold
         )
-
     }
 }
 

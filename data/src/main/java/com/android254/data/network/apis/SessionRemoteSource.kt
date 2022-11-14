@@ -20,15 +20,12 @@ import androidx.datastore.preferences.core.Preferences
 import com.android254.data.network.models.responses.BookmarkResponse
 import com.android254.data.network.models.responses.EventScheduleResponse
 import com.android254.data.network.models.responses.SessionApiModel
-import com.android254.data.network.util.TokenProvider
 import com.android254.data.preferences.DefaultTokenProvider
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.request.*
 import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
-
 
 class SessionRemoteSource @Inject constructor(
     private val client: HttpClient,

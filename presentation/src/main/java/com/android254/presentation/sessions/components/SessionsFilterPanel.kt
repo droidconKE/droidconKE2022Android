@@ -1,20 +1,17 @@
 package com.android254.presentation.sessions.components
 
 import android.os.Build
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.toUpperCase
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -25,9 +22,7 @@ import com.android254.presentation.sessions.utils.SessionsFilterCategory
 import com.android254.presentation.sessions.view.SessionsViewModel
 import com.droidconke.chai.atoms.type.MontserratBold
 import com.droidconke.chai.atoms.type.MontserratSemiBold
-import kotlinx.coroutines.launch
 import java.util.*
-
 
 private fun loadFilters(): List<SessionsFilterOption> {
     return listOf(
@@ -107,7 +102,6 @@ fun SessionsFilterPanel(
         fontWeight = FontWeight.Bold,
         fontFamily = MontserratBold
     )
-
 
     val selectableFilters = loadFilters()
 

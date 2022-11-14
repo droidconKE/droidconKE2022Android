@@ -8,9 +8,7 @@ import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
-import java.time.format.FormatStyle
 import java.util.*
-
 
 class DateStringConverter {
     @RequiresApi(Build.VERSION_CODES.O)
@@ -28,5 +26,4 @@ class DateStringConverter {
         return LocalDateTime.parse(offsetDateTime, pattern).toInstant(ZoneOffset.ofHours(3))
             .toEpochMilli()
     }
-
 }

@@ -28,14 +28,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.android254.presentation.common.bottomsheet.BottomSheetScaffold
 import com.android254.presentation.common.bottomsheet.rememberBottomSheetScaffoldState
 import com.android254.presentation.common.components.*
 import com.android254.presentation.common.theme.DroidconKE2022Theme
-import com.android254.presentation.sessions.components.EventDate
 import com.android254.presentation.sessions.components.EventDaySelector
 import com.android254.presentation.sessions.components.SessionList
 import com.android254.presentation.sessions.components.SessionsFilterPanel

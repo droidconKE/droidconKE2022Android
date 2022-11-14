@@ -15,7 +15,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import com.android254.presentation.R
 import com.android254.presentation.common.components.SessionsCard
 import com.android254.presentation.common.components.SessionsLoadingSkeleton
@@ -35,7 +34,6 @@ fun SessionList(
     val loading: Boolean by viewModel.loading.observeAsState(false)
     val empty: Boolean by viewModel.loading.observeAsState(false)
     val swipeRefreshState = rememberSwipeRefreshState(false)
-
 
     if (loading) {
         SessionsLoadingSkeleton()
@@ -75,7 +73,6 @@ fun SessionList(
                         if (index == sessions.size - 1) {
                             Spacer(modifier = Modifier.height(32.dp))
                         }
-
                     }
                 }
             }
