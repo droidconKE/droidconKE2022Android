@@ -18,13 +18,15 @@ package com.android254.data.dao
 import androidx.room.Dao
 import androidx.room.Query
 import com.android254.data.db.model.SpeakerEntity
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface SpeakerDao : BaseDao<SpeakerEntity> {
     @Query("SELECT * FROM speakers")
-    fun fetchSpeakers(): Flow<List<SpeakerEntity>>
+    suspend fun fetchSpeakers(): List<SpeakerEntity>
 
-    @Query("SELECT * FROM speakers WHERE twitter = :twitterHandle")
-    fun getSpeakerByTwitterHandle(twitterHandle: String): Flow<SpeakerEntity>
+    @Query("SELECT COUNT(*) FROM speakers")
+    suspend fun fetchSpeakerCount(): Int
+
+    @Query("SELECT * FROM speakers WHERE id = :id")
+    suspend fun getSpeakerByTwitterHandle(id: Int): SpeakerEntity
 }

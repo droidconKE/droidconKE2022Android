@@ -20,11 +20,10 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class SpeakerDTO(
-    val id: String,
     val name: String,
     @SerialName("biography")
     val bio: String,
-    val shortBio: String,
+    val tagline: String,
     val avatar: String,
     val twitter: String?
 )
