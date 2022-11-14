@@ -13,15 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android254.presentation.models
+package com.android254.data.network.models.responses
 
-/**
- * Sample speaker data class
- */
-data class Speaker(
-    val imageUrl: String = "",
-    val name: String = "Name",
-    val tagline: String = "",
-    val bio: String = "bio",
-    val twitterHandle: String = "TwitterHandle"
+import kotlinx.serialization.Serializable
+
+@Serializable
+data class UserDetailsDTO(
+    val name: String,
+    val email: String,
+    val gender: String?,
+    val avatar: String
 )

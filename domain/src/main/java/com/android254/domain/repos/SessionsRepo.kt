@@ -16,8 +16,8 @@
 package com.android254.domain.repos
 
 import com.android254.domain.models.ResourceResult
-import com.android254.domain.models.SessionDomainModel
+import com.android254.domain.models.Session
 
 interface SessionsRepo {
-    suspend fun fetchAndSaveSessions(): ResourceResult<List<SessionDomainModel>>
+    suspend fun fetchAndSaveSessions(): ResourceResult<List<Session>>
 }

@@ -15,7 +15,7 @@
  */
 package com.android254.domain.models
 
-sealed interface DataResult<out T : Any>{
+sealed interface DataResult<out T : Any> {
     data class Success<out T : Any>(val data: T) : DataResult<T>
     data class Error(
         val message: String,

@@ -19,12 +19,15 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.android254.data.dao.SessionDao
-import com.android254.data.db.model.Session
+import com.android254.data.dao.SpeakerDao
+import com.android254.data.db.model.SessionEntity
+import com.android254.data.db.model.SpeakerEntity
 import com.android254.data.db.util.InstantConverter
 
 @Database(
     entities = [
-        Session::class
+        SessionEntity::class,
+        SpeakerEntity::class
     ],
     version = 1,
     exportSchema = true
@@ -34,4 +37,6 @@ import com.android254.data.db.util.InstantConverter
 )
 abstract class Database : RoomDatabase() {
     abstract fun sessionDao(): SessionDao
+
+    abstract fun speakerDao(): SpeakerDao
 }

@@ -17,16 +17,16 @@ package com.android254.data.network.apis
 
 import com.android254.data.network.Constants
 import com.android254.data.network.models.responses.PaginatedResponse
-import com.android254.data.network.models.responses.SessionApiModel
+import com.android254.data.network.models.responses.SessionDTO
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.request.*
 import javax.inject.Inject
 
-class SessionRemoteSource @Inject constructor(
+class SessionsApi @Inject constructor(
     private val client: HttpClient
 ) {
-    suspend fun fetchSessions(perPage: Int = 200): PaginatedResponse<List<SessionApiModel>> {
+    suspend fun fetchSessions(perPage: Int = 200): PaginatedResponse<List<SessionDTO>> {
         return client.get("${Constants.BASE_URL}/events/${Constants.EVENT_SLUG}/sessions") {
             url {
                 parameters.append("per_page", perPage.toString())

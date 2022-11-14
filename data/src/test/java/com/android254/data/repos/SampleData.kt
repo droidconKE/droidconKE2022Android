@@ -18,11 +18,11 @@ package com.android254.data.repos
 import com.android254.data.network.models.responses.PaginatedResponse
 import com.android254.data.network.models.responses.PaginationMetaData
 import com.android254.data.network.models.responses.ResponseMetaData
-import com.android254.data.network.models.responses.SessionApiModel
+import com.android254.data.network.models.responses.SessionDTO
 
 val results = PaginatedResponse(
     data = listOf(
-        SessionApiModel(
+        SessionDTO(
             "1",
             "",
             "",

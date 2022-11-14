@@ -13,13 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android254.data.network
+package com.android254.domain.repos
 
-object Constants {
-    const val BASE_URL = "https://droidcon-erp.herokuapp.com/api/v1"
-    const val LIVE_BASE_URL = "https://api.droidcon.co.ke/api/v1"
-    const val EVENT_SLUG = "droidconke-2022-281"
-    const val ORG_SLUG = "droidcon-ke-645"
-    const val EVENT_BASE_URL = "$BASE_URL/events/$EVENT_SLUG"
-    const val API_KEY = "droidconke-2020"
+import com.android254.domain.models.ResourceResult
+import com.android254.domain.models.Speaker
+
+interface SpeakersRepo {
+    suspend fun fetchSpeakers(): ResourceResult<List<Speaker>>
 }

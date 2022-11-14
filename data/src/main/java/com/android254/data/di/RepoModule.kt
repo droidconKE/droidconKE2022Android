@@ -16,7 +16,9 @@
 package com.android254.data.di
 
 import com.android254.data.repos.AuthManager
+import com.android254.data.repos.SpeakersManager
 import com.android254.domain.repos.AuthRepo
+import com.android254.domain.repos.SpeakersRepo
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -30,4 +32,8 @@ abstract class RepoModule {
     @Binds
     @Singleton
     abstract fun provideAuthRepo(repo: AuthManager): AuthRepo
+
+    @Binds
+    @Singleton
+    abstract fun provideSpeakersRepo(manager: SpeakersManager): SpeakersRepo
 }

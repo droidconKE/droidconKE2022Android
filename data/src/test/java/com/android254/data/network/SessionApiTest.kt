@@ -15,11 +15,10 @@
  */
 package com.android254.data.network
 
-import com.android254.data.network.apis.SessionRemoteSource
+import com.android254.data.network.apis.SessionsApi
+import com.android254.data.network.apis.samplePaginationMetaData
 import com.android254.data.network.models.responses.PaginatedResponse
-import com.android254.data.network.models.responses.PaginationMetaData
-import com.android254.data.network.models.responses.ResponseMetaData
-import com.android254.data.network.models.responses.SessionApiModel
+import com.android254.data.network.models.responses.SessionDTO
 import com.android254.data.network.util.HttpClientFactory
 import io.ktor.client.engine.mock.*
 import io.ktor.http.*
@@ -31,20 +30,10 @@ import org.hamcrest.CoreMatchers.`is`
 class SessionApiTest {
     @Test
     fun `sessions are fetched successfully`() {
-        val expectedResponse: PaginatedResponse<List<SessionApiModel>> =
+        val expectedResponse: PaginatedResponse<List<SessionDTO>> =
             PaginatedResponse(
                 data = listOf(),
-                meta = ResponseMetaData(
-                    paginator = PaginationMetaData(
-                        count = 0,
-                        current_page = 1,
-                        has_more_pages = false,
-                        next_page = null,
-                        next_page_url = null,
-                        per_page = "20",
-                        previous_page_url = null
-                    )
-                )
+                meta = samplePaginationMetaData
             )
 
         val responseText = """
@@ -74,7 +63,7 @@ class SessionApiTest {
 
         runBlocking {
             // WHEN
-            val response = SessionRemoteSource(httpClient).fetchSessions()
+            val response = SessionsApi(httpClient).fetchSessions()
             // THEN
             assertThat(response, `is`(expectedResponse))
         }

@@ -16,27 +16,42 @@
 package com.android254.presentation.speakers
 
 import androidx.lifecycle.ViewModel
-import com.android254.presentation.models.Speaker
+import com.android254.domain.models.ResourceResult
+import com.android254.domain.repos.SpeakersRepo
+import com.android254.presentation.models.SpeakerUI
+import com.android254.presentation.models.speakersDummyData
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
 import javax.inject.Inject
 
 @HiltViewModel
-class SpeakersViewModel @Inject constructor() : ViewModel() {
+class SpeakersViewModel @Inject constructor(
+    private val speakersRepo: SpeakersRepo
+) : ViewModel() {
 
-    fun getSpeakers() = listOf(
-        Speaker(
-            imageUrl = "https://sessionize.com/image/09c1-400o400o2-cf-9587-423b-bd2e-415e6757286c.b33d8d6e-1f94-4765-a797-255efc34390d.jpg",
-            name = "Harun Wangereka",
-            bio = "Kenya Partner Lead at droidcon Berlin | Android | Kotlin | Flutter | C++"
-        ),
-        Speaker(
-            imageUrl = "https://media-exp1.licdn.com/dms/image/C4D03AQGn58utIO-x3w/profile-displayphoto-shrink_200_200/0/1637478114039?e=2147483647&v=beta&t=3kIon0YJQNHZojD3Dt5HVODJqHsKdf2YKP1SfWeROnI",
-            name = "Frank Tamre",
-            bio = "Kenya Partner Lead at droidcon Berlin | Android | Kotlin | Flutter | C++"
-        )
-    )
+    val isLoading = MutableStateFlow(false)
+    val message = MutableSharedFlow<String>()
 
-    fun getSpeakerByTwitterHandle(twitterHandle: String) = Speaker(
+    suspend fun getSpeakers(): List<SpeakerUI> {
+        isLoading.value = true
+        when (val result = speakersRepo.fetchSpeakers()) {
+            is ResourceResult.Success -> {
+                val list = result.data?.map { }
+                println(list)
+            }
+            is ResourceResult.Error -> {
+                println("lllllllllllllllllllllllll")
+                println(result.message)
+                message.tryEmit(result.message)
+            }
+            else -> {}
+        }
+        isLoading.value = false
+        return speakersDummyData
+    }
+
+    fun getSpeakerByTwitterHandle(twitterHandle: String) = SpeakerUI(
         imageUrl = "https://media-exp1.licdn.com/dms/image/C4D03AQGn58utIO-x3w/profile-displayphoto-shrink_200_200/0/1637478114039?e=2147483647&v=beta&t=3kIon0YJQNHZojD3Dt5HVODJqHsKdf2YKP1SfWeROnI",
         name = "Frank Tamre",
         tagline = "Kenya Partner Lead at droidcon Berlin | Android | Kotlin | Flutter",

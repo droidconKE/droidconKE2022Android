@@ -13,13 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android254.data.network.models.responses
+package com.android254.data.db.model
 
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
-@Serializable
-data class AccessToken(
-    @SerialName("token") val token: String,
-    @SerialName("user") val user: UserDetails
+@Entity(tableName = "sessions")
+data class SessionEntity(
+    @PrimaryKey(autoGenerate = true) val id: Int,
+    val description: String,
+    val session_format: String,
+    val session_level: String,
+    val slug: String,
+    val title: String
 )

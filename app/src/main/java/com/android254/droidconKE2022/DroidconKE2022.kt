@@ -16,7 +16,6 @@
 package com.android254.droidconKE2022
 
 import android.app.Application
-import androidx.annotation.Nullable
 import com.android254.droidconKE2022.crashlytics.CrashlyticsTree
 import dagger.hilt.android.HiltAndroidApp
 import org.jetbrains.annotations.NotNull
@@ -34,7 +33,6 @@ class DroidconKE2022 : Application() {
     private fun initTimber() = when {
         BuildConfig.DEBUG -> {
             Timber.plant(object : Timber.DebugTree() {
-                @Nullable
                 override fun createStackElementTag(@NotNull element: StackTraceElement): String {
                     return super.createStackElementTag(element) + ":" + element.lineNumber
                 }

@@ -15,19 +15,20 @@
  */
 package com.android254.data.network.util
 
+import com.android254.data.BuildConfig
 import io.ktor.client.*
 import io.ktor.client.engine.*
 import io.ktor.client.plugins.*
 import io.ktor.client.plugins.auth.*
 import io.ktor.client.plugins.auth.providers.*
 import io.ktor.client.plugins.contentnegotiation.*
+import io.ktor.client.plugins.logging.*
 import io.ktor.client.plugins.observer.*
 import io.ktor.client.request.*
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.serialization.json.Json
-import timber.log.Timber
 import javax.inject.Inject
 
 class HttpClientFactory @Inject constructor(private val tokenProvider: TokenProvider) {
@@ -43,14 +44,11 @@ class HttpClientFactory @Inject constructor(private val tokenProvider: TokenProv
             )
         }
 
-        install(ResponseObserver) {
-            onResponse { response ->
-                Timber.d("HTTP status:", "${response.status.value}")
-            }
-        }
-
         install(DefaultRequest) {
             header(HttpHeaders.ContentType, ContentType.Application.Json)
+            if (BuildConfig.API_KEY.isNotEmpty()) {
+                header("Api-Authorization-Key", BuildConfig.API_KEY)
+            }
         }
 
         expectSuccess = true
@@ -69,6 +67,13 @@ class HttpClientFactory @Inject constructor(private val tokenProvider: TokenProv
                 sendWithoutRequest { request ->
                     request.url.toString().contains("social_login/google")
                 }
+            }
+        }
+
+        if (BuildConfig.DEBUG) {
+            install(Logging) {
+                logger = Logger.DEFAULT
+                level = LogLevel.ALL
             }
         }
     }

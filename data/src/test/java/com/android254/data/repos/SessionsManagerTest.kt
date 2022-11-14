@@ -19,8 +19,8 @@ import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import com.android254.data.dao.SessionDao
 import com.android254.data.db.Database
-import com.android254.data.db.model.Session
-import com.android254.data.network.apis.SessionRemoteSource
+import com.android254.data.db.model.SessionEntity
+import com.android254.data.network.apis.SessionsApi
 import com.android254.data.network.util.NetworkError
 import com.android254.domain.models.ResourceResult
 import io.mockk.coEvery
@@ -40,7 +40,7 @@ import org.robolectric.RobolectricTestRunner
 
 @RunWith(RobolectricTestRunner::class)
 class SessionsManagerTest {
-    private val mockApi = mockk<SessionRemoteSource>()
+    private val mockApi = mockk<SessionsApi>()
     private lateinit var dao: SessionDao
     private lateinit var database: Database
 
@@ -82,7 +82,7 @@ class SessionsManagerTest {
             val result = repo.fetchAndSaveSessions()
             coVerify { mockApi.fetchSessions(200) }
             assertThat(result, CoreMatchers.instanceOf(ResourceResult.Success::class.java))
-            Assert.assertEquals(listOf(Session(id = 1, description = "", session_format = "", session_level = "", slug = "", title = "new title")), dao.fetchSessions().first())
+            Assert.assertEquals(listOf(SessionEntity(id = 1, description = "", session_format = "", session_level = "", slug = "", title = "new title")), dao.fetchSessions().first())
         }
     }
 

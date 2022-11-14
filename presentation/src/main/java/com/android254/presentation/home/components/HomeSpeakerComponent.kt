@@ -27,7 +27,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.focus.FocusRequester.Companion.createRefs
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -44,11 +43,11 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.android254.presentation.R
 import com.android254.presentation.common.theme.DroidconKE2022Theme
-import com.android254.presentation.models.Speaker
+import com.android254.presentation.models.SpeakerUI
 import com.droidconke.chai.atoms.type.MontserratMedium
 
 @Composable
-fun HomeSpeakerComponent(speaker: Speaker, onClick: () -> Unit = {}) {
+fun HomeSpeakerComponent(speaker: SpeakerUI, onClick: () -> Unit = {}) {
     ConstraintLayout(
         modifier = Modifier
             .height(110.dp)
@@ -100,7 +99,7 @@ fun HomeSpeakerComponent(speaker: Speaker, onClick: () -> Unit = {}) {
 fun HomeSpeakerComponentPreview() {
     DroidconKE2022Theme {
         Surface(color = Color.White) {
-            HomeSpeakerComponent(speaker = Speaker(name = "Harun Wangereka", bio = "Staff Engineer"))
+            HomeSpeakerComponent(speaker = SpeakerUI(name = "Harun Wangereka", bio = "Staff Engineer"))
         }
     }
 }

@@ -16,17 +16,20 @@
 package com.android254.data.network.apis
 
 import com.android254.data.network.Constants
-import com.android254.data.network.models.responses.SpeakerApiModel
-import com.android254.data.network.util.safeApiCall
+import com.android254.data.network.models.responses.SpeakersPagedResponse
+import com.android254.data.network.util.dataResultSafeApiCall
+import com.android254.domain.models.DataResult
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.request.*
 import javax.inject.Inject
 
-class SpeakerRemoteSource @Inject constructor(
+class SpeakersApi @Inject constructor(
     private val client: HttpClient
 ) {
-    suspend fun fetchSpeakers(): List<SpeakerApiModel> = safeApiCall {
-        return@safeApiCall client.get("${Constants.BASE_URL}/speakers").body()
+    suspend fun fetchSpeakers(): DataResult<SpeakersPagedResponse> = dataResultSafeApiCall {
+        return@dataResultSafeApiCall client.get(
+            "${Constants.EVENT_BASE_URL}/speakers?per_page=100"
+        ).body()
     }
 }

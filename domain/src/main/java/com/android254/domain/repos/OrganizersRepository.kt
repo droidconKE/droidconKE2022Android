@@ -15,11 +15,11 @@
  */
 package com.android254.domain.repos
 
-import com.android254.domain.models.OrganizerDomainModel
+import com.android254.domain.models.Organizer
 
 interface OrganizersRepository {
 
     fun fetchOrganizers()
 
-    fun getOrganizers(): List<OrganizerDomainModel>
+    fun getOrganizers(): List<Organizer>
 }

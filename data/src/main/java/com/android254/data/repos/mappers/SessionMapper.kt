@@ -15,11 +15,11 @@
  */
 package com.android254.data.repos.mappers
 
-import com.android254.data.db.model.Session
-import com.android254.data.network.models.responses.SessionApiModel
-import com.android254.domain.models.SessionDomainModel
+import com.android254.data.db.model.SessionEntity
+import com.android254.data.network.models.responses.SessionDTO
+import com.android254.domain.models.Session
 
-fun Session.toDomainModel() = SessionDomainModel(
+fun SessionEntity.toDomainModel() = Session(
     id = this.id,
     description = this.description,
     title = this.title,
@@ -28,7 +28,7 @@ fun Session.toDomainModel() = SessionDomainModel(
     slug = this.slug
 )
 
-fun SessionApiModel.toEntity() = Session(
+fun SessionDTO.toEntity() = SessionEntity(
     id = 0,
     description = description,
     title = title,

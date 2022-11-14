@@ -16,20 +16,20 @@
 package com.android254.data.repos
 
 import com.android254.data.dao.SessionDao
-import com.android254.data.network.apis.SessionRemoteSource
+import com.android254.data.network.apis.SessionsApi
 import com.android254.data.network.util.NetworkError
 import com.android254.data.repos.mappers.toDomainModel
 import com.android254.data.repos.mappers.toEntity
 import com.android254.domain.models.ResourceResult
-import com.android254.domain.models.SessionDomainModel
+import com.android254.domain.models.Session
 import com.android254.domain.repos.SessionsRepo
 import javax.inject.Inject
 
 class SessionsManager @Inject constructor(
-    private val api: SessionRemoteSource,
+    private val api: SessionsApi,
     private val dao: SessionDao
 ) : SessionsRepo {
-    override suspend fun fetchAndSaveSessions(): ResourceResult<List<SessionDomainModel>> {
+    override suspend fun fetchAndSaveSessions(): ResourceResult<List<Session>> {
         return try {
             val response = api.fetchSessions()
 

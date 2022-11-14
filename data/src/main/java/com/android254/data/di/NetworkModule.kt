@@ -15,8 +15,11 @@
  */
 package com.android254.data.di
 
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
 import com.android254.data.network.util.HttpClientFactory
 import com.android254.data.network.util.TokenProvider
+import com.android254.data.preferences.DefaultTokenProvider
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -47,4 +50,8 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideHttpClient(engine: HttpClientEngine, tokenProvider: TokenProvider): HttpClient = HttpClientFactory(tokenProvider).create(engine)
+
+    @Provides
+    @Singleton
+    fun provideTokenProvider(datastore: DataStore<Preferences>): TokenProvider = DefaultTokenProvider(datastore)
 }
