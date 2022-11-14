@@ -21,7 +21,7 @@ android {
         if (File("api_key.txt").exists()) {
             buildConfigField("String", "API_KEY", "\"${File("api_key.txt").readText()}\"")
         } else {
-            buildConfigField("String", "API_KEY", "")
+            buildConfigField("String", "API_KEY", "\"\"")
         }
     }
 
