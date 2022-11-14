@@ -21,8 +21,12 @@ class SessionsCardViewModel @Inject constructor(
                     is ResourceResult.Error -> {
 
                     }
-                    is ResourceResult.Loading -> TODO()
-                    is ResourceResult.Success -> TODO()
+                    is ResourceResult.Loading -> {
+
+                    }
+                    is ResourceResult.Success -> {
+
+                    }
                 }
             }
         }

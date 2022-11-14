@@ -42,6 +42,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import com.android254.presentation.R
 import com.android254.presentation.models.SessionPresentationModel
+import com.android254.presentation.sessions.view.SessionsCardViewModel
 import com.android254.presentation.sessions.view.SessionsViewModel
 import com.droidconke.chai.atoms.type.MontserratBold
 import com.droidconke.chai.atoms.type.MontserratSemiBold
@@ -145,7 +146,7 @@ fun RowScope.SessionDetails(session: SessionPresentationModel) {
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun SessionTitleComponent(session: SessionPresentationModel, viewModel: SessionsViewModel = hiltViewModel()) {
+fun SessionTitleComponent(session: SessionPresentationModel, viewModel: SessionsCardViewModel = hiltViewModel()) {
     val isStarred = rememberSaveable() {
         mutableStateOf(session.isStarred)
     }

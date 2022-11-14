@@ -15,6 +15,8 @@
  */
 package com.android254.presentation.sessionDetails.view
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.*
@@ -27,15 +29,13 @@ import androidx.compose.material.icons.filled.Reply
 import androidx.compose.material.icons.rounded.Star
 import androidx.compose.material.icons.rounded.StarOutline
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
@@ -159,7 +159,11 @@ private fun SpeakerTwitterHandle(
     darkTheme: Boolean,
     sessionDetails: SessionDetailsPresentationModel
 ) {
+
     if (sessionDetails.twitterHandle != null) {
+        val context = LocalContext.current
+        val intent = remember { Intent(Intent.ACTION_VIEW, Uri.parse("https://www.twitter.com/${sessionDetails.twitterHandle}")) }
+
         Row(
             modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
@@ -176,7 +180,7 @@ private fun SpeakerTwitterHandle(
                 )
             )
             Button(
-                onClick = {},
+                onClick = { context.startActivity(intent) },
                 border = BorderStroke(
                     1.dp,
                     colorResource(id = if (darkTheme) R.color.cyan else R.color.blue)
@@ -439,6 +443,7 @@ object TestTag {
     const val TWITTER_HANDLE_TEXT = "$PREFIX twitterHandleText"
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Preview
 @Composable
 fun SessionDetailsScreenPreview() {
@@ -450,6 +455,7 @@ fun SessionDetailsScreenPreview() {
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Preview
 @Composable
 fun SessionDetailsScreenDarkThemePreview() {
