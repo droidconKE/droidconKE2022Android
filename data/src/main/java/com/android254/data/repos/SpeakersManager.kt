@@ -57,11 +57,7 @@ class SpeakersManager @Inject constructor(
         return@withContext ResourceResult.Success(speakerDao.fetchSpeakers().map { it.toDomainModel() })
     }
 
-    override suspend fun fetchSpeakerCount(): ResourceResult<Int> {
-        return ResourceResult.Success(speakerDao.fetchSpeakerCount())
-    }
+    override suspend fun fetchSpeakerCount(): ResourceResult<Int> = ResourceResult.Success(speakerDao.fetchSpeakerCount())
 
-    override suspend fun getSpeakerById(id: Int): ResourceResult<Speaker> {
-        return ResourceResult.Success(speakerDao.getSpeakerById(id).toDomainModel())
-    }
+    override suspend fun getSpeakerById(id: Int): ResourceResult<Speaker> = ResourceResult.Success(speakerDao.getSpeakerById(id).toDomainModel())
 }
