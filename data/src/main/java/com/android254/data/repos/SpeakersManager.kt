@@ -30,15 +30,12 @@ class SpeakersManager @Inject constructor(
     val speakerDao = db.speakerDao()
 
     override suspend fun fetchSpeakers(): ResourceResult<List<Speaker>> {
-        println("PPPPPPPPPPPPPPPPPPPPPP")
         return when (val result = api.fetchSpeakers()) {
             is DataResult.Success -> {
-                println("tttttttttttttttttttttttt")
                 val data = result.data.data
                 if (data.isEmpty()) {
                     ResourceResult.Empty()
                 }
-                println(data)
                 ResourceResult.Success(emptyList())
             }
             is DataResult.Error -> {
@@ -48,7 +45,6 @@ class SpeakersManager @Inject constructor(
                 )
             }
             else -> {
-                println("mmmmmmmmmmmmmmmmmmm")
                 ResourceResult.Success(emptyList())
             }
         }

@@ -60,7 +60,6 @@ fun SpeakersScreen(
     val speakers = remember { mutableStateListOf<SpeakerUI>() }
 
     LaunchedEffect(toastMessage) {
-        println("zzzz")
         if (toastMessage.isNotEmpty()) {
             Toast.makeText(context, toastMessage, Toast.LENGTH_SHORT).show()
         }
