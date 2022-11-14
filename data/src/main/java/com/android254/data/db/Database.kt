@@ -20,14 +20,11 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.android254.data.dao.SessionDao
 import com.android254.data.db.model.Session
+import com.android254.data.db.util.DateStringConverter
 import com.android254.data.db.util.InstantConverter
 
 @Database(
-    entities = [
-        Session::class
-    ],
-    version = 1,
-    exportSchema = true
+    entities = [Session::class], version = 1, exportSchema = true
 )
 @TypeConverters(
     InstantConverter::class

@@ -31,5 +31,6 @@ data class SessionPresentationModel(
     val format: String,
     val level: String,
     val startDate: String,
-    val endDate: String
+    val endDate: String,
+    val remoteId: String
 )

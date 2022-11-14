@@ -19,17 +19,12 @@ import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import com.android254.data.dao.SessionDao
 import com.android254.data.db.Database
-import com.android254.data.db.model.Session
 import com.android254.data.network.apis.SessionRemoteSource
-import com.android254.data.network.util.NetworkError
-import com.android254.domain.models.ResourceResult
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.hamcrest.CoreMatchers
-import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.After
 import org.junit.Assert
@@ -58,9 +53,9 @@ class SessionsManagerTest {
     fun `test network errors are properly handled`() {
         runBlocking {
             Assert.assertEquals(dao.fetchSessions().first(), true)
-            coEvery { mockApi.fetchSessions(200) } returns results
+            coEvery { mockApi.fetchSessions() } returns results
             val result = repo.fetchAndSaveSessions(false)
-            coVerify { mockApi.fetchSessions(200) }
+            coVerify { mockApi.fetchSessions() }
             assertThat(result, CoreMatchers.`is`(DataResult.Success(Success)))
             Assert.assertEquals(dao.fetchSessions().first(), 1)
         }

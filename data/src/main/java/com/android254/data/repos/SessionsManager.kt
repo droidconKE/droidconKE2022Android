@@ -15,6 +15,8 @@
  */
 package com.android254.data.repos
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.sqlite.db.SimpleSQLiteQuery
 import com.android254.data.dao.SessionDao
 import com.android254.data.network.apis.SessionRemoteSource
@@ -25,6 +27,7 @@ import com.android254.domain.models.ResourceResult
 import com.android254.domain.models.SessionDomainModel
 import com.android254.domain.repos.SessionsRepo
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
@@ -32,6 +35,7 @@ class SessionsManager @Inject constructor(
     private val api: SessionRemoteSource,
     private val dao: SessionDao
 ) : SessionsRepo {
+    @RequiresApi(Build.VERSION_CODES.O)
     override suspend fun fetchAndSaveSessions(
         fetchFromRemote: Boolean,
         query: String?
@@ -99,5 +103,15 @@ class SessionsManager @Inject constructor(
             emit(ResourceResult.Success(data = session.toDomainModel()))
             return@flow
         }
+    }
+
+    override suspend fun toggleBookmarkStatus(id: String): Boolean {
+        try {
+            val response = api.updateBookmarkedStatus(id)
+            dao.updateBookmarkedStatus(id, false)
+        } catch (e: Exception) {
+        }
+
+        return true
     }
 }

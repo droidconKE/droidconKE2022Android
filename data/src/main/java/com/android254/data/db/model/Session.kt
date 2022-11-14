@@ -21,6 +21,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "sessions")
 data class Session(
     @PrimaryKey(autoGenerate = true) val id: Int,
+    val remote_id: String,
     val description: String,
     val session_format: String,
     val session_level: String,
@@ -37,5 +38,6 @@ data class Session(
     val start_date_time: String,
     val start_time: String,
     val rooms: String,
-    val speakers: String
+    val speakers: String,
+    val start_timestamp: Long,
 )

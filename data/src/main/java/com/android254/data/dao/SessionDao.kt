@@ -23,7 +23,7 @@ import com.android254.data.db.model.Session
 
 @Dao
 interface SessionDao : BaseDao<Session> {
-    @Query("SELECT * FROM sessions")
+    @Query("SELECT * FROM sessions ORDER BY start_timestamp ASC")
     fun fetchSessions(): List<Session>
 
     @Query("DELETE FROM sessions")
@@ -34,4 +34,7 @@ interface SessionDao : BaseDao<Session> {
 
     @RawQuery
     fun fetchSessionsWithFilters(query: SupportSQLiteQuery): List<Session>
+
+    @Query("UPDATE sessions SET is_bookmarked = :isBookmarked WHERE id = :id")
+    fun updateBookmarkedStatus(id: String, isBookmarked: Boolean)
 }

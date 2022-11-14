@@ -15,6 +15,8 @@
  */
 package com.android254.presentation.common.components
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -24,7 +26,9 @@ import androidx.compose.material.icons.rounded.Star
 import androidx.compose.material.icons.rounded.StarOutline
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -34,9 +38,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import com.android254.presentation.R
 import com.android254.presentation.models.SessionPresentationModel
+import com.android254.presentation.sessions.view.SessionsViewModel
 import com.droidconke.chai.atoms.type.MontserratBold
 import com.droidconke.chai.atoms.type.MontserratSemiBold
 
@@ -91,6 +97,7 @@ fun RowScope.SessionTimeComponent(sessionStartTime: String, sessionAmOrPm: Strin
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun RowScope.SessionDetails(session: SessionPresentationModel) {
     Column(
@@ -98,7 +105,7 @@ fun RowScope.SessionDetails(session: SessionPresentationModel) {
             .weight(0.85f)
             .padding(PaddingValues(start = 10.dp, end = 10.dp, bottom = 10.dp))
     ) {
-        SessionTitleComponent(session.title, session.isStarred)
+        SessionTitleComponent(session)
         Spacer(modifier = Modifier.height(6.dp))
         Row(modifier = Modifier.fillMaxWidth()) {
             Text(
@@ -136,15 +143,18 @@ fun RowScope.SessionDetails(session: SessionPresentationModel) {
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun SessionTitleComponent(sessionTitle: String, sessionIsStarred: Boolean) {
-    val interactionSource = remember { MutableInteractionSource() }
+fun SessionTitleComponent(session: SessionPresentationModel, viewModel: SessionsViewModel = hiltViewModel()) {
+    val isStarred = rememberSaveable() {
+        mutableStateOf(session.isStarred)
+    }
     Row(
         Modifier
             .fillMaxWidth()
     ) {
         Text(
-            text = sessionTitle,
+            text = session.title,
             style = MaterialTheme.typography.titleSmall.copy(
                 fontWeight = FontWeight.Bold,
                 fontSize = 16.sp,
@@ -155,10 +165,10 @@ fun SessionTitleComponent(sessionTitle: String, sessionIsStarred: Boolean) {
             modifier = Modifier.weight(1f)
         )
         IconButton(onClick = {
-            println("Hello")
+            viewModel.updateBookmarkStatus(session.remoteId)
         }) {
             Icon(
-                imageVector = if (sessionIsStarred) Icons.Rounded.StarOutline else Icons.Rounded.Star,
+                imageVector = if (isStarred.value) Icons.Rounded.Star else Icons.Rounded.StarOutline,
                 contentDescription = stringResource(R.string.star_session_icon_description),
                 tint = MaterialTheme.colorScheme.primary
             )

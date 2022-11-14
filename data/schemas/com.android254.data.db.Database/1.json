@@ -2,16 +2,22 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "ce4763d0c2a7df3ce493fea78f00efe7",
+    "identityHash": "4f47dd20cf76fb465ef119a43f849dd4",
     "entities": [
       {
         "tableName": "sessions",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `description` TEXT NOT NULL, `session_format` TEXT NOT NULL, `session_level` TEXT NOT NULL, `slug` TEXT NOT NULL, `title` TEXT NOT NULL, `backgroundColor` TEXT NOT NULL, `borderColor` TEXT NOT NULL, `end_date_time` TEXT NOT NULL, `end_time` TEXT NOT NULL, `is_bookmarked` INTEGER NOT NULL, `is_keynote` INTEGER NOT NULL, `is_serviceSession` INTEGER NOT NULL, `session_image` TEXT, `start_date_time` TEXT NOT NULL, `start_time` TEXT NOT NULL, `rooms` TEXT NOT NULL, `speakers` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `remote_id` TEXT NOT NULL, `description` TEXT NOT NULL, `session_format` TEXT NOT NULL, `session_level` TEXT NOT NULL, `slug` TEXT NOT NULL, `title` TEXT NOT NULL, `backgroundColor` TEXT NOT NULL, `borderColor` TEXT NOT NULL, `end_date_time` TEXT NOT NULL, `end_time` TEXT NOT NULL, `is_bookmarked` INTEGER NOT NULL, `is_keynote` INTEGER NOT NULL, `is_serviceSession` INTEGER NOT NULL, `session_image` TEXT, `start_date_time` TEXT NOT NULL, `start_time` TEXT NOT NULL, `rooms` TEXT NOT NULL, `speakers` TEXT NOT NULL, `start_timestamp` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
             "columnName": "id",
             "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "remote_id",
+            "columnName": "remote_id",
+            "affinity": "TEXT",
             "notNull": true
           },
           {
@@ -115,6 +121,12 @@
             "columnName": "speakers",
             "affinity": "TEXT",
             "notNull": true
+          },
+          {
+            "fieldPath": "start_timestamp",
+            "columnName": "start_timestamp",
+            "affinity": "INTEGER",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -130,7 +142,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'ce4763d0c2a7df3ce493fea78f00efe7')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '4f47dd20cf76fb465ef119a43f849dd4')"
     ]
   }
 }

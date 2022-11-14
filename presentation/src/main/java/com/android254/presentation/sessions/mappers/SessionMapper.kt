@@ -25,6 +25,7 @@ import com.android254.presentation.sessions.components.EventDate
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.time.LocalDate
+import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -50,7 +51,8 @@ fun SessionDomainModel.toPresentationModel(): SessionPresentationModel {
         level = this.session_level,
         format = this.session_format,
         startDate = this.start_date_time,
-        endDate = this.end_date_time
+        endDate = this.end_date_time,
+        remoteId = this.remote_id
     )
 }
 
@@ -90,12 +92,11 @@ fun getTwitterHandle(speakers: List<Speaker>): String {
 
 @RequiresApi(Build.VERSION_CODES.O)
 private fun getTimePeriod(time: String): FormattedTime {
-    val pattern = "yyyy-MM-dd HH:mm:ss"
-    val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd' 'HH:mm:ss")
-    val localDate = LocalDate.parse(time, formatter)
+    val pattern = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+     LocalDateTime.parse(time, pattern).toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm"))
     return FormattedTime(
-        "08:45",
-        "AM"
+        LocalDateTime.parse(time, pattern).toLocalTime().format(DateTimeFormatter.ofPattern("hh:mm")),
+        LocalDateTime.parse(time, pattern).toLocalTime().format(DateTimeFormatter.ofPattern("a")),
     )
 }
 

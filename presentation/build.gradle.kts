@@ -80,6 +80,7 @@ dependencies {
     implementation(libs.accompanist.flowlayout)
     implementation(libs.lottie.compose)
     implementation(libs.gson.gson)
+    implementation(libs.accompanist.swiperefresh)
     implementation(libs.kotlin.coroutines.datetime)
     implementation(libs.zeko.query.builder)
     kapt(libs.android.hilt.compiler)

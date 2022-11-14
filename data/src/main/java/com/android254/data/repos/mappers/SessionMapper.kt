@@ -15,10 +15,15 @@
  */
 package com.android254.data.repos.mappers
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import com.android254.data.db.model.Session
 import com.android254.data.network.models.responses.SessionApiModel
 import com.android254.domain.models.SessionDomainModel
 import com.google.gson.Gson
+import java.time.LocalDateTime
+import java.time.ZoneOffset
+import java.time.format.DateTimeFormatter
 
 fun Session.toDomainModel() = SessionDomainModel(
     id = this.id,
@@ -38,9 +43,11 @@ fun Session.toDomainModel() = SessionDomainModel(
     start_date_time = this.start_date_time,
     start_time = this.start_time,
     rooms = this.rooms,
-    speakers = this.speakers
+    speakers = this.speakers,
+    remote_id = this.remote_id
 )
 
+@RequiresApi(Build.VERSION_CODES.O)
 fun SessionApiModel.toEntity(): Session {
     val gson = Gson()
     return Session(
@@ -61,6 +68,15 @@ fun SessionApiModel.toEntity(): Session {
         start_date_time = this.start_date_time,
         start_time = this.start_time,
         rooms = this.rooms.joinToString(separator = ",") { it.title },
-        speakers = gson.toJson(this.speakers)
+        speakers = gson.toJson(this.speakers),
+        start_timestamp = fromString(this.start_date_time),
+        remote_id = this.id
     )
+}
+
+@RequiresApi(Build.VERSION_CODES.O)
+fun fromString(offsetDateTime: String): Long {
+    val pattern = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+    return LocalDateTime.parse(offsetDateTime, pattern).toInstant(ZoneOffset.ofHours(3))
+        .toEpochMilli()
 }

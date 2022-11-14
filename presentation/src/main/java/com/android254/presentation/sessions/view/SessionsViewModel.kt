@@ -26,21 +26,14 @@ import com.android254.domain.repos.SessionsRepo
 import com.android254.presentation.models.SessionPresentationModel
 import com.android254.presentation.models.SessionsFilterOption
 import com.android254.presentation.sessions.components.EventDate
-import com.android254.presentation.sessions.components.formatter
 import com.android254.presentation.sessions.mappers.toPresentationModel
 import com.android254.presentation.sessions.utils.SessionsFilterCategory
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.zeko.db.sql.Query
-import io.zeko.db.sql.dsl.inList
-import io.zeko.db.sql.dsl.like
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.toLocalDate
-import kotlinx.datetime.toLocalDateTime
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
-import java.time.format.DateTimeFormatterBuilder
 import javax.inject.Inject
 
 
@@ -85,7 +78,7 @@ class SessionsViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            fetchSessions()
+            fetchSessions(fetchFromRemote = false)
         }
     }
 
@@ -164,40 +157,41 @@ class SessionsViewModel @Inject constructor(
         }
     }
 
-    private suspend fun fetchSessions(query: String? = null) {
-        sessionsRepo.fetchAndSaveSessions(query = query).collectLatest { result ->
-            when (result) {
-                is ResourceResult.Success -> {
-                    result.data.let { sessionDomainModels ->
-                        _sessions.value = sessionDomainModels?.map { sessionDomainModel ->
-                            sessionDomainModel.toPresentationModel()
-                        }
-
-                        _displayableSessions.value =
-                            sessionDomainModels?.map { sessionDomainModel ->
+    private suspend fun fetchSessions(query: String? = null, fetchFromRemote: Boolean = false) {
+        sessionsRepo.fetchAndSaveSessions(query = query, fetchFromRemote = fetchFromRemote)
+            .collectLatest { result ->
+                when (result) {
+                    is ResourceResult.Success -> {
+                        result.data.let { sessionDomainModels ->
+                            _sessions.value = sessionDomainModels?.map { sessionDomainModel ->
                                 sessionDomainModel.toPresentationModel()
-                            }?.filter {
-                                it.startDate.split(" ").first()
-                                    .toLocalDate().dayOfMonth == selectedEventDate.value?.value?.dayOfMonth
                             }
+
+                            _displayableSessions.value =
+                                sessionDomainModels?.map { sessionDomainModel ->
+                                    sessionDomainModel.toPresentationModel()
+                                }?.filter {
+                                    it.startDate.split(" ").first()
+                                        .toLocalDate().dayOfMonth == selectedEventDate.value?.value?.dayOfMonth
+                                }
+                        }
                     }
-                }
 
-                is ResourceResult.Error -> {
-                    _error.value = Error(result.message)
-                }
+                    is ResourceResult.Error -> {
+                        _error.value = Error(result.message)
+                    }
 
-                is ResourceResult.Loading -> {
-                    _loading.value = result.isLoading
-                }
+                    is ResourceResult.Loading -> {
+                        _loading.value = result.isLoading
+                    }
 
-                is ResourceResult.Empty -> {
-                    _empty.value = true
-                }
+                    is ResourceResult.Empty -> {
+                        _empty.value = true
+                    }
 
-                else -> Unit
+                    else -> Unit
+                }
             }
-        }
     }
 
     private fun getQuery(): String {
@@ -217,6 +211,8 @@ class SessionsViewModel @Inject constructor(
             val sessionTypes = _filterState.value!!.sessionTypes.joinToString("','", "'", "'")
             query.where("session_format IN ($sessionTypes)")
         }
+
+        query.orderAsc("start_timestamp")
 
         return query.toSql()
     }
@@ -239,6 +235,21 @@ class SessionsViewModel @Inject constructor(
         _selectedEventDate.value = date
         viewModelScope.launch {
             fetchSessions(query = getQuery())
+        }
+    }
+
+    fun refreshSessionList() {
+        _selectedFilterOptions.value = listOf()
+        _filterState.value = SessionsFilterState()
+        viewModelScope.launch {
+            fetchSessions(fetchFromRemote = true)
+        }
+    }
+
+    fun updateBookmarkStatus(id: String) {
+        viewModelScope.launch {
+            println("$id is starring...")
+            sessionsRepo.toggleBookmarkStatus(id)
         }
     }
 }
