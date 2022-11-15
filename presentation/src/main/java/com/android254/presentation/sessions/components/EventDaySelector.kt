@@ -26,7 +26,6 @@ val droidconEventDays = listOf(
 )
 
 @RequiresApi(Build.VERSION_CODES.O)
-val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("dd")
 
 fun ordinal(i: Int): String {
     val suffixes = arrayOf("th", "st", "nd", "rd", "th", "th", "th", "th", "th", "th")
@@ -39,12 +38,6 @@ fun ordinal(i: Int): String {
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun EventDaySelector(
-//    selected: String = droidconEventDays.first().value.format(
-//        DateTimeFormatter.ofPattern(
-//            "dd-MM-yyyy"
-//        )
-//    ),
-//    onSelect: (LocalDate) -> Unit = {},
     viewModel: SessionsViewModel = hiltViewModel()
 ) {
     val selectedDate by viewModel.selectedEventDate.observeAsState()
