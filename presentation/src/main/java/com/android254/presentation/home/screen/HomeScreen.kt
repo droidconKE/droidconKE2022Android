@@ -37,7 +37,10 @@ import com.android254.presentation.common.components.DroidconAppBar
 import com.android254.presentation.common.components.DroidconAppBarWithFeedbackButton
 import com.android254.presentation.common.components.SponsorsCard
 import com.android254.presentation.common.theme.DroidconKE2022Theme
-import com.android254.presentation.home.components.*
+import com.android254.presentation.home.components.HomeBannerSection
+import com.android254.presentation.home.components.HomeSessionSection
+import com.android254.presentation.home.components.HomeSpacer
+import com.android254.presentation.home.components.HomeSpeakersSection
 import com.android254.presentation.home.viewmodel.HomeViewModel
 import com.android254.presentation.models.SessionPresentationModel
 import com.droidconke.chai.atoms.type.MontserratSemiBold
@@ -76,12 +79,7 @@ fun HomeScreen(
                 .verticalScroll(rememberScrollState()),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(
-                text = stringResource(id = R.string.home_header_welcome_label),
-                modifier = Modifier.testTag("home_header"),
-                fontFamily = MontserratSemiBold,
-                fontSize = 16.sp
-            )
+            HomeHeaderSection()
             HomeBannerSection(homeViewState)
             HomeSpacer()
             HomeSessionSection(
@@ -100,6 +98,16 @@ fun HomeScreen(
             HomeSpacer()
         }
     }
+}
+
+@Composable
+fun HomeHeaderSection() {
+    Text(
+        text = stringResource(id = R.string.home_header_welcome_label),
+        modifier = Modifier.testTag("home_header"),
+        fontFamily = MontserratSemiBold,
+        fontSize = 16.sp
+    )
 }
 
 @Composable
