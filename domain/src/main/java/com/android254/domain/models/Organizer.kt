@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.android254.domain.models
 
 data class Organizer(
@@ -30,11 +31,4 @@ data class Organizer(
     val creator: Creator?,
     val upcomingEventsCount: Int?,
     val totalEventsCount: Int?
-)
-
-data class Creator(
-    val id: Int?,
-    val name: String?,
-    val email: String?,
-    val createdAt: String?
 )

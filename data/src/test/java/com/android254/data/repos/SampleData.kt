@@ -15,31 +15,31 @@
  */
 package com.android254.data.repos
 
-import com.android254.data.network.models.responses.PaginatedResponse
-import com.android254.data.network.models.responses.PaginationMetaData
-import com.android254.data.network.models.responses.ResponseMetaData
-import com.android254.data.network.models.responses.SessionDTO
+import com.android254.data.network.models.responses.*
 
-val results = PaginatedResponse(
-    data = listOf(
-        SessionDTO(
-            "1",
-            false,
-            "",
-            "",
-            "",
-            "new title"
-        )
-    ),
-    meta = ResponseMetaData(
-        paginator = PaginationMetaData(
-            1,
-            1,
-            false,
-            "",
-            "",
-            "200",
-            ""
+val results = EventScheduleResponse(
+    data = mapOf(
+        "2022-11-16" to listOf(
+            SessionApiModel(
+                id = "String",
+                backgroundColor = "String",
+                borderColor = "String",
+                description = "String",
+                end_date_time = "String",
+                end_time = "String",
+                is_bookmarked = false,
+                is_keynote = false,
+                is_serviceSession = false,
+                session_format = "String",
+                session_image = "String",
+                session_level = "String",
+                slug = "String",
+                start_date_time = "String",
+                start_time = "String",
+                title = "String",
+                rooms = listOf(),
+                speakers = listOf()
+            )
         )
     )
 )

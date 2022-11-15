@@ -18,8 +18,10 @@ package com.android254.data.db
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import com.android254.data.dao.BookmarkDao
 import com.android254.data.dao.SessionDao
 import com.android254.data.dao.SpeakerDao
+import com.android254.data.db.model.BookmarkEntity
 import com.android254.data.db.model.SessionEntity
 import com.android254.data.db.model.SpeakerEntity
 import com.android254.data.db.util.InstantConverter
@@ -27,7 +29,8 @@ import com.android254.data.db.util.InstantConverter
 @Database(
     entities = [
         SessionEntity::class,
-        SpeakerEntity::class
+        SpeakerEntity::class,
+        BookmarkEntity::class
     ],
     version = 1,
     exportSchema = true
@@ -39,4 +42,6 @@ abstract class Database : RoomDatabase() {
     abstract fun sessionDao(): SessionDao
 
     abstract fun speakerDao(): SpeakerDao
+
+    abstract fun bookmarkDao(): BookmarkDao
 }

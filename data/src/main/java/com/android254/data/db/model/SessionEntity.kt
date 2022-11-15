@@ -21,12 +21,22 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "sessions")
 data class SessionEntity(
     @PrimaryKey(autoGenerate = true) val id: Int,
+    val remote_id: String,
     val description: String,
     val session_format: String,
     val session_level: String,
     val slug: String,
     val title: String,
+    val end_date_time: String,
+    val end_time: String,
+    val is_bookmarked: Boolean,
+    val is_keynote: Boolean,
+    val is_serviceSession: Boolean,
+    val session_image: String?,
+    val start_date_time: String,
+    val start_time: String,
+    val rooms: String,
+    val speakers: String,
+    val start_timestamp: Long,
     val sessionImageUrl: String,
-    val sessionRoom: String,
-    val speakerName: String
 )

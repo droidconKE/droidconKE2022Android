@@ -21,7 +21,7 @@ import com.android254.data.network.util.dataResultSafeApiCall
 import com.android254.domain.models.DataResult
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
-import io.ktor.client.request.get
+import io.ktor.client.request.*
 import javax.inject.Inject
 
 class SponsorsApi @Inject constructor(
@@ -30,6 +30,7 @@ class SponsorsApi @Inject constructor(
 
     suspend fun fetchSponsors(): DataResult<SponsorsPagedResponse> =
         dataResultSafeApiCall {
-            client.get("${Constants.BASE_URL}/events/droidconke-2022-797/feeds?per_page=10").body()
+            client.get("${Constants.BASE_URL}/events/${Constants.EVENT_SLUG}/feeds?per_page=10"){
+            }.body()
         }
 }

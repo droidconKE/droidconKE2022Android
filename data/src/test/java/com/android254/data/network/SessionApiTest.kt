@@ -16,9 +16,8 @@
 package com.android254.data.network
 
 import com.android254.data.network.apis.SessionsApi
-import com.android254.data.network.apis.samplePaginationMetaData
-import com.android254.data.network.models.responses.PaginatedResponse
-import com.android254.data.network.models.responses.SessionDTO
+import com.android254.data.network.models.responses.EventScheduleResponse
+import com.android254.data.network.models.responses.SessionApiModel
 import com.android254.data.network.util.HttpClientFactory
 import io.ktor.client.engine.mock.*
 import io.ktor.http.*
@@ -30,10 +29,9 @@ import org.hamcrest.CoreMatchers.`is`
 class SessionApiTest {
     @Test
     fun `sessions are fetched successfully`() {
-        val expectedResponse: PaginatedResponse<List<SessionDTO>> =
-            PaginatedResponse(
+        val expectedResponse: EventScheduleResponse<List<SessionApiModel>> =
+            EventScheduleResponse(
                 data = listOf(),
-                meta = samplePaginationMetaData
             )
 
         val responseText = """

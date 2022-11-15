@@ -16,14 +16,19 @@
 package com.android254.presentation.models
 
 data class SessionPresentationModel(
-    val id: Int,
-    val sessionTitle: String,
-    val sessionDescription: String,
-    val sessionVenue: String,
-    val sessionSpeakerImage: String,
-    val sessionSpeakerName: String,
-    val sessionStartTime: String,
-    val sessionEndTime: String,
+    val id: String,
+    val title: String,
+    val description: String,
+    val venue: String,
+    val speakerImage: String,
+    val speakerName: String,
+    val startTime: String,
+    val endTime: String,
     val amOrPm: String,
-    val isStarred: Boolean
+    val isStarred: Boolean,
+    val format: String,
+    val level: String,
+    val startDate: String,
+    val endDate: String,
+    val remoteId: String
 )

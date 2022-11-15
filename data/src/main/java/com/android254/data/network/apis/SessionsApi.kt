@@ -16,21 +16,30 @@
 package com.android254.data.network.apis
 
 import com.android254.data.network.Constants
-import com.android254.data.network.models.responses.PaginatedResponse
-import com.android254.data.network.models.responses.SessionDTO
+import com.android254.data.network.models.responses.BookmarkResponse
+import com.android254.data.network.models.responses.EventScheduleResponse
+import com.android254.data.network.models.responses.SessionApiModel
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.request.*
 import javax.inject.Inject
 
 class SessionsApi @Inject constructor(
-    private val client: HttpClient
+    private val client: HttpClient,
 ) {
-    suspend fun fetchSessions(perPage: Int = 200): PaginatedResponse<List<SessionDTO>> {
-        return client.get("${Constants.BASE_URL}/events/${Constants.EVENT_SLUG}/sessions") {
+    suspend fun fetchSessions(): EventScheduleResponse<Map<String, List<SessionApiModel>>> {
+        return client.get("${Constants.BASE_URL}/events/${Constants.EVENT_SLUG}/schedule") {
+            header("Api-Authorization-Key", "droidconKe-2020")
             url {
-                parameters.append("per_page", perPage.toString())
+                parameters.append("grouped", "true")
             }
+        }.body()
+    }
+
+    suspend fun updateBookmarkedStatus(sessionId: String): BookmarkResponse {
+        return client.post("${Constants.BASE_URL}/events/${Constants.EVENT_SLUG}/bookmark_schedule/$sessionId") {
+            header("Api-Authorization-Key", "droidconKe-2020")
+            header("Authorization", "Bearer token")
         }.body()
     }
 }

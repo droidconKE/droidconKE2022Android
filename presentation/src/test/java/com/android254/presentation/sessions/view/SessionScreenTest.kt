@@ -19,6 +19,8 @@ import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
+import androidx.navigation.testing.TestNavHostController
+import androidx.test.core.app.ApplicationProvider
 import com.android254.presentation.common.theme.DroidconKE2022Theme
 import org.junit.Before
 import org.junit.Rule
@@ -46,10 +48,14 @@ class SessionScreenTest {
 
     @Test
     fun hasExpectedButtons() {
+        val navController = TestNavHostController(
+            ApplicationProvider.getApplicationContext()
+        )
+
         composeTestRule.setContent {
             DroidconKE2022Theme() {
                 SessionsScreen(
-                    navigateToSessionDetailsScreen = {}
+                    navController = navController
                 )
             }
         }
@@ -63,10 +69,13 @@ class SessionScreenTest {
 
     @Test
     fun `should show topBar`() {
+        val navController = TestNavHostController(
+            ApplicationProvider.getApplicationContext()
+        )
         composeTestRule.setContent {
             DroidconKE2022Theme() {
                 SessionsScreen(
-                    navigateToSessionDetailsScreen = {}
+                    navController = navController
                 )
             }
         }

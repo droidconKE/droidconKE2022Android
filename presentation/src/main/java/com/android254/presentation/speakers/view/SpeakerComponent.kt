@@ -111,7 +111,7 @@ fun SpeakerComponent(
                     }
             )
             Text(
-                text = speaker.bio,
+                text = speaker.bio ?: "",
                 style = TextStyle(
                     color = colorResource(id = R.color.grey),
                     fontSize = 14.sp,
@@ -158,23 +158,9 @@ fun SpeakerComponentPreview() {
     DroidconKE2022Theme {
         SpeakerComponent(
             speaker = SpeakerUI(
-                imageUrl = "https://media-exp1.licdn.com/dms/image/C4D03AQGn58utIO-x3w/profile-displayphoto-shrink_200_200/0/1637478114039?e=2147483647&v=beta&t=3kIon0YJQNHZojD3Dt5HVODJqHsKdf2YKP1SfWeROnI",
-                name = "Frank Tamre",
-                tagline = "Kenya Partner Lead at droidcon Berlin | Android | Kotlin | Flutter",
-                bio = """
-                    Worked at Intel, co-Founded Moringa School, 
-                    then started @earlycamp to train young children 
-                    from 5-16 on how to solve problems with technology. 
-                    Started 818interactive to tell African stories 
-                    with Games to a global audience. Community wise 
-                    I organize #Android & #Kotlin developers every 
-                    month for a meetUp to chat about technology. 
-                    I Lead a cool team in organizing #droidConKE 
-                    the largest android developer focussed event 
-                    in Sub Saharan Africa. I train people,mentor them, 
-                    build things, am highly experimental, 
-                    read a lot and socialize vertically.
-                """.trimIndent()
+                imageUrl = "https://sessionize.com/image/09c1-400o400o2-cf-9587-423b-bd2e-415e6757286c.b33d8d6e-1f94-4765-a797-255efc34390d.jpg",
+                name = "Harun Wangereka",
+                bio = "Kenya Partner Lead at droidcon Berlin | Android | Kotlin | Flutter | C++"
             )
         )
     }

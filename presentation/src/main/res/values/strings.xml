@@ -44,6 +44,11 @@
     <string name="view_all_label">View All</string>
     <string name="top_bar_filter">Filter</string>
     <string name="sponsors_title">Sponsors</string>
+    <string name="title_filter_level">Level</string>
+    <string name="title_filter_session_type">Session Type</string>
+    <string name="title_filter_room">Room</string>
+    <string name="title_filter_topic">Topic</string>
+
     <string name="session_details_label">Session Details</string>
     <string name="speaker_label">Speaker:</string>
     <string name="twitter_handle_label">Twitter Handle</string>
@@ -52,4 +57,8 @@
     <string name="format_plus_label">+%d</string>
     <string name="speaker_details_label">Speaker</string>
     <string name="bio_label">Bio</string>
+    <string name="filter_button_label">Filter</string>
+    <string name="cancel_filter_button_label">Cancel</string>
+    <string name="close_icon_description">close icon</string>
+    <string name="star_session_icon_description">star session</string>
 </resources>

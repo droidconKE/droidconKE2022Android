@@ -157,7 +157,7 @@ fun HomeSessionContent(
     ) {
         AsyncImage(
             model = ImageRequest.Builder(LocalContext.current)
-                .data(session.sessionSpeakerImage)
+                .data(session.speakerImage)
                 .build(),
             placeholder = painterResource(R.drawable.session_transforming_lives),
             contentDescription = stringResource(id = R.string.session_image),
@@ -173,7 +173,7 @@ fun HomeSessionContent(
             verticalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
-                text = session.sessionTitle,
+                text = session.title,
                 textAlign = TextAlign.Start,
                 style = TextStyle(
                     color = ChaiBlack,
@@ -186,7 +186,7 @@ fun HomeSessionContent(
             )
             Spacer(Modifier.height(4.dp))
             Text(
-                text = "@ ${session.sessionStartTime} | ${session.sessionVenue} ",
+                text = "@ ${session.startTime} | ${session.venue} ",
                 textAlign = TextAlign.Start,
                 style = TextStyle(
                     color = ChaiSmokeyGrey,

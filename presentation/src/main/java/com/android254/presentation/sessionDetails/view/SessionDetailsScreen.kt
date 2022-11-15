@@ -15,6 +15,10 @@
  */
 package com.android254.presentation.sessionDetails.view
 
+import android.content.Intent
+import android.net.Uri
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -25,13 +29,13 @@ import androidx.compose.material.icons.filled.Reply
 import androidx.compose.material.icons.rounded.Star
 import androidx.compose.material.icons.rounded.StarOutline
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
@@ -46,8 +50,10 @@ import coil.compose.AsyncImage
 import com.android254.presentation.R
 import com.android254.presentation.common.theme.DroidconKE2022Theme
 import com.android254.presentation.common.theme.Montserrat
+import com.android254.presentation.models.SessionDetailsPresentationModel
 import com.android254.presentation.sessionDetails.SessionDetailsViewModel
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun SessionDetailsScreen(
     darkTheme: Boolean = isSystemInDarkTheme(),
@@ -56,9 +62,11 @@ fun SessionDetailsScreen(
     onNavigationIconClick: () -> Unit,
 ) {
 
-    val sessionDetails by viewModel.getSessionDetailsById(sessionId).collectAsState(
-        initial = null
-    )
+    val sessionDetails by viewModel.sessionDetails.observeAsState()
+
+    LaunchedEffect(key1 = sessionId) {
+        viewModel.getSessionDetailsById(sessionId)
+    }
 
     Scaffold(
         topBar = { TopBar(onNavigationIconClick) },
@@ -102,7 +110,6 @@ private fun Body(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         CustomDivider()
-
         Column(modifier = Modifier.padding(start = 18.dp, end = 18.dp)) {
 
             Spacer(modifier = Modifier.height(24.dp))
@@ -152,55 +159,60 @@ private fun SpeakerTwitterHandle(
     darkTheme: Boolean,
     sessionDetails: SessionDetailsPresentationModel
 ) {
-    Row(
-        modifier = Modifier.fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceBetween,
-    ) {
-        Text(
-            text = stringResource(id = R.string.twitter_handle_label),
-            color = colorResource(id = if (darkTheme) R.color.smoke_white else R.color.dark),
-            style = TextStyle(
-                fontFamily = Montserrat,
-                fontWeight = FontWeight.Normal,
-                fontSize = 16.sp,
-                lineHeight = 19.sp
-            )
-        )
 
-        Button(
-            onClick = {},
-            border = BorderStroke(
-                1.dp,
-                colorResource(id = if (darkTheme) R.color.cyan else R.color.blue)
-            ),
-            shape = RoundedCornerShape(10.dp),
-            contentPadding = PaddingValues(horizontal = 40.dp, vertical = 10.dp),
-            colors = ButtonDefaults.buttonColors(colorResource(id = if (darkTheme) R.color.black else R.color.white))
+    if (sessionDetails.twitterHandle != null) {
+        val context = LocalContext.current
+        val intent = remember { Intent(Intent.ACTION_VIEW, Uri.parse("https://www.twitter.com/${sessionDetails.twitterHandle}")) }
+
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween,
         ) {
-
-            Icon(
-                painter = painterResource(id = R.drawable.ic_twitter_logo),
-                contentDescription = null,
-                modifier = Modifier
-                    .height(20.dp)
-                    .width(20.dp),
-                tint = colorResource(id = if (darkTheme) R.color.aqua else R.color.blue)
-            )
-
-            Spacer(modifier = Modifier.width(5.dp))
-
             Text(
-                modifier = Modifier.testTag(TestTag.TWITTER_HANDLE_TEXT),
-                text = sessionDetails.twitterHandle,
-                color = colorResource(id = if (darkTheme) R.color.aqua else R.color.blue),
+                text = stringResource(id = R.string.twitter_handle_label),
+                color = colorResource(id = if (darkTheme) R.color.smoke_white else R.color.dark),
                 style = TextStyle(
                     fontFamily = Montserrat,
                     fontWeight = FontWeight.Normal,
                     fontSize = 16.sp,
                     lineHeight = 19.sp
-                ),
+                )
             )
+            Button(
+                onClick = { context.startActivity(intent) },
+                border = BorderStroke(
+                    1.dp,
+                    colorResource(id = if (darkTheme) R.color.cyan else R.color.blue)
+                ),
+                shape = RoundedCornerShape(10.dp),
+                contentPadding = PaddingValues(horizontal = 40.dp, vertical = 10.dp),
+                colors = ButtonDefaults.buttonColors(colorResource(id = if (darkTheme) R.color.black else R.color.white))
+            ) {
+
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_twitter_logo),
+                    contentDescription = null,
+                    modifier = Modifier
+                        .height(20.dp)
+                        .width(20.dp),
+                    tint = colorResource(id = if (darkTheme) R.color.aqua else R.color.blue)
+                )
+
+                Spacer(modifier = Modifier.width(5.dp))
+
+                Text(
+                    modifier = Modifier.testTag(TestTag.TWITTER_HANDLE_TEXT),
+                    text = sessionDetails.twitterHandle,
+                    color = colorResource(id = if (darkTheme) R.color.aqua else R.color.blue),
+                    style = TextStyle(
+                        fontFamily = Montserrat,
+                        fontWeight = FontWeight.Normal,
+                        fontSize = 16.sp,
+                        lineHeight = 19.sp
+                    ),
+                )
+            }
         }
     }
 }
@@ -268,7 +280,7 @@ private fun SessionSpeakerNameAndFavouriteIcon(
         )
 
         Icon(
-            imageVector = if (sessionDetails.isFavourite) Icons.Rounded.Star else Icons.Rounded.StarOutline,
+            imageVector = if (sessionDetails.isStarred) Icons.Rounded.Star else Icons.Rounded.StarOutline,
             contentDescription = null,
             modifier = Modifier
                 .size(21.dp)
@@ -368,7 +380,7 @@ private fun SessionTimeAndRoom(
 
         Text(
             modifier = Modifier.testTag(TestTag.ROOM),
-            text = sessionDetails.room.uppercase(),
+            text = sessionDetails.venue.uppercase(),
             color = colorResource(id = if (darkTheme) R.color.light_grey else R.color.grey),
             style = TextStyle(
                 fontFamily = Montserrat,
@@ -414,18 +426,6 @@ private fun TopBar(onNavigationIconClick: () -> Unit) {
     )
 }
 
-data class SessionDetailsPresentationModel(
-    val speakerName: String,
-    val isFavourite: Boolean,
-    val title: String,
-    val description: String,
-    val sessionImageUrl: String,
-    val timeSlot: String,
-    val room: String,
-    val level: String,
-    val twitterHandle: String,
-)
-
 object TestTag {
     private const val PREFIX = "sessionDetailsScreen:"
 
@@ -442,6 +442,7 @@ object TestTag {
     const val TWITTER_HANDLE_TEXT = "$PREFIX twitterHandleText"
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Preview
 @Composable
 fun SessionDetailsScreenPreview() {
@@ -453,6 +454,7 @@ fun SessionDetailsScreenPreview() {
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Preview
 @Composable
 fun SessionDetailsScreenDarkThemePreview() {

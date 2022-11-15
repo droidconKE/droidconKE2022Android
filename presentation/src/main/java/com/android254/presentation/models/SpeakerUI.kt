@@ -17,11 +17,11 @@ package com.android254.presentation.models
 
 data class SpeakerUI(
     val id: Int = 0,
-    val imageUrl: String = "",
+    val imageUrl: String? = "",
     val name: String = "Name",
-    val tagline: String = "",
-    val bio: String = "bio",
-    val twitterHandle: String = "TwitterHandle"
+    val tagline: String? = "",
+    val bio: String? = "bio",
+    val twitterHandle: String? = "TwitterHandle"
 )
 
 val speakersDummyData = listOf(
