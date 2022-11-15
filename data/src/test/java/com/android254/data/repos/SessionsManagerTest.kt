@@ -32,7 +32,7 @@ import org.hamcrest.CoreMatchers
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.After
-import org.junit.Assert
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -70,7 +70,10 @@ class SessionsManagerTest {
             coEvery { mockApi.fetchSessions(any()) } throws Exception()
             val repo = SessionsManager(mockApi, dao)
             val results = repo.fetchAndSaveSessions()
-            assertThat(results, `is`(ResourceResult.Error("Error fetching sessions", networkError = false)))
+            assertThat(
+                results,
+                `is`(ResourceResult.Error("Error fetching sessions", networkError = false))
+            )
         }
     }
 
@@ -82,7 +85,22 @@ class SessionsManagerTest {
             val result = repo.fetchAndSaveSessions()
             coVerify { mockApi.fetchSessions(200) }
             assertThat(result, CoreMatchers.instanceOf(ResourceResult.Success::class.java))
-            Assert.assertEquals(listOf(SessionEntity(id = 1, description = "", session_format = "", session_level = "", slug = "", title = "new title")), dao.fetchSessions().first())
+            assertEquals(
+                listOf(
+                    SessionEntity(
+                        id = 1,
+                        description = "1",
+                        session_format = "",
+                        session_level = "",
+                        slug = "new title",
+                        title = "",
+                        sessionImageUrl = "",
+                        sessionRoom = "",
+                        speakerName = ""
+                    )
+                ),
+                dao.fetchSessions().first()
+            )
         }
     }
 
