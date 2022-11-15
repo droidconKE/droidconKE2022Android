@@ -18,9 +18,13 @@ package com.android254.presentation.sessionDetails.view
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createComposeRule
 import com.android254.presentation.common.theme.DroidconKE2022Theme
+import com.android254.presentation.models.SessionDetailsPresentationModel
 import com.android254.presentation.sessionDetails.SessionDetailsViewModel
 import io.mockk.every
 import io.mockk.mockk
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.consumeAsFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
 import org.junit.Before
 import org.junit.Rule
@@ -44,7 +48,9 @@ class SessionDetailsScreenTest {
 
         val sessionId = "randomSessionId"
         val mockViewModel = mockk<SessionDetailsViewModel>()
-        every { mockViewModel.getSessionDetailsById(sessionId) } returns flowOf(DUMMY_SESSION_DETAILS)
+        val channel = Channel<SessionDetailsPresentationModel>()
+        val flow = channel.consumeAsFlow()
+        every { mockViewModel.getSessionDetailsById(sessionId) } returns Unit
 
         composeTestRule.setContent {
             DroidconKE2022Theme() {
@@ -84,7 +90,7 @@ class SessionDetailsScreenTest {
             TestTag.SESSION_TITLE to DUMMY_SESSION_DETAILS.title,
             TestTag.SESSION_DESCRIPTION to DUMMY_SESSION_DETAILS.description,
             TestTag.TIME_SLOT to DUMMY_SESSION_DETAILS.timeSlot,
-            TestTag.ROOM to DUMMY_SESSION_DETAILS.room.uppercase(),
+            TestTag.ROOM to DUMMY_SESSION_DETAILS.venue.uppercase(),
             TestTag.LEVEL to "#${DUMMY_SESSION_DETAILS.level.uppercase()}",
         )
 
@@ -109,14 +115,20 @@ class SessionDetailsScreenTest {
     companion object {
         val DUMMY_SESSION_DETAILS = SessionDetailsPresentationModel(
             speakerName = "Frank Tamre",
-            isFavourite = true,
+            isStarred = true,
             title = "Compose Beyond Material Design",
             description = "Been in the tech industry for over 20 years. Am passionate about developer communities, motivating people and building successfulBeen in the tech industry for over 20 years.",
             sessionImageUrl = "https://www.freepnglogos.com/uploads/twitter-logo-png/twitter-logo-vector-png-clipart-1.png",
             timeSlot = "9.30AM - 10:15AM",
-            room = "Room 1",
+            venue = "Room 1",
             level = "Beginner",
-            twitterHandle = "PriestTamzi"
+            twitterHandle = "PriestTamzi",
+            id = "",
+            amOrPm = "AM",
+            endTime = "",
+            format = "",
+            speakerImage = "",
+            startTime = ""
         )
     }
 }
