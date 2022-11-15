@@ -5,7 +5,6 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "bookmarks")
 class BookmarkEntity(
-    @PrimaryKey(autoGenerate = true)
-    var id : Int,
-    var session_slug: String,
+    @PrimaryKey(autoGenerate = false)
+    var session_id: String
 )

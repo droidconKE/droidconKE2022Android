@@ -35,6 +35,9 @@ interface SessionDao : BaseDao<SessionEntity> {
     @RawQuery
     fun fetchSessionsWithFilters(query: SupportSQLiteQuery): List<SessionEntity>
 
-    @Query("UPDATE sessions SET is_bookmarked = :isBookmarked WHERE id = :id")
+    @Query("UPDATE sessions SET is_bookmarked = :isBookmarked WHERE remote_id = :id")
     fun updateBookmarkedStatus(id: String, isBookmarked: Boolean)
+
+    @Query("SELECT is_bookmarked FROM sessions WHERE remote_id = :id")
+    fun getBookmarkStatus(id: String): Boolean
 }

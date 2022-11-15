@@ -18,7 +18,10 @@ package com.android254.data.repos
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.sqlite.db.SimpleSQLiteQuery
+import com.android254.data.dao.BookmarkDao
 import com.android254.data.dao.SessionDao
+import com.android254.data.db.model.BookmarkEntity
+import com.android254.data.db.model.SessionEntity
 import com.android254.data.network.apis.SessionsApi
 import com.android254.data.network.util.NetworkError
 import com.android254.data.repos.mappers.toDomainModel
@@ -32,7 +35,8 @@ import javax.inject.Inject
 
 class SessionsManager @Inject constructor(
     private val api: SessionsApi,
-    private val dao: SessionDao
+    private val dao: SessionDao,
+    private val bookmarkDao: BookmarkDao
 ) : SessionsRepo {
     @RequiresApi(Build.VERSION_CODES.O)
     override suspend fun fetchAndSaveSessions(
@@ -70,7 +74,15 @@ class SessionsManager @Inject constructor(
                 }
                 remoteSessions.let {
                     dao.clearSessions()
-                    val sessionEntities = it.map { session -> session.toEntity() }
+                    val bookmarkIds = bookmarkDao.getBookmarkIds().map { sessionEntity ->
+                        sessionEntity.session_id
+                    }
+                    val sessionEntities = it.map { session ->
+                        val newSession = session.toEntity().copy(
+                            is_bookmarked = bookmarkIds.contains(session.id)
+                        )
+                        newSession
+                    }
                     dao.insert(sessionEntities)
                     emit(
                         ResourceResult.Success(
@@ -104,12 +116,18 @@ class SessionsManager @Inject constructor(
         }
     }
 
-    override suspend fun toggleBookmarkStatus(id: String, isCurrentlyStarred: Boolean): Flow<ResourceResult<Boolean>> {
-
+    override suspend fun toggleBookmarkStatus(
+        id: String,
+        isCurrentlyStarred: Boolean
+    ): Flow<ResourceResult<Boolean>> {
         return flow {
             try {
                 dao.updateBookmarkedStatus(id, !isCurrentlyStarred)
-                emit(ResourceResult.Success(data = !isCurrentlyStarred))
+                if (isCurrentlyStarred) {
+                    bookmarkDao.delete(BookmarkEntity(id))
+                } else {
+                    bookmarkDao.insert(BookmarkEntity(id))
+                }
             } catch (e: Exception) {
                 emit(ResourceResult.Loading(isLoading = true))
                 when (e) {
@@ -121,6 +139,7 @@ class SessionsManager @Inject constructor(
                     }
                 }
             }
+            emit(ResourceResult.Success(data = dao.getBookmarkStatus(id)))
         }
     }
 }

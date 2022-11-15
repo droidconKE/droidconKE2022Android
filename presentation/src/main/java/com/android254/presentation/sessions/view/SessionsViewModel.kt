@@ -30,6 +30,7 @@ import com.android254.presentation.sessions.mappers.toPresentationModel
 import com.android254.presentation.sessions.utils.SessionsFilterCategory
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.zeko.db.sql.Query
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kotlinx.datetime.LocalDate
@@ -250,24 +251,8 @@ class SessionsViewModel @Inject constructor(
         }
     }
 
-    fun updateBookmarkStatus(id: String, isCurrentlyStarred: Boolean): Boolean {
-        var result = false
-        viewModelScope.launch {
-            sessionsRepo.toggleBookmarkStatus(id, isCurrentlyStarred).collectLatest {
-                when (it) {
-                    is ResourceResult.Empty -> {}
-                    is ResourceResult.Error -> {
-                    }
-                    is ResourceResult.Loading -> {
-                    }
-                    is ResourceResult.Success -> {
-                        result = if (it.data != null) it.data!! else false
-                    }
-                }
-            }
-        }
-
-        return result
+    suspend fun updateBookmarkStatus(id: String, isCurrentlyStarred: Boolean): Flow<ResourceResult<Boolean>> {
+        return sessionsRepo.toggleBookmarkStatus(id, isCurrentlyStarred)
     }
 
     fun fetchBookmarkedSessions() {

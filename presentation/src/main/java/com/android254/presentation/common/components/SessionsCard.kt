@@ -27,6 +27,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -39,11 +40,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
+import com.android254.domain.models.ResourceResult
 import com.android254.presentation.R
 import com.android254.presentation.models.SessionPresentationModel
 import com.android254.presentation.sessions.view.SessionsViewModel
 import com.droidconke.chai.atoms.type.MontserratBold
 import com.droidconke.chai.atoms.type.MontserratSemiBold
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
@@ -149,9 +153,10 @@ fun SessionTitleComponent(
     session: SessionPresentationModel,
     viewModel: SessionsViewModel = hiltViewModel()
 ) {
-    val isStarred = remember {
+    val isStarred = rememberSaveable() {
         mutableStateOf(session.isStarred)
     }
+    val scope = rememberCoroutineScope()
     Row(
         Modifier
             .fillMaxWidth()
@@ -168,7 +173,20 @@ fun SessionTitleComponent(
             modifier = Modifier.weight(1f)
         )
         IconButton(onClick = {
-            isStarred.value = viewModel.updateBookmarkStatus(session.id, isStarred.value)
+            scope.launch {
+                viewModel.updateBookmarkStatus(session.remoteId, isStarred.value).collectLatest {
+                    when (it) {
+                        is ResourceResult.Empty -> {}
+                        is ResourceResult.Error -> {
+                        }
+                        is ResourceResult.Loading -> {
+                        }
+                        is ResourceResult.Success -> {
+                            isStarred.value = if (it.data != null) it.data!! else false
+                        }
+                    }
+                }
+            }
         }) {
             Icon(
                 imageVector = if (isStarred.value) Icons.Rounded.Star else Icons.Rounded.StarOutline,

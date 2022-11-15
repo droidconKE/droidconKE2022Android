@@ -42,38 +42,38 @@ fun SessionList(
             viewModel.refreshSessionList()
         }) {
             LazyColumn(modifier = Modifier.fillMaxHeight()) {
-                itemsIndexed(sessions) { index, session ->
-                    Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.Start) {
-                        SessionsCard(session = session, onclick = {
-                            navController.navigate(
-                                Screens.SessionDetails.route.replace(
-                                    oldValue = "{sessionId}",
-                                    newValue = session.id
-                                )
-                            ) {
-                                launchSingleTop = true
-                                restoreState = true
-                            }
-                        })
-                        if (index != sessions.size - 1) {
-                            Box(
-                                Modifier.padding(
-                                    start = 40.dp,
-                                    end = 0.dp,
-                                    top = 10.dp,
-                                    bottom = 10.dp
-                                )
-                            ) {
-                                Image(
-                                    painter = painterResource(id = if (index % 2 == 0) R.drawable.ic_green_session_card_spacer else R.drawable.ic_orange_session_card_spacer),
-                                    contentDescription = "spacer icon"
-                                )
-                            }
+                itemsIndexed(sessions) {
+                    index, session ->  Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.Start) {
+                    SessionsCard(session = session, onclick = {
+                        navController.navigate(
+                            Screens.SessionDetails.route.replace(
+                                oldValue = "{sessionId}",
+                                newValue = session.id
+                            )
+                        ) {
+                            launchSingleTop = true
+                            restoreState = true
                         }
-                        if (index == sessions.size - 1) {
-                            Spacer(modifier = Modifier.height(32.dp))
+                    })
+                    if (index != sessions.size - 1) {
+                        Box(
+                            Modifier.padding(
+                                start = 40.dp,
+                                end = 0.dp,
+                                top = 10.dp,
+                                bottom = 10.dp
+                            )
+                        ) {
+                            Image(
+                                painter = painterResource(id = if (index % 2 == 0) R.drawable.ic_green_session_card_spacer else R.drawable.ic_orange_session_card_spacer),
+                                contentDescription = "spacer icon"
+                            )
                         }
                     }
+                    if (index == sessions.size - 1) {
+                        Spacer(modifier = Modifier.height(32.dp))
+                    }
+                }
                 }
             }
         }
