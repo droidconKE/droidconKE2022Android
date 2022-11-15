@@ -47,7 +47,7 @@ class HomeScreenTest {
     fun `Test home title is displayed`() {
         composeTestRule.setContent {
             DroidconKE2022Theme {
-                HomeScreen()
+                HomeHeaderSection()
             }
         }
 

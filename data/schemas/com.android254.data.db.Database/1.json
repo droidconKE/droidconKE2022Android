@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "a8cc5824391a9892a51885aa53fc511f",
+    "identityHash": "de251a1d031d1740be4361e6d7cbe6a1",
     "entities": [
       {
         "tableName": "sessions",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `description` TEXT NOT NULL, `session_format` TEXT NOT NULL, `session_level` TEXT NOT NULL, `slug` TEXT NOT NULL, `title` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `description` TEXT NOT NULL, `session_format` TEXT NOT NULL, `session_level` TEXT NOT NULL, `slug` TEXT NOT NULL, `title` TEXT NOT NULL, `sessionImageUrl` TEXT NOT NULL, `sessionRoom` TEXT NOT NULL, `speakerName` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -41,6 +41,24 @@
           {
             "fieldPath": "title",
             "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sessionImageUrl",
+            "columnName": "sessionImageUrl",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sessionRoom",
+            "columnName": "sessionRoom",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "speakerName",
+            "columnName": "speakerName",
             "affinity": "TEXT",
             "notNull": true
           }
@@ -118,7 +136,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'a8cc5824391a9892a51885aa53fc511f')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'de251a1d031d1740be4361e6d7cbe6a1')"
     ]
   }
 }

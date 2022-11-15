@@ -16,7 +16,7 @@
 package com.android254.presentation.models
 
 data class SessionPresentationModel(
-    val id: String,
+    val id: Int,
     val sessionTitle: String,
     val sessionDescription: String,
     val sessionVenue: String,

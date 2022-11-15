@@ -25,9 +25,10 @@ import javax.inject.Inject
 class SessionsViewModel @Inject constructor() : ViewModel() {
     var sessions = mutableStateOf(sessionsList)
 }
+
 val sessionsList = listOf(
     SessionPresentationModel(
-        id = "545",
+        id = 545,
         sessionTitle = "Transforming farmers lives using Android in Kenya",
         sessionDescription = "",
         sessionVenue = "Room 1",
@@ -36,10 +37,10 @@ val sessionsList = listOf(
         sessionEndTime = "",
         amOrPm = "",
         isStarred = false,
-        sessionSpeakerImage = "https://firebasestorage.googleapis.com/v0/b/mobifishtest.appspot.com/o/FWMmgzPWAAMh9rp.png?alt=media&token=6378094c-a4b8-45cb-a23e-a6cd4280560a",
+        sessionSpeakerImage = "https://firebasestorage.googleapis.com/v0/b/mobifishtest.appspot.com/o/FWMmgzPWAAMh9rp.png?alt=media&token=6378094c-a4b8-45cb-a23e-a6cd4280560a"
     ),
     SessionPresentationModel(
-        id = "545",
+        id = 545,
         sessionTitle = "Compose Beyond Material Design",
         sessionDescription = "",
         sessionVenue = "Room 1",
@@ -48,6 +49,6 @@ val sessionsList = listOf(
         sessionEndTime = "",
         amOrPm = "",
         isStarred = false,
-        sessionSpeakerImage = "https://firebasestorage.googleapis.com/v0/b/mobifishtest.appspot.com/o/FVIona4WIAEWR93.png?alt=media&token=ddc69aaf-fa81-48a8-a8e5-008cebfe161f",
-    ),
+        sessionSpeakerImage = "https://firebasestorage.googleapis.com/v0/b/mobifishtest.appspot.com/o/FVIona4WIAEWR93.png?alt=media&token=ddc69aaf-fa81-48a8-a8e5-008cebfe161f"
+    )
 )

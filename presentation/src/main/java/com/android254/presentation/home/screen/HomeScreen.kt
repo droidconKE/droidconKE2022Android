@@ -23,6 +23,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
@@ -36,28 +37,29 @@ import com.android254.presentation.common.components.DroidconAppBar
 import com.android254.presentation.common.components.DroidconAppBarWithFeedbackButton
 import com.android254.presentation.common.components.SponsorsCard
 import com.android254.presentation.common.theme.DroidconKE2022Theme
-import com.android254.presentation.home.components.*
+import com.android254.presentation.home.components.HomeBannerSection
+import com.android254.presentation.home.components.HomeSessionSection
+import com.android254.presentation.home.components.HomeSpacer
+import com.android254.presentation.home.components.HomeSpeakersSection
 import com.android254.presentation.home.viewmodel.HomeViewModel
 import com.android254.presentation.models.SessionPresentationModel
-import com.android254.presentation.models.speakersDummyData
-import com.android254.presentation.sessions.view.SessionsViewModel
-import com.android254.presentation.speakers.SpeakersViewModel
 import com.droidconke.chai.atoms.type.MontserratSemiBold
 
 @Composable
 fun HomeScreen(
     homeViewModel: HomeViewModel = hiltViewModel(),
-    speakersViewModel: SpeakersViewModel = hiltViewModel(),
-    sessionsViewModel: SessionsViewModel = hiltViewModel(),
     navigateToSpeakers: () -> Unit = {},
     navigateToSpeaker: (String) -> Unit = {},
     navigateToFeedbackScreen: () -> Unit = {},
     navigateToSessionScreen: () -> Unit = {},
     onActionClicked: () -> Unit = {},
-    onSessionClicked: (SessionPresentationModel) -> Unit = {},
+    onSessionClicked: (SessionPresentationModel) -> Unit = {}
 ) {
     val homeViewState = homeViewModel.viewState
-    val sponsorsLogos = listOf("Google", "Company Z", "Company Y")
+
+    LaunchedEffect(key1 = Unit) {
+        homeViewModel.onGetHomeScreenDetails()
+    }
 
     Scaffold(
         topBar = {
@@ -77,44 +79,49 @@ fun HomeScreen(
                 .verticalScroll(rememberScrollState()),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(
-                text = stringResource(id = R.string.home_header_welcome_label),
-                modifier = Modifier.testTag("home_header"),
-                fontFamily = MontserratSemiBold,
-                fontSize = 16.sp
-            )
+            HomeHeaderSection()
             HomeBannerSection(homeViewState)
             HomeSpacer()
             HomeSessionSection(
-                sessions = sessionsViewModel.sessions.value,
+                sessions = homeViewState.sessions,
                 onSessionClick = onSessionClicked,
-                onViewAllSessionClicked = navigateToSessionScreen,
+                onViewAllSessionClicked = navigateToSessionScreen
             )
             HomeSpacer()
             HomeSpeakersSection(
-                speakers = speakersDummyData,
+                speakers = homeViewState.speakers,
                 navigateToSpeakers = navigateToSpeakers,
                 navigateToSpeaker = navigateToSpeaker
             )
             HomeSpacer()
-            SponsorsCard(sponsorsLogos = sponsorsLogos)
+            SponsorsCard(sponsorsLogos = homeViewState.sponsors)
             HomeSpacer()
         }
     }
 }
 
 @Composable
+fun HomeHeaderSection() {
+    Text(
+        text = stringResource(id = R.string.home_header_welcome_label),
+        modifier = Modifier.testTag("home_header"),
+        fontFamily = MontserratSemiBold,
+        fontSize = 16.sp
+    )
+}
+
+@Composable
 fun HomeToolbar(
     isSignedIn: Boolean,
     navigateToFeedbackScreen: () -> Unit = {},
-    onActionClicked: () -> Unit = {},
+    onActionClicked: () -> Unit = {}
 ) {
     if (isSignedIn) {
         DroidconAppBarWithFeedbackButton(
             onButtonClick = {
                 navigateToFeedbackScreen()
             },
-            userProfile = "https://media-exp1.licdn.com/dms/image/C4D03AQGn58utIO-x3w/profile-displayphoto-shrink_200_200/0/1637478114039?e=2147483647&v=beta&t=3kIon0YJQNHZojD3Dt5HVODJqHsKdf2YKP1SfWeROnI",
+            userProfile = "https://media-exp1.licdn.com/dms/image/C4D03AQGn58utIO-x3w/profile-displayphoto-shrink_200_200/0/1637478114039?e=2147483647&v=beta&t=3kIon0YJQNHZojD3Dt5HVODJqHsKdf2YKP1SfWeROnI"
         )
     } else {
         DroidconAppBar(
