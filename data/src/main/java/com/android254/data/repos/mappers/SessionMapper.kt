@@ -18,7 +18,7 @@ package com.android254.data.repos.mappers
 import android.os.Build
 import androidx.annotation.RequiresApi
 import com.android254.data.db.model.SessionEntity
-import com.android254.data.network.models.responses.SessionApiModel
+import com.android254.data.network.models.responses.SessionDTO
 import com.android254.domain.models.Session
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
@@ -30,45 +30,45 @@ fun SessionEntity.toDomainModel() = Session(
     id = this.id.toString(),
     description = this.description,
     title = this.title,
-    session_format = this.session_format,
-    session_level = this.session_level,
+    sessionFormat = this.sessionFormat,
+    sessionLevel = this.sessionLevel,
     slug = this.slug,
-    end_date_time = this.end_date_time,
-    is_bookmarked = this.is_bookmarked,
-    end_time = this.end_time,
-    is_keynote = this.is_keynote,
-    is_serviceSession = this.is_serviceSession,
-    session_image = this.session_image,
-    start_date_time = this.start_date_time,
-    start_time = this.start_time,
+    endDateTime = this.endDateTime,
+    isBookmarked = this.isBookmarked,
+    endTime = this.endTime,
+    isKeynote = this.isKeynote,
+    isServiceSession = this.isServiceSession,
+    sessionImage = this.sessionImage,
+    startDateTime = this.startDateTime,
+    startTime = this.startTime,
     rooms = this.rooms,
     speakers = this.speakers,
     remote_id = this.remote_id
 )
 
 @RequiresApi(Build.VERSION_CODES.O)
-fun SessionApiModel.toEntity(): SessionEntity {
+fun SessionDTO.toEntity(): SessionEntity {
 
     return SessionEntity(
         id = 0,
         description = description,
         title = title,
-        session_format = session_format,
-        session_level = session_level,
+        sessionFormat = sessionFormat,
+        sessionLevel = sessionLevel,
         slug = slug,
-        end_date_time = this.end_date_time,
-        is_bookmarked = this.is_bookmarked,
-        end_time = this.end_time,
-        is_keynote = this.is_keynote,
-        is_serviceSession = this.is_serviceSession,
-        session_image = this.session_image,
-        start_date_time = this.start_date_time,
-        start_time = this.start_time,
+        endDateTime = this.endDateTime,
+        isBookmarked = this.isBookmarked,
+        endTime = this.endTime,
+        isKeynote = this.isKeynote,
+        isServiceSession = this.isServiceSession,
+        sessionImage = this.sessionImage,
+        startDateTime = this.startDateTime,
+        startTime = startTime,
         rooms = this.rooms.joinToString(separator = ",") { it.title },
         speakers = Json.encodeToString(this.speakers),
-        start_timestamp = fromString(this.start_date_time),
+        startTimestamp = fromString(startDateTime),
         remote_id = this.id,
-        sessionImageUrl = this.session_image.toString(),
+        sessionImageUrl = sessionImage.toString(),
     )
 }
 

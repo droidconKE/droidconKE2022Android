@@ -16,7 +16,6 @@
 package com.android254.data.network
 
 import com.android254.data.network.apis.SponsorsApi
-import com.android254.data.network.apis.samplePaginationMetaData
 import com.android254.data.network.models.responses.SponsorDTO
 import com.android254.data.network.models.responses.SponsorsPagedResponse
 import com.android254.data.network.util.HttpClientFactory
@@ -41,27 +40,19 @@ class SponsorsApiTest {
         val expectedResult = SponsorsPagedResponse(
             data = listOf(
                 SponsorDTO(
-                    title = "AABC",
-                    topic = "abc",
-                    url = "abc",
+                    name = "AABC",
+                    tagline = "abc",
+                    link = "abc",
                     createdAt = "abc",
-                    body = "abc",
-                    image = "abc"
+                    logo = "abc"
                 )
             ),
-            meta = samplePaginationMetaData
         )
         val mockHttpEngine = MockEngine {
-            if (it.method == HttpMethod.Get &&
-                it.url.toString() == "${Constants.BASE_URL}/events/droidconke-2022-797/feeds?per_page=10"
-            ) {
-                respond(
-                    content = Json.encodeToString(expectedResult),
-                    headers = headersOf(HttpHeaders.ContentType, "application/json")
-                )
-            } else {
-                respondError(HttpStatusCode.NotFound)
-            }
+            respond(
+                content = Json.encodeToString(expectedResult),
+                headers = headersOf(HttpHeaders.ContentType, "application/json")
+            )
         }
         val httpClient = HttpClientFactory(MockTokenProvider())
             .create(mockHttpEngine)
@@ -75,8 +66,8 @@ class SponsorsApiTest {
             val result = (response as DataResult.Success).data
             val noOfItems = result.data.size
             assertThat(noOfItems, `is`(1))
-            val itemTitle = result.data[0].title
-            assertThat(itemTitle, `is`("AABC"))
+            val itemName = result.data[0].name
+            assertThat(itemName, `is`("AABC"))
         }
     }
 

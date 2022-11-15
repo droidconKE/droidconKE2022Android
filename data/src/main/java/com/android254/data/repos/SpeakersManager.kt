@@ -17,6 +17,7 @@ package com.android254.data.repos
 
 import com.android254.data.db.Database
 import com.android254.data.network.apis.SpeakersApi
+import com.android254.data.network.models.responses.SpeakersPagedResponse
 import com.android254.data.repos.mappers.toDomainModel
 import com.android254.data.repos.mappers.toEntity
 import com.android254.domain.models.DataResult
@@ -34,27 +35,35 @@ class SpeakersManager @Inject constructor(
     private val speakerDao = db.speakerDao()
 
     override suspend fun fetchSpeakers(): ResourceResult<List<Speaker>> = withContext(Dispatchers.IO) {
-        val speakers = speakerDao.fetchSpeakers()
-        if (speakers.isEmpty()) {
-            when (val result = api.fetchSpeakers()) {
-                is DataResult.Success -> {
-                    val data = result.data.data
-                    if (data.isEmpty()) {
-                        ResourceResult.Empty<String>("")
-                    }
-                    speakerDao.insert(data.map { it.toEntity() })
-                }
-                is DataResult.Error -> {
-                    return@withContext ResourceResult.Error(
-                        result.message,
-                        networkError = result.message.contains("network", ignoreCase = true)
-                    )
-                }
-                else -> {
-                }
-            }
+        val result = fetchSpeakersFromApi()
+        if (result is DataResult.Error) {
+            return@withContext ResourceResult.Error(
+                result.message,
+                networkError = result.message.contains("network", ignoreCase = true)
+            )
         }
         return@withContext ResourceResult.Success(speakerDao.fetchSpeakers().map { it.toDomainModel() })
+    }
+
+    override suspend fun fetchSpeakersUnpacked(): List<Speaker> {
+        val result = fetchSpeakers()
+        if (result is ResourceResult.Success) {
+            return result.data ?: emptyList()
+        }
+
+        return emptyList()
+    }
+
+    suspend fun fetchSpeakersFromApi(): DataResult<SpeakersPagedResponse> {
+        val result = api.fetchSpeakers()
+        if (result is DataResult.Success) {
+            val data = result.data
+            if (data.data.isNotEmpty()) {
+                speakerDao.deleteAll()
+                speakerDao.insert(data.data.map { it.toEntity() })
+            }
+        }
+        return result
     }
 
     override suspend fun fetchSpeakerCount(): ResourceResult<Int> = ResourceResult.Success(speakerDao.fetchSpeakerCount())

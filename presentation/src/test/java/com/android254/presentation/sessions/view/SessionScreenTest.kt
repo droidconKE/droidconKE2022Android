@@ -21,7 +21,12 @@ import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.navigation.testing.TestNavHostController
 import androidx.test.core.app.ApplicationProvider
+import com.android254.domain.models.ResourceResult
+import com.android254.domain.repos.SessionsRepo
 import com.android254.presentation.common.theme.DroidconKE2022Theme
+import io.mockk.coEvery
+import io.mockk.mockk
+import kotlinx.coroutines.flow.flowOf
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -37,6 +42,8 @@ import org.robolectric.shadows.ShadowLog
 @RunWith(RobolectricTestRunner::class)
 @Config(instrumentedPackages = ["androidx.loader.content"])
 class SessionScreenTest {
+    private val repo = mockk<SessionsRepo>()
+
     @get:Rule
     val composeTestRule = createComposeRule()
 
@@ -52,10 +59,13 @@ class SessionScreenTest {
             ApplicationProvider.getApplicationContext()
         )
 
+        coEvery { repo.fetchAndSaveSessions() } returns flowOf(ResourceResult.Empty(""))
+
         composeTestRule.setContent {
             DroidconKE2022Theme() {
                 SessionsScreen(
-                    navController = navController
+                    navController = navController,
+                    sessionsViewModel = SessionsViewModel(repo)
                 )
             }
         }
@@ -72,10 +82,14 @@ class SessionScreenTest {
         val navController = TestNavHostController(
             ApplicationProvider.getApplicationContext()
         )
+
+        coEvery { repo.fetchAndSaveSessions() } returns flowOf()
+
         composeTestRule.setContent {
             DroidconKE2022Theme() {
                 SessionsScreen(
-                    navController = navController
+                    navController = navController,
+                    sessionsViewModel = SessionsViewModel(repo)
                 )
             }
         }

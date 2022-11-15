@@ -80,15 +80,19 @@ fun SessionsScreen(
 
     BottomSheetScaffold(
         sheetContent = {
-            SessionsFilterPanel(onDismiss = {
-                scope.launch {
-                    bottomSheetScaffoldState.bottomSheetState.collapse()
-                }
-            }, onChange = {})
+            SessionsFilterPanel(
+                onDismiss = {
+                    scope.launch {
+                        bottomSheetScaffoldState.bottomSheetState.collapse()
+                    }
+                },
+                onChange = {},
+                viewModel = sessionsViewModel
+            )
         },
         scaffoldState = bottomSheetScaffoldState,
         sheetShape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp),
-        sheetPeekHeight = 0.dp,
+        sheetPeekHeight = 0.dp
     ) {
         Scaffold(
             topBar = {
@@ -129,7 +133,7 @@ fun SessionsScreen(
                         .fillMaxWidth()
                         .padding(start = 0.dp, end = 0.dp, top = 5.dp, bottom = 12.dp)
                 ) {
-                    EventDaySelector()
+                    EventDaySelector(viewModel = sessionsViewModel)
                     CustomSwitch(checked = showMySessions.value, onCheckedChange = {
                         showMySessions.value = it
                         isFilterActive.value = !it
@@ -139,9 +143,8 @@ fun SessionsScreen(
                             sessionsViewModel.clearSelectedFilterList()
                         }
                     })
-
                 }
-                SessionList(navController = navController)
+                SessionList(navController = navController, viewModel = sessionsViewModel)
             }
         }
     }
@@ -170,7 +173,6 @@ fun CustomSwitch(
     checked: Boolean,
     onCheckedChange: (Boolean) -> Unit
 ) {
-
     // this is to disable the ripple effect
     val interactionSource = remember {
         MutableInteractionSource()
@@ -178,7 +180,6 @@ fun CustomSwitch(
 
     // for moving the thumb
     val alignment by animateAlignmentAsState(if (checked) 1f else -1f)
-
 
     // outer rectangle with border
     Box(
@@ -197,7 +198,6 @@ fun CustomSwitch(
             },
         contentAlignment = Alignment.Center
     ) {
-
         // this is to add padding at the each horizontal side
         Box(
             modifier = Modifier
@@ -208,7 +208,6 @@ fun CustomSwitch(
                 .fillMaxSize(),
             contentAlignment = alignment
         ) {
-
             // thumb with icon
             Icon(
                 imageVector = if (checked) Icons.Filled.Star else Icons.Filled.StarOutline,

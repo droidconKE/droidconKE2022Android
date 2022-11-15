@@ -213,7 +213,7 @@ fun SpeakerDetailsScreen(
 
             OutlinedButton(
                 onClick = {
-                    if(speaker.twitterHandle != null) {
+                    if (speaker.twitterHandle != null) {
                         uriHandler.openUri(speaker.twitterHandle.toString())
                     }
                 },
@@ -229,7 +229,7 @@ fun SpeakerDetailsScreen(
                     tint = ChaiBlue
                 )
                 Text(
-                    text = if(speaker.twitterHandle != null)  speaker.twitterHandle.toString().replace("https://twitter.com/", "")  else "",
+                    text = if (speaker.twitterHandle != null) speaker.twitterHandle.toString().replace("https://twitter.com/", "") else "",
                     fontSize = 16.sp,
                     lineHeight = 19.sp,
                     color = colorResource(id = R.color.blue),

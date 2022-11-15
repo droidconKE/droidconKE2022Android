@@ -16,8 +16,7 @@
 package com.android254.data.network
 
 import com.android254.data.network.apis.SessionsApi
-import com.android254.data.network.models.responses.EventScheduleResponse
-import com.android254.data.network.models.responses.SessionApiModel
+import com.android254.data.network.models.responses.EventScheduleGroupedResponse
 import com.android254.data.network.util.HttpClientFactory
 import io.ktor.client.engine.mock.*
 import io.ktor.http.*
@@ -29,25 +28,14 @@ import org.hamcrest.CoreMatchers.`is`
 class SessionApiTest {
     @Test
     fun `sessions are fetched successfully`() {
-        val expectedResponse: EventScheduleResponse<List<SessionApiModel>> =
-            EventScheduleResponse(
-                data = listOf(),
+        val expectedResponse =
+            EventScheduleGroupedResponse(
+                data = emptyMap()
             )
 
         val responseText = """
             {
-               data: [],
-               meta: {
-                 "paginator": {
-                      "count": 0,
-                      "per_page": "20",
-                      "current_page": 1,
-                      "next_page": null,
-                      "has_more_pages": false,
-                      "next_page_url": null,
-                      "previous_page_url": null
-                    }
-               }
+               data: {}
             }
         """.trimIndent()
         val mockHttpEngine = MockEngine {
