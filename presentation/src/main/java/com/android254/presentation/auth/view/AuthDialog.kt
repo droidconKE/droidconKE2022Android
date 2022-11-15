@@ -15,6 +15,7 @@
  */
 package com.android254.presentation.auth.view
 
+import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.*
@@ -25,6 +26,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -33,18 +35,26 @@ import androidx.compose.ui.unit.dp
 import com.android254.presentation.R
 import com.android254.presentation.auth.AuthViewModel
 import com.android254.presentation.common.theme.DroidconKE2022Theme
+import kotlinx.coroutines.launch
 
 @Composable
 fun AuthDialog(
     onDismiss: () -> Unit = {},
     viewModel: (() -> AuthViewModel)? = null
 ) {
+    val context = LocalContext.current
     var loading by remember { mutableStateOf(false) }
+    val coroutineScope = rememberCoroutineScope()
     val googleSignInLauncher =
         rememberLauncherForActivityResult(contract = ActivityResultContracts.StartActivityForResult()) { result ->
-            if (viewModel?.invoke()?.submitGoogleToken(result.data) == true) {
-                loading = false
-                onDismiss()
+            coroutineScope.launch {
+                if (viewModel?.invoke()?.submitGoogleToken(result.data) == true) {
+                    loading = false
+                    onDismiss()
+                } else {
+                    loading = false
+                    Toast.makeText(context, "Google sign in failed.", Toast.LENGTH_SHORT).show()
+                }
             }
         }
 
