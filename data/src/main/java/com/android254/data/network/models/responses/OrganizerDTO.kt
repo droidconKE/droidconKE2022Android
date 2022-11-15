@@ -20,26 +20,17 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class OrganizersPagedResponse(
-    val data: List<OrganizerDTO>,
-    val meta: ResponseMetaData
+    val data: List<OrganizerDTO>
 )
 
 @Serializable
 data class OrganizerDTO(
-    val id: Int,
     val name: String,
-    val email: String,
-    val description: String,
-    val facebook: String?,
-    val twitter: String?,
-    val instagram: String?,
-    val logo: String,
-    val slug: String,
-    val status: String,
-    @SerialName("created_at") val createdAt: String,
-    val creator: CreatorDTO,
-    @SerialName("upcoming_events_count") val upcomingEventsCount: Int,
-    @SerialName("total_events_count") val totalEventsCount: Int
+    val tagline: String,
+    val link: String,
+    val type: String,
+    val photo: String,
+    @SerialName("created_at") val createdAt: String
 )
 
 @Serializable

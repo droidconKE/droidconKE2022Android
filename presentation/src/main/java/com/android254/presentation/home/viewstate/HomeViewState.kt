@@ -20,7 +20,7 @@ import com.android254.presentation.models.SpeakerUI
 
 data class HomeViewState(
     val isPosterVisible: Boolean = true,
-    val isCallForSpeakersVisible: Boolean = true,
+    val isCallForSpeakersVisible: Boolean = false,
     val linkToCallForSpeakers: String = "",
     val isSignedIn: Boolean = false,
     val speakers: List<SpeakerUI> = emptyList(),

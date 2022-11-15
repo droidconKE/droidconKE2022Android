@@ -49,7 +49,9 @@ fun Session.toPresentationModel(): SessionPresentationModel {
         format = this.sessionFormat,
         startDate = this.startDateTime,
         endDate = this.endDateTime,
-        remoteId = this.remote_id
+        remoteId = this.remote_id,
+        isService = this.isServiceSession,
+        sessionImage = this.sessionImage ?: ""
     )
 }
 

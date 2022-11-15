@@ -15,42 +15,26 @@
  */
 package com.android254.data.repos.mappers
 
-import com.android254.data.db.model.SpeakerEntity
-import com.android254.data.network.models.responses.SpeakerDTO
-import com.android254.domain.models.Speaker
+import com.android254.data.db.model.OrganizerEntity
+import com.android254.data.network.models.responses.OrganizerDTO
+import com.android254.domain.models.Organizer
 
-fun SpeakerDTO.toEntity() = SpeakerEntity(
+fun OrganizerDTO.toEntity() = OrganizerEntity(
     id = 0,
     name = name,
     tagline = tagline,
-    bio = bio,
-    avatar = avatar,
-    twitter = twitter ?: ""
+    link = link,
+    type = type,
+    photo = photo,
+    createdAt = createdAt
 )
 
-fun SpeakerEntity.toDomainModel() = Speaker(
+fun OrganizerEntity.toDomain() = Organizer(
     id = id,
-    avatar = avatar,
-    name = name,
-    biography = bio,
-    tagline = tagline,
-    twitter = twitter,
-    linkedin = "",
-    instagram = "",
-    facebook = "",
-    blog = "",
-    company_website = ""
-)
-
-fun SpeakerDTO.toDomain() = Speaker(
-    avatar = avatar,
     name = name,
     tagline = tagline,
-    biography = bio,
-    twitter = twitter.orEmpty(),
-    linkedin = "",
-    instagram = "",
-    facebook = "",
-    blog = "",
-    company_website = "",
+    link = link,
+    type = type,
+    photo = photo,
+    createdAt = createdAt
 )

@@ -85,7 +85,7 @@ fun OrganizedBySection(
                         .build(),
                     placeholder = painterResource(R.drawable.ic_google_logo_icon),
                     contentDescription = stringResource(id = R.string.logo),
-                    modifier = Modifier.defaultMinSize(minWidth = 68.dp)
+                    modifier = Modifier.size(68.dp)
                 )
             }
         }

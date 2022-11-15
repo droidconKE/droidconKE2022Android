@@ -150,18 +150,20 @@ fun HomeSessionContent(
 ) {
     Card(
         modifier = modifier
-            .widthIn(max = 300.dp)
+            .width(300.dp)
             .height(intrinsicSize = IntrinsicSize.Max),
         colors = CardDefaults.cardColors(containerColor = ChaiLightGrey),
         onClick = { onSessionClick(session) }
     ) {
         AsyncImage(
             model = ImageRequest.Builder(LocalContext.current)
-                .data(session.speakerImage)
+                .data(if (session.isService) R.drawable.all else session.sessionImage)
                 .build(),
-            placeholder = painterResource(R.drawable.session_transforming_lives),
+            placeholder = painterResource(R.drawable.all),
             contentDescription = stringResource(id = R.string.session_image),
-            modifier = Modifier.height(140.dp),
+            modifier = Modifier
+                .height(140.dp)
+                .fillMaxWidth(),
             contentScale = ContentScale.FillBounds
         )
         Spacer(Modifier.height(8.dp))
