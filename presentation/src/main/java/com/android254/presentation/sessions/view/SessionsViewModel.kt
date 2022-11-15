@@ -210,6 +210,12 @@ class SessionsViewModel @Inject constructor(
             query.where("session_format IN ($sessionTypes)")
         }
 
+        if (_filterState.value!!.isBookmarked) {
+            val isBookmarked = _filterState.value!!.isBookmarked
+            query.where("is_bookmarked = '${if (isBookmarked) '1' else '0'}'")
+        }
+
+
         query.orderAsc("start_timestamp")
 
         return query.toSql()
@@ -241,6 +247,34 @@ class SessionsViewModel @Inject constructor(
         _filterState.value = SessionsFilterState()
         viewModelScope.launch {
             fetchSessions(fetchFromRemote = true)
+        }
+    }
+
+    fun updateBookmarkStatus(id: String, isCurrentlyStarred: Boolean): Boolean {
+        var result = false
+        viewModelScope.launch {
+            sessionsRepo.toggleBookmarkStatus(id, isCurrentlyStarred).collectLatest {
+                when (it) {
+                    is ResourceResult.Empty -> {}
+                    is ResourceResult.Error -> {
+                    }
+                    is ResourceResult.Loading -> {
+                    }
+                    is ResourceResult.Success -> {
+                        result = if (it.data != null) it.data!! else false
+                    }
+                }
+            }
+        }
+
+        return result
+    }
+
+    fun fetchBookmarkedSessions() {
+        viewModelScope.launch {
+            _filterState.value = SessionsFilterState()
+            _filterState.value = _filterState.value?.copy(isBookmarked = true)
+            fetchSessionWithFilter()
         }
     }
 }

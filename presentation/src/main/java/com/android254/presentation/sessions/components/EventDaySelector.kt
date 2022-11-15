@@ -14,7 +14,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.android254.presentation.models.EventDate
 import com.android254.presentation.sessions.view.SessionsViewModel
 import kotlinx.datetime.LocalDate
-import java.time.format.DateTimeFormatter
 
 
 

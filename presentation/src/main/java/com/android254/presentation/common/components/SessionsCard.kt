@@ -26,6 +26,7 @@ import androidx.compose.material.icons.rounded.StarOutline
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -40,7 +41,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import com.android254.presentation.R
 import com.android254.presentation.models.SessionPresentationModel
-import com.android254.presentation.sessions.view.SessionsCardViewModel
+import com.android254.presentation.sessions.view.SessionsViewModel
 import com.droidconke.chai.atoms.type.MontserratBold
 import com.droidconke.chai.atoms.type.MontserratSemiBold
 
@@ -144,8 +145,11 @@ fun RowScope.SessionDetails(session: SessionPresentationModel) {
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun SessionTitleComponent(session: SessionPresentationModel, viewModel: SessionsCardViewModel = hiltViewModel()) {
-    val isStarred = rememberSaveable() {
+fun SessionTitleComponent(
+    session: SessionPresentationModel,
+    viewModel: SessionsViewModel = hiltViewModel()
+) {
+    val isStarred = remember {
         mutableStateOf(session.isStarred)
     }
     Row(
@@ -164,7 +168,7 @@ fun SessionTitleComponent(session: SessionPresentationModel, viewModel: Sessions
             modifier = Modifier.weight(1f)
         )
         IconButton(onClick = {
-            viewModel.updateBookmarkStatus(session.remoteId)
+            isStarred.value = viewModel.updateBookmarkStatus(session.id, isStarred.value)
         }) {
             Icon(
                 imageVector = if (isStarred.value) Icons.Rounded.Star else Icons.Rounded.StarOutline,

@@ -104,12 +104,12 @@ class SessionsManager @Inject constructor(
         }
     }
 
-    override suspend fun toggleBookmarkStatus(id: String): Flow<ResourceResult<Boolean>> {
+    override suspend fun toggleBookmarkStatus(id: String, isCurrentlyStarred: Boolean): Flow<ResourceResult<Boolean>> {
 
         return flow {
             try {
-                api.updateBookmarkedStatus(id)
-                dao.updateBookmarkedStatus(id, false)
+                dao.updateBookmarkedStatus(id, !isCurrentlyStarred)
+                emit(ResourceResult.Success(data = !isCurrentlyStarred))
             } catch (e: Exception) {
                 emit(ResourceResult.Loading(isLoading = true))
                 when (e) {
@@ -121,7 +121,6 @@ class SessionsManager @Inject constructor(
                     }
                 }
             }
-            emit(ResourceResult.Success(data = true))
         }
     }
 }

@@ -47,7 +47,7 @@ fun Session.toPresentationModel(): SessionPresentationModel {
         startTime = startTime.time,
         endTime = this.end_time,
         amOrPm = startTime.period,
-        isStarred = false,
+        isStarred = this.is_bookmarked,
         level = this.session_level,
         format = this.session_format,
         startDate = this.start_date_time,
