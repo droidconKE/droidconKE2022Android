@@ -20,7 +20,8 @@ import androidx.annotation.RequiresApi
 import com.android254.data.db.model.SessionEntity
 import com.android254.data.network.models.responses.SessionApiModel
 import com.android254.domain.models.Session
-import com.google.gson.Gson
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import java.time.LocalDateTime
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
@@ -47,7 +48,7 @@ fun SessionEntity.toDomainModel() = Session(
 
 @RequiresApi(Build.VERSION_CODES.O)
 fun SessionApiModel.toEntity(): SessionEntity {
-    val gson = Gson()
+
     return SessionEntity(
         id = 0,
         description = description,
@@ -64,7 +65,7 @@ fun SessionApiModel.toEntity(): SessionEntity {
         start_date_time = this.start_date_time,
         start_time = this.start_time,
         rooms = this.rooms.joinToString(separator = ",") { it.title },
-        speakers = gson.toJson(this.speakers),
+        speakers = Json.encodeToString(this.speakers),
         start_timestamp = fromString(this.start_date_time),
         remote_id = this.id,
         sessionImageUrl = this.session_image.toString(),

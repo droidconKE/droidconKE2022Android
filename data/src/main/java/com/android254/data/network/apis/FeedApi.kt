@@ -29,7 +29,6 @@ class FeedApi @Inject constructor(private val client: HttpClient) {
     suspend fun fetchFeed(page: Int = 1, size: Int = 100) = dataResultSafeApiCall {
         val response: PaginatedResponse<List<Feed>> =
             client.get("${Constants.EVENT_BASE_URL}/feeds") {
-                header("Api-Authorization-Key", Constants.API_KEY)
                 url {
                     parameters.append("page", page.toString())
                     parameters.append("per_page", size.toString())

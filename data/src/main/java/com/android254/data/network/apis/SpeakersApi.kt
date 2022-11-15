@@ -31,7 +31,6 @@ class SpeakersApi @Inject constructor(
         return@dataResultSafeApiCall client.get(
             "${Constants.EVENT_BASE_URL}/speakers?per_page=100"
         ){
-            header("Api-Authorization-Key", Constants.API_KEY)
         }.body()
     }
 }

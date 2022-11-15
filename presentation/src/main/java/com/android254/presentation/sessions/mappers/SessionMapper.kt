@@ -20,27 +20,29 @@ import androidx.annotation.RequiresApi
 import com.android254.domain.models.Session
 import com.android254.presentation.models.SessionDetailsPresentationModel
 import com.android254.presentation.models.SessionPresentationModel
+import com.android254.presentation.models.Speaker
 import com.android254.presentation.models.SpeakerUI
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
+
+
 @RequiresApi(Build.VERSION_CODES.O)
 fun Session.toPresentationModel(): SessionPresentationModel {
     val startTime = getTimePeriod(this.start_date_time)
     val gson = Gson()
-    val typeToken = object : TypeToken<List<SpeakerUI>>() {}.type
-    val speakers = gson.fromJson<List<SpeakerUI>>(this.speakers, typeToken)
+    val typeToken = object : TypeToken<List<Speaker>>() {}.type
+    val speakers = gson.fromJson<List<Speaker>>(this.speakers, typeToken)
     val hasNoSpeakers = speakers.isEmpty()
-    val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
 
     return SessionPresentationModel(
-        id = this.id.toString(),
+        id = this.id,
         title = this.title,
         description = this.description,
         venue = this.rooms,
-        speakerImage = if (hasNoSpeakers) "" else speakers.first().imageUrl.toString(),
+        speakerImage = if (hasNoSpeakers) "" else speakers.first().avatar.toString(),
         speakerName = if (hasNoSpeakers) "" else speakers.first().name,
         startTime = startTime.time,
         endTime = this.end_time,
@@ -58,15 +60,15 @@ fun Session.toPresentationModel(): SessionPresentationModel {
 fun Session.toSessionDetailsPresentationModal(): SessionDetailsPresentationModel {
     val startTime = getTimePeriod(this.start_date_time)
     val gson = Gson()
-    val typeToken = object : TypeToken<List<SpeakerUI>>() {}.type
-    val speakers = gson.fromJson<List<SpeakerUI>>(this.speakers, typeToken)
+    val typeToken = object : TypeToken<List<Speaker>>() {}.type
+    val speakers = gson.fromJson<List<Speaker>>(this.speakers, typeToken)
     val hasNoSpeakers = speakers.isEmpty()
     return SessionDetailsPresentationModel(
         id = this.id,
         title = this.title,
         description = this.description,
         venue = this.rooms,
-        speakerImage = if (hasNoSpeakers) "" else speakers.first().imageUrl.toString(),
+        speakerImage = if (hasNoSpeakers) "" else speakers.first().avatar.toString(),
         speakerName = if (hasNoSpeakers) "" else speakers.first().name,
         startTime = startTime.time,
         endTime = this.end_time,
@@ -80,11 +82,11 @@ fun Session.toSessionDetailsPresentationModal(): SessionDetailsPresentationModel
     )
 }
 
-fun getTwitterHandle(speakers: List<SpeakerUI>): String {
-    if (speakers.first().twitterHandle == null) {
+fun getTwitterHandle(speakers: List<Speaker>): String {
+    if (speakers.first().twitter == null) {
         return ""
     }
-    return speakers.first().twitterHandle.toString().split('/')
+    return speakers.first().twitter.toString().split('/')
         .toTypedArray().last()
 }
 
@@ -96,9 +98,6 @@ fun getTimePeriod(time: String): FormattedTime {
         LocalDateTime.parse(time, pattern).toLocalTime().format(DateTimeFormatter.ofPattern("hh:mm")),
         LocalDateTime.parse(time, pattern).toLocalTime().format(DateTimeFormatter.ofPattern("a")),
     )
-}
-
-private fun getDateString(dateTime: String) {
 }
 
 data class FormattedTime(

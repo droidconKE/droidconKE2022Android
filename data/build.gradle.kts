@@ -74,7 +74,6 @@ dependencies {
     implementation(libs.ktor.core)
     implementation(libs.ktor.android)
     implementation(libs.ktor.content.negotiation)
-    implementation(libs.gson.gson)
     implementation(libs.ktor.json)
     implementation(libs.ktor.auth)
     implementation(libs.ktor.logging)

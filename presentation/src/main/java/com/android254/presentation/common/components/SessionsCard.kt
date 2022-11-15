@@ -44,6 +44,7 @@ import com.android254.presentation.sessions.view.SessionsCardViewModel
 import com.droidconke.chai.atoms.type.MontserratBold
 import com.droidconke.chai.atoms.type.MontserratSemiBold
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun SessionsCard(session: SessionPresentationModel, onclick: () -> Unit) {
     Card(

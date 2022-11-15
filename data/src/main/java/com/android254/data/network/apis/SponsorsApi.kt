@@ -31,7 +31,6 @@ class SponsorsApi @Inject constructor(
     suspend fun fetchSponsors(): DataResult<SponsorsPagedResponse> =
         dataResultSafeApiCall {
             client.get("${Constants.BASE_URL}/events/${Constants.EVENT_SLUG}/feeds?per_page=10"){
-                header("Api-Authorization-Key", Constants.API_KEY)
             }.body()
         }
 }
