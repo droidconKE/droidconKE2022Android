@@ -9,21 +9,21 @@ import com.android254.data.repos.mappers.toDomain
 import com.android254.domain.models.DataResult
 import com.android254.domain.models.HomeDetailsDomainModel
 import com.android254.domain.repos.HomeRepo
-import javax.inject.Inject
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
+import javax.inject.Inject
 
 class HomeRepoImpl @Inject constructor(
     private val sponsorsApi: SponsorsApi,
-    private val speakerRemoteSource: SpeakersApi,
-    private val sessionsRemoteSource: SessionsApi
+    private val speakersApi: SpeakersApi,
+    private val sessionsApi: SessionsApi
 ) : HomeRepo {
     override suspend fun fetchHomeDetails(): HomeDetailsDomainModel {
         return combine(
             flowOf(sponsorsApi.fetchSponsors()),
-            flowOf(speakerRemoteSource.fetchSpeakers()),
-            flowOf(sessionsRemoteSource.fetchSessions())
+            flowOf(speakersApi.fetchSpeakers()),
+            flowOf(sessionsApi.fetchSessions())
         ) { sponsors, speakers, sessions ->
             HomeDetailsDomainModel(
                 isCallForSpeakersEnable = false,
