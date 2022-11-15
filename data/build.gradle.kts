@@ -19,7 +19,7 @@ android {
         consumerProguardFiles("consumer-rules.pro")
 
         if (File("api_key.txt").exists()) {
-            buildConfigField("String", "API_KEY", "\"${File("api_key.txt").readText()}\"")
+            buildConfigField("String", "API_KEY", "\"${File("api_key.txt").readText().trim()}\"")
         } else {
             buildConfigField("String", "API_KEY", "\"\"")
         }

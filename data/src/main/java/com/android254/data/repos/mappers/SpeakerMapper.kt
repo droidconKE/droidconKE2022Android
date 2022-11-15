@@ -36,3 +36,11 @@ fun SpeakerEntity.toDomainModel() = Speaker(
     tagline = tagline,
     twitterHandle = twitter
 )
+
+fun SpeakerDTO.toDomain() = Speaker(
+    imageUrl = avatar,
+    name = name,
+    tagline = tagline,
+    bio = bio,
+    twitterHandle = twitter.orEmpty()
+)

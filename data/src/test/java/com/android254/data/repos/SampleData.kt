@@ -26,7 +26,7 @@ val results = PaginatedResponse(
     data = listOf(
         SessionDTO(
             "1",
-            "",
+            false,
             "",
             "",
             "",

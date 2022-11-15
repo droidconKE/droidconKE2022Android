@@ -21,6 +21,8 @@ data class Session(
     val session_format: String,
     val session_level: String,
     val slug: String,
-//    TODO create converter val speakers: List<SpeakerApiModel>,
-    val title: String
+    val title: String,
+    val sessionImageUrl: String,
+    val sessionRoom: String,
+    val speakerName: String
 )

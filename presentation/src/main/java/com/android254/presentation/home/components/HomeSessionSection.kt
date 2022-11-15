@@ -50,15 +50,15 @@ fun HomeSessionSection(
     modifier: Modifier = Modifier,
     sessions: List<SessionPresentationModel>,
     onSessionClick: (SessionPresentationModel) -> Unit,
-    onViewAllSessionClicked: () -> Unit,
+    onViewAllSessionClicked: () -> Unit
 ) {
     Column(
-        modifier = modifier.fillMaxWidth(),
+        modifier = modifier.fillMaxWidth()
     ) {
         HomeSectionHeader(
             sectionLabel = stringResource(id = R.string.sessions_label),
             sectionSize = sessions.size,
-            onViewAllClicked = onViewAllSessionClicked,
+            onViewAllClicked = onViewAllSessionClicked
         )
         Spacer(modifier = Modifier.height(16.dp))
         LazyRow(
@@ -68,7 +68,7 @@ fun HomeSessionSection(
             items(sessions) { session ->
                 HomeSessionContent(
                     session = session,
-                    onSessionClick = onSessionClick,
+                    onSessionClick = onSessionClick
                 )
             }
         }
@@ -80,7 +80,7 @@ fun HomeSectionHeader(
     sectionLabel: String,
     sectionSize: Int,
     onViewAllClicked: () -> Unit,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
@@ -97,8 +97,8 @@ fun HomeSectionHeader(
                 fontWeight = FontWeight.Bold,
                 fontSize = 18.sp,
                 lineHeight = 25.sp,
-                fontFamily = MontserratBold,
-            ),
+                fontFamily = MontserratBold
+            )
         )
         Spacer(modifier = Modifier.weight(1f))
         Row(
@@ -115,8 +115,8 @@ fun HomeSectionHeader(
                     fontWeight = FontWeight.Normal,
                     fontSize = 12.sp,
                     lineHeight = 14.sp,
-                    fontFamily = MontserratMedium,
-                ),
+                    fontFamily = MontserratMedium
+                )
             )
             Spacer(modifier = Modifier.width(4.dp))
             Box(
@@ -135,7 +135,7 @@ fun HomeSectionHeader(
                         color = colorResource(id = R.color.blue),
                         fontSize = 10.sp,
                         fontFamily = MontserratRegular
-                    ),
+                    )
                 )
             }
         }
@@ -146,14 +146,14 @@ fun HomeSectionHeader(
 fun HomeSessionContent(
     session: SessionPresentationModel,
     onSessionClick: (SessionPresentationModel) -> Unit,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     Card(
         modifier = modifier
             .widthIn(max = 300.dp)
             .height(intrinsicSize = IntrinsicSize.Max),
         colors = CardDefaults.cardColors(containerColor = ChaiLightGrey),
-        onClick = { onSessionClick(session) },
+        onClick = { onSessionClick(session) }
     ) {
         AsyncImage(
             model = ImageRequest.Builder(LocalContext.current)
@@ -162,15 +162,15 @@ fun HomeSessionContent(
             placeholder = painterResource(R.drawable.session_transforming_lives),
             contentDescription = stringResource(id = R.string.session_image),
             modifier = Modifier.height(140.dp),
-            contentScale = ContentScale.FillBounds,
+            contentScale = ContentScale.FillBounds
         )
         Spacer(Modifier.height(8.dp))
         Column(
             modifier = Modifier
                 .padding(8.dp)
                 .fillMaxWidth()
-                .height(60.dp),
-            verticalArrangement = Arrangement.SpaceBetween,
+                .height(80.dp),
+            verticalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
                 text = session.sessionTitle,
@@ -180,9 +180,9 @@ fun HomeSessionContent(
                     fontWeight = FontWeight.Bold,
                     fontSize = 14.sp,
                     lineHeight = 20.sp,
-                    fontFamily = MontserratBold,
+                    fontFamily = MontserratBold
                 ),
-                maxLines = 2,
+                maxLines = 2
             )
             Spacer(Modifier.height(4.dp))
             Text(
@@ -193,7 +193,7 @@ fun HomeSessionContent(
                     fontWeight = FontWeight.Normal,
                     fontSize = 11.sp,
                     lineHeight = 14.sp,
-                    fontFamily = MontserratRegular,
+                    fontFamily = MontserratRegular
                 )
             )
         }

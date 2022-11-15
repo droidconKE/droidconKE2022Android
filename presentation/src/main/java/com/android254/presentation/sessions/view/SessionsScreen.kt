@@ -41,7 +41,7 @@ import com.android254.presentation.models.SessionPresentationModel
 val events = arrayListOf(
     // TODO: Remove dummy value later
     SessionPresentationModel(
-        id = "1",
+        id = 1,
         sessionTitle = "Compose Beyond Material Design",
         sessionDescription = "Been in the tech industry for over 20 years. Am passionate about developer communities, motivating people and building successfulBeen in the tech industry for over 20 years.",
         sessionVenue = "Room 1",
@@ -50,12 +50,15 @@ val events = arrayListOf(
         sessionStartTime = "9.30AM",
         sessionEndTime = "10:15AM",
         amOrPm = "",
-        isStarred = false,
+        isStarred = false
     )
 )
 
 @Composable
-fun SessionsScreen(darkTheme: Boolean = isSystemInDarkTheme(), navigateToSessionDetailsScreen: (sessionId: String) -> Unit) {
+fun SessionsScreen(
+    darkTheme: Boolean = isSystemInDarkTheme(),
+    navigateToSessionDetailsScreen: (sessionId: String) -> Unit
+) {
     val showMySessions = remember {
         mutableStateOf(false)
     }
@@ -137,7 +140,10 @@ fun SessionsScreen(darkTheme: Boolean = isSystemInDarkTheme(), navigateToSession
             LazyColumn(modifier = Modifier.fillMaxHeight()) {
                 itemsIndexed(events) { index, event ->
                     Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.Start) {
-                        SessionsCard(session = event, onclick = { navigateToSessionDetailsScreen(event.id) })
+                        SessionsCard(
+                            session = event,
+                            onclick = { navigateToSessionDetailsScreen(event.id.toString()) }
+                        )
                         if (index != events.size - 1) {
                             Box(
                                 Modifier.padding(
