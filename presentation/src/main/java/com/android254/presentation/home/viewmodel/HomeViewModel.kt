@@ -26,19 +26,14 @@ import com.android254.domain.models.Session
 import com.android254.domain.models.Speaker
 import com.android254.domain.repos.HomeRepo
 import com.android254.presentation.home.viewstate.HomeViewState
-import com.android254.presentation.models.SessionDetailsPresentationModel
 import com.android254.presentation.models.SessionPresentationModel
 import com.android254.presentation.models.SpeakerUI
 import com.android254.presentation.sessions.mappers.getTimePeriod
-import com.android254.presentation.sessions.mappers.getTwitterHandle
-import com.android254.presentation.sessions.mappers.toPresentationModel
-import com.android254.presentation.sessions.mappers.toSessionDetailsPresentationModal
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.launch
-import java.time.format.DateTimeFormatter
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(

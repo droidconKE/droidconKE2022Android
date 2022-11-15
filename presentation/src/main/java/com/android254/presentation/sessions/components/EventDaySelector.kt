@@ -11,13 +11,12 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.android254.presentation.models.EventDate
 import com.android254.presentation.sessions.view.SessionsViewModel
 import kotlinx.datetime.LocalDate
 import java.time.format.DateTimeFormatter
 
-data class EventDate(
-    val value: LocalDate
-)
+
 
 @RequiresApi(Build.VERSION_CODES.O)
 val droidconEventDays = listOf(

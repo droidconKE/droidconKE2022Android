@@ -63,9 +63,13 @@ fun MultiToggleButton(
                 val contentColor =
                     if (isButtonSelected) selectedContentColor else unselectedContentColor
                 val textStyle =
-                    if (isButtonSelected) TextStyle(fontFamily = MontserratBold) else TextStyle(
-                        fontFamily = Montserrat
-                    )
+                    if (isButtonSelected) {
+                        TextStyle(fontFamily = MontserratBold)
+                    } else {
+                        TextStyle(
+                            fontFamily = Montserrat
+                        )
+                    }
                 val offset = borderSize * -index
 
                 ToggleButton(

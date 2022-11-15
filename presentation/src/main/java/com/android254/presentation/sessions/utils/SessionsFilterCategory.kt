@@ -1,4 +1,5 @@
 package com.android254.presentation.sessions.utils
+
 import com.android254.presentation.R
 
 enum class SessionsFilterCategory(val resId: Int) {

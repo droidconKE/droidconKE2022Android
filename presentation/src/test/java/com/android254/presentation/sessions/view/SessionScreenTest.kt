@@ -19,12 +19,9 @@ import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
-import androidx.navigation.NavController
-import androidx.navigation.NavHostController
 import androidx.navigation.testing.TestNavHostController
 import androidx.test.core.app.ApplicationProvider
 import com.android254.presentation.common.theme.DroidconKE2022Theme
-import io.mockk.mockk
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
