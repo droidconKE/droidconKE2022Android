@@ -1,11 +1,11 @@
 package com.android254.domain.models
 
-data class OrganizingPartnersDomainModel(
+data class OrganizingPartners(
     val organizerName: String,
     val organizerLogoUrl: String
 )
 
-data class SponsorsDomainModel(
+data class Sponsors(
     val sponsorName: String,
     val sponsorLogoUrl: String
 )

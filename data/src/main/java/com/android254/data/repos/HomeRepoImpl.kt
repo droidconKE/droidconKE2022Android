@@ -7,7 +7,7 @@ import com.android254.data.network.models.responses.SpeakersPagedResponse
 import com.android254.data.network.models.responses.SponsorsPagedResponse
 import com.android254.data.repos.mappers.toDomain
 import com.android254.domain.models.DataResult
-import com.android254.domain.models.HomeDetailsDomainModel
+import com.android254.domain.models.HomeDetails
 import com.android254.domain.repos.HomeRepo
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.first
@@ -19,13 +19,13 @@ class HomeRepoImpl @Inject constructor(
     private val speakersApi: SpeakersApi,
     private val sessionsApi: SessionsApi
 ) : HomeRepo {
-    override suspend fun fetchHomeDetails(): HomeDetailsDomainModel {
+    override suspend fun fetchHomeDetails(): HomeDetails {
         return combine(
             flowOf(sponsorsApi.fetchSponsors()),
             flowOf(speakersApi.fetchSpeakers()),
             flowOf(sessionsApi.fetchSessions())
         ) { sponsors, speakers, sessions ->
-            HomeDetailsDomainModel(
+            HomeDetails(
                 isCallForSpeakersEnable = false,
                 isEventBannerEnable = true,
                 speakers = speakers.getSpeakerList(),
