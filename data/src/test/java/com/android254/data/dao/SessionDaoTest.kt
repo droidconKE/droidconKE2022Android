@@ -65,7 +65,6 @@ class SessionDaoTest {
             slug = "retrofiti-a-pragmatic-approach-to-using-retrofit-in-android-1583941090",
             session_format = "Codelab / Workshop",
             session_level = "Intermediate",
-<<<<<<< HEAD
             speakers = "",
             rooms = "",
             start_time = "",
@@ -76,14 +75,9 @@ class SessionDaoTest {
             end_time = "",
             is_bookmarked = true,
             end_date_time = "",
-            borderColor = "",
-            backgroundColor = ""
-
-=======
-            sessionImageUrl = "some-image",
-            sessionRoom = "some-room",
-            speakerName = "some-guy"
->>>>>>> f76e78fe318e8873cacf788ca95e5788ffa836ca
+            sessionImageUrl = "",
+            remote_id = "",
+            start_timestamp = 0L
         )
         sessionDao.insert(session)
         runBlocking {

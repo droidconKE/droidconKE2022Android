@@ -29,7 +29,6 @@ fun SpeakerDTO.toEntity() = SpeakerEntity(
 )
 
 fun SpeakerEntity.toDomainModel() = Speaker(
-    id = id,
     avatar = avatar,
     name = name,
     biography = bio,
@@ -53,5 +52,4 @@ fun SpeakerDTO.toDomain() = Speaker(
     facebook = "",
     blog = "",
     company_website = "",
-    id = id
 )

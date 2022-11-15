@@ -39,7 +39,7 @@ class SpeakersViewModel @Inject constructor(
                 isLoading.value = false
                 return result.data?.map {
                     SpeakerUI(
-                        id = it.id,
+                        id = 0,
                         imageUrl = it.avatar.toString(),
                         name = it.name,
                         tagline = it.tagline.toString(),
@@ -66,7 +66,7 @@ class SpeakersViewModel @Inject constructor(
                     SpeakerUI()
                 } else {
                     SpeakerUI(
-                        id = data.id,
+                        id = 0,
                         imageUrl = data.avatar.toString(),
                         name = data.name,
                         tagline = data.tagline.toString(),

@@ -29,15 +29,15 @@ class SessionsApi @Inject constructor(
 ) {
     suspend fun fetchSessions(): EventScheduleResponse<Map<String, List<SessionApiModel>>> {
         return client.get("${Constants.BASE_URL}/events/${Constants.EVENT_SLUG}/schedule") {
-            header("Api-Authorization-Key", Constants.API_KEY)
+            header("Api-Authorization-Key", "droidconKe-2020")
             url {
                 parameters.append("grouped", "true")
             }
         }.body()
     }
 
-    suspend fun updateBookmarkedStatus(string: String): BookmarkResponse {
-        return client.post("https://droidcon-erp.herokuapp.com/api/v1/events/droidconke-2022-281/bookmark_schedule/$string") {
+    suspend fun updateBookmarkedStatus(sessionId: String): BookmarkResponse {
+        return client.post("${Constants.BASE_URL}/events/${Constants.EVENT_SLUG}/bookmark_schedule/$sessionId") {
             header("Api-Authorization-Key", "droidconKe-2020")
             header("Authorization", "Bearer token")
         }.body()

@@ -1,5 +1,6 @@
 package com.android254.data.network.models.responses
 
+@kotlinx.serialization.Serializable
 data class SessionApiModel(
     val id: String,
     val backgroundColor: String,

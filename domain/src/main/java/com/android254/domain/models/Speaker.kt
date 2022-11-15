@@ -16,7 +16,6 @@
 package com.android254.domain.models
 
 data class Speaker(
-    val id: Int,
     val avatar: String?,
     val biography: String?,
     val blog: String?,

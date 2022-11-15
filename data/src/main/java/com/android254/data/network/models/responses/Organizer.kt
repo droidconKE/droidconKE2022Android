@@ -1,6 +1,7 @@
 package com.android254.data.network.models.responses
 
 
+
 data class Organizer(
     val id: Int?,
     val name: String?,
