@@ -1,9 +1,9 @@
 package com.android254.presentation.feed.view
 
-import com.android254.domain.models.Feed
-import com.android254.presentation.models.FeedUI
+import com.android254.domain.models.FeedDomainModel
+import com.android254.presentation.models.FeedPresentationModel
 
-fun Feed.toPresentation() = FeedUI (
+fun FeedDomainModel.toPresentation() = FeedPresentationModel (
     title = title,
     body = body,
     topic = topic,

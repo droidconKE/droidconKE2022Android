@@ -52,4 +52,5 @@
     <string name="format_plus_label">+%d</string>
     <string name="speaker_details_label">Speaker</string>
     <string name="bio_label">Bio</string>
+    <string name="feed_image">Feed image</string>
 </resources>

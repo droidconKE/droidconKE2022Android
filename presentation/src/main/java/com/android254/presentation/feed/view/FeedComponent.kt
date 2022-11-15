@@ -15,7 +15,6 @@
  */
 package com.android254.presentation.feed.view
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -24,8 +23,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Newspaper
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -36,6 +33,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -45,15 +43,22 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
 import com.android254.presentation.R
 import com.android254.presentation.common.theme.DroidconKE2022Theme
+import com.android254.presentation.models.FeedPresentationModel
 import com.droidconke.chai.atoms.ChaiBlue
 import com.droidconke.chai.atoms.ChaiLightGrey
 import com.droidconke.chai.atoms.ChaiSmokeyGrey
 import com.droidconke.chai.atoms.type.MontserratBold
 
 @Composable
-fun FeedComponent(modifier: Modifier, onClickItem: (Int) -> Unit) {
+fun FeedComponent(
+    modifier: Modifier,
+    feedPresentationModel: FeedPresentationModel,
+    onClickItem: (Int) -> Unit,
+) {
 
     Card(
         modifier = modifier
@@ -68,11 +73,9 @@ fun FeedComponent(modifier: Modifier, onClickItem: (Int) -> Unit) {
             modifier = Modifier.padding(vertical = 8.dp, horizontal = 16.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-
-            val textFromNetwork = stringResource(id = R.string.placeholder_long_text)
-
+            
             Text(
-                text = textFromNetwork,
+                text = feedPresentationModel.body,
                 color = MaterialTheme.colorScheme.onBackground,
                 fontSize = MaterialTheme.typography.bodyMedium.fontSize,
                 fontWeight = MaterialTheme.typography.bodyMedium.fontWeight,
@@ -82,13 +85,15 @@ fun FeedComponent(modifier: Modifier, onClickItem: (Int) -> Unit) {
                 overflow = TextOverflow.Ellipsis
             )
 
-            Image(
+            AsyncImage(
+                model = ImageRequest.Builder(LocalContext.current)
+                    .data(feedPresentationModel.image)
+                    .build(),
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(220.dp)
                     .clip(RoundedCornerShape(6.dp)),
-                imageVector = Icons.Rounded.Newspaper,
-                contentDescription = textFromNetwork
+                contentDescription = stringResource(id = R.string.feed_image)
             )
 
             Row(
@@ -138,7 +143,11 @@ fun FeedComponent(modifier: Modifier, onClickItem: (Int) -> Unit) {
 @Composable
 fun Preview() {
     DroidconKE2022Theme {
-        FeedComponent(modifier = Modifier) {
-        }
+        FeedComponent(
+            modifier = Modifier,
+            feedPresentationModel = 
+            FeedPresentationModel("Feed", "Feed feed", "test", "","", ""),
+            onClickItem = {},
+        )
     }
 }

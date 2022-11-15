@@ -81,8 +81,8 @@ fun FeedScreen(
                         modifier = Modifier.testTag("feeds_lazy_column"),
                         verticalArrangement = Arrangement.spacedBy(4.dp)
                     ) {
-                        items(feedUIState.feeds) {
-                            FeedComponent(modifier = Modifier.fillMaxWidth()) {
+                        items(feedUIState.feeds) { feedPresentationModel ->
+                            FeedComponent(modifier = Modifier.fillMaxWidth(), feedPresentationModel) {
                                 scope.launch {
                                     if (bottomSheetScaffoldState.bottomSheetState.isCollapsed) {
                                         bottomSheetScaffoldState.bottomSheetState.expand()

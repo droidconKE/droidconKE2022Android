@@ -1,6 +1,6 @@
 package com.android254.domain.models
 
-data class Feed(
+data class FeedDomainModel(
     val title: String,
     val body: String,
     val topic: String,

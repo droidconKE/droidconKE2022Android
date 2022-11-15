@@ -1,9 +1,9 @@
 package com.android254.data.repos.mappers
 
 import com.android254.data.network.models.responses.FeedDTO
-import com.android254.domain.models.Feed
+import com.android254.domain.models.FeedDomainModel
 
-fun FeedDTO.toDomain() = Feed(
+fun FeedDTO.toDomain() = FeedDomainModel(
     title = title,
     body = body,
     topic = topic,
