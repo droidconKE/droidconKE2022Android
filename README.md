@@ -143,32 +143,32 @@ We would endlessly like to thank the following contributors
         </a>
     </td>
     <td align="center">
-        <a href="https://github.com/janewaitara">
-            <img src="https://avatars.githubusercontent.com/u/32500878?v=4" width="100;" alt="janewaitara"/>
-            <br />
-            <sub><b>Jane Waitara</b></sub>
-        </a>
-    </td>
-    <td align="center">
         <a href="https://github.com/chepsi">
             <img src="https://avatars.githubusercontent.com/u/61404564?v=4" width="100;" alt="chepsi"/>
             <br />
             <sub><b>Evans Chepsiror</b></sub>
         </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/janewaitara">
+            <img src="https://avatars.githubusercontent.com/u/32500878?v=4" width="100;" alt="janewaitara"/>
+            <br />
+            <sub><b>Jane Waitara</b></sub>
+        </a>
     </td></tr>
 <tr>
-    <td align="center">
-        <a href="https://github.com/BKinya">
-            <img src="https://avatars.githubusercontent.com/u/30239692?v=4" width="100;" alt="BKinya"/>
-            <br />
-            <sub><b>Beatrice Kinya</b></sub>
-        </a>
-    </td>
     <td align="center">
         <a href="https://github.com/michaelbukachi">
             <img src="https://avatars.githubusercontent.com/u/10145850?v=4" width="100;" alt="michaelbukachi"/>
             <br />
             <sub><b>Michael Bukachi</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/BKinya">
+            <img src="https://avatars.githubusercontent.com/u/30239692?v=4" width="100;" alt="BKinya"/>
+            <br />
+            <sub><b>Beatrice Kinya</b></sub>
         </a>
     </td>
     <td align="center">
@@ -255,6 +255,13 @@ We would endlessly like to thank the following contributors
             <img src="https://avatars.githubusercontent.com/u/25648109?v=4" width="100;" alt="etonotieno"/>
             <br />
             <sub><b>Eton Otieno</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/Noah29m">
+            <img src="https://avatars.githubusercontent.com/u/101343197?v=4" width="100;" alt="Noah29m"/>
+            <br />
+            <sub><b>Null</b></sub>
         </a>
     </td></tr>
 </table>

@@ -32,12 +32,11 @@ object DatabaseModule {
     @Provides
     @Singleton
     fun providesDatabase(
-        @ApplicationContext context: Context,
+        @ApplicationContext context: Context
     ): Database = Room.databaseBuilder(
         context,
         Database::class.java,
         "dcke22-database"
     )
-        .allowMainThreadQueries() // TODO Please delete me
         .build()
 }
