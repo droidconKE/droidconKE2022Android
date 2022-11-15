@@ -21,16 +21,14 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class SponsorsPagedResponse(
     val data: List<SponsorDTO>,
-    val meta: ResponseMetaData
 )
 
 @Serializable
 data class SponsorDTO(
-    val title: String?,
-    val body: String?,
-    val topic: String?,
-    val url: String?,
-    val image: String?,
+    val name: String,
+    val tagline: String,
+    val link: String,
+    val logo: String,
     @SerialName("created_at") var createdAt: String
 
 )

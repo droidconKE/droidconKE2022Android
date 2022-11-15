@@ -1,3 +1,18 @@
+/*
+ * Copyright 2022 DroidconKE
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.android254.presentation.common.components
 
 import android.os.Build
@@ -8,18 +23,15 @@ import androidx.compose.foundation.shape.CornerBasedShape
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.compose.ui.unit.dp
 import com.android254.presentation.common.theme.Montserrat
 import com.android254.presentation.models.SessionsFilterOption
-import com.android254.presentation.sessions.view.SessionsViewModel
 import com.droidconke.chai.atoms.type.MontserratBold
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -34,8 +46,7 @@ fun MultiToggleButton(
     borderColor: Color = selectedColor,
     border: BorderStroke = BorderStroke(borderSize, selectedColor),
     enabled: Boolean = true,
-    onClick: (SessionsFilterOption) -> Unit,
-    viewModel: SessionsViewModel = hiltViewModel()
+    onClick: (SessionsFilterOption) -> Unit
 ) {
     val unselectedColor = Color.Unspecified
     val selectedContentColor = MaterialTheme.colorScheme.onPrimary
@@ -90,7 +101,7 @@ fun MultiToggleButton(
                     textStyle = textStyle,
                     onClick = {
                         onClick(sessionsFilterOption)
-                    },
+                    }
                 )
             }
         }
@@ -119,13 +130,13 @@ private fun ToggleButton(
         onClick = onClick,
         colors = ButtonDefaults.outlinedButtonColors(containerColor = backgroundColor),
         elevation = elevation,
-        enabled = enabled,
+        enabled = enabled
     ) {
         ButtonContent(
             buttonTexts = buttonTexts,
             index = index,
             textStyle = textStyle,
-            contentColor = contentColor,
+            contentColor = contentColor
         )
     }
 }

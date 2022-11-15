@@ -20,7 +20,6 @@ import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import com.android254.data.db.Database
 import com.android254.data.db.model.SessionEntity
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runTest
 import org.hamcrest.CoreMatchers.`is`
@@ -63,21 +62,21 @@ class SessionDaoTest {
             title = "Retrofiti: A Pragmatic Approach to using Retrofit in Android",
             description = "This session is codelab covering some of the best practices and recommended approaches to building an application using the retrofit library.",
             slug = "retrofiti-a-pragmatic-approach-to-using-retrofit-in-android-1583941090",
-            session_format = "Codelab / Workshop",
-            session_level = "Intermediate",
+            sessionFormat = "Codelab / Workshop",
+            sessionLevel = "Intermediate",
             speakers = "",
             rooms = "",
-            start_time = "",
-            session_image = "",
-            start_date_time = "",
-            is_serviceSession = false,
-            is_keynote = false,
-            end_time = "",
-            is_bookmarked = true,
-            end_date_time = "",
+            startTime = "",
+            sessionImage = "",
+            startDateTime = "",
+            isServiceSession = false,
+            isKeynote = false,
+            endTime = "",
+            isBookmarked = true,
+            endDateTime = "",
             sessionImageUrl = "",
             remote_id = "",
-            start_timestamp = 0L
+            startTimestamp = 0L
         )
         sessionDao.insert(session)
         runBlocking {

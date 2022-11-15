@@ -18,18 +18,19 @@ package com.android254.data.repos
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.android254.data.dao.BookmarkDao
 import com.android254.data.dao.SessionDao
 import com.android254.data.db.Database
 import com.android254.data.network.apis.SessionsApi
-//import com.android254.domain.models.DataResult
-//import com.android254.domain.models.Success
+// import com.android254.domain.models.DataResult
+// import com.android254.domain.models.Success
 import io.mockk.coEvery
-//import io.mockk.coVerify
+// import io.mockk.coVerify
 import io.mockk.mockk
-//import kotlinx.coroutines.flow.first
+// import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
-//import org.hamcrest.CoreMatchers
-//import org.hamcrest.MatcherAssert.assertThat
+// import org.hamcrest.CoreMatchers
+// import org.hamcrest.MatcherAssert.assertThat
 import org.junit.After
 import org.junit.Assert
 import org.junit.Before
@@ -39,7 +40,8 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class SessionsManagerTest {
     private val mockApi = mockk<SessionsApi>()
-    private lateinit var dao: SessionDao
+    private lateinit var sessionDao: SessionDao
+    private lateinit var bookmarkDao: BookmarkDao
     private lateinit var database: Database
 
     @Before
@@ -49,15 +51,16 @@ class SessionsManagerTest {
             Database::class.java
         ).allowMainThreadQueries().build()
 
-        dao = database.sessionDao()
+        sessionDao = database.sessionDao()
+        bookmarkDao = database.bookmarkDao()
     }
 
     @Test
     fun `test it fetches and saves sessions successfully`() {
-        val repo = SessionsManager(mockApi, dao)
+        val repo = SessionsManager(mockApi, sessionDao, bookmarkDao)
 
         runBlocking {
-            val session = dao.fetchSessions()
+            val session = sessionDao.fetchSessions()
             Assert.assertEquals(session.isEmpty(), true)
             coEvery { mockApi.fetchSessions() } returns results
             val result = repo.fetchAndSaveSessions()

@@ -1,3 +1,18 @@
+/*
+ * Copyright 2022 DroidconKE
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.android254.presentation.sessions.components
 
 import android.os.Build
@@ -13,7 +28,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.android254.presentation.R
 import com.android254.presentation.common.components.SessionsCard
@@ -23,11 +37,12 @@ import com.android254.presentation.models.SessionPresentationModel
 import com.android254.presentation.sessions.view.SessionsViewModel
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
+import java.util.*
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun SessionList(
-    viewModel: SessionsViewModel = hiltViewModel(),
+    viewModel: SessionsViewModel,
     navController: NavHostController
 ) {
     val sessions: List<SessionPresentationModel> by viewModel.sessions.observeAsState(arrayListOf())
@@ -44,7 +59,8 @@ fun SessionList(
             LazyColumn(modifier = Modifier.fillMaxHeight()) {
                 itemsIndexed(
                     items = sessions,
-                    key = { _, session -> session.remoteId }) { index, session ->
+                    key = { _, session -> session.remoteId }
+                ) { index, session ->
                     Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.Start) {
                         SessionsCard(session = session, onclick = {
                             navController.navigate(

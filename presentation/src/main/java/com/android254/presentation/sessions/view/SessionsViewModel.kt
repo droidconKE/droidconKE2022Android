@@ -194,7 +194,6 @@ class SessionsViewModel @Inject constructor(
     }
 
     private fun getQuery(): String {
-
         var query = Query().fields("*").from("sessions")
         if (_filterState.value!!.rooms.isNotEmpty()) {
             val rooms = _filterState.value!!.rooms.joinToString(",")
@@ -203,21 +202,20 @@ class SessionsViewModel @Inject constructor(
 
         if (_filterState.value!!.levels.isNotEmpty()) {
             val sessionLevels = _filterState.value!!.levels.joinToString("','", "'", "'")
-            query.where("session_level IN ($sessionLevels)")
+            query.where("sessionLevel IN ($sessionLevels)")
         }
 
         if (_filterState.value!!.sessionTypes.isNotEmpty()) {
             val sessionTypes = _filterState.value!!.sessionTypes.joinToString("','", "'", "'")
-            query.where("session_format IN ($sessionTypes)")
+            query.where("sessionFormat IN ($sessionTypes)")
         }
 
         if (_filterState.value!!.isBookmarked) {
             val isBookmarked = _filterState.value!!.isBookmarked
-            query.where("is_bookmarked = '${if (isBookmarked) '1' else '0'}'")
+            query.where("isBookmarked = '${if (isBookmarked) '1' else '0'}'")
         }
 
-
-        query.orderAsc("start_timestamp")
+        query.orderAsc("startTimestamp")
 
         return query.toSql()
     }
@@ -251,9 +249,7 @@ class SessionsViewModel @Inject constructor(
         }
     }
 
-    suspend fun updateBookmarkStatus(id: String, isCurrentlyStarred: Boolean): Flow<ResourceResult<Boolean>> {
-        return sessionsRepo.toggleBookmarkStatus(id, isCurrentlyStarred)
-    }
+    suspend fun updateBookmarkStatus(id: String, isCurrentlyStarred: Boolean): Flow<ResourceResult<Boolean>> = sessionsRepo.toggleBookmarkStatus(id, isCurrentlyStarred)
 
     fun fetchBookmarkedSessions() {
         viewModelScope.launch {

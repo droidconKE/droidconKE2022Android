@@ -206,7 +206,7 @@ fun FeedBackScreen(
                 )
             ) {
                 Text(
-                    text = stringResource(R.string.feedback_submit_label).uppercase(),
+                    text = stringResource(R.string.feedback_label).uppercase(),
                     fontWeight = FontWeight.Bold,
                     fontSize = 16.sp
                 )

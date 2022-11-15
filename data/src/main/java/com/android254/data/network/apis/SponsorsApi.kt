@@ -30,7 +30,7 @@ class SponsorsApi @Inject constructor(
 
     suspend fun fetchSponsors(): DataResult<SponsorsPagedResponse> =
         dataResultSafeApiCall {
-            client.get("${Constants.BASE_URL}/events/${Constants.EVENT_SLUG}/feeds?per_page=10"){
+            client.get("${Constants.EVENT_BASE_URL}/sponsors?per_page=10") {
             }.body()
         }
 }

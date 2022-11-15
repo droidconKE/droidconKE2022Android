@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "cd490823e061cc3db092e2248fbfb66b",
+    "identityHash": "28d0f2aba1341208ccc77b099ca85c10",
     "entities": [
       {
         "tableName": "sessions",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `remote_id` TEXT NOT NULL, `description` TEXT NOT NULL, `session_format` TEXT NOT NULL, `session_level` TEXT NOT NULL, `slug` TEXT NOT NULL, `title` TEXT NOT NULL, `end_date_time` TEXT NOT NULL, `end_time` TEXT NOT NULL, `is_bookmarked` INTEGER NOT NULL, `is_keynote` INTEGER NOT NULL, `is_serviceSession` INTEGER NOT NULL, `session_image` TEXT, `start_date_time` TEXT NOT NULL, `start_time` TEXT NOT NULL, `rooms` TEXT NOT NULL, `speakers` TEXT NOT NULL, `start_timestamp` INTEGER NOT NULL, `sessionImageUrl` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `remote_id` TEXT NOT NULL, `description` TEXT NOT NULL, `sessionFormat` TEXT NOT NULL, `sessionLevel` TEXT NOT NULL, `slug` TEXT NOT NULL, `title` TEXT NOT NULL, `endDateTime` TEXT NOT NULL, `endTime` TEXT NOT NULL, `isBookmarked` INTEGER NOT NULL, `isKeynote` INTEGER NOT NULL, `isServiceSession` INTEGER NOT NULL, `sessionImage` TEXT, `startDateTime` TEXT NOT NULL, `startTime` TEXT NOT NULL, `rooms` TEXT NOT NULL, `speakers` TEXT NOT NULL, `startTimestamp` INTEGER NOT NULL, `sessionImageUrl` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -27,14 +27,14 @@
             "notNull": true
           },
           {
-            "fieldPath": "session_format",
-            "columnName": "session_format",
+            "fieldPath": "sessionFormat",
+            "columnName": "sessionFormat",
             "affinity": "TEXT",
             "notNull": true
           },
           {
-            "fieldPath": "session_level",
-            "columnName": "session_level",
+            "fieldPath": "sessionLevel",
+            "columnName": "sessionLevel",
             "affinity": "TEXT",
             "notNull": true
           },
@@ -51,50 +51,50 @@
             "notNull": true
           },
           {
-            "fieldPath": "end_date_time",
-            "columnName": "end_date_time",
+            "fieldPath": "endDateTime",
+            "columnName": "endDateTime",
             "affinity": "TEXT",
             "notNull": true
           },
           {
-            "fieldPath": "end_time",
-            "columnName": "end_time",
+            "fieldPath": "endTime",
+            "columnName": "endTime",
             "affinity": "TEXT",
             "notNull": true
           },
           {
-            "fieldPath": "is_bookmarked",
-            "columnName": "is_bookmarked",
+            "fieldPath": "isBookmarked",
+            "columnName": "isBookmarked",
             "affinity": "INTEGER",
             "notNull": true
           },
           {
-            "fieldPath": "is_keynote",
-            "columnName": "is_keynote",
+            "fieldPath": "isKeynote",
+            "columnName": "isKeynote",
             "affinity": "INTEGER",
             "notNull": true
           },
           {
-            "fieldPath": "is_serviceSession",
-            "columnName": "is_serviceSession",
+            "fieldPath": "isServiceSession",
+            "columnName": "isServiceSession",
             "affinity": "INTEGER",
             "notNull": true
           },
           {
-            "fieldPath": "session_image",
-            "columnName": "session_image",
+            "fieldPath": "sessionImage",
+            "columnName": "sessionImage",
             "affinity": "TEXT",
             "notNull": false
           },
           {
-            "fieldPath": "start_date_time",
-            "columnName": "start_date_time",
+            "fieldPath": "startDateTime",
+            "columnName": "startDateTime",
             "affinity": "TEXT",
             "notNull": true
           },
           {
-            "fieldPath": "start_time",
-            "columnName": "start_time",
+            "fieldPath": "startTime",
+            "columnName": "startTime",
             "affinity": "TEXT",
             "notNull": true
           },
@@ -111,8 +111,8 @@
             "notNull": true
           },
           {
-            "fieldPath": "start_timestamp",
-            "columnName": "start_timestamp",
+            "fieldPath": "startTimestamp",
+            "columnName": "startTimestamp",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -194,18 +194,18 @@
       },
       {
         "tableName": "bookmarks",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`session_id` TEXT NOT NULL, PRIMARY KEY(`session_id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`sessionId` TEXT NOT NULL, PRIMARY KEY(`sessionId`))",
         "fields": [
           {
-            "fieldPath": "session_id",
-            "columnName": "session_id",
+            "fieldPath": "sessionId",
+            "columnName": "sessionId",
             "affinity": "TEXT",
             "notNull": true
           }
         ],
         "primaryKey": {
           "columnNames": [
-            "session_id"
+            "sessionId"
           ],
           "autoGenerate": false
         },
@@ -216,7 +216,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'cd490823e061cc3db092e2248fbfb66b')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '28d0f2aba1341208ccc77b099ca85c10')"
     ]
   }
 }
