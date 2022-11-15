@@ -73,7 +73,7 @@ fun FeedScreen(
                 .padding(paddingValues)
                 .fillMaxSize()
         ) {
-            when(feedUIState) {
+            when (feedUIState) {
                 is FeedUIState.Error -> {}
                 FeedUIState.Loading -> {}
                 is FeedUIState.Success -> {
@@ -95,7 +95,6 @@ fun FeedScreen(
                     }
                 }
             }
-
         }
     }
 }

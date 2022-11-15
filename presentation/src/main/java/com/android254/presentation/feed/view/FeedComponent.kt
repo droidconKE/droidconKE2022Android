@@ -73,7 +73,7 @@ fun FeedComponent(
             modifier = Modifier.padding(vertical = 8.dp, horizontal = 16.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            
+
             Text(
                 text = feedPresentationModel.body,
                 color = MaterialTheme.colorScheme.onBackground,
@@ -145,8 +145,8 @@ fun Preview() {
     DroidconKE2022Theme {
         FeedComponent(
             modifier = Modifier,
-            feedPresentationModel = 
-            FeedPresentationModel("Feed", "Feed feed", "test", "","", ""),
+            feedPresentationModel =
+            FeedPresentationModel("Feed", "Feed feed", "test", "", "", ""),
             onClickItem = {},
         )
     }
