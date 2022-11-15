@@ -16,8 +16,10 @@
 package com.android254.data.di
 
 import com.android254.data.repos.AuthManager
+import com.android254.data.repos.FeedManager
 import com.android254.data.repos.SpeakersManager
 import com.android254.domain.repos.AuthRepo
+import com.android254.domain.repos.FeedRepo
 import com.android254.domain.repos.SpeakersRepo
 import dagger.Binds
 import dagger.Module
@@ -36,4 +38,8 @@ abstract class RepoModule {
     @Binds
     @Singleton
     abstract fun provideSpeakersRepo(manager: SpeakersManager): SpeakersRepo
+
+    @Binds
+    @Singleton
+    abstract fun provideFeedRepo(manager: FeedManager): FeedRepo
 }
