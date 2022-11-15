@@ -44,7 +44,7 @@ fun SessionList(
             LazyColumn(modifier = Modifier.fillMaxHeight()) {
                 itemsIndexed(
                     items = sessions,
-                    key = { _, session -> session.id }) { index, session ->
+                    key = { _, session -> session.remoteId }) { index, session ->
                     Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.Start) {
                         SessionsCard(session = session, onclick = {
                             navController.navigate(
