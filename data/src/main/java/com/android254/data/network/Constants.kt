@@ -21,5 +21,4 @@ object Constants {
     const val EVENT_SLUG = "droidconke-2022-281"
     const val ORG_SLUG = "droidcon-ke-645"
     const val EVENT_BASE_URL = "$BASE_URL/events/$EVENT_SLUG"
-    const val API_KEY = "droidconKe-2020"
 }
