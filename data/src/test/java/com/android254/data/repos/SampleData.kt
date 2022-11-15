@@ -46,7 +46,7 @@ val results = PaginatedResponse(
     )
 )
 
-val feed  = listOf(
+val feed = listOf(
     FeedDTO(
         "Feed",
         "Feed feed feed",
