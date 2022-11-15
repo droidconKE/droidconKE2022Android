@@ -5,7 +5,7 @@ data class HomeDetailsDomainModel(
     val isEventBannerEnable: Boolean,
     val sessions: List<Session>,
     val sessionsCount: Int,
-    val speakers: List<SpeakersDomainModel>,
+    val speakers: List<Speaker>,
     val speakersCount: Int,
     val sponsors: List<SponsorsDomainModel>,
     val organizers: List<OrganizingPartnersDomainModel>

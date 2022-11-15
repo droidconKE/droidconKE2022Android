@@ -26,9 +26,9 @@ fun SessionEntity.toDomainModel() = Session(
     session_format = this.session_format,
     session_level = this.session_level,
     slug = this.slug,
-    sessionImageUrl = "",
-    sessionRoom = "",
-    speakerName = ""
+    sessionImageUrl = sessionImageUrl,
+    sessionRoom = sessionRoom,
+    speakerName = speakerName
 )
 
 fun SessionDTO.toEntity() = SessionEntity(
@@ -37,5 +37,20 @@ fun SessionDTO.toEntity() = SessionEntity(
     title = title.orEmpty(),
     session_format = sessionFormat.orEmpty(),
     session_level = sessionLevel.orEmpty(),
-    slug = slug.orEmpty()
+    slug = slug.orEmpty(),
+    sessionRoom = "",
+    sessionImageUrl = sessionImage.orEmpty(),
+    speakerName = speakers?.joinToString(" & ").orEmpty()
+)
+
+fun SessionDTO.toDomain() = Session(
+    id = 0,
+    description = description.orEmpty(),
+    session_format = sessionFormat.orEmpty(),
+    session_level = sessionLevel.orEmpty(),
+    slug = slug.orEmpty(),
+    title = title.orEmpty(),
+    sessionImageUrl = sessionImage.orEmpty(),
+    sessionRoom = description.orEmpty(),
+    speakerName = speakers?.joinToString(separator = "&").orEmpty()
 )

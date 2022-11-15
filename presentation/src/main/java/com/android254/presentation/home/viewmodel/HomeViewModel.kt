@@ -21,7 +21,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.android254.domain.models.Session
-import com.android254.domain.models.SpeakersDomainModel
+import com.android254.domain.models.Speaker
 import com.android254.domain.repos.HomeRepo
 import com.android254.presentation.home.viewstate.HomeViewState
 import com.android254.presentation.models.SessionPresentationModel
@@ -56,7 +56,7 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    private fun List<SpeakersDomainModel>.toSpeakersPresentation() =
+    private fun List<Speaker>.toSpeakersPresentation() =
         map {
             SpeakerUI(
                 imageUrl = it.imageUrl,
