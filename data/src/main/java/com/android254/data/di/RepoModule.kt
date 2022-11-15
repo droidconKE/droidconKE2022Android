@@ -16,8 +16,10 @@
 package com.android254.data.di
 
 import com.android254.data.repos.AuthManager
+import com.android254.data.repos.HomeRepoImpl
 import com.android254.data.repos.SpeakersManager
 import com.android254.domain.repos.AuthRepo
+import com.android254.domain.repos.HomeRepo
 import com.android254.domain.repos.SpeakersRepo
 import dagger.Binds
 import dagger.Module
@@ -32,6 +34,9 @@ abstract class RepoModule {
     @Binds
     @Singleton
     abstract fun provideAuthRepo(repo: AuthManager): AuthRepo
+
+    @Binds
+    abstract fun providesHomeRepo(homeRepoImpl: HomeRepoImpl): HomeRepo
 
     @Binds
     @Singleton

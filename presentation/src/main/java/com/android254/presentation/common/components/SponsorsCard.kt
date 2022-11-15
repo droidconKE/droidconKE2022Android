@@ -49,7 +49,7 @@ import com.google.accompanist.flowlayout.SizeMode
 @Composable
 fun SponsorsCard(
     modifier: Modifier = Modifier,
-    sponsorsLogos: List<String>,
+    sponsorsLogos: List<String>
 ) {
     Card {
         Column(
@@ -71,9 +71,9 @@ fun SponsorsCard(
                     fontWeight = FontWeight.Bold,
                     fontSize = 18.sp,
                     lineHeight = 25.sp,
-                    fontFamily = MontserratBold,
+                    fontFamily = MontserratBold
                 ),
-                textAlign = TextAlign.Center,
+                textAlign = TextAlign.Center
             )
 
             Spacer(modifier = Modifier.height(30.dp))
@@ -83,7 +83,7 @@ fun SponsorsCard(
                     .data(R.drawable.ic_droidcon_logo)
                     .build(),
                 placeholder = painterResource(R.drawable.ic_google_logo_icon),
-                contentDescription = stringResource(id = R.string.logo),
+                contentDescription = stringResource(id = R.string.logo)
             )
 
             FlowRow(
@@ -91,15 +91,16 @@ fun SponsorsCard(
                 mainAxisAlignment = MainAxisAlignment.SpaceEvenly,
                 mainAxisSize = SizeMode.Expand,
                 mainAxisSpacing = 16.dp,
-                crossAxisSpacing = 16.dp,
+                crossAxisSpacing = 16.dp
             ) {
                 sponsorsLogos.forEach { sponsorLogo ->
                     AsyncImage(
                         model = ImageRequest.Builder(LocalContext.current)
-                            .data(R.drawable.ic_droidcon_logo)
+                            .data(sponsorLogo)
+                            .crossfade(true)
                             .build(),
                         placeholder = painterResource(R.drawable.ic_google_logo_icon),
-                        contentDescription = stringResource(id = R.string.logo),
+                        contentDescription = stringResource(id = R.string.logo)
                     )
                 }
             }

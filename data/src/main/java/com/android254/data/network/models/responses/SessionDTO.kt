@@ -15,14 +15,49 @@
  */
 package com.android254.data.network.models.responses
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class SessionDTO(
-    val id: String,
-    val description: String,
-    val session_format: String,
-    val session_level: String,
-    val slug: String,
-    val title: String
-)
+    @SerialName("description")
+    val description: String? = "",
+    @SerialName("is_keynote")
+    val isKeynote: Boolean? = false,
+    @SerialName("session_format")
+    val sessionFormat: String? = "",
+    @SerialName("session_image")
+    val sessionImage: String? = "",
+    @SerialName("session_level")
+    val sessionLevel: String? = "",
+    @SerialName("slug")
+    val slug: String? = "",
+    @SerialName("speakers")
+    val speakers: List<Speaker?>? = listOf(),
+    @SerialName("title")
+    val title: String? = ""
+) {
+    @Serializable
+    data class Speaker(
+        @SerialName("avatar")
+        val avatar: String? = "",
+        @SerialName("biography")
+        val biography: String? = "",
+        @SerialName("blog")
+        val blog: String? = "",
+        @SerialName("company_website")
+        val companyWebsite: String? = "",
+        @SerialName("facebook")
+        val facebook: String? = "",
+        @SerialName("instagram")
+        val instagram: String? = "",
+        @SerialName("linkedin")
+        val linkedin: String? = "",
+        @SerialName("name")
+        val name: String? = "",
+        @SerialName("tagline")
+        val tagline: String? = "",
+        @SerialName("twitter")
+        val twitter: String? = ""
+    )
+}

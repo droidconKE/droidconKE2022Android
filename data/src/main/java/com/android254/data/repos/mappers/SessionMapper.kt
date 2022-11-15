@@ -25,14 +25,17 @@ fun SessionEntity.toDomainModel() = Session(
     title = this.title,
     session_format = this.session_format,
     session_level = this.session_level,
-    slug = this.slug
+    slug = this.slug,
+    sessionImageUrl = "",
+    sessionRoom = "",
+    speakerName = ""
 )
 
 fun SessionDTO.toEntity() = SessionEntity(
     id = 0,
-    description = description,
-    title = title,
-    session_format = session_format,
-    session_level = session_level,
-    slug = slug
+    description = description.orEmpty(),
+    title = title.orEmpty(),
+    session_format = sessionFormat.orEmpty(),
+    session_level = sessionLevel.orEmpty(),
+    slug = slug.orEmpty()
 )

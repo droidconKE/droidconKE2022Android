@@ -42,11 +42,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
-import androidx.hilt.navigation.compose.hiltViewModel
 import com.android254.presentation.R
 import com.android254.presentation.models.SpeakerUI
 import com.android254.presentation.models.speakersDummyData
-import com.android254.presentation.speakers.SpeakersViewModel
 import com.droidconke.chai.atoms.type.MontserratBold
 import com.droidconke.chai.atoms.type.MontserratRegular
 import com.droidconke.chai.atoms.type.MontserratSemiBold
@@ -116,7 +114,7 @@ fun HomeSpeakersSection(
                             color = colorResource(id = R.color.blue),
                             fontSize = 10.sp,
                             fontFamily = MontserratRegular
-                        ),
+                        )
                     )
                 }
             }
@@ -129,7 +127,7 @@ fun HomeSpeakersSection(
                     top.linkTo(titleText.bottom)
                 }
         ) {
-            items(speakers.take(4)) { speaker ->
+            items(speakers.take(8)) { speaker ->
                 HomeSpeakerComponent(speaker = speaker, onClick = {
                     navigateToSpeaker.invoke(speaker.twitterHandle)
                 })
@@ -141,7 +139,6 @@ fun HomeSpeakersSection(
 @Preview
 @Composable
 fun HomeSpeakersSectionPreview() {
-    val viewModel = hiltViewModel<SpeakersViewModel>()
     Surface(color = Color.White) {
         HomeSpeakersSection(speakers = speakersDummyData)
     }

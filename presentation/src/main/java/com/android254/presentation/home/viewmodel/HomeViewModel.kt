@@ -15,12 +15,71 @@
  */
 package com.android254.presentation.home.viewmodel
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.android254.domain.models.Session
+import com.android254.domain.models.SpeakersDomainModel
+import com.android254.domain.repos.HomeRepo
 import com.android254.presentation.home.viewstate.HomeViewState
+import com.android254.presentation.models.SessionPresentationModel
+import com.android254.presentation.models.SpeakerUI
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
+import kotlinx.coroutines.launch
 
 @HiltViewModel
-class HomeViewModel @Inject constructor() : ViewModel() {
-    val viewState = HomeViewState()
+class HomeViewModel @Inject constructor(
+    private val homeRepo: HomeRepo
+) : ViewModel() {
+
+    var viewState by mutableStateOf(HomeViewState())
+        private set
+
+    fun onGetHomeScreenDetails() {
+        viewModelScope.launch {
+            with(homeRepo.fetchHomeDetails()) {
+                viewState
+                viewState = viewState.copy(
+                    isPosterVisible = this.isEventBannerEnable,
+                    isCallForSpeakersVisible = this.isCallForSpeakersEnable,
+                    linkToCallForSpeakers = "",
+                    isSignedIn = false,
+                    speakers = speakers.toSpeakersPresentation(),
+                    sponsors = sponsors.map { it.sponsorLogoUrl },
+                    organizedBy = organizers.map { it.organizerLogoUrl },
+                    sessions = sessions.toSessionsPresentation()
+                )
+            }
+        }
+    }
+
+    private fun List<SpeakersDomainModel>.toSpeakersPresentation() =
+        map {
+            SpeakerUI(
+                imageUrl = it.imageUrl,
+                name = it.name,
+                tagline = it.tagline,
+                bio = it.bio,
+                twitterHandle = it.twitterHandle
+            )
+        }
+
+    private fun List<Session>.toSessionsPresentation() =
+        map {
+            SessionPresentationModel(
+                id = it.id,
+                sessionTitle = it.title,
+                sessionDescription = it.description,
+                sessionVenue = it.sessionRoom,
+                sessionSpeakerImage = it.sessionImageUrl,
+                sessionSpeakerName = it.speakerName,
+                sessionStartTime = "10:00 AM",
+                sessionEndTime = "12:00 PM",
+                amOrPm = "AM",
+                isStarred = false
+            )
+        }
 }
