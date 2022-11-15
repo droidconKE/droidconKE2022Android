@@ -15,15 +15,16 @@
  */
 package com.android254.data.network.models.responses
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class PaginationMetaData(
     val count: Int,
-    val current_page: Int,
-    val has_more_pages: Boolean,
-    val next_page: String?,
-    val next_page_url: String?,
-    val per_page: String,
-    val previous_page_url: String?
+    @SerialName("current_page") val currentPage: Int,
+    @SerialName("has_more_pages") val hasMorePages: Boolean,
+    @SerialName("next_page") val nextPage: String?,
+    @SerialName("next_page_url") val nextPageUrl: String?,
+    @SerialName("per_page") val perPage: String,
+    @SerialName("previous_page_url") val previousPageUrl: String?
 )

@@ -16,50 +16,70 @@
 package com.android254.presentation.speakers
 
 import androidx.lifecycle.ViewModel
-import com.android254.presentation.models.Speaker
+import com.android254.domain.models.ResourceResult
+import com.android254.domain.repos.SpeakersRepo
+import com.android254.presentation.models.SpeakerUI
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
 import javax.inject.Inject
 
 @HiltViewModel
-class SpeakersViewModel @Inject constructor() : ViewModel() {
+class SpeakersViewModel @Inject constructor(
+    private val speakersRepo: SpeakersRepo
+) : ViewModel() {
 
-    fun getSpeakers() = listOf(
-        Speaker(
-            avatar = "https://sessionize.com/image/09c1-400o400o2-cf-9587-423b-bd2e-415e6757286c.b33d8d6e-1f94-4765-a797-255efc34390d.jpg",
-            name = "Harun Wangereka",
-            biography = "Kenya Partner Lead at droidcon Berlin | Android | Kotlin | Flutter | C++",
-            blog = "",
-            company_website = "",
-            facebook = "",
-            instagram = "",
-            linkedin = "",
-            tagline = "",
-            twitter = ""
-        ),
-        Speaker(
-            avatar = "https://media-exp1.licdn.com/dms/image/C4D03AQGn58utIO-x3w/profile-displayphoto-shrink_200_200/0/1637478114039?e=2147483647&v=beta&t=3kIon0YJQNHZojD3Dt5HVODJqHsKdf2YKP1SfWeROnI",
-            name = "Frank Tamre",
-            biography = "Kenya Partner Lead at droidcon Berlin | Android | Kotlin | Flutter | C++",
-            blog = "",
-            company_website = "",
-            facebook = "",
-            instagram = "",
-            linkedin = "",
-            tagline = "",
-            twitter = ""
-        )
-    )
+    val isLoading = MutableStateFlow(false)
+    val message = MutableSharedFlow<String>()
 
-    fun getSpeakerByTwitterHandle(twitterHandle: String) = Speaker(
-        avatar = "https://media-exp1.licdn.com/dms/image/C4D03AQGn58utIO-x3w/profile-displayphoto-shrink_200_200/0/1637478114039?e=2147483647&v=beta&t=3kIon0YJQNHZojD3Dt5HVODJqHsKdf2YKP1SfWeROnI",
-        name = "Frank Tamre",
-        biography = "Kenya Partner Lead at droidcon Berlin | Android | Kotlin | Flutter | C++".trimIndent(),
-        blog = "",
-        company_website = "",
-        facebook = "",
-        instagram = "",
-        linkedin = "",
-        tagline = "",
-        twitter = ""
-    )
+    suspend fun getSpeakers(): List<SpeakerUI> {
+        isLoading.value = true
+        when (val result = speakersRepo.fetchSpeakers()) {
+            is ResourceResult.Success -> {
+                isLoading.value = false
+                return result.data?.map {
+                    SpeakerUI(
+                        id = it.id,
+                        imageUrl = it.avatar.toString(),
+                        name = it.name,
+                        tagline = it.tagline.toString(),
+                        bio = it.biography.toString(),
+                        twitterHandle = it.twitter.toString()
+                    )
+                } ?: emptyList()
+            }
+            is ResourceResult.Error -> {
+                message.tryEmit(result.message)
+            }
+            else -> {}
+        }
+        isLoading.value = false
+        return emptyList()
+    }
+
+    suspend fun getSpeakerById(id: Int): SpeakerUI {
+        isLoading.value = true
+        when (val result = speakersRepo.getSpeakerById(id)) {
+            is ResourceResult.Success -> {
+                val data = result.data
+                return if (data == null) {
+                    SpeakerUI()
+                } else {
+                    SpeakerUI(
+                        id = data.id,
+                        imageUrl = data.avatar.toString(),
+                        name = data.name,
+                        tagline = data.tagline.toString(),
+                        bio = data.biography.toString(),
+                        twitterHandle = data.twitter.toString()
+                    )
+                }
+            }
+            is ResourceResult.Error -> {
+                message.tryEmit(result.message)
+            }
+            else -> {}
+        }
+        return SpeakerUI()
+    }
 }

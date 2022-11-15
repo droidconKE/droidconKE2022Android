@@ -15,11 +15,12 @@
  */
 package com.android254.data.network.models.responses
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class AccessToken(
-    @SerialName("token") val token: String,
-    @SerialName("user") val user: UserDetails
+data class UserDetailsDTO(
+    val name: String,
+    val email: String,
+    val gender: String?,
+    val avatar: String
 )

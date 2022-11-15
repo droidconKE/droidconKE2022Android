@@ -39,6 +39,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -47,12 +48,12 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.android254.presentation.R
 import com.android254.presentation.common.theme.DroidconKE2022Theme
-import com.android254.presentation.models.Speaker
+import com.android254.presentation.models.SpeakerUI
 
 @Composable
 fun SpeakerComponent(
     modifier: Modifier = Modifier,
-    speaker: Speaker,
+    speaker: SpeakerUI,
     onClick: () -> Unit = {}
 ) {
     Card(
@@ -75,7 +76,7 @@ fun SpeakerComponent(
             val (image, nameText, bioText, button) = createRefs()
             AsyncImage(
                 model = ImageRequest.Builder(LocalContext.current)
-                    .data(speaker.avatar)
+                    .data(speaker.imageUrl)
                     .build(),
                 placeholder = painterResource(R.drawable.smiling),
                 contentDescription = stringResource(R.string.head_shot),
@@ -110,16 +111,19 @@ fun SpeakerComponent(
                     }
             )
             Text(
-                text = speaker.biography.toString(),
+                text = speaker.bio ?: "",
                 style = TextStyle(
                     color = colorResource(id = R.color.grey),
                     fontSize = 14.sp,
                     fontFamily = FontFamily(Font(R.font.montserrat_regular)) // Extract the fonts or get them from chai system
                 ),
+                maxLines = 4,
+                overflow = TextOverflow.Ellipsis,
                 modifier = modifier
                     .testTag("bio")
                     .constrainAs(bioText) {
                         top.linkTo(nameText.bottom, margin = 8.dp)
+                        bottom.linkTo(button.top, margin = 8.dp)
                         start.linkTo(parent.start)
                         end.linkTo(parent.end)
                     }
@@ -153,17 +157,10 @@ fun SpeakerComponent(
 fun SpeakerComponentPreview() {
     DroidconKE2022Theme {
         SpeakerComponent(
-            speaker = Speaker(
-                avatar = "String?",
-                biography = "String",
-                blog = "String",
-                company_website = "String",
-                facebook = "String",
-                instagram = "String",
-                linkedin = "String",
-                name = "String",
-                tagline = "String",
-                twitter = "String"
+            speaker = SpeakerUI(
+                imageUrl = "https://sessionize.com/image/09c1-400o400o2-cf-9587-423b-bd2e-415e6757286c.b33d8d6e-1f94-4765-a797-255efc34390d.jpg",
+                name = "Harun Wangereka",
+                bio = "Kenya Partner Lead at droidcon Berlin | Android | Kotlin | Flutter | C++"
             )
         )
     }

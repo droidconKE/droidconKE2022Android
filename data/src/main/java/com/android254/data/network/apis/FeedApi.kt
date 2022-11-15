@@ -16,17 +16,26 @@
 package com.android254.data.network.apis
 
 import com.android254.data.network.Constants
-import com.android254.data.network.models.responses.SpeakerApiModel
-import com.android254.data.network.util.safeApiCall
+import com.android254.data.network.models.responses.Feed
+import com.android254.data.network.models.responses.PaginatedResponse
+import com.android254.data.network.util.dataResultSafeApiCall
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.request.*
 import javax.inject.Inject
 
-class SpeakerRemoteSource @Inject constructor(
-    private val client: HttpClient
-) {
-    suspend fun fetchSpeakers(): List<SpeakerApiModel> = safeApiCall {
-        return@safeApiCall client.get("${Constants.BASE_URL}/speakers").body()
+class FeedApi @Inject constructor(private val client: HttpClient) {
+
+    suspend fun fetchFeed(page: Int = 1, size: Int = 100) = dataResultSafeApiCall {
+        val response: PaginatedResponse<List<Feed>> =
+            client.get("${Constants.EVENT_BASE_URL}/feeds") {
+                header("Api-Authorization-Key", Constants.API_KEY)
+                url {
+                    parameters.append("page", page.toString())
+                    parameters.append("per_page", size.toString())
+                }
+            }.body()
+
+        return@dataResultSafeApiCall response.data
     }
 }

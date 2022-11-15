@@ -16,26 +16,26 @@
 package com.android254.data.util
 
 import com.android254.data.db.model.OrganizerEntity
-import com.android254.domain.models.CreatorDomainModel
-import com.android254.domain.models.OrganizerDomainModel
+import com.android254.domain.models.Creator
+import com.android254.domain.models.Organizer
 
 object OrganizerDomainToEntityMapper {
 
-    private fun CreatorDomainModel.toEntity() = OrganizerEntity.CreatorEntity(
+    private fun Creator.toEntity() = OrganizerEntity.CreatorEntity(
         id = id,
         name = name,
         email = email,
         createdAt = createdAt
     )
 
-    private fun OrganizerEntity.CreatorEntity.toDomain() = CreatorDomainModel(
+    private fun OrganizerEntity.CreatorEntity.toDomain() = Creator(
         id = id,
         name = name,
         email = email,
-        createdAt = createdAt
+        createdAt = createdAt.toString()
     )
 
-    fun OrganizerDomainModel.toEntity() = OrganizerEntity(
+    fun Organizer.toEntity() = OrganizerEntity(
         id = id ?: 0,
         name = name,
         email = email,
@@ -47,12 +47,12 @@ object OrganizerDomainToEntityMapper {
         slug = slug,
         status = status,
         createdAt = createdAt,
-        creater = creater?.toEntity(),
+        creater = creator?.toEntity(),
         upcomingEventsCount = upcomingEventsCount,
         totalEventsCount = totalEventsCount
     )
 
-    fun OrganizerEntity.toDomain() = OrganizerDomainModel(
+    fun OrganizerEntity.toDomain() = Organizer(
         id = id,
         name = name,
         email = email,
@@ -64,7 +64,7 @@ object OrganizerDomainToEntityMapper {
         slug = slug,
         status = status,
         createdAt = createdAt,
-        creater = creater?.toDomain(),
+        creator = creater?.toDomain(),
         upcomingEventsCount = upcomingEventsCount,
         totalEventsCount = totalEventsCount
     )

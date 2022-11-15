@@ -13,28 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android254.domain.models
+package com.android254.data.network.apis
 
-data class OrganizerDomainModel(
-    val id: Int?,
-    val name: String?,
-    val email: String?,
-    val description: String?,
-    val facebook: String?,
-    val twitter: String?,
-    val instagram: String?,
-    val logo: String?,
-    val slug: String?,
-    val status: String?,
-    val createdAt: String?,
-    val creater: CreatorDomainModel?,
-    val upcomingEventsCount: Int?,
-    val totalEventsCount: Int?
-)
+import com.android254.data.network.models.responses.PaginationMetaData
+import com.android254.data.network.models.responses.ResponseMetaData
 
-data class CreatorDomainModel(
-    val id: Int?,
-    val name: String?,
-    val email: String?,
-    val createdAt: String?
+val samplePaginationMetaData = ResponseMetaData(
+    paginator = PaginationMetaData(
+        count = 0,
+        currentPage = 1,
+        hasMorePages = false,
+        nextPage = null,
+        nextPageUrl = null,
+        perPage = "20",
+        previousPageUrl = null
+    )
 )

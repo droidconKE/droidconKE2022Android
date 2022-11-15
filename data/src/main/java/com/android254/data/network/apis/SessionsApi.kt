@@ -15,26 +15,21 @@
  */
 package com.android254.data.network.apis
 
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
+import com.android254.data.network.Constants
 import com.android254.data.network.models.responses.BookmarkResponse
 import com.android254.data.network.models.responses.EventScheduleResponse
 import com.android254.data.network.models.responses.SessionApiModel
-import com.android254.data.preferences.DefaultTokenProvider
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.request.*
-import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
-class SessionRemoteSource @Inject constructor(
+class SessionsApi @Inject constructor(
     private val client: HttpClient,
-    private val tokenProvider: DefaultTokenProvider,
-    private val dataStore: DataStore<Preferences>
 ) {
     suspend fun fetchSessions(): EventScheduleResponse<Map<String, List<SessionApiModel>>> {
-        return client.get("https://droidcon-erp.herokuapp.com/api/v1/events/droidconke-2022-281/schedule") {
-            header("Api-Authorization-Key", "droidconKe-2020")
+        return client.get("${Constants.BASE_URL}/events/${Constants.EVENT_SLUG}/schedule") {
+            header("Api-Authorization-Key", Constants.API_KEY)
             url {
                 parameters.append("grouped", "true")
             }

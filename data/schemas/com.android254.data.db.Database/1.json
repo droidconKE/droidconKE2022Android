@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "4f47dd20cf76fb465ef119a43f849dd4",
+    "identityHash": "0a2671a53bdc2b6b254f05bbfc6647de",
     "entities": [
       {
         "tableName": "sessions",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `remote_id` TEXT NOT NULL, `description` TEXT NOT NULL, `session_format` TEXT NOT NULL, `session_level` TEXT NOT NULL, `slug` TEXT NOT NULL, `title` TEXT NOT NULL, `backgroundColor` TEXT NOT NULL, `borderColor` TEXT NOT NULL, `end_date_time` TEXT NOT NULL, `end_time` TEXT NOT NULL, `is_bookmarked` INTEGER NOT NULL, `is_keynote` INTEGER NOT NULL, `is_serviceSession` INTEGER NOT NULL, `session_image` TEXT, `start_date_time` TEXT NOT NULL, `start_time` TEXT NOT NULL, `rooms` TEXT NOT NULL, `speakers` TEXT NOT NULL, `start_timestamp` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `remote_id` TEXT NOT NULL, `description` TEXT NOT NULL, `session_format` TEXT NOT NULL, `session_level` TEXT NOT NULL, `slug` TEXT NOT NULL, `title` TEXT NOT NULL, `end_date_time` TEXT NOT NULL, `end_time` TEXT NOT NULL, `is_bookmarked` INTEGER NOT NULL, `is_keynote` INTEGER NOT NULL, `is_serviceSession` INTEGER NOT NULL, `session_image` TEXT, `start_date_time` TEXT NOT NULL, `start_time` TEXT NOT NULL, `rooms` TEXT NOT NULL, `speakers` TEXT NOT NULL, `start_timestamp` INTEGER NOT NULL, `sessionImageUrl` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -47,18 +47,6 @@
           {
             "fieldPath": "title",
             "columnName": "title",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "backgroundColor",
-            "columnName": "backgroundColor",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "borderColor",
-            "columnName": "borderColor",
             "affinity": "TEXT",
             "notNull": true
           },
@@ -127,6 +115,12 @@
             "columnName": "start_timestamp",
             "affinity": "INTEGER",
             "notNull": true
+          },
+          {
+            "fieldPath": "sessionImageUrl",
+            "columnName": "sessionImageUrl",
+            "affinity": "TEXT",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -137,12 +131,72 @@
         },
         "indices": [],
         "foreignKeys": []
+      },
+      {
+        "tableName": "speakers",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `tagline` TEXT NOT NULL, `bio` TEXT NOT NULL, `avatar` TEXT NOT NULL, `twitter` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "tagline",
+            "columnName": "tagline",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "bio",
+            "columnName": "bio",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "avatar",
+            "columnName": "avatar",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "twitter",
+            "columnName": "twitter",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_speakers_twitter",
+            "unique": true,
+            "columnNames": [
+              "twitter"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_speakers_twitter` ON `${TABLE_NAME}` (`twitter`)"
+          }
+        ],
+        "foreignKeys": []
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '4f47dd20cf76fb465ef119a43f849dd4')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '0a2671a53bdc2b6b254f05bbfc6647de')"
     ]
   }
 }

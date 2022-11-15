@@ -19,7 +19,7 @@ import android.content.Context
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import com.android254.data.db.Database
-import com.android254.data.db.model.Session
+import com.android254.data.db.model.SessionEntity
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runTest
@@ -58,13 +58,14 @@ class SessionDaoTest {
 
     @Test
     fun `test sessionDao fetches all sessions`() = runTest {
-        val session = Session(
+        val session = SessionEntity(
             id = 0,
             title = "Retrofiti: A Pragmatic Approach to using Retrofit in Android",
             description = "This session is codelab covering some of the best practices and recommended approaches to building an application using the retrofit library.",
             slug = "retrofiti-a-pragmatic-approach-to-using-retrofit-in-android-1583941090",
             session_format = "Codelab / Workshop",
             session_level = "Intermediate",
+<<<<<<< HEAD
             speakers = "",
             rooms = "",
             start_time = "",
@@ -78,6 +79,11 @@ class SessionDaoTest {
             borderColor = "",
             backgroundColor = ""
 
+=======
+            sessionImageUrl = "some-image",
+            sessionRoom = "some-room",
+            speakerName = "some-guy"
+>>>>>>> f76e78fe318e8873cacf788ca95e5788ffa836ca
         )
         sessionDao.insert(session)
         runBlocking {

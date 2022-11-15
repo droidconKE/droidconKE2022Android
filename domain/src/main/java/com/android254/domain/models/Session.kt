@@ -13,9 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android254.data.network.models
+package com.android254.domain.models
 
-data class SessionDataModel(
+
+data class Session(
     val id: String,
-    val title: String
+    val end_date_time: String,
+    val end_time: String,
+    val is_bookmarked: Boolean,
+    val is_keynote: Boolean,
+    val is_serviceSession: Boolean,
+    val session_image: String?,
+    val start_date_time: String,
+    val start_time: String,
+    val rooms: String,
+    val speakers: String,
+    val remote_id: String,
+    val description: String,
+    val session_format: String,
+    val session_level: String,
+    val slug: String,
+    val title: String,
 )

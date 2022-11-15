@@ -15,13 +15,7 @@
  */
 package com.android254.data.network.models.responses
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class UserDetails(
-    @SerialName("name") val name: String,
-    @SerialName("email") val email: String,
-    @SerialName("gender") val gender: String?,
-    @SerialName("avatar") val avatar: String
-)
+data class StatusDTO(val message: String)

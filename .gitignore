@@ -20,3 +20,4 @@ buildSrc/build
 /keystore.properties
 
 /fastlane/report.xml
+/api_key.txt

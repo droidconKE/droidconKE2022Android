@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android254.data.network.apis
+package com.android254.data.network
 
 import android.content.Context
 import androidx.datastore.core.DataStore
@@ -21,6 +21,7 @@ import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStoreFile
 import androidx.test.core.app.ApplicationProvider
+import com.android254.data.network.apis.OrganizersApi
 import com.android254.data.network.models.responses.OrganizersPagedResponse
 import com.android254.data.network.util.HttpClientFactory
 import com.android254.data.preferences.DefaultTokenProvider
@@ -64,7 +65,7 @@ class OrganizersApiTest {
                     "slug": "droidconke-40",
                     "status": "active",
                     "created_at": "2019-12-20 14:39:38",
-                    "creater": {
+                    "creator": {
                         "id": 11,
                         "name": "Magak Emmanuel",
                         "email": "emashmagak@gmail.com",
@@ -118,7 +119,7 @@ class OrganizersApiTest {
                     "slug": "droidconke-40",
                     "status": "active",
                     "created_at": "2019-12-20 14:39:38",
-                    "creater": {
+                    "creator": {
                         "id": 11,
                         "name": "Magak Emmanuel",
                         "email": "emashmagak@gmail.com",

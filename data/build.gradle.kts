@@ -17,6 +17,12 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+
+        if (File("api_key.txt").exists()) {
+            buildConfigField("String", "API_KEY", "\"${File("api_key.txt").readText().trim()}\"")
+        } else {
+            buildConfigField("String", "API_KEY", "\"\"")
+        }
     }
 
     ksp {
@@ -40,6 +46,8 @@ android {
     }
 
     compileOptions {
+        isCoreLibraryDesugaringEnabled = true
+
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
@@ -69,6 +77,7 @@ dependencies {
     implementation(libs.gson.gson)
     implementation(libs.ktor.json)
     implementation(libs.ktor.auth)
+    implementation(libs.ktor.logging)
 
     androidTestImplementation(libs.android.test.junit4)
     androidTestImplementation(libs.android.test.espresso)

@@ -19,26 +19,26 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.sqlite.db.SimpleSQLiteQuery
 import com.android254.data.dao.SessionDao
-import com.android254.data.network.apis.SessionRemoteSource
+import com.android254.data.network.apis.SessionsApi
 import com.android254.data.network.util.NetworkError
 import com.android254.data.repos.mappers.toDomainModel
 import com.android254.data.repos.mappers.toEntity
 import com.android254.domain.models.ResourceResult
-import com.android254.domain.models.SessionDomainModel
+import com.android254.domain.models.Session
 import com.android254.domain.repos.SessionsRepo
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class SessionsManager @Inject constructor(
-    private val api: SessionRemoteSource,
+    private val api: SessionsApi,
     private val dao: SessionDao
 ) : SessionsRepo {
     @RequiresApi(Build.VERSION_CODES.O)
     override suspend fun fetchAndSaveSessions(
         fetchFromRemote: Boolean,
         query: String?
-    ): Flow<ResourceResult<List<SessionDomainModel>>> {
+    ): Flow<ResourceResult<List<Session>>> {
         return flow {
             emit(ResourceResult.Loading(isLoading = true))
             val sessions = if (query == null) {
@@ -89,7 +89,7 @@ class SessionsManager @Inject constructor(
         }
     }
 
-    override suspend fun fetchSessionById(id: String): Flow<ResourceResult<SessionDomainModel>> {
+    override suspend fun fetchSessionById(id: String): Flow<ResourceResult<Session>> {
         return flow {
             emit(ResourceResult.Loading(isLoading = true))
             val session = dao.getSessionById(id)

@@ -13,12 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android254.presentation.models
+package com.android254.domain.models
 
-/**
- * Sample speaker data class
- */
 data class Speaker(
+    val id: Int,
     val avatar: String?,
     val biography: String?,
     val blog: String?,

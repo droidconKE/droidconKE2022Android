@@ -19,6 +19,10 @@ import com.android254.data.repos.AuthManager
 import com.android254.data.repos.SessionsManager
 import com.android254.domain.repos.AuthRepo
 import com.android254.domain.repos.SessionsRepo
+import com.android254.data.repos.HomeRepoImpl
+import com.android254.data.repos.SpeakersManager
+import com.android254.domain.repos.HomeRepo
+import com.android254.domain.repos.SpeakersRepo
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -36,4 +40,12 @@ abstract class RepoModule {
     @Binds
     @Singleton
     abstract fun provideSessionsRepo(repo: SessionsManager): SessionsRepo
+
+    @Binds
+    @Singleton
+    abstract fun providesHomeRepo(homeRepoImpl: HomeRepoImpl): HomeRepo
+
+    @Binds
+    @Singleton
+    abstract fun provideSpeakersRepo(manager: SpeakersManager): SpeakersRepo
 }

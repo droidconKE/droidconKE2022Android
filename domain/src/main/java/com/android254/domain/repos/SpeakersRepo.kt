@@ -13,17 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android254.data.network.models.responses
+package com.android254.domain.repos
 
-data class Speaker(
-    val avatar: String,
-    val biography: String,
-    val blog: Any,
-    val company_website: Any,
-    val facebook: Any,
-    val instagram: Any,
-    val linkedin: Any,
-    val name: String,
-    val tagline: String,
-    val twitter: String
-)
+import com.android254.domain.models.ResourceResult
+import com.android254.domain.models.Speaker
+
+interface SpeakersRepo {
+    suspend fun fetchSpeakers(): ResourceResult<List<Speaker>>
+    suspend fun fetchSpeakerCount(): ResourceResult<Int>
+    suspend fun getSpeakerById(id: Int): ResourceResult<Speaker>
+}

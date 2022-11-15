@@ -19,7 +19,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "sessions")
-data class Session(
+data class SessionEntity(
     @PrimaryKey(autoGenerate = true) val id: Int,
     val remote_id: String,
     val description: String,
@@ -27,8 +27,6 @@ data class Session(
     val session_level: String,
     val slug: String,
     val title: String,
-    val backgroundColor: String,
-    val borderColor: String,
     val end_date_time: String,
     val end_time: String,
     val is_bookmarked: Boolean,
@@ -40,4 +38,5 @@ data class Session(
     val rooms: String,
     val speakers: String,
     val start_timestamp: Long,
+    val sessionImageUrl: String,
 )

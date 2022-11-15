@@ -17,23 +17,21 @@ package com.android254.data.repos.mappers
 
 import android.os.Build
 import androidx.annotation.RequiresApi
-import com.android254.data.db.model.Session
+import com.android254.data.db.model.SessionEntity
 import com.android254.data.network.models.responses.SessionApiModel
-import com.android254.domain.models.SessionDomainModel
+import com.android254.domain.models.Session
 import com.google.gson.Gson
 import java.time.LocalDateTime
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 
-fun Session.toDomainModel() = SessionDomainModel(
-    id = this.id,
+fun SessionEntity.toDomainModel() = Session(
+    id = this.id.toString(),
     description = this.description,
     title = this.title,
     session_format = this.session_format,
     session_level = this.session_level,
     slug = this.slug,
-    backgroundColor = this.backgroundColor,
-    borderColor = this.borderColor,
     end_date_time = this.end_date_time,
     is_bookmarked = this.is_bookmarked,
     end_time = this.end_time,
@@ -48,17 +46,15 @@ fun Session.toDomainModel() = SessionDomainModel(
 )
 
 @RequiresApi(Build.VERSION_CODES.O)
-fun SessionApiModel.toEntity(): Session {
+fun SessionApiModel.toEntity(): SessionEntity {
     val gson = Gson()
-    return Session(
+    return SessionEntity(
         id = 0,
         description = description,
         title = title,
         session_format = session_format,
         session_level = session_level,
         slug = slug,
-        backgroundColor = this.backgroundColor,
-        borderColor = this.borderColor,
         end_date_time = this.end_date_time,
         is_bookmarked = this.is_bookmarked,
         end_time = this.end_time,
@@ -70,7 +66,8 @@ fun SessionApiModel.toEntity(): Session {
         rooms = this.rooms.joinToString(separator = ",") { it.title },
         speakers = gson.toJson(this.speakers),
         start_timestamp = fromString(this.start_date_time),
-        remote_id = this.id
+        remote_id = this.id,
+        sessionImageUrl = this.session_image.toString(),
     )
 }
 

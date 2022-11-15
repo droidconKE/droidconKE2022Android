@@ -16,16 +16,16 @@
 package com.android254.domain.repos
 
 import com.android254.domain.models.ResourceResult
-import com.android254.domain.models.SessionDomainModel
+import com.android254.domain.models.Session
 import kotlinx.coroutines.flow.Flow
 
 interface SessionsRepo {
     suspend fun fetchAndSaveSessions(
         fetchFromRemote: Boolean = false,
         query: String? = null
-    ): Flow<ResourceResult<List<SessionDomainModel>>>
+    ): Flow<ResourceResult<List<Session>>>
 
-    suspend fun fetchSessionById(id: String): Flow<ResourceResult<SessionDomainModel>>
+    suspend fun fetchSessionById(id: String): Flow<ResourceResult<Session>>
 
     suspend fun toggleBookmarkStatus(id: String): Flow<ResourceResult<Boolean>>
 }

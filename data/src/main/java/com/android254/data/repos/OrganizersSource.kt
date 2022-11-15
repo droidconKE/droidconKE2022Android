@@ -43,10 +43,6 @@ class OrganizersSource @Inject constructor(
                 data.data.forEach {
                     dao.insert(it.toDomain().toEntity())
                 }
-
-                if (data.meta?.paginator?.hasMorePages == true) {
-                    getPagedOrganizers(page = page + 1)
-                }
             }
         }
     }

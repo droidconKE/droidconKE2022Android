@@ -13,9 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android254.data.network.models.responses
+package com.android254.data.dao
 
-import kotlinx.serialization.Serializable
+import androidx.room.Dao
+import androidx.room.Query
+import com.android254.data.db.model.SpeakerEntity
 
-@Serializable
-data class Status(val message: String)
+@Dao
+interface SpeakerDao : BaseDao<SpeakerEntity> {
+    @Query("SELECT * FROM speakers")
+    suspend fun fetchSpeakers(): List<SpeakerEntity>
+
+    @Query("SELECT COUNT(*) FROM speakers")
+    suspend fun fetchSpeakerCount(): Int
+
+    @Query("SELECT * FROM speakers WHERE id = :id")
+    suspend fun getSpeakerById(id: Int): SpeakerEntity
+}
