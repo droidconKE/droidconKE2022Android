@@ -14,6 +14,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "275140757840-b7fv2u5cmvbhn28c8l9626m26plps3uc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.android254.droidconKE2022",
+            "certificate_hash": "8640d872e9c04818ff9f1cbd077f48e3887a33fd"
+          }
+        },
+        {
+          "client_id": "275140757840-lptqbmurksmnvi4v27u5mfmbrj6b0a8m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.android254.droidconKE2022",
+            "certificate_hash": "97a342e40b66fbd6346ad4c903a8d817b8b4ad7f"
+          }
+        },
+        {
           "client_id": "275140757840-2drpgmi2ia2lcrf8q8upc8hc17o9ecod.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,6 +45,65 @@
             {
               "client_id": "275140757840-2drpgmi2ia2lcrf8q8upc8hc17o9ecod.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "275140757840-ajfq00o5ph1if4ggkkjshr50huk5c7n5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "ke.co.droidcon22flutter.droidcon2022Flutter"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:275140757840:android:0d31801ac978a5f539c455",
+        "android_client_info": {
+          "package_name": "ke.co.droidcon22flutter.droidcon_2022_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "275140757840-0m0qg2ovqf1ggs4341qb0lgsrekrjltp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ke.co.droidcon22flutter.droidcon_2022_flutter",
+            "certificate_hash": "03c45d81eb2e7547366026adcfb9e9839581d540"
+          }
+        },
+        {
+          "client_id": "275140757840-2cubiasllj5imovueep61dov3flarcsh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ke.co.droidcon22flutter.droidcon_2022_flutter",
+            "certificate_hash": "4f4f853610d91095032b8ea511ae729a5cd8847b"
+          }
+        },
+        {
+          "client_id": "275140757840-2drpgmi2ia2lcrf8q8upc8hc17o9ecod.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVz-cg5jJkegcqrJ00jxbOvU63Hq1N7Sc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "275140757840-2drpgmi2ia2lcrf8q8upc8hc17o9ecod.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "275140757840-ajfq00o5ph1if4ggkkjshr50huk5c7n5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "ke.co.droidcon22flutter.droidcon2022Flutter"
+              }
             }
           ]
         }
