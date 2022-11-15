@@ -21,7 +21,6 @@ import androidx.sqlite.db.SimpleSQLiteQuery
 import com.android254.data.dao.BookmarkDao
 import com.android254.data.dao.SessionDao
 import com.android254.data.db.model.BookmarkEntity
-import com.android254.data.db.model.SessionEntity
 import com.android254.data.network.apis.SessionsApi
 import com.android254.data.network.util.NetworkError
 import com.android254.data.repos.mappers.toDomainModel
@@ -29,8 +28,10 @@ import com.android254.data.repos.mappers.toEntity
 import com.android254.domain.models.ResourceResult
 import com.android254.domain.models.Session
 import com.android254.domain.repos.SessionsRepo
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
 class SessionsManager @Inject constructor(
@@ -75,11 +76,11 @@ class SessionsManager @Inject constructor(
                 remoteSessions.let {
                     dao.clearSessions()
                     val bookmarkIds = bookmarkDao.getBookmarkIds().map { sessionEntity ->
-                        sessionEntity.session_id
+                        sessionEntity.sessionId
                     }
                     val sessionEntities = it.map { session ->
                         val newSession = session.toEntity().copy(
-                            is_bookmarked = bookmarkIds.contains(session.id)
+                            isBookmarked = bookmarkIds.contains(session.id)
                         )
                         newSession
                     }
@@ -92,17 +93,17 @@ class SessionsManager @Inject constructor(
                     emit(ResourceResult.Loading(isLoading = false))
                 }
             } catch (e: Exception) {
-                emit(ResourceResult.Loading(isLoading = true))
+                emit(ResourceResult.Loading(isLoading = false))
                 when (e) {
                     is NetworkError -> emit(ResourceResult.Error("Network error"))
                     else -> emit(ResourceResult.Error("Error fetching sessions"))
                 }
             }
-        }
+        }.flowOn(Dispatchers.IO)
     }
 
     override suspend fun fetchSessionById(id: String): Flow<ResourceResult<Session>> {
-        return flow {
+        return flow<ResourceResult<Session>> {
             emit(ResourceResult.Loading(isLoading = true))
             val session = dao.getSessionById(id)
             if (session == null) {
@@ -113,7 +114,7 @@ class SessionsManager @Inject constructor(
             emit(ResourceResult.Loading(isLoading = false))
             emit(ResourceResult.Success(data = session.toDomainModel()))
             return@flow
-        }
+        }.flowOn(Dispatchers.IO)
     }
 
     override suspend fun toggleBookmarkStatus(
@@ -140,6 +141,6 @@ class SessionsManager @Inject constructor(
                 }
             }
             emit(ResourceResult.Success(data = dao.getBookmarkStatus(id)))
-        }
+        }.flowOn(Dispatchers.IO)
     }
 }

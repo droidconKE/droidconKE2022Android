@@ -76,7 +76,7 @@ class HomeViewModel @Inject constructor(
     @RequiresApi(Build.VERSION_CODES.O)
     private fun List<Session>.toSessionsPresentation() =
         map {
-            val startTime = getTimePeriod(it.start_date_time)
+            val startTime = getTimePeriod(it.startDateTime)
             val gson = Gson()
             val typeToken = object : TypeToken<List<SpeakerUI>>() {}.type
             val speakers = gson.fromJson<List<SpeakerUI>>(it.speakers, typeToken)
@@ -90,13 +90,13 @@ class HomeViewModel @Inject constructor(
                 speakerImage = if (hasNoSpeakers) "" else speakers.first().imageUrl.toString(),
                 speakerName = if (hasNoSpeakers) "" else speakers.first().name,
                 startTime = startTime.time,
-                endTime = it.end_time,
+                endTime = it.endTime,
                 amOrPm = startTime.period,
                 isStarred = false,
-                level = it.session_level,
-                format = it.session_format,
-                startDate = it.start_date_time,
-                endDate = it.end_date_time,
+                level = it.sessionLevel,
+                format = it.sessionFormat,
+                startDate = it.startDateTime,
+                endDate = it.endDateTime,
                 remoteId = it.remote_id
             )
         }

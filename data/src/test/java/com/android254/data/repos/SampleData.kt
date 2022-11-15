@@ -17,25 +17,25 @@ package com.android254.data.repos
 
 import com.android254.data.network.models.responses.*
 
-val results = EventScheduleResponse(
+val results = EventScheduleGroupedResponse(
     data = mapOf(
         "2022-11-16" to listOf(
-            SessionApiModel(
+            SessionDTO(
                 id = "String",
                 backgroundColor = "String",
                 borderColor = "String",
                 description = "String",
-                end_date_time = "String",
-                end_time = "String",
-                is_bookmarked = false,
-                is_keynote = false,
-                is_serviceSession = false,
-                session_format = "String",
-                session_image = "String",
-                session_level = "String",
+                endDateTime = "String",
+                endTime = "String",
+                isBookmarked = false,
+                isKeynote = false,
+                isServiceSession = false,
+                sessionFormat = "String",
+                sessionImage = "String",
+                sessionLevel = "String",
                 slug = "String",
-                start_date_time = "String",
-                start_time = "String",
+                startDateTime = "String",
+                startTime = "String",
                 title = "String",
                 rooms = listOf(),
                 speakers = listOf()

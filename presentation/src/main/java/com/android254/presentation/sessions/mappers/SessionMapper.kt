@@ -21,17 +21,14 @@ import com.android254.domain.models.Session
 import com.android254.presentation.models.SessionDetailsPresentationModel
 import com.android254.presentation.models.SessionPresentationModel
 import com.android254.presentation.models.Speaker
-import com.android254.presentation.models.SpeakerUI
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
-
-
 @RequiresApi(Build.VERSION_CODES.O)
 fun Session.toPresentationModel(): SessionPresentationModel {
-    val startTime = getTimePeriod(this.start_date_time)
+    val startTime = getTimePeriod(this.startDateTime)
     val gson = Gson()
     val typeToken = object : TypeToken<List<Speaker>>() {}.type
     val speakers = gson.fromJson<List<Speaker>>(this.speakers, typeToken)
@@ -45,20 +42,20 @@ fun Session.toPresentationModel(): SessionPresentationModel {
         speakerImage = if (hasNoSpeakers) "" else speakers.first().avatar.toString(),
         speakerName = if (hasNoSpeakers) "" else speakers.first().name,
         startTime = startTime.time,
-        endTime = this.end_time,
+        endTime = this.endTime,
         amOrPm = startTime.period,
-        isStarred = this.is_bookmarked,
-        level = this.session_level,
-        format = this.session_format,
-        startDate = this.start_date_time,
-        endDate = this.end_date_time,
+        isStarred = this.isBookmarked,
+        level = this.sessionLevel,
+        format = this.sessionFormat,
+        startDate = this.startDateTime,
+        endDate = this.endDateTime,
         remoteId = this.remote_id
     )
 }
 
 @RequiresApi(Build.VERSION_CODES.O)
 fun Session.toSessionDetailsPresentationModal(): SessionDetailsPresentationModel {
-    val startTime = getTimePeriod(this.start_date_time)
+    val startTime = getTimePeriod(this.startDateTime)
     val gson = Gson()
     val typeToken = object : TypeToken<List<Speaker>>() {}.type
     val speakers = gson.fromJson<List<Speaker>>(this.speakers, typeToken)
@@ -71,13 +68,13 @@ fun Session.toSessionDetailsPresentationModal(): SessionDetailsPresentationModel
         speakerImage = if (hasNoSpeakers) "" else speakers.first().avatar.toString(),
         speakerName = if (hasNoSpeakers) "" else speakers.first().name,
         startTime = startTime.time,
-        endTime = this.end_time,
+        endTime = this.endTime,
         amOrPm = startTime.period,
         isStarred = false,
-        level = this.session_level,
-        format = this.session_format,
-        sessionImageUrl = this.session_image.toString(),
-        timeSlot = "${startTime.time} - ${this.end_time}",
+        level = this.sessionLevel,
+        format = this.sessionFormat,
+        sessionImageUrl = this.sessionImage.toString(),
+        timeSlot = "${startTime.time} - ${this.endTime}",
         twitterHandle = if (hasNoSpeakers) "" else getTwitterHandle(speakers),
     )
 }

@@ -29,4 +29,7 @@ interface SpeakerDao : BaseDao<SpeakerEntity> {
 
     @Query("SELECT * FROM speakers WHERE id = :id")
     suspend fun getSpeakerById(id: Int): SpeakerEntity
+
+    @Query("DELETE FROM speakers")
+    suspend fun deleteAll()
 }
