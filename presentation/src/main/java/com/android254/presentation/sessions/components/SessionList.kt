@@ -37,6 +37,7 @@ import com.android254.presentation.models.SessionPresentationModel
 import com.android254.presentation.sessions.view.SessionsViewModel
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
+import java.util.*
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
@@ -58,7 +59,7 @@ fun SessionList(
             LazyColumn(modifier = Modifier.fillMaxHeight()) {
                 itemsIndexed(
                     items = sessions,
-                    key = { _, session -> session.id }
+                    key = { _, session -> session.remoteId }
                 ) { index, session ->
                     Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.Start) {
                         SessionsCard(session = session, onclick = {
