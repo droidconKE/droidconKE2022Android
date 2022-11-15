@@ -16,10 +16,14 @@
 package com.android254.domain.models
 
 data class Speaker(
-    val id: Int = 0,
-    val imageUrl: String = "",
-    val name: String = "Name",
-    val tagline: String = "",
-    val bio: String = "bio",
-    val twitterHandle: String = "TwitterHandle"
+    val avatar: String?,
+    val biography: String?,
+    val blog: String?,
+    val company_website: String?,
+    val facebook: String?,
+    val instagram: String?,
+    val linkedin: String?,
+    val name: String,
+    val tagline: String?,
+    val twitter: String?
 )

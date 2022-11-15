@@ -25,7 +25,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import timber.log.Timber
 import javax.inject.Inject
 
-class GoogleSignInHandler @Inject constructor(@ApplicationContext context: Context) {
+class GoogleSignInHandler @Inject constructor(@ApplicationContext private val context: Context) {
     private val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
         .requestIdToken(context.getString(R.string.default_web_client_id))
         .requestEmail()
@@ -36,12 +36,13 @@ class GoogleSignInHandler @Inject constructor(@ApplicationContext context: Conte
     fun getSignInIntent() = googleSignInClient.signInIntent
 
     fun getIdToken(intent: Intent?): String? {
+        println(context.getString(R.string.default_web_client_id))
         return try {
             val task = GoogleSignIn.getSignedInAccountFromIntent(intent)
             val account = task.getResult(ApiException::class.java)
             return account.idToken
         } catch (e: ApiException) {
-            Timber.e("Google sign in failed: ${e.message}")
+            Timber.e("Google sign in failed: $e")
             null
         }
     }

@@ -149,7 +149,7 @@ fun SpeakerDetailsScreen(
                     .align(Alignment.CenterHorizontally)
             )
             Text(
-                text = speaker.tagline,
+                text = speaker.tagline.toString(),
                 textAlign = TextAlign.Center,
                 fontSize = 14.sp,
                 lineHeight = 20.sp,
@@ -174,7 +174,7 @@ fun SpeakerDetailsScreen(
             )
 
             Text(
-                text = speaker.bio,
+                text = speaker.bio ?: "",
                 fontSize = 14.sp,
                 lineHeight = 20.sp,
                 modifier = Modifier
@@ -213,7 +213,9 @@ fun SpeakerDetailsScreen(
 
             OutlinedButton(
                 onClick = {
-                    uriHandler.openUri(speaker.twitterHandle)
+                    if(speaker.twitterHandle != null) {
+                        uriHandler.openUri(speaker.twitterHandle.toString())
+                    }
                 },
                 shape = RoundedCornerShape(10.dp),
                 border = BorderStroke(1.dp, colorResource(id = R.color.blue)),
@@ -227,7 +229,7 @@ fun SpeakerDetailsScreen(
                     tint = ChaiBlue
                 )
                 Text(
-                    text = speaker.twitterHandle.replace("https://twitter.com/", ""),
+                    text = if(speaker.twitterHandle != null)  speaker.twitterHandle.toString().replace("https://twitter.com/", "")  else "",
                     fontSize = 16.sp,
                     lineHeight = 19.sp,
                     color = colorResource(id = R.color.blue),

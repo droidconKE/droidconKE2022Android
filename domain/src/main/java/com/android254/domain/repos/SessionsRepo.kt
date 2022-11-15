@@ -17,7 +17,15 @@ package com.android254.domain.repos
 
 import com.android254.domain.models.ResourceResult
 import com.android254.domain.models.Session
+import kotlinx.coroutines.flow.Flow
 
 interface SessionsRepo {
-    suspend fun fetchAndSaveSessions(): ResourceResult<List<Session>>
+    suspend fun fetchAndSaveSessions(
+        fetchFromRemote: Boolean = false,
+        query: String? = null
+    ): Flow<ResourceResult<List<Session>>>
+
+    suspend fun fetchSessionById(id: String): Flow<ResourceResult<Session>>
+
+    suspend fun toggleBookmarkStatus(id: String, isCurrentlyStarred: Boolean): Flow<ResourceResult<Boolean>>
 }

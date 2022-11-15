@@ -32,7 +32,7 @@ object OrganizerDomainToEntityMapper {
         id = id,
         name = name,
         email = email,
-        createdAt = createdAt
+        createdAt = createdAt.toString()
     )
 
     fun Organizer.toEntity() = OrganizerEntity(

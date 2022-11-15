@@ -29,18 +29,27 @@ fun SpeakerDTO.toEntity() = SpeakerEntity(
 )
 
 fun SpeakerEntity.toDomainModel() = Speaker(
-    id = id,
-    imageUrl = avatar,
+    avatar = avatar,
     name = name,
-    bio = bio,
+    biography = bio,
     tagline = tagline,
-    twitterHandle = twitter
+    twitter = twitter,
+    linkedin = "",
+    instagram = "",
+    facebook = "",
+    blog = "",
+    company_website = ""
 )
 
 fun SpeakerDTO.toDomain() = Speaker(
-    imageUrl = avatar,
+    avatar = avatar,
     name = name,
     tagline = tagline,
-    bio = bio,
-    twitterHandle = twitter.orEmpty()
+    biography = bio,
+    twitter = twitter.orEmpty(),
+    linkedin = "",
+    instagram = "",
+    facebook = "",
+    blog = "",
+    company_website = "",
 )

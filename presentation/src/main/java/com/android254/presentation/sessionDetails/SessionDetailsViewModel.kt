@@ -15,33 +15,53 @@
  */
 package com.android254.presentation.sessionDetails
 
+import android.os.Build
+import androidx.annotation.RequiresApi
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.android254.presentation.sessionDetails.view.SessionDetailsPresentationModel
+import androidx.lifecycle.viewModelScope
+import com.android254.domain.models.ResourceResult
+import com.android254.domain.repos.SessionsRepo
+import com.android254.presentation.models.SessionDetailsPresentationModel
+import com.android254.presentation.sessions.mappers.toSessionDetailsPresentationModal
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SessionDetailsViewModel @Inject constructor() : ViewModel() {
-    fun getSessionDetailsById(sessionId: String): Flow<SessionDetailsPresentationModel> {
-        // TODO: (Rashan) Replace with actual implementation
-        return flow {
-            delay(100)
-            emit(dummySessionDetails)
+class SessionDetailsViewModel @Inject constructor(
+    private val sessionsRepo: SessionsRepo
+) : ViewModel() {
+    private val _sessionDetails: MutableLiveData<SessionDetailsPresentationModel> =
+        MutableLiveData(null)
+
+    var sessionDetails: LiveData<SessionDetailsPresentationModel> = _sessionDetails
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun getSessionDetailsById(sessionId: String) {
+        viewModelScope.launch {
+            sessionsRepo.fetchSessionById(sessionId).collectLatest { result ->
+                when (result) {
+                    is ResourceResult.Success -> {
+                        result.data.let {
+                            _sessionDetails.value = it?.toSessionDetailsPresentationModal()
+                        }
+                    }
+
+                    is ResourceResult.Error -> {
+                    }
+
+                    is ResourceResult.Loading -> {
+                    }
+
+                    is ResourceResult.Empty -> {
+                    }
+
+                    else -> Unit
+                }
+            }
         }
     }
 }
-
-val dummySessionDetails = SessionDetailsPresentationModel(
-    speakerName = "Frank Tamre",
-    isFavourite = true,
-    title = "Compose Beyond Material Design",
-    description = "Been in the tech industry for over 20 years. Am passionate about developer communities, motivating people and building successfulBeen in the tech industry for over 20 years. Am passionate about developer communities, motivating people and building successfulBeen in the tech industry for over 20 years. Am passionate about developer communities, motivating people and building successfulBeen in the tech industry for over 20 years. Am passionate about developer communities, motivating people and building successfulBeen in the tech industry for over 20 years. Am passionate about developer communities, motivating people and building successfulBeen in the tech industry for over 20 years. Am passionate about developer communities, motivating people and building successful",
-    sessionImageUrl = "https://www.freepnglogos.com/uploads/twitter-logo-png/twitter-logo-vector-png-clipart-1.png",
-    timeSlot = "9.30AM - 10:15AM",
-    room = "ROOM 1",
-    level = "Beginner",
-    twitterHandle = "PriestTamzi"
-)

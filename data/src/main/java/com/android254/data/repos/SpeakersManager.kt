@@ -40,7 +40,7 @@ class SpeakersManager @Inject constructor(
                 is DataResult.Success -> {
                     val data = result.data.data
                     if (data.isEmpty()) {
-                        ResourceResult.Empty()
+                        ResourceResult.Empty<String>("")
                     }
                     speakerDao.insert(data.map { it.toEntity() })
                 }

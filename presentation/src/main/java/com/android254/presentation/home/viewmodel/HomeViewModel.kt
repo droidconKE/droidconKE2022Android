@@ -15,6 +15,8 @@
  */
 package com.android254.presentation.home.viewmodel
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -26,6 +28,9 @@ import com.android254.domain.repos.HomeRepo
 import com.android254.presentation.home.viewstate.HomeViewState
 import com.android254.presentation.models.SessionPresentationModel
 import com.android254.presentation.models.SpeakerUI
+import com.android254.presentation.sessions.mappers.getTimePeriod
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.launch
@@ -38,6 +43,7 @@ class HomeViewModel @Inject constructor(
     var viewState by mutableStateOf(HomeViewState())
         private set
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun onGetHomeScreenDetails() {
         viewModelScope.launch {
             with(homeRepo.fetchHomeDetails()) {
@@ -59,27 +65,39 @@ class HomeViewModel @Inject constructor(
     private fun List<Speaker>.toSpeakersPresentation() =
         map {
             SpeakerUI(
-                imageUrl = it.imageUrl,
+                imageUrl = it.avatar,
                 name = it.name,
                 tagline = it.tagline,
-                bio = it.bio,
-                twitterHandle = it.twitterHandle
+                bio = it.biography,
+                twitterHandle = it.twitter
             )
         }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun List<Session>.toSessionsPresentation() =
         map {
+            val startTime = getTimePeriod(it.start_date_time)
+            val gson = Gson()
+            val typeToken = object : TypeToken<List<SpeakerUI>>() {}.type
+            val speakers = gson.fromJson<List<SpeakerUI>>(it.speakers, typeToken)
+            val hasNoSpeakers = speakers.isEmpty()
+
             SessionPresentationModel(
-                id = it.id,
-                sessionTitle = it.title,
-                sessionDescription = it.description,
-                sessionVenue = it.sessionRoom,
-                sessionSpeakerImage = it.sessionImageUrl,
-                sessionSpeakerName = it.speakerName,
-                sessionStartTime = "10:00 AM",
-                sessionEndTime = "12:00 PM",
-                amOrPm = "AM",
-                isStarred = false
+                id = it.id.toString(),
+                title = it.title,
+                description = it.description,
+                venue = it.rooms,
+                speakerImage = if (hasNoSpeakers) "" else speakers.first().imageUrl.toString(),
+                speakerName = if (hasNoSpeakers) "" else speakers.first().name,
+                startTime = startTime.time,
+                endTime = it.end_time,
+                amOrPm = startTime.period,
+                isStarred = false,
+                level = it.session_level,
+                format = it.session_format,
+                startDate = it.start_date_time,
+                endDate = it.end_date_time,
+                remoteId = it.remote_id
             )
         }
 }
