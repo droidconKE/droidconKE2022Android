@@ -1,6 +1,5 @@
 package com.android254.domain.models
 
-
 data class Feed(
     val title: String,
     val body: String,

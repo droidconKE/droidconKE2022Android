@@ -38,7 +38,6 @@ class SpeakersViewModel @Inject constructor(
         when (val result = speakersRepo.fetchSpeakers()) {
             is ResourceResult.Success -> {
                 val list = result.data?.map { }
-
             }
             is ResourceResult.Error -> {
                 message.tryEmit(result.message)
