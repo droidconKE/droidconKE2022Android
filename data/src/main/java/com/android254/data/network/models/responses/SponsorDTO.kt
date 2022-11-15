@@ -26,11 +26,11 @@ data class SponsorsPagedResponse(
 
 @Serializable
 data class SponsorDTO(
-    val title: String,
-    val body: String,
-    val topic: String,
-    val url: String,
-    val image: String,
+    val title: String?,
+    val body: String?,
+    val topic: String?,
+    val url: String?,
+    val image: String?,
     @SerialName("created_at") var createdAt: String
 
 )

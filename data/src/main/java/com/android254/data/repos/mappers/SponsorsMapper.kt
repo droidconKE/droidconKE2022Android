@@ -4,6 +4,6 @@ import com.android254.data.network.models.responses.SponsorDTO
 import com.android254.domain.models.Sponsors
 
 fun SponsorDTO.toDomain() = Sponsors(
-    sponsorName = title,
-    sponsorLogoUrl = image
+    sponsorName = title.toString(),
+    sponsorLogoUrl = image.toString()
 )

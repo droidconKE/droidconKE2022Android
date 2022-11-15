@@ -30,6 +30,8 @@ class SpeakersApi @Inject constructor(
     suspend fun fetchSpeakers(): DataResult<SpeakersPagedResponse> = dataResultSafeApiCall {
         return@dataResultSafeApiCall client.get(
             "${Constants.EVENT_BASE_URL}/speakers?per_page=100"
-        ).body()
+        ){
+            header("Api-Authorization-Key", Constants.API_KEY)
+        }.body()
     }
 }
