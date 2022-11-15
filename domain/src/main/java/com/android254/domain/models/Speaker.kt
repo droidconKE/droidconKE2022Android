@@ -16,6 +16,7 @@
 package com.android254.domain.models
 
 data class Speaker(
+    val id: Int = 0,
     val imageUrl: String = "",
     val name: String = "Name",
     val tagline: String = "",

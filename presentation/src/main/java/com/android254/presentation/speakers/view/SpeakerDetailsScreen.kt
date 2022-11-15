@@ -35,7 +35,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -57,18 +57,22 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.android254.presentation.R
 import com.android254.presentation.common.theme.DroidconKE2022Theme
+import com.android254.presentation.models.SpeakerUI
 import com.android254.presentation.speakers.SpeakersViewModel
 import com.droidconke.chai.atoms.ChaiBlue
 
 @Composable
 fun SpeakerDetailsScreen(
-    twitterHandle: String,
+    id: Int,
     speakersViewModel: SpeakersViewModel = hiltViewModel(),
     darkTheme: Boolean = isSystemInDarkTheme(),
     navigateBack: () -> Unit = {}
 ) {
     val uriHandler = LocalUriHandler.current
-    val speaker = speakersViewModel.getSpeakerByTwitterHandle(twitterHandle = twitterHandle)
+    var speaker by remember { mutableStateOf(SpeakerUI()) }
+    LaunchedEffect(Unit) {
+        speaker = speakersViewModel.getSpeakerById(id)
+    }
 
     ConstraintLayout(
         modifier = Modifier
@@ -209,7 +213,7 @@ fun SpeakerDetailsScreen(
 
             OutlinedButton(
                 onClick = {
-                    uriHandler.openUri("https://twitter.com/${speaker.twitterHandle}")
+                    uriHandler.openUri(speaker.twitterHandle)
                 },
                 shape = RoundedCornerShape(10.dp),
                 border = BorderStroke(1.dp, colorResource(id = R.color.blue)),
@@ -223,7 +227,7 @@ fun SpeakerDetailsScreen(
                     tint = ChaiBlue
                 )
                 Text(
-                    text = speaker.twitterHandle,
+                    text = speaker.twitterHandle.replace("https://twitter.com/", ""),
                     fontSize = 16.sp,
                     lineHeight = 19.sp,
                     color = colorResource(id = R.color.blue),
@@ -239,7 +243,7 @@ fun SpeakerDetailsScreen(
 fun SpeakerDetailsScreenPreview() {
     DroidconKE2022Theme {
         SpeakerDetailsScreen(
-            twitterHandle = "TwitterHandle"
+            id = 0
         )
     }
 }

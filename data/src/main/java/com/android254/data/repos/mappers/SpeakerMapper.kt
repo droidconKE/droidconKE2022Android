@@ -13,20 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android254.data.dao
+package com.android254.data.repos.mappers
 
-import androidx.room.Dao
-import androidx.room.Query
 import com.android254.data.db.model.SpeakerEntity
+import com.android254.data.network.models.responses.SpeakerDTO
+import com.android254.domain.models.Speaker
 
-@Dao
-interface SpeakerDao : BaseDao<SpeakerEntity> {
-    @Query("SELECT * FROM speakers")
-    suspend fun fetchSpeakers(): List<SpeakerEntity>
+fun SpeakerDTO.toEntity() = SpeakerEntity(
+    id = 0,
+    name = name,
+    tagline = tagline,
+    bio = bio,
+    avatar = avatar,
+    twitter = twitter ?: ""
+)
 
-    @Query("SELECT COUNT(*) FROM speakers")
-    suspend fun fetchSpeakerCount(): Int
-
-    @Query("SELECT * FROM speakers WHERE id = :id")
-    suspend fun getSpeakerById(id: Int): SpeakerEntity
-}
+fun SpeakerEntity.toDomainModel() = Speaker(
+    id = id,
+    imageUrl = avatar,
+    name = name,
+    bio = bio,
+    tagline = tagline,
+    twitterHandle = twitter
+)

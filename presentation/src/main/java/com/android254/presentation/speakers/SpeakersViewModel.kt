@@ -19,7 +19,6 @@ import androidx.lifecycle.ViewModel
 import com.android254.domain.models.ResourceResult
 import com.android254.domain.repos.SpeakersRepo
 import com.android254.presentation.models.SpeakerUI
-import com.android254.presentation.models.speakersDummyData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -37,7 +36,17 @@ class SpeakersViewModel @Inject constructor(
         isLoading.value = true
         when (val result = speakersRepo.fetchSpeakers()) {
             is ResourceResult.Success -> {
-                val list = result.data?.map { }
+                isLoading.value = false
+                return result.data?.map {
+                    SpeakerUI(
+                        id = it.id,
+                        imageUrl = it.imageUrl,
+                        name = it.name,
+                        tagline = it.tagline,
+                        bio = it.bio,
+                        twitterHandle = it.twitterHandle
+                    )
+                } ?: emptyList()
             }
             is ResourceResult.Error -> {
                 message.tryEmit(result.message)
@@ -45,26 +54,32 @@ class SpeakersViewModel @Inject constructor(
             else -> {}
         }
         isLoading.value = false
-        return speakersDummyData
+        return emptyList()
     }
 
-    fun getSpeakerByTwitterHandle(twitterHandle: String) = SpeakerUI(
-        imageUrl = "https://media-exp1.licdn.com/dms/image/C4D03AQGn58utIO-x3w/profile-displayphoto-shrink_200_200/0/1637478114039?e=2147483647&v=beta&t=3kIon0YJQNHZojD3Dt5HVODJqHsKdf2YKP1SfWeROnI",
-        name = "Frank Tamre",
-        tagline = "Kenya Partner Lead at droidcon Berlin | Android | Kotlin | Flutter",
-        bio = """
-                    Worked at Intel, co-Founded Moringa School, 
-                    then started @earlycamp to train young children 
-                    from 5-16 on how to solve problems with technology. 
-                    Started 818interactive to tell African stories 
-                    with Games to a global audience. Community wise 
-                    I organize #Android & #Kotlin developers every 
-                    month for a meetUp to chat about technology. 
-                    I Lead a cool team in organizing #droidConKE 
-                    the largest android developer focussed event 
-                    in Sub Saharan Africa. I train people,mentor them, 
-                    build things, am highly experimental, 
-                    read a lot and socialize vertically.
-        """.trimIndent()
-    )
+    suspend fun getSpeakerById(id: Int): SpeakerUI {
+        isLoading.value = true
+        when (val result = speakersRepo.getSpeakerById(id)) {
+            is ResourceResult.Success -> {
+                val data = result.data
+                return if (data == null) {
+                    SpeakerUI()
+                } else {
+                    SpeakerUI(
+                        id = data.id,
+                        name = data.name,
+                        bio = data.bio,
+                        tagline = data.tagline,
+                        twitterHandle = data.twitterHandle,
+                        imageUrl = data.imageUrl
+                    )
+                }
+            }
+            is ResourceResult.Error -> {
+                message.tryEmit(result.message)
+            }
+            else -> {}
+        }
+        return SpeakerUI()
+    }
 }

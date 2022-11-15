@@ -20,4 +20,6 @@ import com.android254.domain.models.Speaker
 
 interface SpeakersRepo {
     suspend fun fetchSpeakers(): ResourceResult<List<Speaker>>
+    suspend fun fetchSpeakerCount(): ResourceResult<Int>
+    suspend fun getSpeakerById(id: Int): ResourceResult<Speaker>
 }

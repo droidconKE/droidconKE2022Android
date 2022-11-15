@@ -39,6 +39,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -116,10 +117,13 @@ fun SpeakerComponent(
                     fontSize = 14.sp,
                     fontFamily = FontFamily(Font(R.font.montserrat_regular)) // Extract the fonts or get them from chai system
                 ),
+                maxLines = 4,
+                overflow = TextOverflow.Ellipsis,
                 modifier = modifier
                     .testTag("bio")
                     .constrainAs(bioText) {
                         top.linkTo(nameText.bottom, margin = 8.dp)
+                        bottom.linkTo(button.top, margin = 8.dp)
                         start.linkTo(parent.start)
                         end.linkTo(parent.end)
                     }
@@ -153,7 +157,25 @@ fun SpeakerComponent(
 fun SpeakerComponentPreview() {
     DroidconKE2022Theme {
         SpeakerComponent(
-            speaker = SpeakerUI(name = "John Doe", bio = "Staff Engineer")
+            speaker = SpeakerUI(
+                imageUrl = "https://media-exp1.licdn.com/dms/image/C4D03AQGn58utIO-x3w/profile-displayphoto-shrink_200_200/0/1637478114039?e=2147483647&v=beta&t=3kIon0YJQNHZojD3Dt5HVODJqHsKdf2YKP1SfWeROnI",
+                name = "Frank Tamre",
+                tagline = "Kenya Partner Lead at droidcon Berlin | Android | Kotlin | Flutter",
+                bio = """
+                    Worked at Intel, co-Founded Moringa School, 
+                    then started @earlycamp to train young children 
+                    from 5-16 on how to solve problems with technology. 
+                    Started 818interactive to tell African stories 
+                    with Games to a global audience. Community wise 
+                    I organize #Android & #Kotlin developers every 
+                    month for a meetUp to chat about technology. 
+                    I Lead a cool team in organizing #droidConKE 
+                    the largest android developer focussed event 
+                    in Sub Saharan Africa. I train people,mentor them, 
+                    build things, am highly experimental, 
+                    read a lot and socialize vertically.
+                """.trimIndent()
+            )
         )
     }
 }

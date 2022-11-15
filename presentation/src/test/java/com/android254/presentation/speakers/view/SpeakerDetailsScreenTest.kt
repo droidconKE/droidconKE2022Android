@@ -19,6 +19,12 @@ import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performScrollTo
+import com.android254.domain.models.ResourceResult
+import com.android254.domain.models.Speaker
+import com.android254.domain.repos.SpeakersRepo
+import com.android254.presentation.speakers.SpeakersViewModel
+import io.mockk.coEvery
+import io.mockk.mockk
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -28,13 +34,22 @@ import org.robolectric.annotation.Config
 @RunWith(RobolectricTestRunner::class)
 @Config(instrumentedPackages = ["androidx.loader.content"])
 class SpeakerDetailsScreenTest {
+    private val speakersRepo = mockk<SpeakersRepo>()
+
     @get:Rule
     val composeTestRule = createComposeRule()
 
     @Test
     fun `all components should be displayed properly`() {
+        coEvery { speakersRepo.getSpeakerById(any()) } returns ResourceResult.Success(
+            Speaker(
+                name = "Harun Wangereka",
+                tagline = "kenya partner lead"
+            )
+        )
+
         composeTestRule.setContent {
-            SpeakerDetailsScreen(twitterHandle = "test")
+            SpeakerDetailsScreen(id = 0, SpeakersViewModel(speakersRepo))
         }
 
         with(composeTestRule) {
