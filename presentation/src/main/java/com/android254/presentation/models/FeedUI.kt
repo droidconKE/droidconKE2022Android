@@ -15,7 +15,7 @@
  */
 package com.android254.presentation.models
 
-data class FeedPresentationModel(
+data class FeedUI(
     val title: String,
     val body: String,
     val topic: String,

@@ -15,10 +15,12 @@
  */
 package com.android254.data.repos
 
+import com.android254.data.network.models.responses.FeedDTO
 import com.android254.data.network.models.responses.PaginatedResponse
 import com.android254.data.network.models.responses.PaginationMetaData
 import com.android254.data.network.models.responses.ResponseMetaData
 import com.android254.data.network.models.responses.SessionDTO
+import java.time.LocalDateTime
 
 val results = PaginatedResponse(
     data = listOf(
@@ -41,5 +43,16 @@ val results = PaginatedResponse(
             "200",
             ""
         )
+    )
+)
+
+val feed  = listOf(
+    FeedDTO(
+        "Feed",
+        "Feed feed feed",
+        "feed",
+        "",
+        "",
+        LocalDateTime.now()
     )
 )

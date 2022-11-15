@@ -47,7 +47,7 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.android254.presentation.R
 import com.android254.presentation.common.theme.DroidconKE2022Theme
-import com.android254.presentation.models.FeedPresentationModel
+import com.android254.presentation.models.FeedUI
 import com.droidconke.chai.atoms.ChaiBlue
 import com.droidconke.chai.atoms.ChaiLightGrey
 import com.droidconke.chai.atoms.ChaiSmokeyGrey
@@ -56,7 +56,7 @@ import com.droidconke.chai.atoms.type.MontserratBold
 @Composable
 fun FeedComponent(
     modifier: Modifier,
-    feedPresentationModel: FeedPresentationModel,
+    feedPresentationModel: FeedUI,
     onClickItem: (Int) -> Unit,
 ) {
 
@@ -146,7 +146,7 @@ fun Preview() {
         FeedComponent(
             modifier = Modifier,
             feedPresentationModel =
-            FeedPresentationModel("Feed", "Feed feed", "test", "", "", ""),
+            FeedUI("Feed", "Feed feed", "test", "", "", ""),
             onClickItem = {},
         )
     }
