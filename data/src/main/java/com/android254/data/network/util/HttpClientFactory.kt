@@ -32,9 +32,9 @@ import io.ktor.client.request.header
 import io.ktor.http.ContentType
 import io.ktor.http.HttpHeaders
 import io.ktor.serialization.kotlinx.json.json
-import javax.inject.Inject
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.serialization.json.Json
+import javax.inject.Inject
 
 class HttpClientFactory @Inject constructor(private val tokenProvider: TokenProvider) {
 
