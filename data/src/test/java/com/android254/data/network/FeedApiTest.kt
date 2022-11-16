@@ -15,14 +15,14 @@
  */
 package com.android254.data.network
 
-import com.android254.data.network.models.responses.Feed
 import com.android254.data.network.apis.FeedApi
+import com.android254.data.network.models.responses.FeedDTO
 import com.android254.data.network.util.HttpClientFactory
 import com.android254.domain.models.DataResult
 import io.ktor.client.engine.mock.*
 import io.ktor.http.*
 import kotlinx.coroutines.test.runTest
-import org.hamcrest.CoreMatchers.*
+import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Test
 import java.time.LocalDate
@@ -94,7 +94,7 @@ class FeedApiTest {
             `is`(
                 DataResult.Success(
                     listOf(
-                        Feed(
+                        FeedDTO(
                             title = "Test",
                             body = "Good one",
                             topic = "droidconweb",
@@ -105,7 +105,7 @@ class FeedApiTest {
                                 LocalTime.parse("18:45:49")
                             )
                         ),
-                        Feed(
+                        FeedDTO(
                             title = "niko fine",
                             body = "this is a test",
                             topic = "droidconweb",

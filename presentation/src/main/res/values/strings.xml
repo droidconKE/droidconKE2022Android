@@ -57,6 +57,7 @@
     <string name="format_plus_label">+%d</string>
     <string name="speaker_details_label">Speaker</string>
     <string name="bio_label">Bio</string>
+    <string name="feed_image">Feed image</string>
     <string name="filter_button_label">Filter</string>
     <string name="cancel_filter_button_label">Cancel</string>
     <string name="close_icon_description">close icon</string>

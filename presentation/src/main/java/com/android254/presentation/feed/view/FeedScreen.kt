@@ -23,27 +23,34 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.android254.presentation.common.bottomsheet.BottomSheetScaffold
 import com.android254.presentation.common.bottomsheet.rememberBottomSheetScaffoldState
 import com.android254.presentation.common.components.DroidconAppBarWithFeedbackButton
 import com.android254.presentation.common.theme.DroidconKE2022Theme
+import com.android254.presentation.feed.FeedViewModel
 import kotlinx.coroutines.launch
 
 @Composable
 fun FeedScreen(
     navigateToFeedbackScreen: () -> Unit = {},
+    feedViewModel: FeedViewModel = hiltViewModel()
 ) {
     val bottomSheetScaffoldState = rememberBottomSheetScaffoldState()
     val scope = rememberCoroutineScope()
+    feedViewModel.fetchFeed()
+    val feedUIState = feedViewModel.feedsState.collectAsState().value
     BottomSheetScaffold(
         sheetContent = {
             FeedShareSection()
@@ -66,17 +73,23 @@ fun FeedScreen(
                 .padding(paddingValues)
                 .fillMaxSize()
         ) {
-            LazyColumn(
-                modifier = Modifier.testTag("feeds_lazy_column"),
-                verticalArrangement = Arrangement.spacedBy(4.dp)
-            ) {
-                items(count = 10) {
-                    FeedComponent(modifier = Modifier.fillMaxWidth()) {
-                        scope.launch {
-                            if (bottomSheetScaffoldState.bottomSheetState.isCollapsed) {
-                                bottomSheetScaffoldState.bottomSheetState.expand()
-                            } else {
-                                bottomSheetScaffoldState.bottomSheetState.collapse()
+            when (feedUIState) {
+                is FeedUIState.Error -> {}
+                FeedUIState.Loading -> {}
+                is FeedUIState.Success -> {
+                    LazyColumn(
+                        modifier = Modifier.testTag("feeds_lazy_column"),
+                        verticalArrangement = Arrangement.spacedBy(4.dp)
+                    ) {
+                        items(feedUIState.feeds) { feedPresentationModel ->
+                            FeedComponent(modifier = Modifier.fillMaxWidth(), feedPresentationModel) {
+                                scope.launch {
+                                    if (bottomSheetScaffoldState.bottomSheetState.isCollapsed) {
+                                        bottomSheetScaffoldState.bottomSheetState.expand()
+                                    } else {
+                                        bottomSheetScaffoldState.bottomSheetState.collapse()
+                                    }
+                                }
                             }
                         }
                     }

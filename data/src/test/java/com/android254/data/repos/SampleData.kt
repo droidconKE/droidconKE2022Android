@@ -16,6 +16,12 @@
 package com.android254.data.repos
 
 import com.android254.data.network.models.responses.*
+import com.android254.data.network.models.responses.FeedDTO
+import com.android254.data.network.models.responses.PaginatedResponse
+import com.android254.data.network.models.responses.PaginationMetaData
+import com.android254.data.network.models.responses.ResponseMetaData
+import com.android254.data.network.models.responses.SessionDTO
+import java.time.LocalDateTime
 
 val results = EventScheduleGroupedResponse(
     data = mapOf(
@@ -41,5 +47,16 @@ val results = EventScheduleGroupedResponse(
                 speakers = listOf()
             )
         )
+    )
+)
+
+val feed = listOf(
+    FeedDTO(
+        "Feed",
+        "Feed feed feed",
+        "feed",
+        "",
+        "",
+        LocalDateTime.now()
     )
 )
