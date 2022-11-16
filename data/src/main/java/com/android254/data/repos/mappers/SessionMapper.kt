@@ -48,7 +48,6 @@ fun SessionEntity.toDomainModel() = Session(
 
 @RequiresApi(Build.VERSION_CODES.O)
 fun SessionDTO.toEntity(): SessionEntity {
-
     return SessionEntity(
         id = 0,
         description = description,
@@ -68,7 +67,7 @@ fun SessionDTO.toEntity(): SessionEntity {
         speakers = Json.encodeToString(this.speakers),
         startTimestamp = fromString(startDateTime),
         remote_id = this.id,
-        sessionImageUrl = sessionImage.toString(),
+        sessionImageUrl = sessionImage.toString()
     )
 }
 

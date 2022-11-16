@@ -15,33 +15,35 @@
  */
 package com.android254.presentation.about.view
 
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import com.android254.domain.models.ResourceResult
+import com.android254.domain.repos.OrganizersRepo
 import com.android254.presentation.models.OrganizingTeamMember
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class AboutViewModel @Inject constructor() : ViewModel() {
+class AboutViewModel @Inject constructor(
+    private val organizersRepo: OrganizersRepo
+) : ViewModel() {
 
     val sampleImageUrl: String = "https://media-exp1.licdn.com/dms/image/C4D03AQGn58utIO-x3w/profile-displayphoto-shrink_200_200/0/1637478114039?e=2147483647&v=beta&t=3kIon0YJQNHZojD3Dt5HVODJqHsKdf2YKP1SfWeROnI"
 
-    val organizingTeamMembers = MutableList(17) {
-        OrganizingTeamMember(
-            name = "Frank Tamre",
-            desc = "Main Man",
-            image = sampleImageUrl
-        )
+    suspend fun getOrganizers(): Pair<List<OrganizingTeamMember>, List<String>> {
+        val result = organizersRepo.fetchOrganizers()
+        if (result is ResourceResult.Success) {
+            val team = result.data?.filter { it.type == "individual" }?.map {
+                OrganizingTeamMember(
+                    name = it.name,
+                    desc = it.tagline,
+                    image = it.photo
+                )
+            } ?: emptyList()
+            val stakeholders = result.data?.filterNot { it.type == "individual" }?.map {
+                it.photo
+            } ?: emptyList()
+            return Pair(team, stakeholders)
+        }
+        return Pair(emptyList(), emptyList())
     }
-
-    var stakeHolderLogos = mutableStateOf(
-        listOf(
-            sampleImageUrl,
-            sampleImageUrl,
-            sampleImageUrl,
-            sampleImageUrl,
-            sampleImageUrl,
-            sampleImageUrl,
-        )
-    )
 }

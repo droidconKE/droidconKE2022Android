@@ -17,30 +17,16 @@ package com.android254.data.db.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.serialization.SerialName
 
 @Entity(tableName = "organizers")
 class OrganizerEntity(
-    @PrimaryKey(autoGenerate = false)
+    @PrimaryKey(autoGenerate = true)
     var id: Int,
-    var name: String?,
-    var email: String?,
-    var description: String?,
-    var facebook: String?,
-    var twitter: String?,
-    var instagram: String?,
-    var logo: String?,
-    var slug: String?,
-    var status: String?,
-    var createdAt: String?,
-    var creater: CreatorEntity?,
-    var upcomingEventsCount: Int?,
-    var totalEventsCount: Int?
-) {
-
-    class CreatorEntity(
-        val id: Int?,
-        val name: String?,
-        val email: String?,
-        val createdAt: String?
-    )
-}
+    val name: String,
+    val tagline: String,
+    val link: String,
+    val type: String,
+    val photo: String,
+    @SerialName("created_at") val createdAt: String
+)

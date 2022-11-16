@@ -16,6 +16,7 @@
 package com.android254.data.di
 
 import com.android254.data.dao.BookmarkDao
+import com.android254.data.dao.OrganizersDao
 import com.android254.data.db.Database
 import com.android254.data.dao.SessionDao
 import dagger.Module
@@ -29,11 +30,16 @@ object DaoModule {
 
     @Provides
     fun providesAuthorDao(
-        database: Database,
+        database: Database
     ): SessionDao = database.sessionDao()
 
     @Provides
     fun providesBookmarkDao(
-        database: Database,
+        database: Database
     ): BookmarkDao = database.bookmarkDao()
+
+    @Provides
+    fun providesOrganizersDao(
+        database: Database
+    ): OrganizersDao = database.organizersDao()
 }

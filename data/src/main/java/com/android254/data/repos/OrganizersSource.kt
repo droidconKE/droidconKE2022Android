@@ -17,39 +17,39 @@ package com.android254.data.repos
 
 import com.android254.data.dao.OrganizersDao
 import com.android254.data.network.apis.OrganizersApi
-import com.android254.data.util.OrganizerDataToDomainMapper.toDomain
-import com.android254.data.util.OrganizerDomainToEntityMapper.toDomain
-import com.android254.data.util.OrganizerDomainToEntityMapper.toEntity
+import com.android254.data.repos.mappers.toDomain
+import com.android254.data.repos.mappers.toEntity
 import com.android254.domain.models.DataResult
-import com.android254.domain.repos.OrganizersRepository
-import kotlinx.coroutines.CoroutineScope
+import com.android254.domain.models.Organizer
+import com.android254.domain.models.ResourceResult
+import com.android254.domain.repos.OrganizersRepo
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class OrganizersSource @Inject constructor(
     private val api: OrganizersApi,
     private val dao: OrganizersDao
-) : OrganizersRepository {
+) : OrganizersRepo {
 
-    private fun getPagedOrganizers(page: Int = 1) {
-        CoroutineScope(Dispatchers.IO).launch {
-
-            val response = api.fetchOrganizers(page = page)
-
-            if (response is DataResult.Success) {
-                val data = response.data
-
-                data.data.forEach {
-                    dao.insert(it.toDomain().toEntity())
+    override suspend fun fetchOrganizers(): ResourceResult<List<Organizer>> = withContext(Dispatchers.IO) {
+        val dbObjs = dao.fetchOrganizers()
+        if (dbObjs.isEmpty()) {
+            withContext(Dispatchers.Default) {
+                val result = api.fetchOrganizers("individual")
+                if (result is DataResult.Success) {
+                    val data = result.data
+                    dao.insert(data.data.map { it.toEntity() })
+                }
+            }
+            withContext(Dispatchers.Default) {
+                val result = api.fetchOrganizers("company")
+                if (result is DataResult.Success) {
+                    val data = result.data
+                    dao.insert(data.data.map { it.toEntity() })
                 }
             }
         }
+        return@withContext ResourceResult.Success(dao.fetchOrganizers().map { it.toDomain() })
     }
-
-    override fun fetchOrganizers() {
-        getPagedOrganizers(page = 1)
-    }
-
-    override fun getOrganizers() = dao.fetchOrganizers().map { it.toDomain() }
 }
