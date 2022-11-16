@@ -18,8 +18,5 @@ package com.android254.domain.repos
 import com.android254.domain.models.Organizer
 
 interface OrganizersRepository {
-
-    fun fetchOrganizers()
-
-    fun getOrganizers(): List<Organizer>
+    suspend fun getOrganizers(): List<Organizer>
 }

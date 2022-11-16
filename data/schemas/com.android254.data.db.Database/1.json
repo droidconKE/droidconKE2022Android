@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "10a62c7499de6e7bb23d657a55846a65",
+    "identityHash": "a677baef4f2d2ac35d3c45ece527589c",
     "entities": [
       {
         "tableName": "sessions",
@@ -214,7 +214,7 @@
       },
       {
         "tableName": "organizers",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `tagline` TEXT NOT NULL, `link` TEXT NOT NULL, `type` TEXT NOT NULL, `photo` TEXT NOT NULL, `createdAt` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `tagline` TEXT NOT NULL, `link` TEXT NOT NULL, `type` TEXT NOT NULL, `photo` TEXT NOT NULL, `bio` TEXT NOT NULL, `twitterHandle` TEXT NOT NULL, `designation` TEXT NOT NULL, `createdAt` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -253,6 +253,24 @@
             "notNull": true
           },
           {
+            "fieldPath": "bio",
+            "columnName": "bio",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "twitterHandle",
+            "columnName": "twitterHandle",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "designation",
+            "columnName": "designation",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
             "fieldPath": "createdAt",
             "columnName": "createdAt",
             "affinity": "TEXT",
@@ -272,7 +290,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '10a62c7499de6e7bb23d657a55846a65')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'a677baef4f2d2ac35d3c45ece527589c')"
     ]
   }
 }

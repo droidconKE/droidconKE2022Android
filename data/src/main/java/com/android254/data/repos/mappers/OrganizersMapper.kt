@@ -21,12 +21,15 @@ import com.android254.domain.models.Organizer
 
 fun OrganizerDTO.toEntity() = OrganizerEntity(
     id = 0,
-    name = name,
-    tagline = tagline,
-    link = link,
-    type = type,
-    photo = photo,
-    createdAt = createdAt
+    name = name.orEmpty(),
+    tagline = tagline.orEmpty(),
+    link = link.orEmpty(),
+    type = type.orEmpty(),
+    photo = photo.orEmpty(),
+    createdAt = createdAt.orEmpty(),
+    designation = designation.orEmpty(),
+    bio = bio.orEmpty(),
+    twitterHandle = twitterHandle.orEmpty()
 )
 
 fun OrganizerEntity.toDomain() = Organizer(
@@ -36,5 +39,8 @@ fun OrganizerEntity.toDomain() = Organizer(
     link = link,
     type = type,
     photo = photo,
-    createdAt = createdAt
+    createdAt = createdAt,
+    bio = bio,
+    twitterHandle = twitterHandle,
+    designation = designation
 )
