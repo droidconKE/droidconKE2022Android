@@ -66,7 +66,7 @@ class HomeBannerSectionTest {
     fun `Test home call for speakers is displayed`() {
         composeTestRule.setContent {
             DroidconKE2022Theme {
-                HomeBannerSection(homeViewState)
+                HomeBannerSection(homeViewState.copy(isCallForSpeakersVisible = true))
             }
         }
         composeTestRule.onNodeWithTag("home_call_for_speakers_link").assertIsDisplayed()

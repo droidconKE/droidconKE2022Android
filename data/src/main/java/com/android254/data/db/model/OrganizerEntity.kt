@@ -28,5 +28,8 @@ class OrganizerEntity(
     val link: String,
     val type: String,
     val photo: String,
+    val bio: String,
+    val twitterHandle: String,
+    val designation: String,
     @SerialName("created_at") val createdAt: String
 )

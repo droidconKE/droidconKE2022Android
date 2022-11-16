@@ -20,9 +20,7 @@ import com.android254.data.network.apis.OrganizersApi
 import com.android254.data.repos.mappers.toDomain
 import com.android254.data.repos.mappers.toEntity
 import com.android254.domain.models.DataResult
-import com.android254.domain.models.Organizer
-import com.android254.domain.models.ResourceResult
-import com.android254.domain.repos.OrganizersRepo
+import com.android254.domain.repos.OrganizersRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -30,9 +28,9 @@ import javax.inject.Inject
 class OrganizersSource @Inject constructor(
     private val api: OrganizersApi,
     private val dao: OrganizersDao
-) : OrganizersRepo {
+) : OrganizersRepository {
 
-    override suspend fun fetchOrganizers(): ResourceResult<List<Organizer>> = withContext(Dispatchers.IO) {
+    override suspend fun getOrganizers() = withContext(Dispatchers.IO) {
         val dbObjs = dao.fetchOrganizers()
         if (dbObjs.isEmpty()) {
             withContext(Dispatchers.Default) {
@@ -50,6 +48,6 @@ class OrganizersSource @Inject constructor(
                 }
             }
         }
-        return@withContext ResourceResult.Success(dao.fetchOrganizers().map { it.toDomain() })
+        return@withContext dao.fetchOrganizers().map { it.toDomain() }
     }
 }

@@ -25,18 +25,22 @@ data class OrganizersPagedResponse(
 
 @Serializable
 data class OrganizerDTO(
-    val name: String,
-    val tagline: String,
-    val link: String,
-    val type: String,
-    val photo: String,
-    @SerialName("created_at") val createdAt: String
-)
-
-@Serializable
-data class CreatorDTO(
-    val id: Int,
-    val name: String,
-    val email: String,
-    @SerialName("created_at") val createdAt: String
+    @SerialName("bio")
+    val bio: String? = "",
+    @SerialName("created_at")
+    val createdAt: String? = "",
+    @SerialName("designation")
+    val designation: String? = "",
+    @SerialName("link")
+    val link: String? = "",
+    @SerialName("name")
+    val name: String? = "",
+    @SerialName("photo")
+    val photo: String? = "",
+    @SerialName("tagline")
+    val tagline: String? = "",
+    @SerialName("twitter_handle")
+    val twitterHandle: String? = "",
+    @SerialName("type")
+    val type: String? = ""
 )

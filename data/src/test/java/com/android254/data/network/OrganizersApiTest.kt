@@ -26,8 +26,11 @@ import com.android254.data.network.models.responses.OrganizersPagedResponse
 import com.android254.data.network.util.HttpClientFactory
 import com.android254.data.preferences.DefaultTokenProvider
 import com.android254.domain.models.DataResult
-import io.ktor.client.engine.mock.*
-import io.ktor.http.*
+import io.ktor.client.engine.mock.MockEngine
+import io.ktor.client.engine.mock.respond
+import io.ktor.http.HttpHeaders
+import io.ktor.http.HttpStatusCode
+import io.ktor.http.headersOf
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
@@ -54,40 +57,22 @@ class OrganizersApiTest {
         val validContent = """
             {
                 "data": [{
-                    "id": 21,
                     "name": "droidconKE",
-                    "email": "hello@droidcon.co.ke",
-                    "description": "Droidcon is a global conference focused on the engineering of Android applications. Droidcon provides a forum for developers to network with other developers, share techniques, announce apps and products, and to learn and teach.",
-                    "facebook": "appslabmoi",
-                    "twitter": "droidconke",
-                    "instagram": null,
-                    "logo": "http://localhost:8000/upload/logo/app2svg.svg",
-                    "slug": "droidconke-40",
-                    "status": "active",
+                    "designation": "Droidcon is a global conference focused on the engineering of Android applications. Droidcon provides a forum for developers to network with other developers, share techniques, announce apps and products, and to learn and teach.",
+                    "twitter_handle": "droidconke",
+                    "photo": "http://localhost:8000/upload/logo/app2svg.svg",
+                    "tagline": "droidconke-40",
+                    "link": "active",
                     "created_at": "2019-12-20 14:39:38",
-                    "creator": {
-                        "id": 11,
-                        "name": "Magak Emmanuel",
-                        "email": "emashmagak@gmail.com",
-                        "created_at": "2020-03-17 18:54:17"
-                    },
-                    "upcoming_events_count": 1,
-                    "total_events_count": 1
-                }],
-                "meta": {
-                    "paginator": {
-                        "count": 21,
-                        "per_page": "15",
-                        "current_page": 1,
-                        "next_page": "http://localhost:8000/api/v1/organizers?per_page=15&page=2",
-                        "has_more_pages": true,
-                        "next_page_url": "http://localhost:8000/api/v1/organizers?per_page=15&page=2",
-                        "previous_page_url": null
-                    }
-                }
+                    "type": "type",
+                    "bio": "type"
+                }]
             }
         """.trimIndent()
         val mockEngine = MockEngine {
+            Json {
+                ignoreUnknownKeys = true
+            }
             respond(
                 content = validContent,
                 status = HttpStatusCode.OK,
@@ -97,8 +82,10 @@ class OrganizersApiTest {
         val httpClient = HttpClientFactory(DefaultTokenProvider(testDataStore)).create(mockEngine)
         val api = OrganizersApi(httpClient)
         runBlocking {
-            val expected = DataResult.Success(data = Json.decodeFromString<OrganizersPagedResponse>(validContent))
-            val actual = api.fetchOrganizers(1)
+            val expected = DataResult.Success(
+                data = Json.decodeFromString<OrganizersPagedResponse>(validContent)
+            )
+            val actual = api.fetchOrganizers("individual")
             assertEquals(expected, actual)
         }
     }
@@ -151,7 +138,7 @@ class OrganizersApiTest {
         val httpClient = HttpClientFactory(DefaultTokenProvider(testDataStore)).create(mockEngine)
         val api = OrganizersApi(httpClient)
 
-        val actual = runBlocking { api.fetchOrganizers(1) }
+        val actual = runBlocking { api.fetchOrganizers("individual") }
 
         assert(actual is DataResult.Error)
     }

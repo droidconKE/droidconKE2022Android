@@ -39,12 +39,12 @@ class SpeakersViewModel @Inject constructor(
                 isLoading.value = false
                 return result.data?.map {
                     SpeakerUI(
-                        id = it.id,
-                        imageUrl = it.avatar.toString(),
+                        id = 1,
+                        imageUrl = it.avatar,
                         name = it.name,
-                        tagline = it.tagline.toString(),
-                        bio = it.biography.toString(),
-                        twitterHandle = it.twitter.toString()
+                        tagline = it.tagline,
+                        bio = it.biography,
+                        twitterHandle = it.twitter
                     )
                 } ?: emptyList()
             }
@@ -66,12 +66,12 @@ class SpeakersViewModel @Inject constructor(
                     SpeakerUI()
                 } else {
                     SpeakerUI(
-                        id = data.id,
-                        imageUrl = data.avatar.toString(),
+                        id = 1,
+                        imageUrl = data.avatar,
                         name = data.name,
-                        tagline = data.tagline.toString(),
-                        bio = data.biography.toString(),
-                        twitterHandle = data.twitter.toString()
+                        tagline = data.tagline,
+                        bio = data.biography,
+                        twitterHandle = data.twitter
                     )
                 }
             }
