@@ -43,3 +43,4 @@ jobs:
           releaseFiles: app/build/outputs/bundle/release/app-release.aab
           track: production
           whatsNewDirectory: whatsnew/
+          status: completed
