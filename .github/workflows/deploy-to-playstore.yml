@@ -37,9 +37,9 @@ jobs:
 
       - name: Deploy to Production
         uses: r0adkll/upload-google-play@v1
-          with:
-            serviceAccountJsonPlainText: ${{ secrets.GOOGLE_SERVICES_JSON }}
-            packageName: com.android254.droidconKE2022
-            releaseFiles: app/build/outputs/bundle/release/app-release.aab
-            track: production
-            whatsNewDirectory: whatsnew/
+        with:
+          serviceAccountJsonPlainText: ${{ secrets.GOOGLE_SERVICES_JSON }}
+          packageName: com.android254.droidconKE2022
+          releaseFiles: app/build/outputs/bundle/release/app-release.aab
+          track: production
+          whatsNewDirectory: whatsnew/
