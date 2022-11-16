@@ -26,8 +26,11 @@ import com.android254.data.network.models.responses.OrganizersPagedResponse
 import com.android254.data.network.util.HttpClientFactory
 import com.android254.data.preferences.DefaultTokenProvider
 import com.android254.domain.models.DataResult
-import io.ktor.client.engine.mock.*
-import io.ktor.http.*
+import io.ktor.client.engine.mock.MockEngine
+import io.ktor.client.engine.mock.respond
+import io.ktor.http.HttpHeaders
+import io.ktor.http.HttpStatusCode
+import io.ktor.http.headersOf
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
@@ -98,7 +101,7 @@ class OrganizersApiTest {
         val api = OrganizersApi(httpClient)
         runBlocking {
             val expected = DataResult.Success(data = Json.decodeFromString<OrganizersPagedResponse>(validContent))
-            val actual = api.fetchOrganizers(1)
+            val actual = api.fetchOrganizers("individual")
             assertEquals(expected, actual)
         }
     }
@@ -151,7 +154,7 @@ class OrganizersApiTest {
         val httpClient = HttpClientFactory(DefaultTokenProvider(testDataStore)).create(mockEngine)
         val api = OrganizersApi(httpClient)
 
-        val actual = runBlocking { api.fetchOrganizers(1) }
+        val actual = runBlocking { api.fetchOrganizers("individual") }
 
         assert(actual is DataResult.Error)
     }
